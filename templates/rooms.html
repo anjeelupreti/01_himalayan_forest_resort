@@ -43,18 +43,18 @@
             <label class="form-label">Price Range</label>
             <select class="form-select" id="priceFilter">
               <option value="all">All Prices</option>
-              <option value="low">Rs. 8,000 - 12,000</option>
-              <option value="medium">Rs. 12,000 - 16,000</option>
-              <option value="high">Rs. 16,000+</option>
+              <option value="low">Rs. 4,000 - 5,000</option>
+              <option value="medium">Rs. 5,000 - 6,000</option>
+              <option value="high">Rs. 6,000+</option>
             </select>
           </div>
           <div class="col-lg-3 col-md-6">
             <label class="form-label">Guest Capacity</label>
             <select class="form-select" id="capacityFilter">
               <option value="all">Any Capacity</option>
-              <option value="1-2">1-2 Guests</option>
-              <option value="3-4">3-4 Guests</option>
-              <option value="4+">4+ Guests</option>
+              <option value="2">2 Guests</option>
+              <option value="3">3 Guests</option>
+              <option value="4">4+ Guests</option>
             </select>
           </div>
           <div class="col-lg-3 col-md-6">
@@ -63,7 +63,7 @@
               <option value="all">All Views</option>
               <option value="lake">Lake View</option>
               <option value="mountain">Mountain View</option>
-              <option value="garden">Garden View</option>
+              <option value="both">Lake & Mountain View</option>
             </select>
           </div>
           <div class="col-lg-3 col-md-6">
@@ -92,289 +92,59 @@
       <!-- Rooms Grid -->
       <div class="rooms-grid" data-aos="fade-up" data-aos-delay="300">
         <div class="row g-4" id="roomsContainer">
-
-          <!-- Super Deluxe Room -->
-          <div class="col-xl-4 col-lg-6 room-item" data-price="12000" data-capacity="3" data-view="lake" data-popular="true">
+          {% for room in rooms %}
+          <div class="col-xl-4 col-lg-6 room-item" data-price="{{ room.price }}" data-capacity="{{ room.capacity }}" data-view="{{ room.view_type }}" data-popular="{{ room.is_popular|yesno:'true,false' }}" data-category="{{ room.category }}">
             <div class="room-card">
               <div class="room-image">
-                <img src="{% static 'assets/img/hotel/room-15.webp' %}" alt="Super Deluxe Room with Lake View" class="img-fluid">
+                <img src="{% static room.image %}" alt="{{ room.name }} at Himalaya Forest Resort" class="img-fluid">
                 <div class="room-features">
-                  <span class="feature-badge view">Lake View</span>
-                  <span class="feature-badge popular">Most Popular</span>
+                  {% for feature in room.features|slice:":2" %}
+                  <span class="feature-badge {% if feature == 'Most Popular' %}popular{% elif feature == 'Family Friendly' %}family{% elif feature == 'Best Value' %}value{% else %}view{% endif %}">{{ feature }}</span>
+                  {% endfor %}
                 </div>
-                <a href="{% url 'room_detail' %}" class="room-overlay">
+                <a href="{% url 'room_detail' room.id %}" class="room-overlay">
                   <span>View Details</span>
                 </a>
               </div>
               <div class="room-content">
                 <div class="room-header">
-                  <h3>Super Deluxe Room</h3>
+                  <h3>{{ room.name }}</h3>
                   <div class="room-rating">
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <span class="rating-text">4.9/5</span>
+                    {% for i in "12345"|make_list %}
+                      {% if forloop.counter <= room.rating|add:"0" %}
+                        <i class="bi bi-star-fill"></i>
+                      {% elif forloop.counter <= room.rating|add:"0.5"|floatformat:0 %}
+                        <i class="bi bi-star-half"></i>
+                      {% else %}
+                        <i class="bi bi-star"></i>
+                      {% endif %}
+                    {% endfor %}
+                    <span class="rating-text">{{ room.rating }}/5</span>
                   </div>
                 </div>
-                <p class="room-description">Experience luxury with panoramic views of Begnas Lake. Features modern amenities, comfortable seating area, and private balcony.</p>
+                <p class="room-description">{{ room.description }}</p>
                 <div class="room-amenities">
-                  <span><i class="bi bi-people"></i> Up to 3 guests</span>
-                  <span><i class="bi bi-house"></i> 45 sq m</span>
+                  <span><i class="bi bi-people"></i> Up to {{ room.capacity }} guests</span>
+                  <span><i class="bi bi-house"></i> {{ room.size }}</span>
                   <span><i class="bi bi-wifi"></i> Free WiFi</span>
+                  <span><i class="bi bi-bathtub"></i> SPA Bath</span>
                 </div>
                 <div class="room-footer">
                   <div class="room-price">
                     <span class="price-from">From</span>
-                    <span class="price-amount">Rs. 12,000</span>
+                    <span class="price-amount">Rs. {{ room.price|floatformat:0 }}</span>
                     <span class="price-period">/ night</span>
-                    <span class="tax-info">+ taxes & fees</span>
+                    <span class="tax-info"></span>
                   </div>
                   <div class="room-actions">
-                    <a href="{% url 'room_detail' %}" class="btn-room-details">View Details</a>
-                    <a href="{% url 'booking' %}" class="btn-room-book">Book Now</a>
+                    <a href="{% url 'room_detail' room.id %}" class="btn-room-details">View Details</a>
+                    <a href="{% url 'booking' %}?room={{ room.id }}" class="btn-room-book">Book Now</a>
                   </div>
                 </div>
               </div>
             </div>
           </div><!-- End Room Card -->
-
-          <!-- Family Deluxe Room -->
-          <div class="col-xl-4 col-lg-6 room-item" data-price="15000" data-capacity="4" data-view="lake" data-family="true">
-            <div class="room-card">
-              <div class="room-image">
-                <img src="{% static 'assets/img/hotel/room-3.webp' %}" alt="Family Deluxe Room" class="img-fluid">
-                <div class="room-features">
-                  <span class="feature-badge view">Lake View</span>
-                  <span class="feature-badge family">Family Friendly</span>
-                </div>
-                <a href="#" class="room-overlay">
-                  <span>View Details</span>
-                </a>
-              </div>
-              <div class="room-content">
-                <div class="room-header">
-                  <h3>Family Deluxe Room</h3>
-                  <div class="room-rating">
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-half"></i>
-                    <span class="rating-text">4.7/5</span>
-                  </div>
-                </div>
-                <p class="room-description">Spacious accommodation perfect for families. Features connecting rooms, kid-friendly amenities, and garden access.</p>
-                <div class="room-amenities">
-                  <span><i class="bi bi-people"></i> Up to 4 guests</span>
-                  <span><i class="bi bi-house"></i> 60 sq m</span>
-                  <span><i class="bi bi-controller"></i> Entertainment</span>
-                </div>
-                <div class="room-footer">
-                  <div class="room-price">
-                    <span class="price-from">From</span>
-                    <span class="price-amount">Rs. 15,000</span>
-                    <span class="price-period">/ night</span>
-                    <span class="tax-info">+ taxes & fees</span>
-                  </div>
-                  <div class="room-actions">
-                    <a href="#" class="btn-room-details">View Details</a>
-                    <a href="{% url 'booking' %}" class="btn-room-book">Book Now</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div><!-- End Room Card -->
-
-          <!-- Deluxe Twin Room -->
-          <div class="col-xl-4 col-lg-6 room-item" data-price="10000" data-capacity="2" data-view="mountain" data-value="true">
-            <div class="room-card">
-              <div class="room-image">
-                <img src="{% static 'assets/img/hotel/room-7.webp' %}" alt="Deluxe Twin Room" class="img-fluid">
-                <div class="room-features">
-                  <span class="feature-badge view">Mountain View</span>
-                  <span class="feature-badge value">Best Value</span>
-                </div>
-                <a href="#" class="room-overlay">
-                  <span>View Details</span>
-                </a>
-              </div>
-              <div class="room-content">
-                <div class="room-header">
-                  <h3>Deluxe Twin Room</h3>
-                  <div class="room-rating">
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star"></i>
-                    <span class="rating-text">4.5/5</span>
-                  </div>
-                </div>
-                <p class="room-description">Perfect for friends or colleagues. Features twin beds, comfortable workspace, and stunning mountain views.</p>
-                <div class="room-amenities">
-                  <span><i class="bi bi-people"></i> Up to 2 guests</span>
-                  <span><i class="bi bi-house"></i> 35 sq m</span>
-                  <span><i class="bi bi-laptop"></i> Work Desk</span>
-                </div>
-                <div class="room-footer">
-                  <div class="room-price">
-                    <span class="price-from">From</span>
-                    <span class="price-amount">Rs. 10,000</span>
-                    <span class="price-period">/ night</span>
-                    <span class="tax-info">+ taxes & fees</span>
-                  </div>
-                  <div class="room-actions">
-                    <a href="#" class="btn-room-details">View Details</a>
-                    <a href="{% url 'booking' %}" class="btn-room-book">Book Now</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div><!-- End Room Card -->
-
-          <!-- Premium Lake View Suite -->
-          <div class="col-xl-4 col-lg-6 room-item" data-price="18000" data-capacity="3" data-view="lake" data-premium="true">
-            <div class="room-card">
-              <div class="room-image">
-                <img src="{% static 'assets/img/hotel/room-12.webp' %}" alt="Premium Lake View Suite" class="img-fluid">
-                <div class="room-features">
-                  <span class="feature-badge view">Lake View</span>
-                  <span class="feature-badge premium">Premium</span>
-                </div>
-                <a href="#" class="room-overlay">
-                  <span>View Details</span>
-                </a>
-              </div>
-              <div class="room-content">
-                <div class="room-header">
-                  <h3>Premium Lake View Suite</h3>
-                  <div class="room-rating">
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <span class="rating-text">5.0/5</span>
-                  </div>
-                </div>
-                <p class="room-description">Luxurious suite with separate living area, enhanced lake views, and premium amenities for ultimate comfort.</p>
-                <div class="room-amenities">
-                  <span><i class="bi bi-people"></i> Up to 3 guests</span>
-                  <span><i class="bi bi-house"></i> 55 sq m</span>
-                  <span><i class="bi bi-cup-hot"></i> Coffee Machine</span>
-                </div>
-                <div class="room-footer">
-                  <div class="room-price">
-                    <span class="price-from">From</span>
-                    <span class="price-amount">Rs. 18,000</span>
-                    <span class="price-period">/ night</span>
-                    <span class="tax-info">+ taxes & fees</span>
-                  </div>
-                  <div class="room-actions">
-                    <a href="#" class="btn-room-details">View Details</a>
-                    <a href="{% url 'booking' %}" class="btn-room-book">Book Now</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div><!-- End Room Card -->
-
-          <!-- Garden View Room -->
-          <div class="col-xl-4 col-lg-6 room-item" data-price="9000" data-capacity="2" data-view="garden" data-economy="true">
-            <div class="room-card">
-              <div class="room-image">
-                <img src="{% static 'assets/img/hotel/room-1.webp' %}" alt="Garden View Room" class="img-fluid">
-                <div class="room-features">
-                  <span class="feature-badge view">Garden View</span>
-                  <span class="feature-badge economy">Economy</span>
-                </div>
-                <a href="#" class="room-overlay">
-                  <span>View Details</span>
-                </a>
-              </div>
-              <div class="room-content">
-                <div class="room-header">
-                  <h3>Garden View Room</h3>
-                  <div class="room-rating">
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-half"></i>
-                    <i class="bi bi-star"></i>
-                    <span class="rating-text">4.3/5</span>
-                  </div>
-                </div>
-                <p class="room-description">Comfortable room with beautiful garden views. Perfect for budget-conscious travelers seeking quality accommodation.</p>
-                <div class="room-amenities">
-                  <span><i class="bi bi-people"></i> Up to 2 guests</span>
-                  <span><i class="bi bi-house"></i> 30 sq m</span>
-                  <span><i class="bi bi-wifi"></i> Free WiFi</span>
-                </div>
-                <div class="room-footer">
-                  <div class="room-price">
-                    <span class="price-from">From</span>
-                    <span class="price-amount">Rs. 9,000</span>
-                    <span class="price-period">/ night</span>
-                    <span class="tax-info">+ taxes & fees</span>
-                  </div>
-                  <div class="room-actions">
-                    <a href="#" class="btn-room-details">View Details</a>
-                    <a href="{% url 'booking' %}" class="btn-room-book">Book Now</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div><!-- End Room Card -->
-
-          <!-- Romantic Getaway Suite -->
-          <div class="col-xl-4 col-lg-6 room-item" data-price="16000" data-capacity="2" data-view="lake" data-romantic="true">
-            <div class="room-card">
-              <div class="room-image">
-                <img src="{% static 'assets/img/hotel/room-18.webp' %}" alt="Romantic Getaway Suite" class="img-fluid">
-                <div class="room-features">
-                  <span class="feature-badge view">Lake View</span>
-                  <span class="feature-badge romantic">Romantic</span>
-                </div>
-                <a href="#" class="room-overlay">
-                  <span>View Details</span>
-                </a>
-              </div>
-              <div class="room-content">
-                <div class="room-header">
-                  <h3>Romantic Getaway Suite</h3>
-                  <div class="room-rating">
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <span class="rating-text">4.9/5</span>
-                  </div>
-                </div>
-                <p class="room-description">Perfect for couples. Features special amenities, private balcony, and romantic decor with breathtaking sunset views.</p>
-                <div class="room-amenities">
-                  <span><i class="bi bi-people"></i> Up to 2 guests</span>
-                  <span><i class="bi bi-house"></i> 40 sq m</span>
-                  <span><i class="bi bi-heart"></i> Special Amenities</span>
-                </div>
-                <div class="room-footer">
-                  <div class="room-price">
-                    <span class="price-from">From</span>
-                    <span class="price-amount">Rs. 16,000</span>
-                    <span class="price-period">/ night</span>
-                    <span class="tax-info">+ taxes & fees</span>
-                  </div>
-                  <div class="room-actions">
-                    <a href="#" class="btn-room-details">View Details</a>
-                    <a href="{% url 'booking' %}" class="btn-room-book">Book Now</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div><!-- End Room Card -->
-
+          {% endfor %}
         </div>
       </div>
 
@@ -400,36 +170,29 @@
                 <th>Room Type</th>
                 <th>Size</th>
                 <th>Guests</th>
+                <th>Bed Configuration</th>
                 <th>View</th>
                 <th>Price/Night</th>
                 <th>Action</th>
               </tr>
             </thead>
             <tbody>
+              {% for room in rooms %}
               <tr>
-                <td><strong>Super Deluxe</strong></td>
-                <td>45 sq m</td>
-                <td>Up to 3</td>
-                <td>Lake View</td>
-                <td>Rs. 12,000</td>
-                <td><a href="{% url 'room_detail' %}" class="btn btn-sm btn-outline-primary">Details</a></td>
+                <td><strong>{{ room.name }}</strong></td>
+                <td>{{ room.size }}</td>
+                <td>Up to {{ room.capacity }}</td>
+                <td>{{ room.bed_config }}</td>
+                <td>
+                  {% if room.view_type == 'lake_mountain' %}Lake & Mountain View
+                  {% elif room.view_type == 'lake' %}Lake View
+                  {% elif room.view_type == 'mountain' %}Mountain View
+                  {% endif %}
+                </td>
+                <td>Rs. {{ room.price|floatformat:0 }}</td>
+                <td><a href="{% url 'room_detail' room.id %}" class="btn btn-sm btn-outline-primary">Details</a></td>
               </tr>
-              <tr>
-                <td><strong>Family Deluxe</strong></td>
-                <td>60 sq m</td>
-                <td>Up to 4</td>
-                <td>Lake View</td>
-                <td>Rs. 15,000</td>
-                <td><a href="#" class="btn btn-sm btn-outline-primary">Details</a></td>
-              </tr>
-              <tr>
-                <td><strong>Deluxe Twin</strong></td>
-                <td>35 sq m</td>
-                <td>Up to 2</td>
-                <td>Mountain View</td>
-                <td>Rs. 10,000</td>
-                <td><a href="#" class="btn btn-sm btn-outline-primary">Details</a></td>
-              </tr>
+              {% endfor %}
             </tbody>
           </table>
         </div>
@@ -598,18 +361,6 @@
   
   .feature-badge.value {
     background: #f39c12;
-  }
-  
-  .feature-badge.premium {
-    background: #9b59b6;
-  }
-  
-  .feature-badge.economy {
-    background: #95a5a6;
-  }
-  
-  .feature-badge.romantic {
-    background: #e84393;
   }
   
   .room-overlay {
@@ -843,44 +594,45 @@
     background: #f8f9fa;
   }
   
-  /* Booking Assistance */
+  /* Booking Assistance - Updated to match theme */
   .assistance-card {
-    background: linear-gradient(135deg, #2c3e50, #3498db);
-    color: white;
+    background: #f8f9fa;
+    color: #2c3e50;
     padding: 40px;
     border-radius: 15px;
+    border-left: 5px solid #27ae60;
   }
   
   .assistance-card h4 {
-    color: white;
+    color: #2c3e50;
     margin-bottom: 15px;
   }
   
   .assistance-card p {
-    color: rgba(255,255,255,0.9);
+    color: #666;
     margin-bottom: 20px;
   }
   
   .contact-info span {
     display: inline-flex;
     align-items: center;
-    color: rgba(255,255,255,0.9);
+    color: #2c3e50;
   }
   
   .contact-info i {
-    color: #3498db;
+    color: #27ae60;
   }
   
   .assistance-card .btn-primary {
-    background: white;
-    color: #2c3e50;
+    background: #27ae60;
+    color: white;
     border: none;
     padding: 15px 40px;
     font-weight: 600;
   }
   
   .assistance-card .btn-primary:hover {
-    background: #f8f9fa;
+    background: #219653;
     transform: translateY(-2px);
   }
   
@@ -979,7 +731,6 @@
 {% block extra_js %}
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    // Initialize AOS animations
     if (typeof AOS !== 'undefined') {
       AOS.init({
         duration: 800,
@@ -988,7 +739,6 @@
       });
     }
     
-    // Room filtering functionality
     const priceFilter = document.getElementById('priceFilter');
     const capacityFilter = document.getElementById('capacityFilter');
     const viewFilter = document.getElementById('viewFilter');
@@ -1001,7 +751,6 @@
     const noResults = document.getElementById('noResults');
     const roomItems = document.querySelectorAll('.room-item');
     
-    // Active filters tracking
     let currentFilters = {
       price: 'all',
       capacity: 'all',
@@ -1009,7 +758,6 @@
       sort: 'popular'
     };
     
-    // Filter change handlers
     [priceFilter, capacityFilter, viewFilter, sortFilter].forEach(filter => {
       filter.addEventListener('change', function() {
         const filterType = this.id.replace('Filter', '');
@@ -1019,7 +767,6 @@
       });
     });
     
-    // Clear filters
     clearFilters.addEventListener('click', function() {
       resetAllFilters();
     });
@@ -1031,54 +778,41 @@
       });
     }
     
-    // Apply filters function
     function applyFilters() {
       let visibleCount = 0;
       const itemsArray = Array.from(roomItems);
       
-      // First apply filtering
       roomItems.forEach(room => {
         let showRoom = true;
         
-        // Price filter
         if (currentFilters.price !== 'all') {
           const price = parseInt(room.dataset.price);
           switch(currentFilters.price) {
             case 'low':
-              if (price < 8000 || price > 12000) showRoom = false;
+              if (price < 4000 || price > 5000) showRoom = false;
               break;
             case 'medium':
-              if (price < 12000 || price > 16000) showRoom = false;
+              if (price < 5000 || price > 6000) showRoom = false;
               break;
             case 'high':
-              if (price < 16000) showRoom = false;
+              if (price < 6000) showRoom = false;
               break;
           }
         }
         
-        // Capacity filter
         if (currentFilters.capacity !== 'all') {
           const capacity = parseInt(room.dataset.capacity);
-          switch(currentFilters.capacity) {
-            case '1-2':
-              if (capacity > 2) showRoom = false;
-              break;
-            case '3-4':
-              if (capacity < 3 || capacity > 4) showRoom = false;
-              break;
-            case '4+':
-              if (capacity < 4) showRoom = false;
-              break;
+          const filterCapacity = parseInt(currentFilters.capacity);
+          if (capacity !== filterCapacity && !(filterCapacity === 4 && capacity >= 4)) {
+            showRoom = false;
           }
         }
         
-        // View filter
         if (currentFilters.view !== 'all') {
           const view = room.dataset.view;
           if (view !== currentFilters.view) showRoom = false;
         }
         
-        // Show/hide room
         if (showRoom) {
           room.style.display = 'block';
           room.style.animation = 'fadeIn 0.5s ease';
@@ -1088,10 +822,8 @@
         }
       });
       
-      // Sort rooms
       sortRooms(itemsArray.filter(room => room.style.display !== 'none'));
       
-      // Show/hide no results message
       if (visibleCount === 0) {
         noResults.classList.remove('d-none');
         roomsContainer.style.minHeight = '300px';
@@ -1101,12 +833,10 @@
       }
     }
     
-    // Sort rooms function
     function sortRooms(roomsToSort) {
       const container = roomsContainer;
       const fragment = document.createDocumentFragment();
       
-      // Sort based on current sort filter
       roomsToSort.sort((a, b) => {
         switch(currentFilters.sort) {
           case 'price-low':
@@ -1125,7 +855,6 @@
         }
       });
       
-      // Reorder rooms in DOM
       roomsToSort.forEach(room => {
         fragment.appendChild(room);
       });
@@ -1134,7 +863,6 @@
       container.appendChild(fragment);
     }
     
-    // Update active filters display
     function updateActiveFilters() {
       const filters = [];
       
@@ -1165,7 +893,6 @@
         activeFilters.classList.add('d-none');
       }
       
-      // Add remove functionality to filter tags
       document.querySelectorAll('.filter-tag i').forEach(icon => {
         icon.addEventListener('click', function() {
           const filterType = this.closest('.filter-tag').dataset.filter;
@@ -1174,7 +901,6 @@
       });
     }
     
-    // Create filter tag HTML
     function createFilterTag(label, value, type) {
       return `
         <div class="filter-tag" data-filter="${type}">
@@ -1184,7 +910,6 @@
       `;
     }
     
-    // Reset specific filter
     function resetFilter(filterType) {
       switch(filterType) {
         case 'price':
@@ -1208,7 +933,6 @@
       updateActiveFilters();
     }
     
-    // Reset all filters
     function resetAllFilters() {
       priceFilter.value = 'all';
       capacityFilter.value = 'all';
@@ -1226,10 +950,8 @@
       updateActiveFilters();
     }
     
-    // Initialize filters
     updateActiveFilters();
     
-    // Room card interactions
     document.querySelectorAll('.room-card').forEach(card => {
       card.addEventListener('mouseenter', function() {
         const price = this.querySelector('.price-amount');
@@ -1249,18 +971,15 @@
       });
     });
     
-    // Book now button interactions
     document.querySelectorAll('.btn-room-book').forEach(button => {
       button.addEventListener('click', function(e) {
         const roomCard = this.closest('.room-item');
         const roomName = roomCard.querySelector('.room-header h3').textContent;
         const roomPrice = roomCard.querySelector('.price-amount').textContent;
         
-        // Store room selection in session storage
         sessionStorage.setItem('selectedRoom', roomName);
         sessionStorage.setItem('roomPrice', roomPrice.replace(/[^0-9]/g, ''));
         
-        // Add click animation
         this.style.transform = 'scale(0.95)';
         setTimeout(() => {
           this.style.transform = '';
@@ -1268,21 +987,15 @@
       });
     });
     
-    // View details button interactions
     document.querySelectorAll('.btn-room-details').forEach(button => {
       button.addEventListener('click', function(e) {
-        // Add click animation
         this.style.transform = 'scale(0.95)';
         setTimeout(() => {
           this.style.transform = '';
         }, 200);
-        
-        // In a real application, you would navigate to room details page
-        // This could be enhanced with AJAX loading or modal display
       });
     });
     
-    // Add CSS animation for fadeIn
     if (!document.querySelector('#room-animations')) {
       const style = document.createElement('style');
       style.id = 'room-animations';
@@ -1301,7 +1014,6 @@
       document.head.appendChild(style);
     }
     
-    // Comparison table row hover
     document.querySelectorAll('.comparison-table tbody tr').forEach(row => {
       row.addEventListener('mouseenter', function() {
         this.style.backgroundColor = '#f8f9fa';
@@ -1313,7 +1025,6 @@
       });
     });
     
-    // Contact button animation
     const contactBtn = document.querySelector('.assistance-card .btn-primary');
     if (contactBtn) {
       contactBtn.addEventListener('mouseenter', function() {

@@ -1,11 +1,11 @@
 {% extends 'base/index.html' %}
 {% load static %}
 
-{% block title %}About Us | Himalaya Forest Resort{% endblock %}
+{% block title %}{{ resort.name }} - About Us{% endblock %}
 
-{% block description %}Discover the story behind Himalaya Forest Resort - a luxurious retreat in Pokhara, Nepal offering unforgettable experiences with stunning views.{% endblock %}
+{% block description %}{{ resort.brand_promise }} - {{ resort.description }}{% endblock %}
 
-{% block keywords %}About Himalaya Forest Resort, Our Story, History, Heritage, Pokhara Resort, Nepal Tourism{% endblock %}
+{% block keywords %}About {{ resort.name }}, Our Story, History, Heritage, Pokhara Resort, Nepal Tourism, {{ resort.category }}{% endblock %}
 
 {% block body_class %}about-page{% endblock %}
 
@@ -33,17 +33,17 @@
         <div class="col-lg-5">
           <div class="image-stack">
             <div class="main-image-wrapper" data-aos="fade-right" data-aos-delay="200">
-              <img src="{% static 'assets/img/hotel/showcase-9.webp' %}" alt="Hotel Exterior" class="img-fluid main-image">
+              <img src="{% static resort.main_image %}" alt="{{ resort.name }} - Exterior View" class="img-fluid main-image">
               <div class="floating-card" data-aos="zoom-in" data-aos-delay="400">
                 <div class="card-icon">
                   <i class="bi bi-star-fill"></i>
                 </div>
-                <h6>5-Star Excellence</h6>
-                <p>Rated #1 Luxury Resort</p>
+                <h6>{{ resort.category }} Excellence</h6>
+                <p>{{ resort.slogan }}</p>
               </div>
             </div>
             <div class="secondary-image" data-aos="fade-up" data-aos-delay="300">
-              <img src="{% static 'assets/img/hotel/room-8.webp' %}" alt="Luxury Suite" class="img-fluid">
+              <img src="{% static resort.secondary_image %}" alt="{{ resort.name }} - Luxury Room" class="img-fluid">
             </div>
           </div>
         </div>
@@ -51,41 +51,29 @@
         <div class="col-lg-7">
           <div class="content-wrapper" data-aos="fade-left" data-aos-delay="200">
             <div class="badge">
-              <span>Est. 2020</span>
+              <span>Est. {{ resort.established_year }}</span>
             </div>
 
-            <h2>Where Himalayan Beauty Meets Modern Luxury</h2>
+            <h2>{{ resort.motto }}</h2>
 
             <p class="lead">
-              Nestled in the serene hills overlooking Begnas Lake and Rupa Lake, Himalaya Forest Resort offers a perfect blend of natural beauty and contemporary comfort.
+              {{ resort.main_description }}
             </p>
 
             <p>
-              Located in Pachabhaiya (Pokhara Metropolitan Ward No. 31), our resort is designed to provide guests with an unforgettable escape from the ordinary. Every moment at our resort is crafted to offer peace, luxury, and memories that last a lifetime.
+              {{ resort.detailed_description }}
             </p>
 
             <div class="milestone-timeline">
-              <div class="milestone-item" data-aos="slide-up" data-aos-delay="250">
-                <div class="milestone-year">2020</div>
+              {% for milestone in milestones %}
+              <div class="milestone-item" data-aos="slide-up" data-aos-delay="{{ forloop.counter|add:2 }}00">
+                <div class="milestone-year">{{ milestone.year }}</div>
                 <div class="milestone-content">
-                  <h5>Grand Opening</h5>
-                  <p>Founded as premium mountain retreat</p>
+                  <h5>{{ milestone.title }}</h5>
+                  <p>{{ milestone.description }}</p>
                 </div>
               </div>
-              <div class="milestone-item" data-aos="slide-up" data-aos-delay="300">
-                <div class="milestone-year">2022</div>
-                <div class="milestone-content">
-                  <h5>Major Expansion</h5>
-                  <p>Added luxury rooms and conference facilities</p>
-                </div>
-              </div>
-              <div class="milestone-item" data-aos="slide-up" data-aos-delay="350">
-                <div class="milestone-year">2024</div>
-                <div class="milestone-content">
-                  <h5>Award Recognition</h5>
-                  <p>Recognized as top resort in Pokhara region</p>
-                </div>
-              </div>
+              {% endfor %}
             </div>
 
             <div class="action-buttons">
@@ -93,10 +81,12 @@
                 <i class="bi bi-compass"></i>
                 Explore Our Facilities
               </a>
-              <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="btn-video glightbox">
+              {% if resort.video_url %}
+              <a href="{{ resort.video_url }}" class="btn-video glightbox">
                 <i class="bi bi-play-circle"></i>
                 Watch Resort Tour
               </a>
+              {% endif %}
             </div>
           </div>
         </div>
@@ -106,89 +96,43 @@
         <div class="col-12">
           <div class="features-header text-center" data-aos="fade-up" data-aos-delay="100">
             <h3>Exceptional Hospitality Experience</h3>
-            <p>Discover the amenities and services that make your stay unforgettable</p>
+            <p>{{ resort.brand_promise }} offering {{ resort.description }}</p>
           </div>
         </div>
       </div>
 
       <div class="row">
+        {% for feature in features %}
         <div class="col-lg-4 col-md-6">
-          <div class="feature-card" data-aos="flip-up" data-aos-delay="200">
+          <div class="feature-card" data-aos="flip-up" data-aos-delay="{{ forloop.counter|add:1 }}00">
             <div class="feature-visual">
-              <img src="{% static 'assets/img/hotel/amenities-3.webp' %}" alt="Spa Services" class="img-fluid">
+              <img src="{% static feature.image %}" alt="{{ feature.alt }}" class="img-fluid">
               <div class="feature-overlay">
                 <div class="feature-icon">
-                  <i class="bi bi-flower1"></i>
+                  <i class="{{ feature.icon }}"></i>
                 </div>
               </div>
             </div>
             <div class="feature-details">
-              <h4>Panoramic Views</h4>
-              <p>Breathtaking views of Begnas Lake, Rupa Lake, and Himalayan ranges from every room</p>
+              <h4>{{ feature.title }}</h4>
+              <p>{{ feature.description }}</p>
             </div>
           </div>
         </div>
-        <div class="col-lg-4 col-md-6">
-          <div class="feature-card" data-aos="flip-up" data-aos-delay="250">
-            <div class="feature-visual">
-              <img src="{% static 'assets/img/hotel/dining-4.webp' %}" alt="Fine Dining" class="img-fluid">
-              <div class="feature-overlay">
-                <div class="feature-icon">
-                  <i class="bi bi-cup-hot"></i>
-                </div>
-              </div>
-            </div>
-            <div class="feature-details">
-              <h4>Local Cuisine</h4>
-              <p>Authentic Nepali and international cuisine prepared by expert chefs</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-lg-4 col-md-6">
-          <div class="feature-card" data-aos="flip-up" data-aos-delay="300">
-            <div class="feature-visual">
-              <img src="{% static 'assets/img/hotel/location-2.webp' %}" alt="Prime Location" class="img-fluid">
-              <div class="feature-overlay">
-                <div class="feature-icon">
-                  <i class="bi bi-geo-alt"></i>
-                </div>
-              </div>
-            </div>
-            <div class="feature-details">
-              <h4>Prime Location</h4>
-              <p>Nestled between two beautiful lakes with easy access to Pokhara attractions</p>
-            </div>
-          </div>
-        </div>
+        {% endfor %}
       </div>
 
       <div class="row achievements-section">
         <div class="col-lg-8 offset-lg-2">
           <div class="achievements-grid" data-aos="fade-up" data-aos-delay="200">
+            {% for achievement in achievements %}
             <div class="achievement-stat">
               <div class="stat-counter">
-                <span data-purecounter-start="0" data-purecounter-end="25" data-purecounter-duration="2" class="purecounter"></span>
+                <span data-purecounter-start="0" data-purecounter-end="{{ achievement.count }}" data-purecounter-duration="2" class="purecounter"></span>{{ achievement.suffix }}
               </div>
-              <div class="stat-description">Luxury Rooms</div>
+              <div class="stat-description">{{ achievement.title }}</div>
             </div>
-            <div class="achievement-stat">
-              <div class="stat-counter">
-                <span data-purecounter-start="80" data-purecounter-end="98" data-purecounter-duration="2" class="purecounter"></span>%
-              </div>
-              <div class="stat-description">Guest Satisfaction</div>
-            </div>
-            <div class="achievement-stat">
-              <div class="stat-counter">
-                <span data-purecounter-start="0" data-purecounter-end="5" data-purecounter-duration="1" class="purecounter"></span>
-              </div>
-              <div class="stat-description">Star Rating</div>
-            </div>
-            <div class="achievement-stat">
-              <div class="stat-counter">
-                <span data-purecounter-start="0" data-purecounter-end="1000" data-purecounter-duration="2" class="purecounter"></span>+
-              </div>
-              <div class="stat-description">Happy Guests</div>
-            </div>
+            {% endfor %}
           </div>
         </div>
       </div>
@@ -208,119 +152,117 @@
     <div class="container" data-aos="fade-up" data-aos-delay="100">
 
       <div class="row gy-5">
-        <div class="col-xl-8" data-aos="zoom-in" data-aos-delay="200">
-          <div class="hero-room-showcase">
-            <div class="showcase-image-container">
-              <img src="{% static 'assets/img/hotel/room-14.webp' %}" alt="Super Deluxe Room" class="img-fluid">
-              <div class="room-category-badge">
-                <span>Super Deluxe</span>
-              </div>
-              <div class="room-details-overlay">
-                <div class="room-specs">
-                  <span class="spec-item">
-                    <i class="bi bi-people"></i>
-                    <span>4 Guests</span>
-                  </span>
-                  <span class="spec-item">
-                    <i class="bi bi-house"></i>
-                    <span>45m²</span>
-                  </span>
-                  <span class="spec-item">
-                    <i class="bi bi-geo-alt"></i>
-                    <span>Lake View</span>
-                  </span>
+        {% for room in rooms %}
+          {% if room.is_featured %}
+          <div class="col-xl-8" data-aos="zoom-in" data-aos-delay="200">
+            <div class="hero-room-showcase">
+              <div class="showcase-image-container">
+                <img src="{% static room.image %}" alt="{{ room.name }}" class="img-fluid">
+                <div class="room-category-badge">
+                  <span>{{ room.name }}</span>
                 </div>
-              </div>
-            </div>
-            <div class="showcase-content">
-              <div class="room-title-section">
-                <h2>Super Deluxe Room</h2>
-                <div class="room-rating">
-                  <div class="stars">
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
-                    <i class="bi bi-star-fill"></i>
+                <div class="room-details-overlay">
+                  <div class="room-specs">
+                    <span class="spec-item">
+                      <i class="bi bi-people"></i>
+                      <span>{{ room.capacity }} Guests</span>
+                    </span>
+                    <span class="spec-item">
+                      <i class="bi bi-house"></i>
+                      <span>{{ room.size }}</span>
+                    </span>
+                    <span class="spec-item">
+                      <i class="bi bi-geo-alt"></i>
+                      <span>{{ room.view }}</span>
+                    </span>
                   </div>
-                  <span class="rating-text">5.0 Guest Rating</span>
                 </div>
               </div>
-              <p class="room-description">Our premium Super Deluxe rooms offer panoramic views of Begnas Lake and the surrounding Himalayan ranges. Featuring modern amenities and elegant decor for the ultimate comfort experience.</p>
-              <div class="amenities-grid">
-                <div class="amenity-item">
-                  <i class="bi bi-wifi"></i>
-                  <span>High-Speed WiFi</span>
+              <div class="showcase-content">
+                <div class="room-title-section">
+                  <h2>{{ room.name }}</h2>
+                  <div class="room-rating">
+                    <div class="stars">
+                      {% for i in "12345"|make_list %}
+                        {% if forloop.counter <= room.rating|add:"0" %}
+                          <i class="bi bi-star-fill"></i>
+                        {% elif forloop.counter <= room.rating|add:"0.5"|floatformat:0 %}
+                          <i class="bi bi-star-half"></i>
+                        {% else %}
+                          <i class="bi bi-star"></i>
+                        {% endif %}
+                      {% endfor %}
+                    </div>
+                    <span class="rating-text">{{ room.rating }} Guest Rating</span>
+                  </div>
                 </div>
-                <div class="amenity-item">
-                  <i class="bi bi-tv"></i>
-                  <span>Smart TV</span>
+                <p class="room-description">{{ room.description }}</p>
+                <div class="amenities-grid">
+                  {% for amenity in room.amenities|slice:":4" %}
+                  <div class="amenity-item">
+                    <i class="bi 
+                      {% if amenity == 'High-Speed WiFi' %}bi-wifi
+                      {% elif amenity == 'Smart TV' %}bi-tv
+                      {% elif amenity == 'Tea/Coffee Maker' %}bi-cup-hot
+                      {% elif amenity == 'Air Conditioning' %}bi-snow
+                      {% elif amenity == 'Family Space' %}bi-people
+                      {% elif amenity == 'Garden View' %}bi-tree
+                      {% elif amenity == 'Twin Beds' %}bi-bed
+                      {% elif amenity == 'Private Balcony' %}bi-door-open
+                      {% else %}bi-check{% endif %}"></i>
+                    <span>{{ amenity }}</span>
+                  </div>
+                  {% endfor %}
                 </div>
-                <div class="amenity-item">
-                  <i class="bi bi-cup-hot"></i>
-                  <span>Tea/Coffee Maker</span>
+                <div class="booking-section">
+                  <div class="price-display">
+                    <span class="currency">Rs.</span>
+                    <span class="amount">{{ room.price|floatformat:0 }}</span>
+                    <span class="period">per night</span>
+                  </div>
+                  <a href="{% url 'booking' %}?room={{ room.id }}" class="primary-booking-btn">Book Now</a>
                 </div>
-                <div class="amenity-item">
-                  <i class="bi bi-snow"></i>
-                  <span>Air Conditioning</span>
-                </div>
-              </div>
-              <div class="booking-section">
-                <div class="price-display">
-                  <span class="currency">Rs.</span>
-                  <span class="amount">12,000</span>
-                  <span class="period">per night</span>
-                </div>
-                <a href="{% url 'booking' %}" class="primary-booking-btn">Book Now</a>
               </div>
             </div>
           </div>
-        </div>
+          {% endif %}
+        {% endfor %}
 
         <div class="col-xl-4">
           <div class="room-list-container">
-            <div class="standard-room-card" data-aos="slide-left" data-aos-delay="250">
-              <div class="card-image">
-                <img src="{% static 'assets/img/hotel/room-6.webp' %}" alt="Family Deluxe Room" class="img-fluid">
-                <div class="view-link">
-                  <i class="bi bi-arrow-up-right"></i>
+            {% for room in rooms %}
+              {% if not room.is_featured %}
+              <div class="standard-room-card" data-aos="slide-left" data-aos-delay="{{ forloop.counter|add:2 }}00">
+                <div class="card-image">
+                  <img src="{% static room.image %}" alt="{{ room.name }}" class="img-fluid">
+                  <div class="view-link">
+                    <i class="bi bi-arrow-up-right"></i>
+                  </div>
+                </div>
+                <div class="card-content">
+                  <h4>{{ room.name }}</h4>
+                  <p>{{ room.description|truncatewords:20 }}</p>
+                  <div class="features-list">
+                    {% for amenity in room.amenities|slice:":2" %}
+                    <span>
+                      <i class="bi 
+                        {% if amenity == 'Family Space' or amenity == 'High-Speed WiFi' %}bi-people
+                        {% elif amenity == 'Garden View' or amenity == 'Mountain View' or amenity == 'Lake View' %}bi-building
+                        {% elif amenity == 'Twin Beds' %}bi-bed
+                        {% elif amenity == 'Private Balcony' %}bi-door-open
+                        {% else %}bi-check{% endif %}"></i>
+                      {{ amenity }}
+                    </span>
+                    {% endfor %}
+                  </div>
+                  <div class="booking-row">
+                    <div class="price">Rs. {{ room.price|floatformat:0 }}<small>/night</small></div>
+                    <a href="{% url 'booking' %}?room={{ room.id }}" class="book-link">Book</a>
+                  </div>
                 </div>
               </div>
-              <div class="card-content">
-                <h4>Family Deluxe Room</h4>
-                <p>Spacious accommodation perfect for families with connecting rooms and child-friendly amenities.</p>
-                <div class="features-list">
-                  <span><i class="bi bi-people"></i>Family Space</span>
-                  <span><i class="bi bi-building"></i>Garden View</span>
-                </div>
-                <div class="booking-row">
-                  <div class="price">Rs. 15,000<small>/night</small></div>
-                  <a href="{% url 'booking' %}" class="book-link">Book</a>
-                </div>
-              </div>
-            </div>
-
-            <div class="standard-room-card" data-aos="slide-left" data-aos-delay="300">
-              <div class="card-image">
-                <img src="{% static 'assets/img/hotel/room-19.webp' %}" alt="Deluxe Twin Room" class="img-fluid">
-                <div class="view-link">
-                  <i class="bi bi-arrow-up-right"></i>
-                </div>
-              </div>
-              <div class="card-content">
-                <h4>Deluxe Twin Room</h4>
-                <p>Perfect for friends or colleagues traveling together with two comfortable beds and shared space.</p>
-                <div class="features-list">
-                  <span><i class="bi bi-bed"></i>Twin Beds</span>
-                  <span><i class="bi bi-door-open"></i>Private Balcony</span>
-                </div>
-                <div class="booking-row">
-                  <div class="price">Rs. 10,000<small>/night</small></div>
-                  <a href="{% url 'booking' %}" class="book-link">Book</a>
-                </div>
-              </div>
-            </div>
-
+              {% endif %}
+            {% endfor %}
           </div>
         </div>
 

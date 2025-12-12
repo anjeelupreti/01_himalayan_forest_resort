@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .header {
+            background: linear-gradient(135deg, #2c3e50, #3498db);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px 10px 0 0;
+        }
+        .content {
+            background: #f8f9fa;
+            padding: 30px;
+            border: 1px solid #e1e5e9;
+            border-top: none;
+        }
+        .info-box {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .label {
+            font-weight: bold;
+            color: #2c3e50;
+            display: inline-block;
+            width: 120px;
+        }
+        .message-box {
+            background: white;
+            padding: 20px;
+            border-left: 4px solid #3498db;
+            margin: 20px 0;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #666;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h2>New Contact Form Submission</h2>
+        <p>Himalaya Forest Resort Website</p>
+    </div>
+    
+    <div class="content">
+        <div class="info-box">
+            <p><span class="label">Name:</span> {{ name }}</p>
+            <p><span class="label">Email:</span> {{ email }}</p>
+            <p><span class="label">Phone:</span> {{ phone }}</p>
+            <p><span class="label">Subject:</span> {{ subject }}</p>
+            <p><span class="label">Newsletter:</span> {{ newsletter }}</p>
+            <p><span class="label">Timestamp:</span> {{ timestamp }}</p>
+            <p><span class="label">IP Address:</span> {{ ip_address }}</p>
+        </div>
+        
+        <div class="message-box">
+            <h3>Message:</h3>
+            <p>{{ message|linebreaks }}</p>
+        </div>
+        
+        <p><strong>Action Required:</strong> Please respond to this inquiry within 24 hours.</p>
+    </div>
+    
+    <div class="footer">
+        <p>This email was automatically generated from the contact form on {{ resort_name }} website.</p>
+        <p>© {% now "Y" %} {{ resort_name }}. All rights reserved.</p>
+    </div>
+</body>
+</html>

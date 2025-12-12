@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Booking Request Received - {{ resort_name }}</title>
+    <style>
+        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0; background: #f5f5f5; }
+        .container { max-width: 600px; margin: 0 auto; background: #ffffff; }
+        .header { background: linear-gradient(135deg, #2f5d50, #3a6b5c); color: white; padding: 40px 20px; text-align: center; }
+        .content { padding: 40px 30px; }
+        .greeting { font-size: 1.1rem; margin-bottom: 30px; color: #40524d; line-height: 1.8; }
+        .section { margin-bottom: 35px; }
+        .section-title { color: #2f5d50; font-size: 1.3rem; font-weight: 600; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #2f5d50; }
+        .booking-summary { background: #f8f9fa; border-radius: 12px; padding: 25px; margin: 25px 0; border: 1px solid #eaeaea; }
+        .info-row { display: flex; justify-content: space-between; margin-bottom: 15px; padding-bottom: 12px; border-bottom: 1px solid #eee; }
+        .info-row:last-child { border-bottom: none; }
+        .info-label { font-weight: 600; color: #2f5d50; }
+        .info-value { color: #555; text-align: right; font-weight: 500; }
+        .next-steps { background: #f1f6f5; border-radius: 10px; padding: 25px; margin: 30px 0; }
+        .step { display: flex; align-items: flex-start; margin-bottom: 20px; }
+        .step-number { background: #2f5d50; color: white; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; margin-right: 15px; flex-shrink: 0; font-size: 0.9rem; }
+        .contact-info { background: #f8f9fa; border-radius: 10px; padding: 25px; margin: 25px 0; }
+        .footer { background: #2f5d50; color: white; padding: 30px; text-align: center; font-size: 0.9rem; }
+        .logo { font-size: 1.8rem; font-weight: 700; color: #ffffff; margin-bottom: 10px; letter-spacing: 0.5px; }
+        ul { padding-left: 20px; margin: 0; }
+        li { margin-bottom: 12px; color: #555; line-height: 1.6; }
+        .booking-ref { background: rgba(255, 255, 255, 0.15); color: white; padding: 8px 20px; border-radius: 20px; display: inline-block; font-size: 1.1rem; font-weight: 600; margin: 15px 0; }
+        .special-requests { background: #f8f6e3; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #e6c35c; }
+        .step-content h4 { margin: 0 0 5px 0; color: #2f5d50; font-size: 1.1rem; }
+        .step-content p { margin: 0; color: #555; line-height: 1.6; }
+        .contact-info p { margin: 8px 0; display: flex; }
+        .contact-info strong { color: #2f5d50; min-width: 80px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">{{ resort_name }}</div>
+            <h1 style="margin: 10px 0 15px 0; font-size: 1.8rem; font-weight: 600;">BOOKING REQUEST RECEIVED</h1>
+            <div class="booking-ref">{{ booking_reference }}</div>
+            <p style="margin: 10px 0 0 0; font-size: 0.95rem; opacity: 0.9;">Thank you for choosing Himalaya Forest Resort</p>
+        </div>
+        
+        <div class="content">
+            <div class="greeting">
+                <p>Dear <strong style="color: #2f5d50;">{{ full_name }}</strong>,</p>
+                <p>Thank you for your booking request at {{ resort_name }}. We have received your reservation details and our team will contact you within 24 hours to confirm your booking.</p>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Your Booking Request</h2>
+                <div class="booking-summary">
+                    <div class="info-row">
+                        <span class="info-label">Booking Reference:</span>
+                        <span class="info-value">{{ booking_reference }}</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Guest Name:</span>
+                        <span class="info-value">{{ full_name }}</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Check-in Date:</span>
+                        <span class="info-value">{{ arrival_date }} (after {{ check_in_time }})</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Check-out Date:</span>
+                        <span class="info-value">{{ departure_date }} (before {{ check_out_time }})</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Duration:</span>
+                        <span class="info-value">{{ nights }} night{{ nights|pluralize }}</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Room Type:</span>
+                        <span class="info-value">{{ room_type }}</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Total Guests:</span>
+                        <span class="info-value">{{ guest_count }}</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Total Rooms:</span>
+                        <span class="info-value">{{ room_count }}</span>
+                    </div>
+                </div>
+            </div>
+            
+            {% if special_requests != 'No special requests' %}
+            <div class="section">
+                <h2 class="section-title">Your Special Requests</h2>
+                <div class="special-requests">
+                    <p>{{ special_requests }}</p>
+                </div>
+            </div>
+            {% endif %}
+            
+            <div class="next-steps">
+                <h2 class="section-title">Next Steps</h2>
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <div class="step-content">
+                        <h4>Booking Review</h4>
+                        <p>Our reservations team will review your request and check availability.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <div class="step-content">
+                        <h4>Confirmation Call</h4>
+                        <p>We will contact you at <strong style="color: #2f5d50;">{{ phone }}</strong> to discuss pricing and confirm your booking.</p>
+                    </div>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <div class="step-content">
+                        <h4>Final Confirmation</h4>
+                        <p>You will receive a detailed booking confirmation with all arrangements.</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-info">
+                <h2 class="section-title">Need Immediate Assistance?</h2>
+                <p><strong>Phone:</strong> {{ resort_phone }}</p>
+                <p><strong>WhatsApp:</strong> {{ resort_phone }}</p>
+                <p><strong>Email:</strong> {{ resort_email }}</p>
+                <p><strong>Address:</strong> {{ resort_address }}</p>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">Important Information</h2>
+                <ul>
+                    <li>Please bring valid photo ID (passport/driving license) for check-in</li>
+                    <li>Early check-in and late check-out are subject to availability</li>
+                    <li>Special requests will be accommodated based on availability</li>
+                    <li>Contact us at least 48 hours in advance for any booking changes</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p style="margin: 0 0 15px 0; font-size: 1.1rem; font-weight: 600;">{{ resort_name }}</p>
+            <p style="margin: 0 0 10px 0; opacity: 0.9;">Pachabhaiya (Pokhara Metropolitan Ward No. 31)<br>Pokhara, Nepal 33700</p>
+            <p style="margin: 0 0 15px 0; opacity: 0.9;">Phone: {{ resort_phone }} | Email: {{ resort_email }}</p>
+            <p style="margin: 0; font-size: 0.85rem; opacity: 0.8;">© {% now "Y" %} {{ resort_name }}. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>

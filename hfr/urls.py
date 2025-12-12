@@ -24,7 +24,8 @@ urlpatterns = [
     path('contact_us/', contact_us, name='contact_us'),
     path('gallery/', gallery, name='gallery'),
     path('rooms/', rooms, name='rooms'),
-    path('room_detail/', room_detail, name='room_detail'),
+    path('rooms/<int:room_id>/', room_detail, name='room_detail'),
+    path('rooms/<str:room_slug>/', room_detail, name='room_detail_slug'),
     path('booking/', booking, name='booking'),
 
 ]

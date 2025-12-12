@@ -312,123 +312,569 @@
       {% endfor %}
     </div>
 
-    <!-- Additional Popular Facilities -->
-    <div class="row mt-5">
-      <div class="col-12">
-        <div class="additional-facilities" data-aos="fade-up">
-          <h4 class="text-center mb-4">More Great Facilities</h4>
-          <div class="facility-grid">
-            {% for facility in popular_facilities|slice:"3:" %}
-            <div class="facility-chip" data-aos="fade-up" data-aos-delay="{{ forloop.counter }}00">
-              <i class="{{ facility.icon }} me-2"></i>
-              <span>{{ facility.name }}</span>
-            </div>
-            {% endfor %}
-            <div class="facility-chip" data-aos="fade-up" data-aos-delay="400">
-              <i class="bi bi-tree me-2"></i>
-              <span>Garden Access</span>
-            </div>
-            <div class="facility-chip" data-aos="fade-up" data-aos-delay="500">
-              <i class="bi bi-umbrella me-2"></i>
-              <span>24/7 Service</span>
-            </div>
+    <!-- Enhanced Comprehensive Facilities Section -->
+<div class="comprehensive-facilities-section mt-5 pt-5" data-aos="fade-up">
+  <div class="section-subtitle text-center mb-5">
+    <span class="section-sub-badge">Complete Experience</span>
+    <h3>Premium Services & World-Class Amenities</h3>
+    <p class="lead">Everything crafted for your ultimate Himalayan retreat</p>
+  </div>
+  
+  <div class="facility-showcase-grid">
+    <!-- Room Amenities Showcase -->
+    <div class="facility-showcase-card" data-aos="fade-up" data-aos-delay="100">
+      <div class="showcase-card-header">
+        <div class="showcase-icon-wrapper">
+          <i class="bi bi-house-heart showcase-main-icon"></i>
+          <div class="icon-glow"></div>
+        </div>
+        <h4>Luxury Room Amenities</h4>
+        <p class="showcase-description">Every comfort for your perfect stay</p>
+      </div>
+      
+      <div class="showcase-features-grid">
+        <div class="showcase-feature">
+          <div class="feature-icon-box premium">
+            <i class="bi bi-droplet"></i>
+          </div>
+          <div class="feature-content">
+            <h6>SPA Bath/Jacuzzi</h6>
+            <p>Luxury private bathroom with spa bath</p>
+          </div>
+        </div>
+        
+        <div class="showcase-feature">
+          <div class="feature-icon-box">
+            <i class="bi bi-snow"></i>
+          </div>
+          <div class="feature-content">
+            <h6>Climate Control</h6>
+            <p>Air conditioning, heating & fan</p>
+          </div>
+        </div>
+        
+        <div class="showcase-feature">
+          <div class="feature-icon-box">
+            <i class="bi bi-wifi"></i>
+          </div>
+          <div class="feature-content">
+            <h6>Free High-Speed WiFi</h6>
+            <p>Stay connected with complimentary internet</p>
+          </div>
+        </div>
+        
+        <div class="showcase-feature">
+          <div class="feature-icon-box">
+            <i class="bi bi-cup-hot"></i>
+          </div>
+          <div class="feature-content">
+            <h6>Beverage Station</h6>
+            <p>Tea/Coffee maker with electric kettle</p>
+          </div>
+        </div>
+        
+        <div class="showcase-feature">
+          <div class="feature-icon-box">
+            <i class="bi bi-tv"></i>
+          </div>
+          <div class="feature-content">
+            <h6>Entertainment</h6>
+            <p>Flat-screen television</p>
+          </div>
+        </div>
+        
+        <div class="showcase-feature">
+          <div class="feature-icon-box">
+            <i class="bi bi-safe"></i>
+          </div>
+          <div class="feature-content">
+            <h6>Security</h6>
+            <p>In-room safe for valuables</p>
           </div>
         </div>
       </div>
+      
+      <div class="showcase-footer">
+        <span class="feature-count">6+ Premium Features</span>
+      </div>
     </div>
+    
+    <!-- Dining Experience Showcase -->
+    <div class="facility-showcase-card" data-aos="fade-up" data-aos-delay="200">
+      <div class="showcase-card-header">
+        <div class="showcase-icon-wrapper">
+          <i class="bi bi-egg-fried showcase-main-icon"></i>
+          <div class="icon-glow"></div>
+        </div>
+        <h4>Gourmet Dining Experience</h4>
+        <p class="showcase-description">Culinary excellence with panoramic views</p>
+      </div>
+      
+      <div class="showcase-features-grid">
+        <div class="showcase-feature">
+          <div class="feature-icon-box premium">
+            <i class="bi bi-360-view"></i>
+          </div>
+          <div class="feature-content">
+            <h6>360° Rooftop Restaurant</h6>
+            <p>Panoramic Himalayan & lake views</p>
+          </div>
+        </div>
+        
+        <div class="showcase-feature">
+          <div class="feature-icon-box">
+            <i class="bi bi-building"></i>
+          </div>
+          <div class="feature-content">
+            <h6>Indoor Fine Dining</h6>
+            <p>Elegant restaurant with cozy ambiance</p>
+          </div>
+        </div>
+        
+        <div class="showcase-feature">
+          <div class="feature-icon-box">
+            <i class="bi bi-cup-straw"></i>
+          </div>
+          <div class="feature-content">
+            <h6>Lavish Bar</h6>
+            <p>Premium drinks & cocktails</p>
+          </div>
+        </div>
+        
+        <div class="showcase-feature">
+          <div class="feature-icon-box">
+            <i class="bi bi-cake"></i>
+          </div>
+          <div class="feature-content">
+            <h6>Continental Breakfast</h6>
+            <p>Complimentary breakfast included</p>
+          </div>
+        </div>
+        
+        <div class="showcase-feature">
+          <div class="feature-icon-box">
+            <i class="bi bi-truck"></i>
+          </div>
+          <div class="feature-content">
+            <h6>Room Service</h6>
+            <p>24/7 in-room dining available</p>
+          </div>
+        </div>
+        
+        <div class="showcase-feature">
+          <div class="feature-icon-box">
+            <i class="bi bi-people"></i>
+          </div>
+          <div class="feature-content">
+            <h6>Special Events</h6>
+            <p>Private dining & celebrations</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="showcase-footer">
+        <span class="feature-count">3 Dining Venues</span>
+      </div>
+    </div>
+    
+    <!-- Resort Facilities Showcase -->
+    <div class="facility-showcase-card" data-aos="fade-up" data-aos-delay="300">
+      <div class="showcase-card-header">
+        <div class="showcase-icon-wrapper">
+          <i class="bi bi-building showcase-main-icon"></i>
+          <div class="icon-glow"></div>
+        </div>
+        <h4>Resort Facilities</h4>
+        <p class="showcase-description">Exceptional services for your comfort</p>
+      </div>
+      
+      <div class="showcase-features-grid">
+        <div class="showcase-feature">
+          <div class="feature-icon-box premium">
+            <i class="bi bi-p-square"></i>
+          </div>
+          <div class="feature-content">
+            <h6>Free Private Parking</h6>
+            <p>Secure parking with no reservation needed</p>
+          </div>
+        </div>
+        
+        <div class="showcase-feature">
+          <div class="feature-icon-box">
+            <i class="bi bi-people"></i>
+          </div>
+          <div class="feature-content">
+            <h6>Conference Hall</h6>
+            <p>"Annapurna" hall for meetings & events</p>
+          </div>
+        </div>
+        
+        <div class="showcase-feature">
+          <div class="feature-icon-box">
+            <i class="bi bi-tree"></i>
+          </div>
+          <div class="feature-content">
+            <h6>Spacious Garden</h6>
+            <p>Open garden for relaxation</p>
+          </div>
+        </div>
+        
+        <div class="showcase-feature">
+          <div class="feature-icon-box">
+            <i class="bi bi-suitcase-lg"></i>
+          </div>
+          <div class="feature-content">
+            <h6>Laundry Service</h6>
+            <p>Professional laundry available</p>
+          </div>
+        </div>
+        
+        <div class="showcase-feature">
+          <div class="feature-icon-box">
+            <i class="bi bi-person-standing"></i>
+          </div>
+          <div class="feature-content">
+            <h6>24/7 Front Desk</h6>
+            <p>Round-the-clock assistance</p>
+          </div>
+        </div>
+        
+        <div class="showcase-feature">
+          <div class="feature-icon-box">
+            <i class="bi bi-umbrella"></i>
+          </div>
+          <div class="feature-content">
+            <h6>Multiple Terraces</h6>
+            <p>Scenic viewing areas</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="showcase-footer">
+        <span class="feature-count">10+ Facilities</span>
+      </div>
+    </div>
+    
+    <!-- Unique Features Showcase -->
+    <div class="facility-showcase-card" data-aos="fade-up" data-aos-delay="400">
+      <div class="showcase-card-header">
+        <div class="showcase-icon-wrapper">
+          <i class="bi bi-stars showcase-main-icon"></i>
+          <div class="icon-glow"></div>
+        </div>
+        <h4>Unique Features</h4>
+        <p class="showcase-description">What makes us special</p>
+      </div>
+      
+      <div class="showcase-features-grid">
+        <div class="showcase-feature">
+          <div class="feature-icon-box premium">
+            <i class="bi bi-mountains"></i>
+          </div>
+          <div class="feature-content">
+            <h6>360° Mountain Views</h6>
+            <p>{{ view_highlights.mountain_pecks }}+ peaks visible</p>
+          </div>
+        </div>
+        
+        <div class="showcase-feature">
+          <div class="feature-icon-box">
+            <i class="bi bi-signpost-split"></i>
+          </div>
+          <div class="feature-content">
+            <h6>Royal Trekking Access</h6>
+            <p>Direct access to trekking routes</p>
+          </div>
+        </div>
+        
+        <div class="showcase-feature">
+          <div class="feature-icon-box">
+            <i class="bi bi-pet"></i>
+          </div>
+          <div class="feature-content">
+            <h6>Pet Friendly</h6>
+            <p>Pets allowed on request (no extra charge)</p>
+          </div>
+        </div>
+        
+        <div class="showcase-feature">
+          <div class="feature-icon-box">
+            <i class="bi bi-clock"></i>
+          </div>
+          <div class="feature-content">
+            <h6>Flexible Check-in/out</h6>
+            <p>24-hour service available</p>
+          </div>
+        </div>
+        
+        <div class="showcase-feature">
+          <div class="feature-icon-box">
+            <i class="bi bi-flower1"></i>
+          </div>
+          <div class="feature-content">
+            <h6>Smoke-free Property</h6>
+            <p>Designated smoking zones available</p>
+          </div>
+        </div>
+        
+        <div class="showcase-feature">
+          <div class="feature-icon-box">
+            <i class="bi bi-gift"></i>
+          </div>
+          <div class="feature-content">
+            <h6>Special Requests</h6>
+            <p>Personalized service for all needs</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="showcase-footer">
+        <span class="feature-count">Unique Experiences</span>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Resort Highlights Banner -->
+  <div class="resort-highlights-banner mt-5" data-aos="fade-up" data-aos-delay="500">
+    <div class="banner-content">
+      <div class="highlight-item">
+        <i class="bi bi-award highlight-icon"></i>
+        <div class="highlight-text">
+          <h5>{{ category }} Rated Resort</h5>
+          <p>Premium accommodation standards</p>
+        </div>
+      </div>
+      
+      <div class="highlight-item">
+        <i class="bi bi-eye highlight-icon"></i>
+        <div class="highlight-text">
+          <h5>Best Himalayan Views</h5>
+          <p>{{ view_highlights.mountain_ranges|length }} ranges visible</p>
+        </div>
+      </div>
+      
+      <div class="highlight-item">
+        <i class="bi bi-heart highlight-icon"></i>
+        <div class="highlight-text">
+          <h5>Unforgettable Experience</h5>
+          <p>"{{ brand_promise }}"</p>
+        </div>
+      </div>
+      
+      <div class="highlight-item">
+        <i class="bi bi-shield-check highlight-icon"></i>
+        <div class="highlight-text">
+          <h5>Price Match Guarantee</h5>
+          <p>{{ business.price_match }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <div class="text-center mt-5" data-aos="fade-up" data-aos-delay="600">
+    <a href="{% url 'amenities' %}" class="btn-view-all-facilities">
+      <span class="btn-icon-wrapper">
+        <i class="bi bi-grid-3x3-gap"></i>
+        <i class="bi bi-arrow-right"></i>
+      </span>
+      <span class="btn-text">Explore All Facilities</span>
+      <span class="btn-badge">40+ Features</span>
+    </a>
+  </div>
+</div>
   </div>
 </section>
 
 <section id="location-highlights" class="location-highlights section light-background">
   <div class="container" data-aos="fade-up">
     <div class="section-title">
-      <span class="description-title">Location</span>
-      <h2>Perfectly Situated</h2>
-      <p>Strategically located for both tranquility and adventure</p>
+      <span class="description-title">Strategic Location</span>
+      <h2>Perfectly Situated For Adventure</h2>
+      <p class="lead">Nestled between majestic mountains and serene lakes, offering the perfect balance of tranquility and accessibility</p>
     </div>
     
-    <div class="row g-4">
-      <div class="col-lg-6" data-aos="fade-right" data-aos-delay="100">
-        <div class="location-card">
-          <div class="location-map">
-            <!-- You can add a static map image or embed Google Maps -->
-            <div class="map-placeholder">
-              <i class="bi bi-geo-alt"></i>
-              <h5>{{ location.locality }}</h5>
-              <p>{{ location.full_address }}</p>
+    <div class="row g-4 align-items-center">
+      <div class="col-lg-7" data-aos="fade-right" data-aos-delay="100">
+        <div class="location-hero-card">
+          <div class="location-card-header">
+            <div class="location-badge">
+              <i class="bi bi-pin-map-fill"></i>
+              <span>{{ location.locality }}, Pokhara</span>
             </div>
+            <h3>360° Panoramic Experience</h3>
+            <p class="location-description">{{ location.geographical_setting }}</p>
           </div>
-          <div class="location-details">
-            <h4>Access & Transportation</h4>
-            <ul class="distance-list">
-              <li>
-                <span class="destination">Pokhara Airport</span>
-                <span class="distance">{{ distances.pokhara_airport.distance }}</span>
-                <span class="time">{{ distances.pokhara_airport.time }}</span>
-              </li>
-              <li>
-                <span class="destination">Begnas Lake</span>
-                <span class="distance">{{ distances.begnas_lake.distance }}</span>
-                <span class="time">{{ distances.begnas_lake.time }}</span>
-              </li>
-              <li>
-                <span class="destination">Pokhara Lakeside</span>
-                <span class="distance">{{ distances.pokhara_lakeside.distance }}</span>
-                <span class="time">{{ distances.pokhara_lakeside.time }}</span>
-              </li>
-              <li>
-                <span class="destination">Mountain Museum</span>
-                <span class="distance">{{ distances.international_mountain_museum.distance }}</span>
-                <span class="time">{{ distances.international_mountain_museum.time }}</span>
-              </li>
-            </ul>
-            <div class="transport-info">
-              <p><i class="bi bi-p-circle me-2"></i> {{ transportation.parking }}</p>
-              <p><i class="bi bi-car-front me-2"></i> {{ transportation.self_drive }}</p>
+          
+          <div class="location-features-grid">
+            <div class="feature-highlight">
+              <div class="feature-icon">
+                <i class="bi bi-mountains"></i>
+              </div>
+              <div class="feature-content">
+                <h5>Mountain Views</h5>
+                <p>Views of {{ view_highlights.mountain_ranges|join:", " }} ranges</p>
+                <span class="feature-count">{{ view_highlights.mountain_pecks }} peaks visible</span>
+              </div>
+            </div>
+            
+            <div class="feature-highlight">
+              <div class="feature-icon">
+                <i class="bi bi-water"></i>
+              </div>
+              <div class="feature-content">
+                <h5>Lake Proximity</h5>
+                <p>Overlooking {{ view_highlights.lakes|join:" and " }}</p>
+                <span class="feature-count">5-10 minutes to Begnas Lake</span>
+              </div>
+            </div>
+            
+            <div class="feature-highlight">
+              <div class="feature-icon">
+                <i class="bi bi-tree-fill"></i>
+              </div>
+              <div class="feature-content">
+                <h5>Natural Setting</h5>
+                <p>Surrounded by {{ location.surroundings|lower }}</p>
+                <span class="feature-count">5 Ropani Area</span>
+              </div>
+            </div>
+            
+            <div class="feature-highlight">
+              <div class="feature-icon">
+                <i class="bi bi-signpost-split"></i>
+              </div>
+              <div class="feature-content">
+                <h5>Trekking Access</h5>
+                <p>Direct access to Royal Trekking Way</p>
+                <span class="feature-count">Adventure ready</span>
+              </div>
             </div>
           </div>
         </div>
       </div>
       
-      <div class="col-lg-6" data-aos="fade-left" data-aos-delay="200">
-        <div class="nearby-attractions">
-          <h4>Nearby Attractions</h4>
-          <div class="attractions-grid">
-            {% for attraction in nearby_attractions|slice:":4" %}
-            <div class="attraction-item">
-              <div class="attraction-icon">
-                <i class="bi 
-                  {% if attraction.type == 'Natural' %}bi-tree
-                  {% elif attraction.type == 'Adventure' %}bi-signpost-split
-                  {% elif attraction.type == 'Cultural' %}bi-building
-                  {% else %}bi-geo{% endif %}
-                "></i>
-              </div>
-              <div class="attraction-info">
-                <h6>{{ attraction.name }}</h6>
-                <p>{{ attraction.distance }} • {{ attraction.type }}</p>
-              </div>
-            </div>
-            {% endfor %}
+      <div class="col-lg-5" data-aos="fade-left" data-aos-delay="200">
+        <div class="distance-timeline">
+          <div class="timeline-header">
+            <h4><i class="bi bi-clock-history me-2"></i>Travel Times</h4>
+            <p>From major points of interest</p>
           </div>
           
-          <div class="policies-highlight mt-4">
-            <h5>Resort Policies</h5>
-            <div class="policies-grid">
-              <div class="policy-item">
-                <i class="bi bi-clock"></i>
-                <span>Check-in: {{ policies.check_in }}</span>
+          <div class="timeline-items">
+            <div class="timeline-item">
+              <div class="timeline-marker">
+                <i class="bi bi-airplane"></i>
               </div>
-              <div class="policy-item">
-                <i class="bi bi-heart"></i>
-                <span>Pets: {{ policies.pets }}</span>
+              <div class="timeline-content">
+                <div class="destination-info">
+                  <h6>Pokhara Airport (PKR)</h6>
+                  <div class="distance-info">
+                    <span class="distance-badge">{{ distances.pokhara_airport.distance }}</span>
+                    <span class="time-badge">{{ distances.pokhara_airport.time }}</span>
+                  </div>
+                </div>
+                <p class="destination-description">International and domestic flights</p>
               </div>
-              <div class="policy-item">
-                <i class="bi bi-person-check"></i>
-                <span>Children: {{ policies.children }}</span>
+            </div>
+            
+            <div class="timeline-item">
+              <div class="timeline-marker">
+                <i class="bi bi-water"></i>
+              </div>
+              <div class="timeline-content">
+                <div class="destination-info">
+                  <h6>Begnas Lake</h6>
+                  <div class="distance-info">
+                    <span class="distance-badge">{{ distances.begnas_lake.distance }}</span>
+                    <span class="time-badge">{{ distances.begnas_lake.time }}</span>
+                  </div>
+                </div>
+                <p class="destination-description">Boating, fishing, and lakeside dining</p>
+              </div>
+            </div>
+            
+            <div class="timeline-item">
+              <div class="timeline-marker">
+                <i class="bi bi-building"></i>
+              </div>
+              <div class="timeline-content">
+                <div class="destination-info">
+                  <h6>International Mountain Museum</h6>
+                  <div class="distance-info">
+                    <span class="distance-badge">{{ distances.international_mountain_museum.distance }}</span>
+                    <span class="time-badge">{{ distances.international_mountain_museum.time }}</span>
+                  </div>
+                </div>
+                <p class="destination-description">Learn about Himalayan culture</p>
+              </div>
+            </div>
+            
+            <div class="timeline-item">
+              <div class="timeline-marker">
+                <i class="bi bi-shop"></i>
+              </div>
+              <div class="timeline-content">
+                <div class="destination-info">
+                  <h6>Pokhara Lakeside</h6>
+                  <div class="distance-info">
+                    <span class="distance-badge">{{ distances.pokhara_lakeside.distance }}</span>
+                    <span class="time-badge">{{ distances.pokhara_lakeside.time }}</span>
+                  </div>
+                </div>
+                <p class="destination-description">Shopping, restaurants, and nightlife</p>
               </div>
             </div>
           </div>
+          
+          <div class="transportation-options">
+            <div class="transport-card">
+              <div class="transport-icon">
+                <i class="bi bi-p-square"></i>
+              </div>
+              <div>
+                <h6>Free Private Parking</h6>
+                <p>{{ transportation.parking }}</p>
+              </div>
+            </div>
+            
+            <div class="transport-card">
+              <div class="transport-icon">
+                <i class="bi bi-car-front"></i>
+              </div>
+              <div>
+                <h6>Self-Drive Access</h6>
+                <p>Well-connected road network</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="location-map-preview mt-5" data-aos="fade-up" data-aos-delay="300">
+      <div class="map-card">
+        <div class="map-header">
+          <h5><i class="bi bi-geo-alt-fill me-2"></i>Our Location</h5>
+          <p class="address">{{ location.full_address }}</p>
+        </div>
+        <div class="map-placeholder">
+          <div class="map-points">
+            <div class="map-point resort-point">
+              <i class="bi bi-house-heart-fill"></i>
+              <span class="point-label">Himalaya Forest Resort</span>
+            </div>
+            <div class="map-point lake-point">
+              <i class="bi bi-water"></i>
+              <span class="point-label">Begnas Lake</span>
+            </div>
+            <div class="map-point airport-point">
+              <i class="bi bi-airplane"></i>
+              <span class="point-label">Pokhara Airport</span>
+            </div>
+          </div>
+          <a href="{% url 'contact_us' %}#map" class="btn-view-map">
+            <i class="bi bi-map me-2"></i>View Full Map
+          </a>
         </div>
       </div>
     </div>
@@ -440,57 +886,144 @@
     <div class="row align-items-center">
       <div class="col-lg-6" data-aos="fade-right" data-aos-delay="200">
         <div class="content">
+          <span class="section-badge">Exclusive Offer</span>
           <h2>Stay In Touch With Us</h2>
-          <p>Subscribe to our newsletter for updates on special offers, events, and experiences amidst the breathtaking beauty of the Himalayan wilderness.</p>
+          <p class="lead">Subscribe to our newsletter for exclusive updates on special offers, events, and Himalayan experiences.</p>
           
-          <div class="special-features">
-            <h5>Why Choose {{ resort_name }}?</h5>
-            <ul class="features-list">
-              {% for feature in special_features|slice:":4" %}
-              <li><i class="bi bi-check-circle"></i> {{ feature }}</li>
-              {% endfor %}
-            </ul>
+          <div class="newsletter-form">
+            <form action="" method="post" class="php-email-form">
+              {% csrf_token %}
+              <div class="row g-3">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input type="text" name="name" class="form-control" placeholder="Your Name" required>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <input type="email" name="email" class="form-control" placeholder="Your Email" required>
+                  </div>
+                </div>
+                <div class="col-md-12">
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="newsletter-agree" required>
+                    <label class="form-check-label" for="newsletter-agree">
+                      I agree to receive promotional emails from Himalaya Forest Resort
+                    </label>
+                  </div>
+                </div>
+                <div class="col-md-12 mt-3">
+                  <div class="loading">Loading</div>
+                  <div class="error-message"></div>
+                  <div class="sent-message">Thank you for subscribing!</div>
+                  <button type="submit" class="btn-subscribe">
+                    <i class="bi bi-envelope-paper me-2"></i>Subscribe Now
+                  </button>
+                </div>
+              </div>
+            </form>
           </div>
           
-          <div class="cta-buttons">
-            <a href="{% url 'booking' %}" class="btn-primary">
-              <i class="bi bi-calendar-check me-2"></i>Book Your Stay
-            </a>
-            <a href="{% url 'contact_us' %}" class="btn-secondary">
-              <i class="bi bi-envelope me-2"></i>Contact Us
-            </a>
-            <a href="tel:{{ contact.telephone.0 }}" class="btn-outline">
-              <i class="bi bi-telephone me-2"></i>{{ contact.telephone.0 }}
-            </a>
+          <div class="exclusive-benefits mt-5">
+            <h5><i class="bi bi-gift me-2"></i>Subscriber Benefits</h5>
+            <div class="row">
+              <div class="col-6">
+                <div class="benefit-item">
+                  <i class="bi bi-percent"></i>
+                  <span>Early Bird Discounts</span>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="benefit-item">
+                  <i class="bi bi-calendar-heart"></i>
+                  <span>Seasonal Offers</span>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="benefit-item">
+                  <i class="bi bi-star"></i>
+                  <span>Exclusive Packages</span>
+                </div>
+              </div>
+              <div class="col-6">
+                <div class="benefit-item">
+                  <i class="bi bi-bell"></i>
+                  <span>Event Updates</span>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
 
       <div class="col-lg-6" data-aos="fade-left" data-aos-delay="300">
-        <div class="image-wrapper">
-          <img src="{% static images.panoramic_view %}" alt="Himalayan Panoramic View" class="img-fluid rounded-4">
-          <div class="overlay-content">
-            <div class="special-offer">
-              <span class="label">Best Deal</span>
-              <span class="discount">Book Direct & Save</span>
-              <small>{{ business.price_match }}</small>
+        <div class="cta-highlight-card">
+          <div class="highlight-header">
+            <div class="offer-badge">
+              <span>Direct Booking Special</span>
+            </div>
+            <h3>Book Direct & Save Up To 15%</h3>
+            <p>{{ business.price_match }}</p>
+          </div>
+          
+          <div class="highlight-features">
+            <div class="feature-item">
+              <div class="feature-icon">
+                <i class="bi bi-shield-check"></i>
+              </div>
+              <div class="feature-content">
+                <h6>Best Price Guarantee</h6>
+                <p>We match any lower price you find</p>
+              </div>
+            </div>
+            
+            <div class="feature-item">
+              <div class="feature-icon">
+                <i class="bi bi-calendar-x"></i>
+              </div>
+              <div class="feature-content">
+                <h6>Flexible Cancellation</h6>
+                <p>Free cancellation up to 48 hours</p>
+              </div>
+            </div>
+            
+            <div class="feature-item">
+              <div class="feature-icon">
+                <i class="bi bi-person-check"></i>
+              </div>
+              <div class="feature-content">
+                <h6>Personalized Service</h6>
+                <p>Direct support from our team</p>
+              </div>
             </div>
           </div>
-          <div class="quick-contact">
-            <div class="contact-item">
-              <i class="bi bi-envelope"></i>
+          
+          <div class="quick-contact-cards">
+            <div class="contact-card">
+              <div class="contact-icon">
+                <i class="bi bi-telephone"></i>
+              </div>
               <div>
-                <small>Email us at</small>
-                <strong>{{ contact.email }}</strong>
+                <small>Call us now</small>
+                <h5>{{ contact.telephone.0 }}</h5>
               </div>
             </div>
-            <div class="contact-item">
-              <i class="bi bi-globe"></i>
+            
+            <div class="contact-card">
+              <div class="contact-icon">
+                <i class="bi bi-whatsapp"></i>
+              </div>
               <div>
-                <small>Visit our website</small>
-                <strong>{{ contact.website }}</strong>
+                <small>WhatsApp</small>
+                <h5>{{ contact.telephone.1 }}</h5>
               </div>
             </div>
+          </div>
+          
+          <div class="cta-action">
+            <a href="{% url 'booking' %}" class="btn-book-direct">
+              <i class="bi bi-lightning-charge me-2"></i>Book Direct & Save
+            </a>
           </div>
         </div>
       </div>

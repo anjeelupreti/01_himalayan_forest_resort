@@ -9,7 +9,7 @@
   <title>{% block title %}Himalaya Forest Resort{% endblock %}</title>
   <meta name="description" content="{% block description %}Escape to the best view at Himalaya Forest Resort where every moment is an unforgettable experience.{% endblock %}">
   <meta name="keywords" content="{% block keywords %}Himalaya, Forest Resort, Pokhara, Nepal, Begnas Lake, Rupa Lake, Luxury Stay{% endblock %}">
-  <link href="{% static 'assets/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'assets/img/logo.png' %}" rel="icon">
   <link href="{% static 'assets/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
 
   <link href="https://fonts.googleapis.com" rel="preconnect">
@@ -30,9 +30,107 @@
 </head>
 
 <body class="{% block body_class %}index-page{% endblock %}">
+ <div class="page-loader" id="pageLoader">
+        <div class="loader-content">
+            <!-- Option 1: Simple Spinner with Logo -->
+            <div class="logo-container">
+                <!-- <img src="{% static 'assets/img/logo.png' %}" alt="Himalaya Forest Resort"> -->
+            </div>
+             <div class="spinner"></div>
+            <div class="spinner-text">LOADING</div>
+            <div class="loading-dots">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            
+            <!-- Option 2: Thematic Mountain Loader (uncomment to use) -->
+            <!-- <div class="mountain-loader">
+                <div class="mountain"></div>
+                <div class="mountain"></div>
+                <div class="mountain"></div>
+                <div class="sun"></div>
+            </div>
+            <!-- <div class="spinner-text">Escape to the best view...</div> -->
+        </div> 
+     </div>  
+     
+    <!-- <div class="page-loader" id="pageLoader">
+  <div class="loader-content">
+    <div class="logo-container">
+      <img src="{% static 'assets/img/logo.png' %}" alt="Himalaya Forest Resort">
+    </div>
+    <div class="spinner"></div>
+    <div class="spinner-text">ESCAPE TO THE BEST VIEW</div>
+    <div class="loading-dots">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="loader-text small">Welcome to Himalaya Forest Resort</div>
+  </div>
+</div> -->
+
+<!-- <div class="page-loader" id="pageLoader">
+  <div class="loader-content">
+    <div class="logo-container">
+      <img src="{% static 'assets/img/logo.png' %}" alt="Himalaya Forest Resort">
+    </div>
+    <div class="mountain-loader">
+      <div class="mountain"></div>
+      <div class="mountain"></div>
+      <div class="mountain"></div>
+      <div class="sun"></div>
+    </div>
+    <div class="spinner-text">HIMALAYA FOREST RESORT</div>
+    <div class="loader-text">Experience panoramic views of Annapurna, Dhaulagiri, and Manaslu ranges</div>
+  </div>
+</div> -->
+<!-- <div class="page-loader" id="pageLoader">
+  <div class="loader-content">
+    <div class="logo-container">
+      <!-- <img src="{% static 'assets/img/logo.png' %}" alt="Himalaya Forest Resort"> -->
+    <!-- </div>
+    <div class="wave-loader">
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="spinner-text">LOADING YOUR ESCAPE</div>
+    <div class="loader-text small">Preparing your perfect Himalayan retreat</div>
+  </div>
+</div> --> 
+
+<!-- <div class="page-loader" id="pageLoader">
+  <div class="loader-content">
+    <div class="tree-loader">
+      <div class="tree-trunk"></div>
+      <div class="tree-leaf"></div>
+      <div class="tree-leaf"></div>
+      <div class="tree-leaf"></div>
+    </div>
+    <div class="spinner-text">HIMALAYA FOREST RESORT</div>
+    <div class="loader-text">Where every moment is an unforgettable experience</div>
+  </div>
+</div> -->
+
+<!-- <div class="page-loader" id="pageLoader">
+  <div class="loader-content">
+    <div class="pulse-loader">
+      <div class="pulse-circle"></div>
+      <div class="pulse-circle"></div>
+      <div class="pulse-circle"></div>
+    </div>
+    <div class="loader-text">Welcome to Paradise at Himalaya Forest Resort</div>
+  </div>
+</div> -->
 
   <header id="header" class="header sticky-top">
-    <!-- <div class="topbar d-flex align-items-center dark-background">
+    <!-- Top Contact Bar (Uncomment if needed) -->
+    <!--
+    <div class="topbar d-flex align-items-center dark-background">
       <div class="container d-flex justify-content-center justify-content-md-between">
         <div class="contact-info d-flex align-items-center">
           <i class="bi bi-envelope d-flex align-items-center">
@@ -49,12 +147,20 @@
           <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
         </div>
       </div>
-    </div> -->
+    </div>
+    -->
 
     <div class="branding d-flex align-items-center">
       <div class="container position-relative d-flex align-items-center justify-content-between">
         <a href="{% url 'home' %}" class="logo d-flex align-items-center">
-          <h1 class="sitename">Himalaya Forest Resort</h1>
+          <!-- Logo Image - Update the path based on where you place your logo -->
+          <img src="{% static 'assets/img/logo.png' %}" alt="Himalaya Forest Resort Logo" 
+               class="logo-image me-2" 
+               onerror="this.onerror=null; this.src="{% static 'assets/img/logo.png' %}"; this.src='{% static 'assets/img/logo.png' %}';">
+          <div class="logo-text d-flex flex-column">
+            <h1 class="sitename mb-0">Himalaya Forest Resort</h1>
+            <small class="tagline">Escape to the best view</small>
+          </div>
         </a>
 
         <nav id="navmenu" class="navmenu">
@@ -63,6 +169,7 @@
             <li><a href="{% url 'rooms' %}" class="{% if request.resolver_match.url_name == 'rooms' %}active{% endif %}">Rooms</a></li>
             <li><a href="{% url 'amenities' %}" class="{% if request.resolver_match.url_name == 'amenities' %}active{% endif %}">Amenities</a></li>
             <li><a href="{% url 'about_us' %}" class="{% if request.resolver_match.url_name == 'about_us' %}active{% endif %}">About Us</a></li>
+            <li><a href="{% url 'gallery' %}" class="{% if request.resolver_match.url_name == 'gallery' %}active{% endif %}">Gallery</a></li>
             <li><a href="{% url 'booking' %}" class="{% if request.resolver_match.url_name == 'booking' %}active{% endif %}">Booking</a></li>
             <li><a href="{% url 'contact_us' %}" class="{% if request.resolver_match.url_name == 'contact_us' %}active{% endif %}">Contact</a></li>
           </ul>
@@ -87,76 +194,97 @@
         <div class="row gy-4">
           <div class="col-lg-4 col-md-6 footer-about">
             <a href="{% url 'home' %}" class="logo d-flex align-items-center">
-              <span class="sitename">Himalaya Forest Resort</span>
+              <img src="{% static 'assets/img/logo.png' %}" alt="Himalaya Forest Resort Logo" 
+                   class="logo-image me-2" 
+                   onerror="this.onerror=null; this.src='{% static 'assets/img/logo.png' %}'; this.src='{% static 'assets/img/logo.jpg' %}';"> 
+              <div class="logo-text d-flex flex-column">
+                <span class="sitename mb-0">Himalaya Forest Resort</span>
+                <small class="tagline">Escape to the best view</small>
+              </div>
             </a>
             <div class="footer-contact pt-3">
-              <p>Pachabhaiya (Pokhara Metropolitan Ward No. 31)</p>
-              <p>33700 Deorāli, Nepal</p>
-              <p class="mt-3"><strong>Phone:</strong> <span>+977 9856081271, +977 9856081371</span></p>
-              <p><strong>Email:</strong> <span>himalayaforestresort@gmail.com</span></p>
+              <p><i class="bi bi-geo-alt me-2"></i>Pachabhaiya (Pokhara Metropolitan Ward No. 31)</p>
+              <p class="ms-4">33700 Deorāli, Nepal</p>
+              <p class="mt-3"><i class="bi bi-telephone me-2"></i><strong>Phone:</strong> 
+                <span>+977 9856081271, +977 9856081371</span>
+              </p>
+              <p><i class="bi bi-envelope me-2"></i><strong>Email:</strong> 
+                <span>himalayaforestresort@gmail.com</span>
+              </p>
+            </div>
+            <div class="social-links mt-3">
+              <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
+              <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+              <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+              <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
             </div>
           </div>
 
           <div class="col-lg-2 col-md-3 footer-links">
             <h4>Quick Links</h4>
             <ul>
-              <li><a href="{% url 'home' %}">Home</a></li>
-              <li><a href="{% url 'about_us' %}">About Us</a></li>
-
-              <li><a href="{% url 'rooms' %}">Rooms</a></li>
-              <li><a href="{% url 'amenities' %}">Amenities</a></li>
-              <li><a href="{% url 'booking' %}">Booking</a></li>
-              <li><a href="{% url 'contact_us' %}">Contact</a></li>
+              <li><a href="{% url 'home' %}"><i class="bi bi-chevron-right"></i> Home</a></li>
+              <li><a href="{% url 'about_us' %}"><i class="bi bi-chevron-right"></i> About Us</a></li>
+              <li><a href="{% url 'rooms' %}"><i class="bi bi-chevron-right"></i> Rooms</a></li>
+              <li><a href="{% url 'amenities' %}"><i class="bi bi-chevron-right"></i> Amenities</a></li>
+              <li><a href="{% url 'gallery' %}"><i class="bi bi-chevron-right"></i> Gallery</a></li>
+              <li><a href="{% url 'contact_us' %}"><i class="bi bi-chevron-right"></i> Contact</a></li>
             </ul>
           </div>
 
           <div class="col-lg-2 col-md-3 footer-links">
             <h4>Our Rooms</h4>
             <ul>
-              <li><a href="#">Super Deluxe Room</a></li>
-              <li><a href="#">Family Deluxe Room</a></li>
-              <li><a href="#">Deluxe Twin Room</a></li>
+              <li><a href="{% url 'rooms' %}"><i class="bi bi-chevron-right"></i> Super Deluxe</a></li>
+              <li><a href="{% url 'rooms' %}"><i class="bi bi-chevron-right"></i> Family Deluxe</a></li>
+              <li><a href="{% url 'rooms' %}"><i class="bi bi-chevron-right"></i> Deluxe Twin</a></li>
             </ul>
           </div>
 
-          <div class="col-lg-2 col-md-3 footer-links">
-            <h4>Facilities</h4>
-            <ul>
-              <li><a href="#">Restaurant & Bar</a></li>
-              <li><a href="#">Conference Hall</a></li>
-              <li><a href="#">Garden & Parking</a></li>
-              <li><a href="#">Rooftop View</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-2 col-md-3 footer-links">
-            <h4>Important</h4>
-            <ul>
-              <li><a href="#">Privacy Policy</a></li>
-              <li><a href="#">Terms of Service</a></li>
-              <li><a href="#">Cancellation Policy</a></li>
-            </ul>
+          <div class="col-lg-4 col-md-12 footer-newsletter">
+            <h4>Stay In Touch</h4>
+            <p>Subscribe to our newsletter for exclusive offers and updates</p>
+            <form action="" method="post">
+              {% csrf_token %}
+              <div class="input-group">
+                <input type="email" class="form-control" name="email" placeholder="Your email address" required>
+                <button class="btn btn-primary" type="submit">Subscribe</button>
+              </div>
+            </form>
+            <div class="mt-4">
+              <h5>Our Promise</h5>
+              <p class="mb-0"><i>"Where every moment is an unforgettable experience"</i></p>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="copyright text-center">
-      <div class="container d-flex flex-column flex-lg-row justify-content-center justify-content-lg-between align-items-center">
-        <div class="d-flex flex-column align-items-center align-items-lg-start">
-          <div>
-            © Copyright <strong><span>Himalaya Forest Resort</span></strong>. All Rights Reserved
+    <div class="copyright text-center py-4">
+      <div class="container">
+        <div class="row align-items-center">
+          <div class="col-lg-4 text-lg-start text-center">
+            <div class="copyright-text">
+              &copy; Copyright <strong><span>Himalaya Forest Resort</span></strong>. All Rights Reserved
+            </div>
           </div>
-          <div class="credits">
-            Designed by <a href="#">Himalaya Forest Resort</a>
+          
+          <div class="col-lg-4 text-center my-3 my-lg-0">
+            <div class="footer-policies">
+              <a href="#" class="text-decoration-none me-3">Privacy Policy</a>
+              <a href="#" class="text-decoration-none me-3">Terms of Service</a>
+              <a href="#" class="text-decoration-none">Cancellation Policy</a>
+            </div>
           </div>
-        </div>
-
-        <div class="social-links order-first order-lg-last mb-3 mb-lg-0">
-          <a href="#"><i class="bi bi-twitter-x"></i></a>
-          <a href="#"><i class="bi bi-facebook"></i></a>
-          <a href="#"><i class="bi bi-instagram"></i></a>
-          <a href="#"><i class="bi bi-linkedin"></i></a>
+          
+          <div class="col-lg-4 text-lg-end text-center">
+            <div class="payment-methods">
+              <small class="me-2">We Accept:</small>
+              <i class="bi bi-credit-card me-2"></i>
+              <i class="bi bi-paypal me-2"></i>
+              <i class="bi bi-bank me-2"></i>
+            </div>
+          </div>
         </div>
       </div>
     </div>

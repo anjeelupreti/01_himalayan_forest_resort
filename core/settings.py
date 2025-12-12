@@ -141,8 +141,9 @@ ADMIN_EMAIL = os.getenv('ADMIN_EMAIL', 'codevault.services@gmail.com')
 
 
 MESSAGE_TAGS = {
-    messages.ERROR: 'danger',
+    messages.DEBUG: 'debug',
+    messages.INFO: 'info',
     messages.SUCCESS: 'success',
     messages.WARNING: 'warning',
-    messages.INFO: 'info',
+    messages.ERROR: 'danger',  
 }
