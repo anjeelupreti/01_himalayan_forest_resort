@@ -1,0 +1,556 @@
+<!-- templates/resort/home.html -->
+{% extends 'base/index.html' %}
+{% load static %}
+
+{% block title %}Home - {{ resort_name }}{% endblock %}
+{% block description %}{{ slogan }} at {{ resort_name }} where every moment is an unforgettable experience. Nestled amidst breathtaking natural beauty, our resort offers the perfect blend of relaxation, adventure, and indulgence.{% endblock %}
+
+{% block content %}
+<section id="hotel-hero" class="hotel-hero section">
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <div class="row gy-4 align-items-center">
+      <div class="col-lg-6" data-aos="fade-right" data-aos-delay="200">
+        <div class="hero-content">
+          <h1>{{ slogan }} at {{ resort_name }}</h1>
+          <p class="lead">{{ brand_promise }} amidst breathtaking natural beauty.</p>
+          <div class="hero-features">
+            {% for facility in popular_facilities|slice:":3" %}
+            <div class="feature-item" data-aos="fade-up" data-aos-delay="{{ forloop.counter|add:3 }}00">
+              <i class="{{ facility.icon }}"></i>
+              <span>{{ facility.name }}</span>
+            </div>
+            {% endfor %}
+          </div>
+          <div class="hero-buttons">
+            <a href="{% url 'booking' %}" class="btn btn-primary" data-aos="fade-up" data-aos-delay="500">
+              <i class="bi bi-calendar-check me-2"></i>Book Now
+            </a>
+            <a href="{% url 'rooms' %}" class="btn btn-outline" data-aos="fade-up" data-aos-delay="600">
+              <i class="bi bi-eye me-2"></i>View Rooms
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6" data-aos="fade-left" data-aos-delay="300">
+        <div class="hero-images">
+          <div class="main-image">
+            <img src="{% static images.hero %}" alt="{{ resort_name }}" class="img-fluid rounded-4">
+            <div class="image-overlay">
+              <span class="overlay-text"><i class="bi bi-geo-alt me-1"></i> {{ location.locality }}</span>
+            </div>
+          </div>
+          {% if testimonials %}
+          <div class="floating-card" data-aos="zoom-in" data-aos-delay="400">
+            <div class="card-content">
+              <div class="rating">
+                {% for i in "12345" %}
+                  {% if forloop.counter <= testimonials.0.rating %}
+                    <i class="bi bi-star-fill"></i>
+                  {% elif forloop.counter|add:"-0.5" <= testimonials.0.rating %}
+                    <i class="bi bi-star-half"></i>
+                  {% else %}
+                    <i class="bi bi-star"></i>
+                  {% endif %}
+                {% endfor %}
+              </div>
+              <h6>Guest Experience</h6>
+              <p class="testimonial-text">{{ testimonials.0.text }}</p>
+              <div class="guest-info">
+                <img src="{% static testimonials.0.avatar %}" alt="{{ testimonials.0.author }}" class="guest-avatar">
+                <span>{{ testimonials.0.author }}</span>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-stats" data-aos="fade-up">
+      <div class="row text-center">
+        {% for stat in stats %}
+        <div class="col-md-3 col-6">
+          <div class="stat-item" data-aos="fade-up" data-aos-delay="{{ forloop.counter }}00">
+            <span class="stat-number purecounter" data-purecounter-start="0" data-purecounter-end="{{ stat.number }}" data-purecounter-duration="1">{{ stat.number }}</span>
+            <span class="stat-label">{{ stat.label }}</span>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="about-home" class="about-home section light-background">
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <div class="row gy-4 align-items-center">
+      <div class="col-lg-6" data-aos="fade-right" data-aos-delay="200">
+        <div class="about-content">
+          <h2>Welcome to {{ resort_name }}</h2>
+          <p class="lead">Where luxury meets tranquility in the heart of Himalayan paradise.</p>
+          <p>{{ location.geographical_setting }}</p>
+          <p>{{ location.surroundings }}</p>
+          <p>One can feel extreme pleasure with amazing views of {{ view_highlights.mountain_ranges|join:", " }} 3 major Himalayan ranges including {{ view_highlights.mountain_peaks }} along with the beautiful natural scenery of {{ view_highlights.lakes|join:" and " }}.</p>
+
+          <div class="stats-row">
+            <div class="stat-item" data-aos="fade-up" data-aos-delay="100">
+              <div class="stat-number">360°</div>
+              <div class="stat-label">Panoramic View</div>
+            </div>
+            <div class="stat-item" data-aos="fade-up" data-aos-delay="150">
+              <div class="stat-number">{{ dining.total_dining_areas }}</div>
+              <div class="stat-label">Dining Areas</div>
+            </div>
+            <div class="stat-item" data-aos="fade-up" data-aos-delay="200">
+              <div class="stat-number">20+</div>
+              <div class="stat-label">Mountain Views</div>
+            </div>
+          </div>
+
+          <div class="about-actions mt-4">
+            <a href="{% url 'about_us' %}" class="btn-primary">
+              <i class="bi bi-info-circle me-2"></i>Our Story
+            </a>
+            <a href="#rooms-showcase" class="btn-secondary scroll-to">
+              <i class="bi bi-door-closed me-2"></i>View Rooms
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6" data-aos="fade-left" data-aos-delay="300">
+        <div class="about-images">
+          <div class="main-image">
+            <img src="{% static images.mountain_view %}" alt="Himalayan Mountain View" class="img-fluid rounded-3">
+            <div class="image-badge">
+              <span><i class="bi bi-geo-alt"></i> {{ view_highlights.mountain_ranges|length }} Ranges</span>
+            </div>
+          </div>
+          <div class="secondary-image">
+            <img src="{% static images.lake_view %}" alt="{{ view_highlights.lakes.0 }} View" class="img-fluid rounded-3">
+            <div class="image-badge">
+              <span><i class="bi bi-water"></i> Lake View</span>
+            </div>
+          </div>
+          <div class="experience-badge" data-aos="zoom-in" data-aos-delay="400">
+            <div class="badge-content">
+              <span class="badge-number">{{ category }}</span>
+              <span class="badge-text">Rated<br>Resort</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="rooms-showcase" class="rooms-showcase section">
+  <div class="container section-title" data-aos="fade-up">
+    <span class="description-title">Accommodation</span>
+    <h2>Our Luxury Rooms</h2>
+    <p>Experience comfort and luxury with panoramic mountain views and premium amenities in every room.</p>
+  </div>
+
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <div class="row gy-5">
+      <!-- Main Featured Room -->
+      {% with rooms|first as featured_room %}
+      <div class="col-xl-8" data-aos="zoom-in" data-aos-delay="200">
+        <div class="hero-room-showcase">
+          <div class="showcase-image-container">
+            <img src="{% static featured_room.image %}" alt="{{ featured_room.type }}" class="img-fluid">
+            {% if featured_room.popular %}
+            <div class="room-category-badge">
+              <span><i class="bi bi-award me-1"></i> Most Popular</span>
+            </div>
+            {% endif %}
+            <div class="room-details-overlay">
+              <div class="room-specs">
+                <span class="spec-item">
+                  <i class="bi bi-people"></i>
+                  <span>{{ featured_room.capacity }}</span>
+                </span>
+                <span class="spec-item">
+                  <i class="bi bi-house"></i>
+                  <span>{{ featured_room.beds }}</span>
+                </span>
+                <span class="spec-item">
+                  <i class="bi bi-geo-alt"></i>
+                  <span>Mountain View</span>
+                </span>
+                <span class="spec-item">
+                  <i class="bi bi-droplet"></i>
+                  <span>SPA Bath</span>
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="showcase-content">
+            <div class="room-title-section">
+              <h2>{{ featured_room.type }}</h2>
+              <div class="room-rating">
+                <div class="stars">
+                  {% for i in "12345" %}
+                    <i class="bi bi-star-fill"></i>
+                  {% endfor %}
+                </div>
+                <span class="rating-text">Premium Room</span>
+              </div>
+            </div>
+            <p class="room-description">{{ featured_room.description }}</p>
+            <div class="amenities-grid">
+              {% for amenity in featured_room.amenities|slice:":4" %}
+              <div class="amenity-item" data-aos="fade-up" data-aos-delay="{{ forloop.counter }}00">
+                <i class="bi 
+                  {% if 'SPA' in amenity %}bi-droplet
+                  {% elif 'Internet' in amenity %}bi-wifi
+                  {% elif 'Television' in amenity %}bi-tv
+                  {% elif 'Air' in amenity %}bi-snow
+                  {% elif 'view' in amenity %}bi-geo-alt
+                  {% elif 'Balcony' in amenity %}bi-door-open
+                  {% else %}bi-check-circle{% endif %}
+                "></i>
+                <span>{{ amenity }}</span>
+              </div>
+              {% endfor %}
+            </div>
+            <div class="booking-section">
+              <div class="price-display">
+                <span class="currency">Rs.</span>
+                <span class="amount">{{ featured_room.price|slice:"4:" }}</span>
+                <span class="period">per night</span>
+              </div>
+              <a href="{% url 'booking' %}?room={{ featured_room.type|slugify }}" class="primary-booking-btn">
+                <i class="bi bi-calendar-plus me-2"></i>Book Now
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endwith %}
+
+      <!-- Other Rooms Sidebar -->
+      <div class="col-xl-4">
+        <div class="room-list-container">
+          {% for room in rooms|slice:"1:" %}
+          <div class="standard-room-card" data-aos="slide-left" data-aos-delay="{{ forloop.counter|add:2 }}50">
+            <div class="card-image">
+              <img src="{% static room.image %}" alt="{{ room.type }}" class="img-fluid">
+              <div class="view-link" onclick="window.location='{% url 'rooms' %}'">
+                <i class="bi bi-arrow-up-right"></i>
+              </div>
+            </div>
+            <div class="card-content">
+              <h4>{{ room.type }}</h4>
+              <p>{{ room.description }}</p>
+              <div class="features-list">
+                <span><i class="bi bi-people"></i>{{ room.capacity }}</span>
+                <span><i class="bi bi-house"></i>{{ room.beds }}</span>
+                <span><i class="bi bi-droplet"></i>SPA Bath</span>
+              </div>
+              <div class="booking-row">
+                <div class="price">
+                  Rs. {{ room.price|slice:"4:" }}<small>/night</small>
+                  {% if room.popular %}
+                  <span class="popular-badge">Popular</span>
+                  {% endif %}
+                </div>
+                <a href="{% url 'booking' %}?room={{ room.type|slugify }}" class="book-link">
+                  Book <i class="bi bi-arrow-right ms-1"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    <div class="text-center mt-5" data-aos="fade-up" data-aos-delay="600">
+      <a href="{% url 'rooms' %}" class="explore-all-link">
+        <span>View All {{ rooms|length }} Room Types</span>
+        <i class="bi bi-arrow-right"></i>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section id="facilities" class="amenities-cards section">
+  <div class="container section-title" data-aos="fade-up">
+    <span class="description-title">Amenities</span>
+    <h2>Our Facilities & Services</h2>
+    <p>Enjoy every moment with premium facilities at {{ resort_name }}</p>
+  </div>
+
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <div class="row g-4">
+      {% for facility in facilities %}
+      <div class="col-lg-4 col-md-6" data-aos="fade-up" data-aos-delay="{{ forloop.counter|add:1 }}00">
+        <div class="facility-card h-100">
+          <div class="facility-image">
+            <img src="{% static facility.image %}" alt="{{ facility.name }}" class="img-fluid">
+            <div class="facility-overlay">
+              <i class="{{ facility.icon }}"></i>
+            </div>
+            <div class="facility-label">{{ facility.name }}</div>
+          </div>
+          <div class="facility-info">
+            <h4>{{ facility.name }}</h4>
+            <p>{{ facility.description }}</p>
+            <div class="facility-features">
+              {% for feature in facility.features|slice:":2" %}
+              <span><i class="bi bi-check-circle"></i> {{ feature }}</span>
+              {% endfor %}
+            </div>
+            <a href="{% url 'amenities' %}" class="facility-link">
+              Learn More <i class="bi bi-arrow-right ms-1"></i>
+            </a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+
+    <!-- Additional Popular Facilities -->
+    <div class="row mt-5">
+      <div class="col-12">
+        <div class="additional-facilities" data-aos="fade-up">
+          <h4 class="text-center mb-4">More Great Facilities</h4>
+          <div class="facility-grid">
+            {% for facility in popular_facilities|slice:"3:" %}
+            <div class="facility-chip" data-aos="fade-up" data-aos-delay="{{ forloop.counter }}00">
+              <i class="{{ facility.icon }} me-2"></i>
+              <span>{{ facility.name }}</span>
+            </div>
+            {% endfor %}
+            <div class="facility-chip" data-aos="fade-up" data-aos-delay="400">
+              <i class="bi bi-tree me-2"></i>
+              <span>Garden Access</span>
+            </div>
+            <div class="facility-chip" data-aos="fade-up" data-aos-delay="500">
+              <i class="bi bi-umbrella me-2"></i>
+              <span>24/7 Service</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="location-highlights" class="location-highlights section light-background">
+  <div class="container" data-aos="fade-up">
+    <div class="section-title">
+      <span class="description-title">Location</span>
+      <h2>Perfectly Situated</h2>
+      <p>Strategically located for both tranquility and adventure</p>
+    </div>
+    
+    <div class="row g-4">
+      <div class="col-lg-6" data-aos="fade-right" data-aos-delay="100">
+        <div class="location-card">
+          <div class="location-map">
+            <!-- You can add a static map image or embed Google Maps -->
+            <div class="map-placeholder">
+              <i class="bi bi-geo-alt"></i>
+              <h5>{{ location.locality }}</h5>
+              <p>{{ location.full_address }}</p>
+            </div>
+          </div>
+          <div class="location-details">
+            <h4>Access & Transportation</h4>
+            <ul class="distance-list">
+              <li>
+                <span class="destination">Pokhara Airport</span>
+                <span class="distance">{{ distances.pokhara_airport.distance }}</span>
+                <span class="time">{{ distances.pokhara_airport.time }}</span>
+              </li>
+              <li>
+                <span class="destination">Begnas Lake</span>
+                <span class="distance">{{ distances.begnas_lake.distance }}</span>
+                <span class="time">{{ distances.begnas_lake.time }}</span>
+              </li>
+              <li>
+                <span class="destination">Pokhara Lakeside</span>
+                <span class="distance">{{ distances.pokhara_lakeside.distance }}</span>
+                <span class="time">{{ distances.pokhara_lakeside.time }}</span>
+              </li>
+              <li>
+                <span class="destination">Mountain Museum</span>
+                <span class="distance">{{ distances.international_mountain_museum.distance }}</span>
+                <span class="time">{{ distances.international_mountain_museum.time }}</span>
+              </li>
+            </ul>
+            <div class="transport-info">
+              <p><i class="bi bi-p-circle me-2"></i> {{ transportation.parking }}</p>
+              <p><i class="bi bi-car-front me-2"></i> {{ transportation.self_drive }}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-lg-6" data-aos="fade-left" data-aos-delay="200">
+        <div class="nearby-attractions">
+          <h4>Nearby Attractions</h4>
+          <div class="attractions-grid">
+            {% for attraction in nearby_attractions|slice:":4" %}
+            <div class="attraction-item">
+              <div class="attraction-icon">
+                <i class="bi 
+                  {% if attraction.type == 'Natural' %}bi-tree
+                  {% elif attraction.type == 'Adventure' %}bi-signpost-split
+                  {% elif attraction.type == 'Cultural' %}bi-building
+                  {% else %}bi-geo{% endif %}
+                "></i>
+              </div>
+              <div class="attraction-info">
+                <h6>{{ attraction.name }}</h6>
+                <p>{{ attraction.distance }} • {{ attraction.type }}</p>
+              </div>
+            </div>
+            {% endfor %}
+          </div>
+          
+          <div class="policies-highlight mt-4">
+            <h5>Resort Policies</h5>
+            <div class="policies-grid">
+              <div class="policy-item">
+                <i class="bi bi-clock"></i>
+                <span>Check-in: {{ policies.check_in }}</span>
+              </div>
+              <div class="policy-item">
+                <i class="bi bi-heart"></i>
+                <span>Pets: {{ policies.pets }}</span>
+              </div>
+              <div class="policy-item">
+                <i class="bi bi-person-check"></i>
+                <span>Children: {{ policies.children }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="call-to-action" class="call-to-action section">
+  <div class="container" data-aos="fade-up" data-aos-delay="100">
+    <div class="row align-items-center">
+      <div class="col-lg-6" data-aos="fade-right" data-aos-delay="200">
+        <div class="content">
+          <h2>Stay In Touch With Us</h2>
+          <p>Subscribe to our newsletter for updates on special offers, events, and experiences amidst the breathtaking beauty of the Himalayan wilderness.</p>
+          
+          <div class="special-features">
+            <h5>Why Choose {{ resort_name }}?</h5>
+            <ul class="features-list">
+              {% for feature in special_features|slice:":4" %}
+              <li><i class="bi bi-check-circle"></i> {{ feature }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+          
+          <div class="cta-buttons">
+            <a href="{% url 'booking' %}" class="btn-primary">
+              <i class="bi bi-calendar-check me-2"></i>Book Your Stay
+            </a>
+            <a href="{% url 'contact_us' %}" class="btn-secondary">
+              <i class="bi bi-envelope me-2"></i>Contact Us
+            </a>
+            <a href="tel:{{ contact.telephone.0 }}" class="btn-outline">
+              <i class="bi bi-telephone me-2"></i>{{ contact.telephone.0 }}
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-lg-6" data-aos="fade-left" data-aos-delay="300">
+        <div class="image-wrapper">
+          <img src="{% static images.panoramic_view %}" alt="Himalayan Panoramic View" class="img-fluid rounded-4">
+          <div class="overlay-content">
+            <div class="special-offer">
+              <span class="label">Best Deal</span>
+              <span class="discount">Book Direct & Save</span>
+              <small>{{ business.price_match }}</small>
+            </div>
+          </div>
+          <div class="quick-contact">
+            <div class="contact-item">
+              <i class="bi bi-envelope"></i>
+              <div>
+                <small>Email us at</small>
+                <strong>{{ contact.email }}</strong>
+              </div>
+            </div>
+            <div class="contact-item">
+              <i class="bi bi-globe"></i>
+              <div>
+                <small>Visit our website</small>
+                <strong>{{ contact.website }}</strong>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="quick-booking-widget d-lg-none">
+  <div class="container">
+    <div class="widget-content">
+      <div class="price-display">
+        <span>From Rs. {{ rooms.2.price|slice:"4:" }}</span>
+        <small>per night</small>
+      </div>
+      <a href="{% url 'booking' %}" class="book-now-btn">
+        <i class="bi bi-lightning-charge"></i> Book Now
+      </a>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+document.querySelectorAll('.scroll-to').forEach(link => {
+  link.addEventListener('click', function(e) {
+    e.preventDefault();
+    const targetId = this.getAttribute('href');
+    const targetSection = document.querySelector(targetId);
+    if (targetSection) {
+      targetSection.scrollIntoView({ behavior: 'smooth' });
+    }
+  });
+});
+
+document.addEventListener('DOMContentLoaded', function() {
+  const counters = document.querySelectorAll('.purecounter');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('counting');
+      }
+    });
+  });
+  
+  counters.forEach(counter => observer.observe(counter));
+});
+
+document.querySelectorAll('a[href*="booking"]').forEach(link => {
+  if (link.href.includes('?')) {
+    link.addEventListener('click', function(e) {
+      const roomType = this.getAttribute('data-room') || 
+                      this.closest('.room-card')?.querySelector('.room-type')?.textContent;
+      if (roomType) {
+        const url = new URL(this.href);
+        url.searchParams.set('room', roomType.trim().toLowerCase().replace(/\s+/g, '-'));
+        this.href = url.toString();
+      }
+    });
+  }
+});
+</script>
+{% endblock %}
