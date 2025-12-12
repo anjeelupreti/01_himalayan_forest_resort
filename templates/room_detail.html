@@ -1,0 +1,1255 @@
+{% extends 'base/index.html' %}
+{% load static %}
+
+{% block title %}Super Deluxe Room Details | Himalaya Forest Resort, Pokhara{% endblock %}
+
+{% block description %}Experience luxury in our Super Deluxe Room with panoramic views of Begnas Lake and Rupa Lake. Features modern amenities, comfortable bedding, and premium facilities.{% endblock %}
+
+{% block keywords %}Super Deluxe Room, Pokhara Luxury Room, Lake View Room, Room Details, Hotel Room Amenities, Mountain View Accommodation{% endblock %}
+
+{% block body_class %}room-details-page{% endblock %}
+
+{% block content %}
+<main class="main">
+
+  <!-- Page Title -->
+  <div class="page-title light-background">
+    <div class="container d-lg-flex justify-content-between align-items-center">
+      <h1 class="mb-2 mb-lg-0">Super Deluxe Room</h1>
+      <nav class="breadcrumbs">
+        <ol>
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'rooms' %}">Rooms</a></li>
+          <li class="current">Super Deluxe Room</li>
+        </ol>
+      </nav>
+    </div>
+  </div><!-- End Page Title -->
+
+  <!-- Room Details Section -->
+  <section id="room-details" class="room-details section">
+
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
+
+      <!-- Room Header with Image and Basic Info -->
+      <div class="row align-items-center mb-5">
+        <div class="col-lg-7" data-aos="fade-right" data-aos-delay="200">
+          <div class="room-header-image">
+            <img src="{% static 'assets/img/hotel/room-15.webp' %}" alt="Super Deluxe Room with Lake View" class="img-fluid rounded">
+            <div class="room-badge">
+              <span class="text-white">Premium Room</span>
+            </div>
+          </div>
+        </div>
+        <div class="col-lg-5" data-aos="fade-left" data-aos-delay="300">
+          <div class="room-header-content">
+            <div class="room-rating mb-3">
+              <span class="rating-score">4.9</span>
+              <div class="stars">
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+                <i class="bi bi-star-fill"></i>
+              </div>
+              <span class="reviews-count">(89 reviews)</span>
+            </div>
+            <h1 class="room-title">Super Deluxe Room</h1>
+            <p class="room-tagline">Experience luxury with breathtaking lake views and premium amenities</p>
+            <div class="room-capacity mb-4">
+              <div class="capacity-item">
+                <i class="bi bi-people"></i>
+                <span>Up to 3 guests</span>
+              </div>
+              <div class="capacity-item">
+                <i class="bi bi-grid"></i>
+                <span>45 sq m (485 sq ft)</span>
+              </div>
+              <div class="capacity-item">
+                <i class="bi bi-bed"></i>
+                <span>King bed or Twin beds</span>
+              </div>
+            </div>
+            <div class="room-features mb-4">
+              <span class="feature-badge"><i class="bi bi-wifi"></i> Free WiFi</span>
+              <span class="feature-badge"><i class="bi bi-tv"></i> Smart TV</span>
+              <span class="feature-badge"><i class="bi bi-snow"></i> Air Conditioning</span>
+            </div>
+            <div class="room-price">
+              <span class="price-amount">Rs. 12,000</span>
+              <span class="price-period">per night</span>
+              <span class="tax-info">+ taxes & fees</span>
+            </div>
+            <a href="{% url 'booking' %}" class="btn btn-book-now">
+              <i class="bi bi-calendar-check me-2"></i>Book Now
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Room Gallery -->
+      <div class="room-gallery mb-5" data-aos="fade-up" data-aos-delay="200">
+        <h3 class="section-subtitle mb-4">Room Gallery</h3>
+        <div class="gallery-grid">
+          <div class="gallery-main">
+            <a href="{% static 'assets/img/hotel/room-12.webp' %}" class="glightbox" data-gallery="room-gallery" data-title="Super Deluxe Room Interior">
+              <img src="{% static 'assets/img/hotel/room-12.webp' %}" alt="Room Interior" class="img-fluid">
+            </a>
+          </div>
+          <div class="gallery-thumbnails">
+            <a href="{% static 'assets/img/hotel/room-8.webp' %}" class="glightbox" data-gallery="room-gallery" data-title="Comfortable Bedding">
+              <img src="{% static 'assets/img/hotel/room-8.webp' %}" alt="Bedroom View" class="img-fluid">
+            </a>
+            <a href="{% static 'assets/img/hotel/room-6.webp' %}" class="glightbox" data-gallery="room-gallery" data-title="Sitting Area">
+              <img src="{% static 'assets/img/hotel/room-6.webp' %}" alt="Living Area" class="img-fluid">
+            </a>
+            <a href="{% static 'assets/img/hotel/room-18.webp' %}" class="glightbox" data-gallery="room-gallery" data-title="Lake View from Room">
+              <img src="{% static 'assets/img/hotel/room-18.webp' %}" alt="Lake View" class="img-fluid">
+            </a>
+            <a href="{% static 'assets/img/hotel/dining-4.webp' %}" class="glightbox" data-gallery="room-gallery" data-title="Modern Bathroom">
+              <img src="{% static 'assets/img/hotel/dining-4.webp' %}" alt="Bathroom" class="img-fluid">
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Room Description -->
+      <div class="row mb-5">
+        <div class="col-lg-8" data-aos="fade-up" data-aos-delay="200">
+          <div class="room-description">
+            <h3 class="section-subtitle">Room Overview</h3>
+            <p>Indulge in the ultimate luxury experience with our Super Deluxe Room at Himalaya Forest Resort. This spacious retreat features floor-to-ceiling windows showcasing panoramic views of Begnas Lake and the surrounding Himalayan mountains, creating a serene atmosphere perfect for romantic getaways or peaceful vacations.</p>
+            <p>The elegantly appointed room seamlessly blends modern comfort with traditional Nepali design elements. The space includes a comfortable seating area with cozy chairs, a work desk for business travelers, and a private balcony where you can enjoy your morning tea while watching the sunrise over the lake. The bedroom features a plush king-size bed or twin beds with luxury linens, ensuring a restful night's sleep.</p>
+            <p>Each Super Deluxe Room is thoughtfully designed to provide maximum comfort and convenience, with attention to every detail from the locally-inspired artwork to the premium amenities that make your stay truly memorable.</p>
+          </div>
+        </div>
+        <div class="col-lg-4" data-aos="fade-up" data-aos-delay="300">
+          <div class="highlight-box">
+            <div class="highlight-icon">
+              <i class="bi bi-star"></i>
+            </div>
+            <h4>Guest Experience</h4>
+            <p>"The most beautiful room we've ever stayed in. The lake view is absolutely breathtaking and the attention to detail is remarkable. Waking up to the Himalayan sunrise was unforgettable."</p>
+            <div class="quote-author">
+              <span>- Rajesh K., Verified Guest</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Amenities and Features -->
+      <div class="room-amenities mb-5" data-aos="fade-up" data-aos-delay="200">
+        <h3 class="section-subtitle mb-4">Room Amenities & Features</h3>
+        <div class="row">
+          <div class="col-lg-3 col-md-6 mb-4">
+            <div class="amenity-category">
+              <h5><i class="bi bi-moon me-2"></i>Sleeping Comfort</h5>
+              <ul>
+                <li><i class="bi bi-check2"></i> King size or Twin beds</li>
+                <li><i class="bi bi-check2"></i> Premium cotton linens</li>
+                <li><i class="bi bi-check2"></i> Orthopedic mattress</li>
+                <li><i class="bi bi-check2"></i> Blackout curtains</li>
+                <li><i class="bi bi-check2"></i> Extra pillows & blankets</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 mb-4">
+            <div class="amenity-category">
+              <h5><i class="bi bi-wifi me-2"></i>Technology</h5>
+              <ul>
+                <li><i class="bi bi-check2"></i> High-speed WiFi</li>
+                <li><i class="bi bi-check2"></i> 43" Smart TV</li>
+                <li><i class="bi bi-check2"></i> International channels</li>
+                <li><i class="bi bi-check2"></i> USB charging ports</li>
+                <li><i class="bi bi-check2"></i> Bluetooth connectivity</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 mb-4">
+            <div class="amenity-category">
+              <h5><i class="bi bi-house-heart me-2"></i>Room Features</h5>
+              <ul>
+                <li><i class="bi bi-check2"></i> Private balcony</li>
+                <li><i class="bi bi-check2"></i> Air conditioning</li>
+                <li><i class="bi bi-check2"></i> Mini refrigerator</li>
+                <li><i class="bi bi-check2"></i> Tea/coffee maker</li>
+                <li><i class="bi bi-check2"></i> Safe deposit box</li>
+              </ul>
+            </div>
+          </div>
+          <div class="col-lg-3 col-md-6 mb-4">
+            <div class="amenity-category">
+              <h5><i class="bi bi-droplet me-2"></i>Bathroom</h5>
+              <ul>
+                <li><i class="bi bi-check2"></i> Modern bathroom</li>
+                <li><i class="bi bi-check2"></i> Rain shower</li>
+                <li><i class="bi bi-check2"></i> Luxury toiletries</li>
+                <li><i class="bi bi-check2"></i> Hair dryer</li>
+                <li><i class="bi bi-check2"></i> Bathrobes & slippers</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tabbed Information -->
+      <div class="room-tabs mb-5" data-aos="fade-up" data-aos-delay="200">
+        <ul class="nav nav-tabs" id="room-detailsRoomTabs" role="tablist">
+          <li class="nav-item" role="presentation">
+            <button class="nav-link active" id="room-details-policies-tab" data-bs-toggle="tab" data-bs-target="#room-details-policies" type="button" role="tab">
+              <i class="bi bi-clipboard-check me-2"></i>Policies
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="room-details-location-tab" data-bs-toggle="tab" data-bs-target="#room-details-location" type="button" role="tab">
+              <i class="bi bi-geo-alt me-2"></i>View Details
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button class="nav-link" id="room-details-services-tab" data-bs-toggle="tab" data-bs-target="#room-details-services" type="button" role="tab">
+              <i class="bi bi-cone-striped me-2"></i>Services
+            </button>
+          </li>
+        </ul>
+        <div class="tab-content" id="room-detailsRoomTabsContent">
+          <div class="tab-pane fade show active" id="room-details-policies" role="tabpanel">
+            <div class="tab-content-wrapper">
+              <div class="row">
+                <div class="col-md-4">
+                  <h6>Check-in / Check-out</h6>
+                  <p>Check-in: 2:00 PM<br>Check-out: 12:00 PM</p>
+                  <p class="small">Early check-in and late check-out subject to availability</p>
+                </div>
+                <div class="col-md-4">
+                  <h6>Cancellation Policy</h6>
+                  <p>Free cancellation up to 48 hours before arrival</p>
+                  <p class="small">50% charge for cancellation within 48 hours</p>
+                </div>
+                <div class="col-md-4">
+                  <h6>Children & Extra Beds</h6>
+                  <p>Children under 12 stay free with parents</p>
+                  <p class="small">Extra bed available at Rs. 1,500 per night</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="room-details-location" role="tabpanel">
+            <div class="tab-content-wrapper">
+              <div class="row">
+                <div class="col-md-6">
+                  <h6>Room Views</h6>
+                  <ul class="feature-list">
+                    <li><i class="bi bi-check-circle text-success me-2"></i> Panoramic Begnas Lake view</li>
+                    <li><i class="bi bi-check-circle text-success me-2"></i> Himalayan mountain range view</li>
+                    <li><i class="bi bi-check-circle text-success me-2"></i> Forest and garden view</li>
+                    <li><i class="bi bi-check-circle text-success me-2"></i> Private balcony seating</li>
+                  </ul>
+                </div>
+                <div class="col-md-6">
+                  <h6>Room Layout</h6>
+                  <ul class="feature-list">
+                    <li><i class="bi bi-check-circle text-success me-2"></i> Separate sleeping area</li>
+                    <li><i class="bi bi-check-circle text-success me-2"></i> Comfortable sitting area</li>
+                    <li><i class="bi bi-check-circle text-success me-2"></i> Work desk with chair</li>
+                    <li><i class="bi bi-check-circle text-success me-2"></i> Wardrobe and storage</li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="tab-pane fade" id="room-details-services" role="tabpanel">
+            <div class="tab-content-wrapper">
+              <div class="row">
+                <div class="col-md-4">
+                  <h6><i class="bi bi-bell me-2"></i>Room Service</h6>
+                  <p>Available 7:00 AM - 10:00 PM daily</p>
+                  <p class="small">Extended hours available on request</p>
+                </div>
+                <div class="col-md-4">
+                  <h6><i class="bi bi-broom me-2"></i>Housekeeping</h6>
+                  <p>Daily housekeeping service</p>
+                  <p class="small">Evening turndown service available</p>
+                </div>
+                <div class="col-md-4">
+                  <h6><i class="bi bi-headset me-2"></i>Concierge</h6>
+                  <p>24/7 reception and assistance</p>
+                  <p class="small">Tour arrangements and local guidance</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Optional Add-ons -->
+      <div class="room-addons mb-5" data-aos="fade-up" data-aos-delay="200">
+        <h3 class="section-subtitle mb-4">Enhance Your Stay</h3>
+        <div class="row">
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="addon-card">
+              <div class="addon-icon">
+                <i class="bi bi-cup-hot"></i>
+              </div>
+              <h5>Breakfast Package</h5>
+              <p>Start your day with our signature breakfast featuring local Nepali and international options</p>
+              <div class="addon-price">+Rs. 800 per person</div>
+              <button class="btn btn-outline-primary btn-sm mt-2">Add to Booking</button>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="addon-card">
+              <div class="addon-icon">
+                <i class="bi bi-airplane"></i>
+              </div>
+              <h5>Airport Transfer</h5>
+              <p>Private vehicle transfer from Pokhara Airport to the resort</p>
+              <div class="addon-price">+Rs. 2,500 one way</div>
+              <button class="btn btn-outline-primary btn-sm mt-2">Add to Booking</button>
+            </div>
+          </div>
+          <div class="col-lg-4 col-md-6 mb-4">
+            <div class="addon-card">
+              <div class="addon-icon">
+                <i class="bi bi-binoculars"></i>
+              </div>
+              <h5>Nature Walk Tour</h5>
+              <p>Guided nature walk around Begnas Lake with local naturalist</p>
+              <div class="addon-price">+Rs. 1,500 per person</div>
+              <button class="btn btn-outline-primary btn-sm mt-2">Add to Booking</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Similar Rooms -->
+      <div class="similar-rooms mb-5" data-aos="fade-up" data-aos-delay="200">
+        <h3 class="section-subtitle mb-4">Other Room Options</h3>
+        <div class="row">
+          <div class="col-md-6 mb-4">
+            <div class="similar-room-card">
+              <div class="similar-room-image">
+                <img src="{% static 'assets/img/hotel/room-5.webp' %}" alt="Family Deluxe Room" class="img-fluid">
+              </div>
+              <div class="similar-room-content">
+                <h5>Family Deluxe Room</h5>
+                <p>Spacious accommodation perfect for families with connecting rooms</p>
+                <div class="similar-room-price">From Rs. 15,000/night</div>
+                <a href="#" class="btn btn-outline-primary">View Details</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6 mb-4">
+            <div class="similar-room-card">
+              <div class="similar-room-image">
+                <img src="{% static 'assets/img/hotel/room-19.webp' %}" alt="Deluxe Twin Room" class="img-fluid">
+              </div>
+              <div class="similar-room-content">
+                <h5>Deluxe Twin Room</h5>
+                <p>Perfect for friends or colleagues with two comfortable beds</p>
+                <div class="similar-room-price">From Rs. 10,000/night</div>
+                <a href="#" class="btn btn-outline-primary">View Details</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Booking CTA -->
+      <div class="booking-cta" data-aos="fade-up" data-aos-delay="200">
+        <div class="booking-card">
+          <div class="row align-items-center">
+            <div class="col-lg-8">
+              <h4>Ready to Experience Himalayan Luxury?</h4>
+              <p>Book your Super Deluxe Room now and enjoy breathtaking lake views, premium amenities, and unforgettable memories at Himalaya Forest Resort.</p>
+              <div class="availability-badge">
+                <i class="bi bi-check-circle-fill text-success me-2"></i>
+                <span>Limited rooms available - Book early to secure your dates</span>
+              </div>
+            </div>
+            <div class="col-lg-4 text-center text-lg-end">
+              <div class="price-display">
+                <span class="price">Rs. 12,000</span>
+                <span class="period">per night</span>
+              </div>
+              <a href="{% url 'booking' %}" class="btn btn-primary btn-lg">
+                <i class="bi bi-calendar-check me-2"></i>Check Availability
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </section><!-- /Room Details Section -->
+
+</main>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+  .room-header-image {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  }
+  
+  .room-header-image img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+  }
+  
+  .room-badge {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: linear-gradient(135deg, #3498db, #2c3e50);
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-weight: 600;
+  }
+  
+  .room-header-content {
+    padding: 30px;
+  }
+  
+  .room-rating {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .rating-score {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #2c3e50;
+  }
+  
+  .stars {
+    color: #f39c12;
+    font-size: 1.2rem;
+  }
+  
+  .reviews-count {
+    color: #666;
+    font-size: 0.9rem;
+  }
+  
+  .room-title {
+    color: #2c3e50;
+    font-size: 2.2rem;
+    margin-bottom: 10px;
+  }
+  
+  .room-tagline {
+    color: #666;
+    font-size: 1.1rem;
+    margin-bottom: 20px;
+  }
+  
+  .room-capacity {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .capacity-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    color: #555;
+  }
+  
+  .capacity-item i {
+    color: #3498db;
+    font-size: 1.1rem;
+  }
+  
+  .room-features {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  
+  .feature-badge {
+    background: #f8f9fa;
+    color: #3498db;
+    padding: 6px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .room-price {
+    margin: 25px 0;
+  }
+  
+  .price-amount {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #2c3e50;
+  }
+  
+  .price-period {
+    color: #666;
+    font-size: 1.1rem;
+    margin-left: 5px;
+  }
+  
+  .tax-info {
+    display: block;
+    color: #999;
+    font-size: 0.9rem;
+    margin-top: 5px;
+  }
+  
+  .btn-book-now {
+    background: linear-gradient(135deg, #27ae60, #219653);
+    color: white;
+    padding: 15px 40px;
+    border: none;
+    border-radius: 10px;
+    font-weight: 600;
+    font-size: 1.1rem;
+    transition: all 0.3s ease;
+    width: 100%;
+  }
+  
+  .btn-book-now:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(39, 174, 96, 0.3);
+  }
+  
+  /* Gallery Styles */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 15px;
+  }
+  
+  .gallery-main {
+    height: 400px;
+    border-radius: 15px;
+    overflow: hidden;
+  }
+  
+  .gallery-main img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .gallery-thumbnails {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+  
+  .gallery-thumbnails a {
+    height: 92.5px;
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  
+  .gallery-thumbnails img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+  }
+  
+  .gallery-thumbnails a:hover img {
+    transform: scale(1.05);
+  }
+  
+  .section-subtitle {
+    color: #2c3e50;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 3px solid #3498db;
+    display: inline-block;
+  }
+  
+  /* Room Description */
+  .room-description p {
+    color: #555;
+    line-height: 1.8;
+    margin-bottom: 15px;
+  }
+  
+  /* Highlight Box */
+  .highlight-box {
+    background: linear-gradient(135deg, #3498db, #2c3e50);
+    color: white;
+    padding: 25px;
+    border-radius: 15px;
+    height: 100%;
+  }
+  
+  .highlight-icon {
+    width: 50px;
+    height: 50px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    font-size: 1.5rem;
+  }
+  
+  .highlight-box h4 {
+    color: white;
+    margin-bottom: 15px;
+  }
+  
+  .highlight-box p {
+    color: rgba(255,255,255,0.9);
+    font-style: italic;
+    margin-bottom: 15px;
+  }
+  
+  .quote-author {
+    color: rgba(255,255,255,0.7);
+    font-size: 0.9rem;
+    border-top: 1px solid rgba(255,255,255,0.2);
+    padding-top: 15px;
+  }
+  
+  /* Amenities */
+  .amenity-category {
+    background: #f8f9fa;
+    padding: 20px;
+    border-radius: 10px;
+    height: 100%;
+  }
+  
+  .amenity-category h5 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-size: 1.1rem;
+  }
+  
+  .amenity-category ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .amenity-category li {
+    padding: 8px 0;
+    color: #555;
+    border-bottom: 1px solid #eee;
+    display: flex;
+    align-items: center;
+  }
+  
+  .amenity-category li:last-child {
+    border-bottom: none;
+  }
+  
+  .amenity-category i {
+    color: #27ae60;
+    margin-right: 10px;
+    font-size: 0.9rem;
+  }
+  
+  /* Tabs */
+  .nav-tabs {
+    border-bottom: 2px solid #eee;
+  }
+  
+  .nav-tabs .nav-link {
+    color: #666;
+    border: none;
+    padding: 15px 25px;
+    font-weight: 500;
+    border-bottom: 3px solid transparent;
+  }
+  
+  .nav-tabs .nav-link.active {
+    color: #3498db;
+    background: transparent;
+    border-bottom: 3px solid #3498db;
+  }
+  
+  .tab-content-wrapper {
+    padding: 30px;
+    background: #f8f9fa;
+    border-radius: 0 0 10px 10px;
+  }
+  
+  .tab-content-wrapper h6 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+  }
+  
+  .tab-content-wrapper p, .tab-content-wrapper ul {
+    color: #555;
+  }
+  
+  .feature-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .feature-list li {
+    padding: 8px 0;
+  }
+  
+  /* Addons */
+  .addon-card {
+    background: white;
+    border: 2px solid #eee;
+    border-radius: 10px;
+    padding: 25px;
+    text-align: center;
+    height: 100%;
+    transition: all 0.3s ease;
+  }
+  
+  .addon-card:hover {
+    border-color: #3498db;
+    transform: translateY(-5px);
+  }
+  
+  .addon-icon {
+    width: 60px;
+    height: 60px;
+    background: #f8f9fa;
+    color: #3498db;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 1.5rem;
+  }
+  
+  .addon-card h5 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+  }
+  
+  .addon-card p {
+    color: #666;
+    font-size: 0.95rem;
+    margin-bottom: 15px;
+  }
+  
+  .addon-price {
+    color: #27ae60;
+    font-weight: 600;
+    font-size: 1.1rem;
+  }
+  
+  /* Similar Rooms */
+  .similar-room-card {
+    display: flex;
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
+  }
+  
+  .similar-room-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .similar-room-image {
+    width: 150px;
+    height: 150px;
+    flex-shrink: 0;
+  }
+  
+  .similar-room-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .similar-room-content {
+    padding: 20px;
+    flex: 1;
+  }
+  
+  .similar-room-content h5 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+  }
+  
+  .similar-room-content p {
+    color: #666;
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+  }
+  
+  .similar-room-price {
+    color: #2c3e50;
+    font-weight: 600;
+    margin-bottom: 15px;
+  }
+  
+  /* Booking CTA */
+  .booking-card {
+    background: linear-gradient(135deg, #2c3e50, #3498db);
+    color: white;
+    padding: 40px;
+    border-radius: 15px;
+  }
+  
+  .booking-card h4 {
+    color: white;
+    margin-bottom: 15px;
+  }
+  
+  .booking-card p {
+    color: rgba(255,255,255,0.9);
+    margin-bottom: 15px;
+  }
+  
+  .availability-badge {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(255,255,255,0.1);
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+  }
+  
+  .price-display {
+    margin-bottom: 20px;
+  }
+  
+  .price-display .price {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: white;
+  }
+  
+  .price-display .period {
+    color: rgba(255,255,255,0.8);
+    font-size: 1.1rem;
+  }
+  
+  .booking-card .btn-primary {
+    background: white;
+    color: #2c3e50;
+    border: none;
+    padding: 15px 40px;
+    font-weight: 600;
+  }
+  
+  .booking-card .btn-primary:hover {
+    background: #f8f9fa;
+    transform: translateY(-2px);
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 992px) {
+    .gallery-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .gallery-thumbnails {
+      grid-template-columns: repeat(4, 1fr);
+    }
+    
+    .gallery-thumbnails a {
+      height: 100px;
+    }
+    
+    .similar-room-image {
+      width: 120px;
+      height: 120px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .room-header-image img {
+      height: 300px;
+    }
+    
+    .room-title {
+      font-size: 1.8rem;
+    }
+    
+    .price-amount {
+      font-size: 2rem;
+    }
+    
+    .gallery-main {
+      height: 300px;
+    }
+    
+    .gallery-thumbnails {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .booking-card {
+      padding: 25px;
+    }
+    
+    .booking-card h4 {
+      font-size: 1.3rem;
+    }
+    
+    .nav-tabs .nav-link {
+      padding: 10px 15px;
+      font-size: 0.9rem;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .room-header-content {
+      padding: 20px;
+    }
+    
+    .room-capacity {
+      gap: 15px;
+    }
+    
+    .gallery-thumbnails {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .gallery-thumbnails a {
+      height: 80px;
+    }
+    
+    .similar-room-card {
+      flex-direction: column;
+    }
+    
+    .similar-room-image {
+      width: 100%;
+      height: 200px;
+    }
+    
+    .tab-content-wrapper {
+      padding: 20px;
+    }
+    
+    .addon-card {
+      padding: 20px;
+    }
+  }
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Initialize AOS animations
+    if (typeof AOS !== 'undefined') {
+      AOS.init({
+        duration: 800,
+        once: true,
+        offset: 100
+      });
+    }
+    
+    // Initialize GLightbox for gallery
+    const lightbox = GLightbox({
+      selector: '.glightbox',
+      touchNavigation: true,
+      loop: true,
+      autoplayVideos: false,
+      openEffect: 'zoom',
+      closeEffect: 'fade',
+      slideEffect: 'slide',
+      moreText: 'View Full Image',
+      moreLength: 60,
+      closeButton: true,
+      draggable: true
+    });
+    
+    // Gallery thumbnail interaction
+    const thumbnails = document.querySelectorAll('.gallery-thumbnails a');
+    const mainImage = document.querySelector('.gallery-main img');
+    const mainImageLink = document.querySelector('.gallery-main a');
+    
+    thumbnails.forEach(thumb => {
+      thumb.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // Get the full-size image URL from data attribute or href
+        const fullSizeUrl = this.getAttribute('href');
+        const title = this.getAttribute('data-title') || '';
+        
+        // Update main image preview
+        if (mainImage) {
+          // Create a temporary image to preload
+          const tempImg = new Image();
+          tempImg.onload = function() {
+            mainImage.src = fullSizeUrl;
+            mainImage.style.opacity = '0';
+            setTimeout(() => {
+              mainImage.style.transition = 'opacity 0.3s ease';
+              mainImage.style.opacity = '1';
+            }, 10);
+          };
+          tempImg.src = fullSizeUrl;
+        }
+        
+        // Update main link for lightbox
+        if (mainImageLink) {
+          mainImageLink.setAttribute('href', fullSizeUrl);
+          if (title) {
+            mainImageLink.setAttribute('data-title', title);
+          }
+        }
+        
+        // Highlight active thumbnail
+        thumbnails.forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+        
+        // Add visual feedback
+        this.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+          this.style.transform = '';
+        }, 200);
+      });
+    });
+    
+    // Add click animation to "Add to Booking" buttons
+    const addonButtons = document.querySelectorAll('.addon-card .btn');
+    addonButtons.forEach(button => {
+      button.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // Get addon details
+        const addonCard = this.closest('.addon-card');
+        const addonName = addonCard.querySelector('h5').textContent;
+        const addonPrice = addonCard.querySelector('.addon-price').textContent;
+        
+        // Show confirmation
+        this.innerHTML = '<i class="bi bi-check me-1"></i>Added';
+        this.classList.remove('btn-outline-primary');
+        this.classList.add('btn-success');
+        this.disabled = true;
+        
+        // Store in session storage (for booking page)
+        const addons = JSON.parse(sessionStorage.getItem('roomAddons') || '[]');
+        addons.push({
+          name: addonName,
+          price: addonPrice,
+          timestamp: new Date().getTime()
+        });
+        sessionStorage.setItem('roomAddons', JSON.stringify(addons));
+        
+        // Show notification
+        showNotification(`Added ${addonName} to your booking`);
+        
+        // Reset button after 3 seconds
+        setTimeout(() => {
+          this.innerHTML = 'Add to Booking';
+          this.classList.remove('btn-success');
+          this.classList.add('btn-outline-primary');
+          this.disabled = false;
+        }, 3000);
+      });
+    });
+    
+    // Tab interaction enhancement
+    const tabButtons = document.querySelectorAll('.nav-tabs .nav-link');
+    tabButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        // Add click animation
+        this.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+          this.style.transform = '';
+        }, 200);
+        
+        // Update tab icons (if any)
+        const icon = this.querySelector('i');
+        if (icon) {
+          tabButtons.forEach(btn => {
+            const btnIcon = btn.querySelector('i');
+            if (btnIcon) {
+              btnIcon.style.transform = 'rotate(0)';
+            }
+          });
+          icon.style.transform = 'rotate(180deg)';
+          icon.style.transition = 'transform 0.3s ease';
+        }
+      });
+    });
+    
+    // Price interaction
+    const priceElements = document.querySelectorAll('.price-amount, .discounted-price');
+    priceElements.forEach(price => {
+      price.addEventListener('mouseenter', function() {
+        this.style.color = '#27ae60';
+        this.style.transform = 'scale(1.05)';
+        this.style.transition = 'all 0.3s ease';
+      });
+      
+      price.addEventListener('mouseleave', function() {
+        this.style.color = '';
+        this.style.transform = 'scale(1)';
+      });
+    });
+    
+    // Booking CTA interaction
+    const bookingCTA = document.querySelector('.booking-cta .btn-primary');
+    if (bookingCTA) {
+      bookingCTA.addEventListener('click', function() {
+        // Store room type in session storage for booking page
+        sessionStorage.setItem('selectedRoom', 'Super Deluxe Room');
+        sessionStorage.setItem('roomPrice', '12000');
+        
+        // Add click animation
+        this.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+          this.style.transform = '';
+        }, 200);
+      });
+    }
+    
+    // View Details buttons for similar rooms
+    const viewDetailButtons = document.querySelectorAll('.similar-room-card .btn');
+    viewDetailButtons.forEach(button => {
+      button.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // Get room details
+        const roomCard = this.closest('.similar-room-card');
+        const roomName = roomCard.querySelector('h5').textContent;
+        const roomPrice = roomCard.querySelector('.similar-room-price').textContent;
+        
+        // Show loading state
+        const originalText = this.innerHTML;
+        this.innerHTML = '<i class="bi bi-hourglass-split me-1"></i>Loading...';
+        this.disabled = true;
+        
+        // Simulate loading
+        setTimeout(() => {
+          this.innerHTML = originalText;
+          this.disabled = false;
+          
+          // In a real application, you would redirect to the room details page
+          // For now, show a message
+          showNotification(`Loading details for ${roomName}`);
+        }, 1000);
+      });
+    });
+    
+    // Helper function to show notifications
+    function showNotification(message) {
+      // Create notification element
+      const notification = document.createElement('div');
+      notification.className = 'notification-alert';
+      notification.innerHTML = `
+        <div class="notification-content">
+          <i class="bi bi-check-circle-fill text-success me-2"></i>
+          <span>${message}</span>
+        </div>
+      `;
+      
+      // Add styles
+      notification.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background: white;
+        padding: 15px 20px;
+        border-radius: 10px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        z-index: 9999;
+        animation: slideIn 0.3s ease;
+      `;
+      
+      // Add to body
+      document.body.appendChild(notification);
+      
+      // Remove after 3 seconds
+      setTimeout(() => {
+        notification.style.animation = 'slideOut 0.3s ease';
+        setTimeout(() => {
+          notification.remove();
+        }, 300);
+      }, 3000);
+      
+      // Add animation keyframes
+      if (!document.querySelector('#notification-styles')) {
+        const style = document.createElement('style');
+        style.id = 'notification-styles';
+        style.textContent = `
+          @keyframes slideIn {
+            from {
+              transform: translateX(100%);
+              opacity: 0;
+            }
+            to {
+              transform: translateX(0);
+              opacity: 1;
+            }
+          }
+          @keyframes slideOut {
+            from {
+              transform: translateX(0);
+              opacity: 1;
+            }
+            to {
+              transform: translateX(100%);
+              opacity: 0;
+            }
+          }
+        `;
+        document.head.appendChild(style);
+      }
+    }
+    
+    // Initialize room features interaction
+    const featureItems = document.querySelectorAll('.amenity-category li, .feature-list li');
+    featureItems.forEach(item => {
+      item.addEventListener('mouseenter', function() {
+        const icon = this.querySelector('i');
+        if (icon) {
+          icon.style.transform = 'scale(1.2)';
+          icon.style.transition = 'transform 0.3s ease';
+        }
+      });
+      
+      item.addEventListener('mouseleave', function() {
+        const icon = this.querySelector('i');
+        if (icon) {
+          icon.style.transform = 'scale(1)';
+        }
+      });
+    });
+    
+    // Image lazy loading for gallery
+    const galleryImages = document.querySelectorAll('.gallery-grid img');
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          const src = img.getAttribute('data-src') || img.src;
+          if (!img.src.includes(src) && src) {
+            img.src = src;
+          }
+          observer.unobserve(img);
+        }
+      });
+    });
+    
+    galleryImages.forEach(img => {
+      if (!img.complete) {
+        const dataSrc = img.getAttribute('data-src');
+        if (dataSrc) {
+          img.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"%3E%3Crect width="400" height="300" fill="%23f8f9fa"/%3E%3C/svg%3E';
+          imageObserver.observe(img);
+        }
+      }
+    });
+  });
+</script>
+{% endblock %}

@@ -1,336 +1,618 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base/index.html' %}
+{% load static %}
 
-<head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Contact - Grandoria Bootstrap Template</title>
-  <meta name="description" content="">
-  <meta name="keywords" content="">
+{% block title %}Contact Us | Himalaya Forest Resort, Pokhara{% endblock %}
 
-  <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+{% block description %}Get in touch with Himalaya Forest Resort in Pokhara, Nepal. Contact us for bookings, inquiries, or to plan your perfect Himalayan getaway.{% endblock %}
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com" rel="preconnect">
-  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+{% block keywords %}Contact Himalaya Forest Resort, Pokhara Hotel Contact, Nepal Resort Contact, Booking Inquiry, Hotel Phone Number, Resort Email{% endblock %}
 
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+{% block body_class %}contact-page{% endblock %}
 
-  <!-- Main CSS File -->
-  <link href="assets/css/main.css" rel="stylesheet">
+{% block content %}
+<main class="main">
 
-  <!-- =======================================================
-  * Template Name: Grandoria
-  * Template URL: https://bootstrapmade.com/grandoria-bootstrap-hotel-template/
-  * Updated: Jul 29 2025 with Bootstrap v5.3.7
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
-</head>
+  <!-- Page Title -->
+  <div class="page-title light-background">
+    <div class="container d-lg-flex justify-content-between align-items-center">
+      <h1 class="mb-2 mb-lg-0">Contact Us</h1>
+      <nav class="breadcrumbs">
+        <ol>
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li class="current">Contact</li>
+        </ol>
+      </nav>
+    </div>
+  </div><!-- End Page Title -->
 
-<body class="contact-page">
+  <!-- Contact Section -->
+  <section id="contact" class="contact section">
 
-  <header id="header" class="header sticky-top">
-
-    <div class="topbar d-flex align-items-center dark-background">
-      <div class="container d-flex justify-content-center justify-content-md-between">
-        <div class="contact-info d-flex align-items-center">
-          <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:contact@example.com">contact@example.com</a></i>
-          <i class="bi bi-phone d-flex align-items-center ms-4"><span>+1 5589 55488 55</span></i>
-        </div>
-        <div class="social-links d-none d-md-flex align-items-center">
-          <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
-          <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-          <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-          <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-        </div>
-      </div>
-    </div><!-- End Top Bar -->
-
-    <div class="branding d-flex align-items-cente">
-
-      <div class="container position-relative d-flex align-items-center justify-content-between">
-        <a href="index.html" class="logo d-flex align-items-center">
-          <!-- Uncomment the line below if you also wish to use an image logo -->
-          <!-- <img src="assets/img/logo.webp" alt=""> -->
-          <h1 class="sitename">Grandoria</h1>
-        </a>
-
-        <nav id="navmenu" class="navmenu">
-          <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="rooms.html">Rooms</a></li>
-            <li><a href="amenities.html">Amenities</a></li>
-            <li><a href="location.html">Location</a></li>
-            <li class="dropdown"><a href="#"><span>Pages</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-              <ul>
-                <li><a href="room-details.html">Room Details</a></li>
-                <li><a href="restaurant.html">Restaurant</a></li>
-                <li><a href="offers.html">Offers</a></li>
-                <li><a href="events.html">Events</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="booking.html">Booking</a></li>
-                <li><a href="terms.html">Terms Page</a></li>
-                <li><a href="privacy.html">Privacy Page</a></li>
-                <li><a href="404.html">404 Page</a></li>
-                <li><a href="starter-page.html">Starter Page</a></li>
-              </ul>
-            </li>
-            <li><a href="contact.html" class="active">Contact</a></li>
-
-            <li class="dropdown">
-              <a href="#english">
-                <svg class="icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <g id="SVGRepo_iconCarrier">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M4 0H6V2H10V4H8.86807C8.57073 5.66996 7.78574 7.17117 6.6656 8.35112C7.46567 8.73941 8.35737 8.96842 9.29948 8.99697L10.2735 6H12.7265L15.9765 16H13.8735L13.2235 14H9.77647L9.12647 16H7.0235L8.66176 10.9592C7.32639 10.8285 6.08165 10.3888 4.99999 9.71246C3.69496 10.5284 2.15255 11 0.5 11H0V9H0.5C1.5161 9 2.47775 8.76685 3.33437 8.35112C2.68381 7.66582 2.14629 6.87215 1.75171 6H4.02179C4.30023 6.43491 4.62904 6.83446 4.99999 7.19044C5.88743 6.33881 6.53369 5.23777 6.82607 4H0V2H4V0ZM12.5735 12L11.5 8.69688L10.4265 12H12.5735Z" fill="currentColor"></path>
-                  </g>
-                </svg>
-                <span>English</span>
-                <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-              <ul>
-                <li><a href="#french">French</a></li>
-                <li><a href="#deutsch">Deutsch</a></li>
-                <li><a href="#spanish">Spanish</a></li>
-              </ul>
-            </li>
-
-          </ul>
-          <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-        </nav>
-
-      </div>
-
+    <!-- Map Section -->
+    <div class="map-container mb-5">
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3510.487434756978!2d83.9857140754039!3d28.33638307579379!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3995937bbf0376ff%3A0x71dd9a54f9d4d3f!2sBegnas%20Lake!5e0!3m2!1sen!2snp!4v1700000000000!5m2!1sen!2snp" 
+        width="100%" 
+        height="500" 
+        style="border:0;" 
+        allowfullscreen="" 
+        loading="lazy" 
+        referrerpolicy="no-referrer-when-downgrade">
+      </iframe>
     </div>
 
-  </header>
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
 
-  <main class="main">
-
-    <!-- Page Title -->
-    <div class="page-title light-background">
-      <div class="container d-lg-flex justify-content-between align-items-center">
-        <h1 class="mb-2 mb-lg-0">Contact</h1>
-        <nav class="breadcrumbs">
-          <ol>
-            <li><a href="index.html">Home</a></li>
-            <li class="current">Contact</li>
-          </ol>
-        </nav>
-      </div>
-    </div><!-- End Page Title -->
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact section">
-
-      <!-- Map Section -->
-      <div class="map-container mb-5">
-        <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d48389.78314118045!2d-74.006138!3d40.710059!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a22a3bda30d%3A0xb89d1fe6bc499443!2sDowntown%20Conference%20Center!5e0!3m2!1sen!2sus!4v1676961268712!5m2!1sen!2sus" width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-      </div>
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <!-- Contact Info -->
-        <div class="row g-4 mb-5" data-aos="fade-up" data-aos-delay="300">
-          <div class="col-md-6">
-            <div class="contact-info-card">
-              <div class="icon-box">
-                <i class="bi bi-geo-alt"></i>
-              </div>
-              <div class="info-content">
-                <h4>Location</h4>
-                <p>482 Pine Street, Seattle, Washington 98101</p>
-              </div>
+      <!-- Contact Info -->
+      <div class="row g-4 mb-5" data-aos="fade-up" data-aos-delay="300">
+        <div class="col-lg-4 col-md-6">
+          <div class="contact-info-card">
+            <div class="icon-box">
+              <i class="bi bi-geo-alt"></i>
             </div>
-          </div>
-
-          <div class="col-md-6">
-            <div class="contact-info-card">
-              <div class="icon-box">
-                <i class="bi bi-telephone"></i>
-              </div>
-              <div class="info-content">
-                <h4>Phone &amp; Email</h4>
-                <p>+1 (206) 555-0192</p>
-                <p>connect@example.com</p>
-              </div>
+            <div class="info-content">
+              <h4>Our Location</h4>
+              <p>Pachabhaiya (Pokhara Metropolitan Ward No. 31)<br>
+                33700 Deorāli, Nepal<br>
+                Near Begnas Lake & Rupa Lake</p>
+              <a href="https://maps.app.goo.gl/example" target="_blank" class="map-link">
+                <i class="bi bi-arrow-up-right-circle me-1"></i>Open in Google Maps
+              </a>
             </div>
           </div>
         </div>
 
-        <!-- Contact Form -->
-        <div class="row justify-content-center mb-5" data-aos="fade-up" data-aos-delay="200">
-          <div class="col-lg-10">
-            <div class="contact-form-wrapper">
-              <h2 class="text-center mb-4">Send a Message</h2>
+        <div class="col-lg-4 col-md-6">
+          <div class="contact-info-card">
+            <div class="icon-box">
+              <i class="bi bi-telephone"></i>
+            </div>
+            <div class="info-content">
+              <h4>Phone & WhatsApp</h4>
+              <p><strong>Reservations:</strong><br>+977 9856081271</p>
+              <p><strong>General Inquiries:</strong><br>+977 9856081371</p>
+              <p class="mt-2"><i class="bi bi-whatsapp text-success me-1"></i> Available on WhatsApp</p>
+            </div>
+          </div>
+        </div>
 
-              <form action="forms/contact.php" method="post" class="php-email-form">
-                <div class="row g-3">
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <input type="text" class="form-control" name="name" placeholder="Your Name" required="">
-                    </div>
-                  </div>
+        <div class="col-lg-4 col-md-6">
+          <div class="contact-info-card">
+            <div class="icon-box">
+              <i class="bi bi-envelope"></i>
+            </div>
+            <div class="info-content">
+              <h4>Email & Social</h4>
+              <p><strong>Bookings & Reservations:</strong><br>himalayaforestresort@gmail.com</p>
+              <p><strong>General Information:</strong><br>info@himalayaforestresort.com</p>
+              <div class="social-contact mt-2">
+                <a href="#" class="me-2"><i class="bi bi-facebook"></i></a>
+                <a href="#" class="me-2"><i class="bi bi-instagram"></i></a>
+                <a href="#" class="me-2"><i class="bi bi-twitter-x"></i></a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 
-                  <div class="col-md-6">
-                    <div class="form-group">
-                      <input type="email" class="form-control" name="email" placeholder="Email Address" required="">
-                    </div>
-                  </div>
+      <!-- Contact Form -->
+      <div class="row justify-content-center mb-5" data-aos="fade-up" data-aos-delay="200">
+        <div class="col-lg-10">
+          <div class="contact-form-wrapper">
+            <div class="section-header text-center mb-5">
+              <h2>Send Us a Message</h2>
+              <p class="lead">Have questions about your stay? We're here to help! Fill out the form below and we'll get back to you within 24 hours.</p>
+            </div>
 
-                  <div class="col-12">
-                    <div class="form-group">
-                      <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
-                    </div>
-                  </div>
-
-                  <div class="col-12">
-                    <div class="form-group">
-                      <textarea class="form-control" name="message" placeholder="Your Message" rows="6" required=""></textarea>
-                    </div>
-                  </div>
-
-                  <div class="col-12">
-                    <div class="loading">Loading</div>
-                    <div class="error-message"></div>
-                    <div class="sent-message">Your message has been sent. Thank you!</div>
-                  </div>
-
-                  <div class="col-12 text-center">
-                    <button type="submit" class="btn-submit">SEND MESSAGE</button>
+            <form id="contactForm" class="contact-form" method="POST">
+              {% csrf_token %}
+              
+              <div class="row g-4">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="name" class="form-label">Your Name *</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="Enter your full name" required>
+                    <div class="invalid-feedback">Please enter your name.</div>
                   </div>
                 </div>
-              </form>
+
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="email" class="form-label">Email Address *</label>
+                    <input type="email" class="form-control" id="email" name="email" placeholder="Enter your email" required>
+                    <div class="invalid-feedback">Please enter a valid email address.</div>
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="phone" class="form-label">Phone Number</label>
+                    <input type="tel" class="form-control" id="phone" name="phone" placeholder="+977 98XXXXXXXX">
+                  </div>
+                </div>
+
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label for="subject" class="form-label">Subject *</label>
+                    <select class="form-select" id="subject" name="subject" required>
+                      <option value="">Select a subject</option>
+                      <option value="booking">Booking Inquiry</option>
+                      <option value="room">Room Information</option>
+                      <option value="amenities">Amenities & Services</option>
+                      <option value="event">Event Planning</option>
+                      <option value="feedback">Feedback & Suggestions</option>
+                      <option value="other">Other Inquiry</option>
+                    </select>
+                    <div class="invalid-feedback">Please select a subject.</div>
+                  </div>
+                </div>
+
+                <div class="col-12">
+                  <div class="form-group">
+                    <label for="message" class="form-label">Your Message *</label>
+                    <textarea class="form-control" id="message" name="message" placeholder="Please provide details about your inquiry..." rows="6" required></textarea>
+                    <div class="invalid-feedback">Please enter your message.</div>
+                  </div>
+                </div>
+
+                <div class="col-12">
+                  <div class="form-group form-check">
+                    <input type="checkbox" class="form-check-input" id="newsletter" name="newsletter">
+                    <label class="form-check-label" for="newsletter">
+                      Subscribe to our newsletter for special offers and updates
+                    </label>
+                  </div>
+                </div>
+
+                <div class="col-12 text-center">
+                  <div class="form-status">
+                    <div id="loading" class="d-none">
+                      <div class="spinner-border text-primary me-2" role="status">
+                        <span class="visually-hidden">Loading...</span>
+                      </div>
+                      <span>Sending your message...</span>
+                    </div>
+                    <div id="successMessage" class="alert alert-success d-none" role="alert">
+                      <i class="bi bi-check-circle-fill me-2"></i>
+                      Thank you! Your message has been sent successfully. We'll get back to you soon.
+                    </div>
+                    <div id="errorMessage" class="alert alert-danger d-none" role="alert">
+                      <i class="bi bi-exclamation-triangle-fill me-2"></i>
+                      There was an error sending your message. Please try again or contact us directly.
+                    </div>
+                  </div>
+
+                  <button type="submit" class="btn btn-primary btn-lg px-5" id="submitBtn">
+                    <i class="bi bi-send me-2"></i>Send Message
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+
+      <!-- Additional Contact Info -->
+      <div class="row mt-5" data-aos="fade-up" data-aos-delay="400">
+        <div class="col-12">
+          <div class="additional-info">
+            <h3 class="text-center mb-4">Additional Information</h3>
+            <div class="row g-4">
+              <div class="col-md-4">
+                <div class="info-card">
+                  <i class="bi bi-clock"></i>
+                  <h5>Office Hours</h5>
+                  <p>Monday - Sunday: 6:00 AM - 10:00 PM</p>
+                  <p>Reception: 24/7</p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="info-card">
+                  <i class="bi bi-calendar-check"></i>
+                  <h5>Check-in/Check-out</h5>
+                  <p>Check-in: 2:00 PM</p>
+                  <p>Check-out: 12:00 PM</p>
+                </div>
+              </div>
+              <div class="col-md-4">
+                <div class="info-card">
+                  <i class="bi bi-car-front"></i>
+                  <h5>Transportation</h5>
+                  <p>Airport pickup available</p>
+                  <p>Taxi service arranged</p>
+                </div>
+              </div>
             </div>
           </div>
         </div>
-
       </div>
 
-    </section><!-- /Contact Section -->
-
-  </main>
-
-  <footer id="footer" class="footer position-relative dark-background">
-
-    <div class="footer-top">
-      <div class="container">
-        <div class="row gy-4">
-          <div class="col-lg-4 col-md-6 footer-about">
-            <a href="index.html" class="logo d-flex align-items-center">
-              <span class="sitename">Grandoria</span>
-            </a>
-            <div class="footer-contact pt-3">
-              <p>A108 Adam Street</p>
-              <p>New York, NY 535022</p>
-              <p class="mt-3"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
-              <p><strong>Email:</strong> <span>info@example.com</span></p>
-            </div>
-          </div>
-
-          <div class="col-lg-2 col-md-3 footer-links">
-            <h4>Useful Links</h4>
-            <ul>
-              <li><a href="#">Home</a></li>
-              <li><a href="#">About us</a></li>
-              <li><a href="#">Services</a></li>
-              <li><a href="#">Terms of service</a></li>
-              <li><a href="#">Privacy policy</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-2 col-md-3 footer-links">
-            <h4>Our Services</h4>
-            <ul>
-              <li><a href="#">Web Design</a></li>
-              <li><a href="#">Web Development</a></li>
-              <li><a href="#">Product Management</a></li>
-              <li><a href="#">Marketing</a></li>
-              <li><a href="#">Graphic Design</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-2 col-md-3 footer-links">
-            <h4>Hic solutasetp</h4>
-            <ul>
-              <li><a href="#">Molestiae accusamus iure</a></li>
-              <li><a href="#">Excepturi dignissimos</a></li>
-              <li><a href="#">Suscipit distinctio</a></li>
-              <li><a href="#">Dilecta</a></li>
-              <li><a href="#">Sit quas consectetur</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-2 col-md-3 footer-links">
-            <h4>Nobis illum</h4>
-            <ul>
-              <li><a href="#">Ipsam</a></li>
-              <li><a href="#">Laudantium dolorum</a></li>
-              <li><a href="#">Dinera</a></li>
-              <li><a href="#">Trodelas</a></li>
-              <li><a href="#">Flexo</a></li>
-            </ul>
-          </div>
-
-        </div>
-      </div>
     </div>
 
-    <div class="copyright text-center">
-      <div class="container d-flex flex-column flex-lg-row justify-content-center justify-content-lg-between align-items-center">
+  </section><!-- /Contact Section -->
 
-        <div class="d-flex flex-column align-items-center align-items-lg-start">
-          <div>
-            © Copyright <strong><span>MyWebsite</span></strong>. All Rights Reserved
-          </div>
-          <div class="credits">
-            <!-- All the links in the footer should remain intact. -->
-            <!-- You can delete the links only if you purchased the pro version. -->
-            <!-- Licensing information: https://bootstrapmade.com/license/ -->
-            <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/herobiz-bootstrap-business-template/ -->
-            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-          </div>
-        </div>
+</main>
+{% endblock %}
 
-        <div class="social-links order-first order-lg-last mb-3 mb-lg-0">
-          <a href=""><i class="bi bi-twitter-x"></i></a>
-          <a href=""><i class="bi bi-facebook"></i></a>
-          <a href=""><i class="bi bi-instagram"></i></a>
-          <a href=""><i class="bi bi-linkedin"></i></a>
-        </div>
+{% block extra_css %}
+<style>
+  .map-container {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+  }
+  
+  .map-container iframe {
+    display: block;
+    border: none;
+  }
+  
+  .contact-info-card {
+    background: white;
+    border-radius: 15px;
+    padding: 30px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    display: flex;
+    align-items: flex-start;
+    gap: 20px;
+    height: 100%;
+    transition: transform 0.3s ease;
+  }
+  
+  .contact-info-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .icon-box {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #3498db, #2c3e50);
+    color: white;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+  }
+  
+  .info-content h4 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-size: 1.3rem;
+  }
+  
+  .info-content p {
+    color: #555;
+    margin-bottom: 10px;
+    line-height: 1.6;
+  }
+  
+  .info-content strong {
+    color: #2c3e50;
+  }
+  
+  .map-link {
+    display: inline-flex;
+    align-items: center;
+    color: #3498db;
+    text-decoration: none;
+    font-weight: 500;
+    margin-top: 10px;
+    transition: color 0.3s ease;
+  }
+  
+  .map-link:hover {
+    color: #2980b9;
+  }
+  
+  .social-contact a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background: #f8f9fa;
+    color: #2c3e50;
+    border-radius: 50%;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  .social-contact a:hover {
+    background: #3498db;
+    color: white;
+    transform: translateY(-2px);
+  }
+  
+  .contact-form-wrapper {
+    background: white;
+    border-radius: 20px;
+    padding: 40px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+  }
+  
+  .section-header h2 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+  }
+  
+  .section-header .lead {
+    color: #666;
+    font-size: 1.1rem;
+  }
+  
+  .form-label {
+    display: block;
+    margin-bottom: 8px;
+    font-weight: 500;
+    color: #2c3e50;
+  }
+  
+  .form-control, .form-select {
+    border: 2px solid #e1e5e9;
+    border-radius: 10px;
+    padding: 12px 15px;
+    transition: all 0.3s ease;
+    font-size: 15px;
+  }
+  
+  .form-control:focus, .form-select:focus {
+    border-color: #3498db;
+    box-shadow: 0 0 0 0.25rem rgba(52, 152, 219, 0.25);
+  }
+  
+  .form-control.is-invalid, .form-select.is-invalid {
+    border-color: #dc3545;
+  }
+  
+  .form-check-input:checked {
+    background-color: #3498db;
+    border-color: #3498db;
+  }
+  
+  .form-check-label {
+    color: #555;
+    font-size: 0.95rem;
+  }
+  
+  .btn-primary {
+    background: linear-gradient(135deg, #3498db, #2c3e50);
+    border: none;
+    padding: 15px 40px;
+    font-size: 1.1rem;
+    font-weight: 500;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+  }
+  
+  .btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(52, 152, 219, 0.3);
+  }
+  
+  .btn-primary:disabled {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+  
+  .form-status {
+    margin-bottom: 20px;
+    min-height: 60px;
+  }
+  
+  .additional-info {
+    background: #f8f9fa;
+    border-radius: 15px;
+    padding: 40px;
+  }
+  
+  .additional-info h3 {
+    color: #2c3e50;
+    margin-bottom: 30px;
+  }
+  
+  .info-card {
+    text-align: center;
+    padding: 25px;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+    height: 100%;
+  }
+  
+  .info-card i {
+    font-size: 2rem;
+    color: #3498db;
+    margin-bottom: 15px;
+  }
+  
+  .info-card h5 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+  }
+  
+  .info-card p {
+    color: #666;
+    margin-bottom: 5px;
+    font-size: 0.95rem;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 768px) {
+    .contact-form-wrapper {
+      padding: 25px 20px;
+    }
+    
+    .contact-info-card {
+      flex-direction: column;
+      text-align: center;
+      padding: 25px 20px;
+    }
+    
+    .icon-box {
+      margin: 0 auto 15px;
+    }
+    
+    .map-container {
+      margin-left: -15px;
+      margin-right: -15px;
+      border-radius: 0;
+    }
+    
+    .additional-info {
+      padding: 25px 20px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .contact-info-card {
+      padding: 20px 15px;
+    }
+    
+    .form-control, .form-select {
+      padding: 10px 12px;
+      font-size: 14px;
+    }
+    
+    .btn-primary {
+      padding: 12px 25px;
+      font-size: 1rem;
+      width: 100%;
+    }
+  }
+</style>
+{% endblock %}
 
-      </div>
-    </div>
-
-  </footer>
-
-  <!-- Scroll Top -->
-  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Preloader -->
-  <div id="preloader"></div>
-
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-
-  <!-- Main JS File -->
-  <script src="assets/js/main.js"></script>
-
-</body>
-
-</html>
+{% block extra_js %}
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    const contactForm = document.getElementById('contactForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const loading = document.getElementById('loading');
+    const successMessage = document.getElementById('successMessage');
+    const errorMessage = document.getElementById('errorMessage');
+    
+    // Form validation
+    function validateForm() {
+      let isValid = true;
+      const requiredFields = contactForm.querySelectorAll('[required]');
+      
+      requiredFields.forEach(field => {
+        field.classList.remove('is-invalid');
+        
+        if (!field.value.trim()) {
+          field.classList.add('is-invalid');
+          isValid = false;
+        }
+        
+        if (field.type === 'email' && field.value) {
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(field.value)) {
+            field.classList.add('is-invalid');
+            isValid = false;
+          }
+        }
+      });
+      
+      return isValid;
+    }
+    
+    // Form submission
+    if (contactForm) {
+      contactForm.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        // Hide previous messages
+        successMessage.classList.add('d-none');
+        errorMessage.classList.add('d-none');
+        
+        // Validate form
+        if (!validateForm()) {
+          return;
+        }
+        
+        // Show loading state
+        submitBtn.disabled = true;
+        loading.classList.remove('d-none');
+        
+        try {
+          // Simulate form submission (replace with actual API call)
+          await new Promise(resolve => setTimeout(resolve, 1500));
+          
+          // Show success message
+          successMessage.classList.remove('d-none');
+          contactForm.reset();
+          
+          // Scroll to success message
+          successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          
+        } catch (error) {
+          // Show error message
+          errorMessage.classList.remove('d-none');
+          errorMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } finally {
+          // Hide loading state
+          submitBtn.disabled = false;
+          loading.classList.add('d-none');
+        }
+      });
+    }
+    
+    // Real-time validation
+    const formInputs = contactForm.querySelectorAll('.form-control, .form-select');
+    formInputs.forEach(input => {
+      input.addEventListener('blur', function() {
+        if (this.hasAttribute('required')) {
+          if (!this.value.trim()) {
+            this.classList.add('is-invalid');
+          } else {
+            this.classList.remove('is-invalid');
+          }
+        }
+        
+        // Email validation
+        if (this.type === 'email' && this.value) {
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(this.value)) {
+            this.classList.add('is-invalid');
+          } else {
+            this.classList.remove('is-invalid');
+          }
+        }
+      });
+      
+      input.addEventListener('input', function() {
+        if (this.classList.contains('is-invalid')) {
+          this.classList.remove('is-invalid');
+        }
+      });
+    });
+    
+    // Phone number formatting
+    const phoneInput = document.getElementById('phone');
+    if (phoneInput) {
+      phoneInput.addEventListener('input', function(e) {
+        let value = e.target.value.replace(/\D/g, '');
+        if (value.length > 0) {
+          if (!value.startsWith('977')) {
+            value = '977' + value;
+          }
+          if (value.length > 3) {
+            value = '+' + value.substring(0, 3) + ' ' + value.substring(3);
+          }
+        }
+        e.target.value = value.substring(0, 15); // Limit length
+      });
+    }
+    
+    // Initialize AOS animations
+    if (typeof AOS !== 'undefined') {
+      AOS.init({
+        duration: 800,
+        once: true
+      });
+    }
+  });
+</script>
+{% endblock %}

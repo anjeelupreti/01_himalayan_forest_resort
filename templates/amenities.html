@@ -1,410 +1,338 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base/index.html' %}
+{% load static %}
 
-<head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Amenities - Grandoria Bootstrap Template</title>
-  <meta name="description" content="">
-  <meta name="keywords" content="">
+{% block title %}Amenities & Facilities | Himalaya Forest Resort{% endblock %}
 
-  <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+{% block description %}Explore our premium amenities at Himalaya Forest Resort including restaurants, conference hall, rooftop views, gardens, and parking facilities in Pokhara.{% endblock %}
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com" rel="preconnect">
-  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+{% block keywords %}Resort Amenities, Hotel Facilities, Restaurant, Conference Hall, Rooftop View, Garden, Parking, Pokhara Resort Services{% endblock %}
 
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+{% block body_class %}amenities-page{% endblock %}
 
-  <!-- Main CSS File -->
-  <link href="assets/css/main.css" rel="stylesheet">
+{% block content %}
+<main class="main">
 
-  <!-- =======================================================
-  * Template Name: Grandoria
-  * Template URL: https://bootstrapmade.com/grandoria-bootstrap-hotel-template/
-  * Updated: Jul 29 2025 with Bootstrap v5.3.7
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
-</head>
+  <!-- Page Title -->
+  <div class="page-title light-background">
+    <div class="container d-lg-flex justify-content-between align-items-center">
+      <h1 class="mb-2 mb-lg-0">Amenities & Facilities</h1>
+      <nav class="breadcrumbs">
+        <ol>
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li class="current">Amenities</li>
+        </ol>
+      </nav>
+    </div>
+  </div><!-- End Page Title -->
 
-<body class="amenities-page">
+  <!-- Amenities Section -->
+  <section id="amenities" class="amenities section">
 
-  <header id="header" class="header sticky-top">
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
 
-    <div class="topbar d-flex align-items-center dark-background">
-      <div class="container d-flex justify-content-center justify-content-md-between">
-        <div class="contact-info d-flex align-items-center">
-          <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:contact@example.com">contact@example.com</a></i>
-          <i class="bi bi-phone d-flex align-items-center ms-4"><span>+1 5589 55488 55</span></i>
-        </div>
-        <div class="social-links d-none d-md-flex align-items-center">
-          <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
-          <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-          <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-          <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-        </div>
-      </div>
-    </div><!-- End Top Bar -->
+      <div class="row gy-4">
 
-    <div class="branding d-flex align-items-cente">
-
-      <div class="container position-relative d-flex align-items-center justify-content-between">
-        <a href="index.html" class="logo d-flex align-items-center">
-          <!-- Uncomment the line below if you also wish to use an image logo -->
-          <!-- <img src="assets/img/logo.webp" alt=""> -->
-          <h1 class="sitename">Grandoria</h1>
-        </a>
-
-        <nav id="navmenu" class="navmenu">
-          <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="rooms.html">Rooms</a></li>
-            <li><a href="amenities.html" class="active">Amenities</a></li>
-            <li><a href="location.html">Location</a></li>
-            <li class="dropdown"><a href="#"><span>Pages</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-              <ul>
-                <li><a href="room-details.html">Room Details</a></li>
-                <li><a href="restaurant.html">Restaurant</a></li>
-                <li><a href="offers.html">Offers</a></li>
-                <li><a href="events.html">Events</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="booking.html">Booking</a></li>
-                <li><a href="terms.html">Terms Page</a></li>
-                <li><a href="privacy.html">Privacy Page</a></li>
-                <li><a href="404.html">404 Page</a></li>
-                <li><a href="starter-page.html">Starter Page</a></li>
+        <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
+          <div class="amenity-card">
+            <div class="amenity-image">
+              <img src="{% static 'assets/img/hotel/dining-3.webp' %}" alt="Restaurant & Bar" class="img-fluid">
+            </div>
+            <div class="amenity-content">
+              <h3>Restaurant & Bar</h3>
+              <p>Experience authentic Nepali cuisine and international dishes prepared by our expert chefs. Our restaurant offers panoramic views of Begnas Lake and the surrounding mountains.</p>
+              <ul class="amenity-features">
+                <li><i class="bi bi-clock"></i> Open 7 AM - 10 PM</li>
+                <li><i class="bi bi-cup-hot"></i> Traditional Nepali thali available</li>
+                <li><i class="bi bi-wine"></i> Full-service bar with local spirits</li>
               </ul>
-            </li>
-            <li><a href="contact.html">Contact</a></li>
+            </div>
+          </div>
+        </div><!-- End Amenity Card -->
 
-            <li class="dropdown">
-              <a href="#english">
-                <svg class="icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <g id="SVGRepo_iconCarrier">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M4 0H6V2H10V4H8.86807C8.57073 5.66996 7.78574 7.17117 6.6656 8.35112C7.46567 8.73941 8.35737 8.96842 9.29948 8.99697L10.2735 6H12.7265L15.9765 16H13.8735L13.2235 14H9.77647L9.12647 16H7.0235L8.66176 10.9592C7.32639 10.8285 6.08165 10.3888 4.99999 9.71246C3.69496 10.5284 2.15255 11 0.5 11H0V9H0.5C1.5161 9 2.47775 8.76685 3.33437 8.35112C2.68381 7.66582 2.14629 6.87215 1.75171 6H4.02179C4.30023 6.43491 4.62904 6.83446 4.99999 7.19044C5.88743 6.33881 6.53369 5.23777 6.82607 4H0V2H4V0ZM12.5735 12L11.5 8.69688L10.4265 12H12.5735Z" fill="currentColor"></path>
-                  </g>
-                </svg>
-                <span>English</span>
-                <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-              <ul>
-                <li><a href="#french">French</a></li>
-                <li><a href="#deutsch">Deutsch</a></li>
-                <li><a href="#spanish">Spanish</a></li>
+        <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
+          <div class="amenity-card">
+            <div class="amenity-image">
+              <img src="{% static 'assets/img/hotel/amenities-2.webp' %}" alt="Conference Hall" class="img-fluid">
+            </div>
+            <div class="amenity-content">
+              <h3>Conference Hall</h3>
+              <p>Our fully-equipped conference hall is perfect for business meetings, seminars, and special events. Accommodates up to 100 people with modern audio-visual facilities.</p>
+              <ul class="amenity-features">
+                <li><i class="bi bi-calendar2-check"></i> Advance booking available</li>
+                <li><i class="bi bi-projector"></i> Projector and sound system</li>
+                <li><i class="bi bi-wifi"></i> High-speed internet access</li>
               </ul>
-            </li>
+            </div>
+          </div>
+        </div><!-- End Amenity Card -->
 
-          </ul>
-          <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-        </nav>
+        <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
+          <div class="amenity-card">
+            <div class="amenity-image">
+              <img src="{% static 'assets/img/hotel/amenities-4.webp' %}" alt="Garden & Parking" class="img-fluid">
+            </div>
+            <div class="amenity-content">
+              <h3>Garden & Parking</h3>
+              <p>Enjoy our beautifully maintained gardens with seating areas perfect for relaxation. Ample secured parking space available for guests and visitors.</p>
+              <ul class="amenity-features">
+                <li><i class="bi bi-tree"></i> Landscaped garden with mountain views</li>
+                <li><i class="bi bi-car-front"></i> Secure 24/7 parking facility</li>
+                <li><i class="bi bi-shield-check"></i> CCTV surveillance</li>
+              </ul>
+            </div>
+          </div>
+        </div><!-- End Amenity Card -->
 
+        <div class="col-lg-6" data-aos="fade-up" data-aos-delay="500">
+          <div class="amenity-card">
+            <div class="amenity-image">
+              <img src="{% static 'assets/img/hotel/amenities-1.webp' %}" alt="Rooftop View" class="img-fluid">
+            </div>
+            <div class="amenity-content">
+              <h3>Rooftop View Point</h3>
+              <p>Experience breathtaking 360-degree views of Begnas Lake, Rupa Lake, and the Annapurna mountain range from our exclusive rooftop viewing area.</p>
+              <ul class="amenity-features">
+                <li><i class="bi bi-binoculars"></i> Best sunset viewing spot</li>
+                <li><i class="bi bi-camera"></i> Perfect photography location</li>
+                <li><i class="bi bi-moon-stars"></i> Open sunrise to sunset</li>
+              </ul>
+            </div>
+          </div>
+        </div><!-- End Amenity Card -->
+
+      </div>
+
+      <div class="row mt-5">
+        <div class="col-12" data-aos="fade-up" data-aos-delay="600">
+          <div class="amenities-grid">
+            <h3 class="text-center mb-4">Additional Guest Services</h3>
+            <div class="row g-4">
+              <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="service-item">
+                  <div class="service-icon">
+                    <i class="bi bi-wifi"></i>
+                  </div>
+                  <h4>Free Wi-Fi</h4>
+                  <p>High-speed internet throughout the resort</p>
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="service-item">
+                  <div class="service-icon">
+                    <i class="bi bi-car-front"></i>
+                  </div>
+                  <h4>Parking Facility</h4>
+                  <p>Complimentary secured parking for guests</p>
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="service-item">
+                  <div class="service-icon">
+                    <i class="bi bi-headset"></i>
+                  </div>
+                  <h4>24/7 Reception</h4>
+                  <p>Round-the-clock assistance and service</p>
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="service-item">
+                  <div class="service-icon">
+                    <i class="bi bi-bell"></i>
+                  </div>
+                  <h4>Room Service</h4>
+                  <p>Food and beverage delivery to your room</p>
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="service-item">
+                  <div class="service-icon">
+                    <i class="bi bi-shield-check"></i>
+                  </div>
+                  <h4>Safe Deposit</h4>
+                  <p>Secure storage for valuables at reception</p>
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="service-item">
+                  <div class="service-icon">
+                    <i class="bi bi-thermometer-sun"></i>
+                  </div>
+                  <h4>Hot Water</h4>
+                  <p>24/7 hot water supply in all rooms</p>
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="service-item">
+                  <div class="service-icon">
+                    <i class="bi bi-snow"></i>
+                  </div>
+                  <h4>Air Conditioning</h4>
+                  <p>Climate control in all guest rooms</p>
+                </div>
+              </div>
+              <div class="col-lg-3 col-md-4 col-sm-6">
+                <div class="service-item">
+                  <div class="service-icon">
+                    <i class="bi bi-tv"></i>
+                  </div>
+                  <h4>Cable TV</h4>
+                  <p>Entertainment with local and international channels</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="row mt-5">
+        <div class="col-12 text-center" data-aos="fade-up" data-aos-delay="700">
+          <div class="booking-cta">
+            <h3>Experience Our Premium Facilities</h3>
+            <p>Book your stay and enjoy all our amenities and services</p>
+            <a href="{% url 'booking' %}" class="btn btn-primary btn-lg mt-3">Book Your Stay Now</a>
+          </div>
+        </div>
       </div>
 
     </div>
 
-  </header>
+  </section><!-- /Amenities Section -->
 
-  <main class="main">
+</main>
+{% endblock %}
 
-    <!-- Page Title -->
-    <div class="page-title light-background">
-      <div class="container d-lg-flex justify-content-between align-items-center">
-        <h1 class="mb-2 mb-lg-0">Amenities</h1>
-        <nav class="breadcrumbs">
-          <ol>
-            <li><a href="index.html">Home</a></li>
-            <li class="current">Amenities</li>
-          </ol>
-        </nav>
-      </div>
-    </div><!-- End Page Title -->
-
-    <!-- Amenities Section -->
-    <section id="amenities" class="amenities section">
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="row gy-4">
-
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="200">
-            <div class="amenity-card">
-              <div class="amenity-image">
-                <img src="assets/img/hotel/amenities-1.webp" alt="Rooftop Pool" class="img-fluid">
-              </div>
-              <div class="amenity-content">
-                <h3>Infinity Pool &amp; Sun Deck</h3>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation.</p>
-                <ul class="amenity-features">
-                  <li><i class="bi bi-clock"></i> Open 6 AM - 10 PM</li>
-                  <li><i class="bi bi-droplet"></i> Heated pool year-round</li>
-                  <li><i class="bi bi-cup-hot"></i> Poolside bar service</li>
-                </ul>
-              </div>
-            </div>
-          </div><!-- End Amenity Card -->
-
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="300">
-            <div class="amenity-card">
-              <div class="amenity-image">
-                <img src="assets/img/hotel/amenities-2.webp" alt="Spa Wellness" class="img-fluid">
-              </div>
-              <div class="amenity-content">
-                <h3>Luxury Spa &amp; Wellness</h3>
-                <p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum.</p>
-                <ul class="amenity-features">
-                  <li><i class="bi bi-calendar2-check"></i> Book treatments online</li>
-                  <li><i class="bi bi-heart"></i> Couples massage rooms</li>
-                  <li><i class="bi bi-flower1"></i> Organic spa products</li>
-                </ul>
-              </div>
-            </div>
-          </div><!-- End Amenity Card -->
-
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="400">
-            <div class="amenity-card">
-              <div class="amenity-image">
-                <img src="assets/img/hotel/dining-3.webp" alt="Fine Dining" class="img-fluid">
-              </div>
-              <div class="amenity-content">
-                <h3>Signature Restaurant</h3>
-                <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis.</p>
-                <ul class="amenity-features">
-                  <li><i class="bi bi-award"></i> Michelin-starred chef</li>
-                  <li><i class="bi bi-wine"></i> Award-winning wine cellar</li>
-                  <li><i class="bi bi-moon-stars"></i> Open Tuesday - Sunday</li>
-                </ul>
-              </div>
-            </div>
-          </div><!-- End Amenity Card -->
-
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="500">
-            <div class="amenity-card">
-              <div class="amenity-image">
-                <img src="assets/img/hotel/amenities-4.webp" alt="Fitness Center" class="img-fluid">
-              </div>
-              <div class="amenity-content">
-                <h3>24/7 Fitness Center</h3>
-                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi.</p>
-                <ul class="amenity-features">
-                  <li><i class="bi bi-lightning"></i> State-of-the-art equipment</li>
-                  <li><i class="bi bi-person-check"></i> Personal trainers available</li>
-                  <li><i class="bi bi-shield-check"></i> Complimentary towels</li>
-                </ul>
-              </div>
-            </div>
-          </div><!-- End Amenity Card -->
-
-        </div>
-
-        <div class="row mt-5">
-          <div class="col-12" data-aos="fade-up" data-aos-delay="600">
-            <div class="amenities-grid">
-              <h3 class="text-center mb-4">Additional Hotel Services</h3>
-              <div class="row g-4">
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                  <div class="service-item">
-                    <div class="service-icon">
-                      <i class="bi bi-wifi"></i>
-                    </div>
-                    <h4>Free Wi-Fi</h4>
-                    <p>High-speed internet throughout the property</p>
-                  </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                  <div class="service-item">
-                    <div class="service-icon">
-                      <i class="bi bi-car-front"></i>
-                    </div>
-                    <h4>Valet Parking</h4>
-                    <p>Complimentary valet service for all guests</p>
-                  </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                  <div class="service-item">
-                    <div class="service-icon">
-                      <i class="bi bi-airplane"></i>
-                    </div>
-                    <h4>Airport Shuttle</h4>
-                    <p>Scheduled transfers to major airports</p>
-                  </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                  <div class="service-item">
-                    <div class="service-icon">
-                      <i class="bi bi-headset"></i>
-                    </div>
-                    <h4>Concierge</h4>
-                    <p>24/7 assistance for reservations and tours</p>
-                  </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                  <div class="service-item">
-                    <div class="service-icon">
-                      <i class="bi bi-bell"></i>
-                    </div>
-                    <h4>Room Service</h4>
-                    <p>Gourmet dining delivered to your room</p>
-                  </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                  <div class="service-item">
-                    <div class="service-icon">
-                      <i class="bi bi-shield-check"></i>
-                    </div>
-                    <h4>Safe Deposit</h4>
-                    <p>Secure storage for your valuables</p>
-                  </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                  <div class="service-item">
-                    <div class="service-icon">
-                      <i class="bi bi-translate"></i>
-                    </div>
-                    <h4>Multilingual Staff</h4>
-                    <p>Service in English, Spanish, French, and more</p>
-                  </div>
-                </div>
-                <div class="col-lg-3 col-md-4 col-sm-6">
-                  <div class="service-item">
-                    <div class="service-icon">
-                      <i class="bi bi-heart-pulse"></i>
-                    </div>
-                    <h4>Pet Friendly</h4>
-                    <p>Welcome amenities for your furry friends</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-      </div>
-
-    </section><!-- /Amenities Section -->
-
-  </main>
-
-  <footer id="footer" class="footer position-relative dark-background">
-
-    <div class="footer-top">
-      <div class="container">
-        <div class="row gy-4">
-          <div class="col-lg-4 col-md-6 footer-about">
-            <a href="index.html" class="logo d-flex align-items-center">
-              <span class="sitename">Grandoria</span>
-            </a>
-            <div class="footer-contact pt-3">
-              <p>A108 Adam Street</p>
-              <p>New York, NY 535022</p>
-              <p class="mt-3"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
-              <p><strong>Email:</strong> <span>info@example.com</span></p>
-            </div>
-          </div>
-
-          <div class="col-lg-2 col-md-3 footer-links">
-            <h4>Useful Links</h4>
-            <ul>
-              <li><a href="#">Home</a></li>
-              <li><a href="#">About us</a></li>
-              <li><a href="#">Services</a></li>
-              <li><a href="#">Terms of service</a></li>
-              <li><a href="#">Privacy policy</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-2 col-md-3 footer-links">
-            <h4>Our Services</h4>
-            <ul>
-              <li><a href="#">Web Design</a></li>
-              <li><a href="#">Web Development</a></li>
-              <li><a href="#">Product Management</a></li>
-              <li><a href="#">Marketing</a></li>
-              <li><a href="#">Graphic Design</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-2 col-md-3 footer-links">
-            <h4>Hic solutasetp</h4>
-            <ul>
-              <li><a href="#">Molestiae accusamus iure</a></li>
-              <li><a href="#">Excepturi dignissimos</a></li>
-              <li><a href="#">Suscipit distinctio</a></li>
-              <li><a href="#">Dilecta</a></li>
-              <li><a href="#">Sit quas consectetur</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-2 col-md-3 footer-links">
-            <h4>Nobis illum</h4>
-            <ul>
-              <li><a href="#">Ipsam</a></li>
-              <li><a href="#">Laudantium dolorum</a></li>
-              <li><a href="#">Dinera</a></li>
-              <li><a href="#">Trodelas</a></li>
-              <li><a href="#">Flexo</a></li>
-            </ul>
-          </div>
-
-        </div>
-      </div>
-    </div>
-
-    <div class="copyright text-center">
-      <div class="container d-flex flex-column flex-lg-row justify-content-center justify-content-lg-between align-items-center">
-
-        <div class="d-flex flex-column align-items-center align-items-lg-start">
-          <div>
-            © Copyright <strong><span>MyWebsite</span></strong>. All Rights Reserved
-          </div>
-          <div class="credits">
-            <!-- All the links in the footer should remain intact. -->
-            <!-- You can delete the links only if you purchased the pro version. -->
-            <!-- Licensing information: https://bootstrapmade.com/license/ -->
-            <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/herobiz-bootstrap-business-template/ -->
-            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-          </div>
-        </div>
-
-        <div class="social-links order-first order-lg-last mb-3 mb-lg-0">
-          <a href=""><i class="bi bi-twitter-x"></i></a>
-          <a href=""><i class="bi bi-facebook"></i></a>
-          <a href=""><i class="bi bi-instagram"></i></a>
-          <a href=""><i class="bi bi-linkedin"></i></a>
-        </div>
-
-      </div>
-    </div>
-
-  </footer>
-
-  <!-- Scroll Top -->
-  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Preloader -->
-  <div id="preloader"></div>
-
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-
-  <!-- Main JS File -->
-  <script src="assets/js/main.js"></script>
-
-</body>
-
-</html>
+{% block extra_css %}
+<style>
+  .amenity-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+    height: 100%;
+  }
+  
+  .amenity-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .amenity-image {
+    height: 250px;
+    overflow: hidden;
+  }
+  
+  .amenity-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .amenity-card:hover .amenity-image img {
+    transform: scale(1.05);
+  }
+  
+  .amenity-content {
+    padding: 25px;
+  }
+  
+  .amenity-content h3 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+    font-size: 1.5rem;
+  }
+  
+  .amenity-features {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+  }
+  
+  .amenity-features li {
+    padding: 8px 0;
+    color: #555;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .amenity-features li:last-child {
+    border-bottom: none;
+  }
+  
+  .amenity-features i {
+    color: #3498db;
+    margin-right: 10px;
+    width: 20px;
+  }
+  
+  .service-item {
+    text-align: center;
+    padding: 30px 20px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    height: 100%;
+  }
+  
+  .service-item:hover {
+    background: white;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transform: translateY(-3px);
+  }
+  
+  .service-icon {
+    width: 70px;
+    height: 70px;
+    background: #3498db;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 1.8rem;
+  }
+  
+  .service-item h4 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+  }
+  
+  .service-item p {
+    color: #666;
+    font-size: 0.95rem;
+    margin-bottom: 0;
+  }
+  
+  .booking-cta {
+    background: linear-gradient(135deg, #3498db, #2c3e50);
+    padding: 40px;
+    border-radius: 15px;
+    color: white;
+  }
+  
+  .booking-cta h3 {
+    color: white;
+    margin-bottom: 10px;
+  }
+  
+  .booking-cta p {
+    opacity: 0.9;
+    margin-bottom: 0;
+  }
+  
+  @media (max-width: 768px) {
+    .amenity-image {
+      height: 200px;
+    }
+    
+    .service-item {
+      padding: 20px 15px;
+    }
+    
+    .booking-cta {
+      padding: 30px 20px;
+    }
+  }
+</style>
+{% endblock %}

@@ -1,424 +1,115 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base/index.html' %}
+{% load static %}
 
-<head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Location - Grandoria Bootstrap Template</title>
-  <meta name="description" content="">
-  <meta name="keywords" content="">
+{% block title %}Surroundings & Location | Himalaya Forest Resort, Pokhara{% endblock %}
 
-  <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+{% block description %}Discover the beautiful surroundings of Himalaya Forest Resort in Pokhara, Nepal. Explore Begnas Lake, Rupa Lake, and nearby attractions. Get directions and travel information.{% endblock %}
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com" rel="preconnect">
-  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+{% block keywords %}Pokhara Location, Begnas Lake, Rupa Lake, Resort Surroundings, Nepal Tourism, Himalayan Views, Travel Directions{% endblock %}
 
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+{% block body_class %}location-page{% endblock %}
 
-  <!-- Main CSS File -->
-  <link href="assets/css/main.css" rel="stylesheet">
+{% block content %}
+<main class="main">
 
-  <!-- =======================================================
-  * Template Name: Grandoria
-  * Template URL: https://bootstrapmade.com/grandoria-bootstrap-hotel-template/
-  * Updated: Jul 29 2025 with Bootstrap v5.3.7
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
-</head>
-
-<body class="location-page">
-
-  <header id="header" class="header sticky-top">
-
-    <div class="topbar d-flex align-items-center dark-background">
-      <div class="container d-flex justify-content-center justify-content-md-between">
-        <div class="contact-info d-flex align-items-center">
-          <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:contact@example.com">contact@example.com</a></i>
-          <i class="bi bi-phone d-flex align-items-center ms-4"><span>+1 5589 55488 55</span></i>
-        </div>
-        <div class="social-links d-none d-md-flex align-items-center">
-          <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
-          <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-          <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-          <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-        </div>
-      </div>
-    </div><!-- End Top Bar -->
-
-    <div class="branding d-flex align-items-cente">
-
-      <div class="container position-relative d-flex align-items-center justify-content-between">
-        <a href="index.html" class="logo d-flex align-items-center">
-          <!-- Uncomment the line below if you also wish to use an image logo -->
-          <!-- <img src="assets/img/logo.webp" alt=""> -->
-          <h1 class="sitename">Grandoria</h1>
-        </a>
-
-        <nav id="navmenu" class="navmenu">
-          <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="rooms.html">Rooms</a></li>
-            <li><a href="amenities.html">Amenities</a></li>
-            <li><a href="location.html" class="active">Location</a></li>
-            <li class="dropdown"><a href="#"><span>Pages</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-              <ul>
-                <li><a href="room-details.html">Room Details</a></li>
-                <li><a href="restaurant.html">Restaurant</a></li>
-                <li><a href="offers.html">Offers</a></li>
-                <li><a href="events.html">Events</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="booking.html">Booking</a></li>
-                <li><a href="terms.html">Terms Page</a></li>
-                <li><a href="privacy.html">Privacy Page</a></li>
-                <li><a href="404.html">404 Page</a></li>
-                <li><a href="starter-page.html">Starter Page</a></li>
-              </ul>
-            </li>
-            <li><a href="contact.html">Contact</a></li>
-
-            <li class="dropdown">
-              <a href="#english">
-                <svg class="icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <g id="SVGRepo_iconCarrier">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M4 0H6V2H10V4H8.86807C8.57073 5.66996 7.78574 7.17117 6.6656 8.35112C7.46567 8.73941 8.35737 8.96842 9.29948 8.99697L10.2735 6H12.7265L15.9765 16H13.8735L13.2235 14H9.77647L9.12647 16H7.0235L8.66176 10.9592C7.32639 10.8285 6.08165 10.3888 4.99999 9.71246C3.69496 10.5284 2.15255 11 0.5 11H0V9H0.5C1.5161 9 2.47775 8.76685 3.33437 8.35112C2.68381 7.66582 2.14629 6.87215 1.75171 6H4.02179C4.30023 6.43491 4.62904 6.83446 4.99999 7.19044C5.88743 6.33881 6.53369 5.23777 6.82607 4H0V2H4V0ZM12.5735 12L11.5 8.69688L10.4265 12H12.5735Z" fill="currentColor"></path>
-                  </g>
-                </svg>
-                <span>English</span>
-                <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-              <ul>
-                <li><a href="#french">French</a></li>
-                <li><a href="#deutsch">Deutsch</a></li>
-                <li><a href="#spanish">Spanish</a></li>
-              </ul>
-            </li>
-
-          </ul>
-          <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-        </nav>
-
-      </div>
-
+  <!-- Page Title -->
+  <div class="page-title light-background">
+    <div class="container d-lg-flex justify-content-between align-items-center">
+      <h1 class="mb-2 mb-lg-0">Location & Surroundings</h1>
+      <nav class="breadcrumbs">
+        <ol>
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li class="current">Location</li>
+        </ol>
+      </nav>
     </div>
+  </div><!-- End Page Title -->
 
-  </header>
+  <!-- Hotel Location Section -->
+  <section id="hotel-location" class="hotel-location section">
 
-  <main class="main">
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
 
-    <!-- Page Title -->
-    <div class="page-title light-background">
-      <div class="container d-lg-flex justify-content-between align-items-center">
-        <h1 class="mb-2 mb-lg-0">Location</h1>
-        <nav class="breadcrumbs">
-          <ol>
-            <li><a href="index.html">Home</a></li>
-            <li class="current">Location</li>
-          </ol>
-        </nav>
-      </div>
-    </div><!-- End Page Title -->
+      <!-- Main Location Content -->
+      <div class="row align-items-center mb-5">
 
-    <!-- Hotel Location Section -->
-    <section id="hotel-location" class="hotel-location section">
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <!-- Main Location Content -->
-        <div class="row align-items-center mb-5">
-
-          <!-- Location Details -->
-          <div class="col-lg-6 order-2 order-lg-1" data-aos="fade-right" data-aos-delay="200">
-            <div class="location-content">
-              <div class="location-badge">
-                <i class="bi bi-geo-alt-fill"></i>
-                <span>Prime Location</span>
-              </div>
-              <h2 class="location-title">Luxury Downtown Experience</h2>
-              <p class="location-description">Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae. Donec rutrum congue leo eget malesuada. Proin eget tortor risus cras ultricies ligula sed magna dictum porta.</p>
-
-              <div class="info-grid">
-                <div class="info-item">
-                  <div class="info-icon">
-                    <i class="bi bi-building"></i>
-                  </div>
-                  <div class="info-text">
-                    <h6>Address</h6>
-                    <p>789 Madison Street<br>Chicago, IL 60601</p>
-                  </div>
-                </div>
-
-                <div class="info-item">
-                  <div class="info-icon">
-                    <i class="bi bi-airplane"></i>
-                  </div>
-                  <div class="info-text">
-                    <h6>Airport Access</h6>
-                    <p>O'Hare - 35 min<br>Midway - 25 min</p>
-                  </div>
-                </div>
-
-                <div class="info-item">
-                  <div class="info-icon">
-                    <i class="bi bi-telephone"></i>
-                  </div>
-                  <div class="info-text">
-                    <h6>Contact</h6>
-                    <p>+1 (555) 876-5432<br>reservations@example.com</p>
-                  </div>
-                </div>
-
-                <div class="info-item">
-                  <div class="info-icon">
-                    <i class="bi bi-clock"></i>
-                  </div>
-                  <div class="info-text">
-                    <h6>Check-in</h6>
-                    <p>3:00 PM - 11:00 PM<br>Check-out: 11:00 AM</p>
-                  </div>
-                </div>
-              </div>
-
-              <div class="action-buttons">
-                <a href="#" class="btn btn-primary">View on Map</a>
-                <a href="#" class="btn btn-outline">Book Now</a>
-              </div>
+        <!-- Location Details -->
+        <div class="col-lg-6 order-2 order-lg-1" data-aos="fade-right" data-aos-delay="200">
+          <div class="location-content">
+            <div class="location-badge">
+              <i class="bi bi-geo-alt-fill"></i>
+              <span>Prime Himalayan Location</span>
             </div>
-          </div>
+            <h2 class="location-title">Between Two Beautiful Lakes</h2>
+            <p class="location-description">Nestled in the serene hills overlooking Begnas Lake and Rupa Lake, Himalaya Forest Resort offers the perfect blend of natural beauty and modern comfort. Located in Pachabhaiya, Pokhara, we provide breathtaking views of the Annapurna mountain range.</p>
 
-          <!-- Interactive Map -->
-          <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="300">
-            <div class="map-container">
-              <iframe src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d48389.78314118045!2d-87.623177!3d41.881832!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25a22a3bda30d%3A0xb89d1fe6bc499443!2sDowntown%20Conference%20Center!5e0!3m2!1sen!2sus!4v1676961268712!5m2!1sen!2sus" frameborder="0" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-              <div class="map-overlay">
-                <div class="hotel-marker">
+            <div class="info-grid">
+              <div class="info-item">
+                <div class="info-icon">
                   <i class="bi bi-building"></i>
-                  Grand Luxury Hotel
+                </div>
+                <div class="info-text">
+                  <h6>Address</h6>
+                  <p>Pachabhaiya<br>(Pokhara Metropolitan Ward No. 31)<br>33700 Deorāli, Nepal</p>
                 </div>
               </div>
-            </div>
-          </div>
 
-        </div>
-
-        <!-- Transportation Hub -->
-        <div class="transportation-hub" data-aos="fade-up" data-aos-delay="400">
-          <div class="row">
-            <div class="col-12">
-              <div class="section-header">
-                <h3>Getting Here is Easy</h3>
-                <p>Multiple convenient transportation options to reach our hotel</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-lg-6 col-md-6 mb-4" data-aos="slide-up" data-aos-delay="500">
-              <div class="transport-card">
-                <div class="transport-header">
-                  <div class="transport-icon-box">
-                    <i class="bi bi-car-front-fill"></i>
-                  </div>
-                  <div class="transport-title">
-                    <h5>By Car</h5>
-                    <span class="transport-time">Most Convenient</span>
-                  </div>
+              <div class="info-item">
+                <div class="info-icon">
+                  <i class="bi bi-airplane"></i>
                 </div>
-                <div class="transport-details">
-                  <p>Complimentary valet service available. Premium parking garage with direct hotel access and EV charging stations.</p>
-                  <div class="transport-features">
-                    <span class="feature-tag">Valet Service</span>
-                    <span class="feature-tag">EV Charging</span>
-                  </div>
+                <div class="info-text">
+                  <h6>Airport Access</h6>
+                  <p>Pokhara Airport - 45 min<br>Kathmandu Airport - 6 hours</p>
+                </div>
+              </div>
+
+              <div class="info-item">
+                <div class="info-icon">
+                  <i class="bi bi-telephone"></i>
+                </div>
+                <div class="info-text">
+                  <h6>Contact</h6>
+                  <p>+977 9856081271<br>himalayaforestresort@gmail.com</p>
+                </div>
+              </div>
+
+              <div class="info-item">
+                <div class="info-icon">
+                  <i class="bi bi-clock"></i>
+                </div>
+                <div class="info-text">
+                  <h6>Check-in</h6>
+                  <p>2:00 PM - 10:00 PM<br>Check-out: 12:00 PM</p>
                 </div>
               </div>
             </div>
 
-            <div class="col-lg-6 col-md-6 mb-4" data-aos="slide-up" data-aos-delay="600">
-              <div class="transport-card">
-                <div class="transport-header">
-                  <div class="transport-icon-box">
-                    <i class="bi bi-train-front-fill"></i>
-                  </div>
-                  <div class="transport-title">
-                    <h5>By Metro</h5>
-                    <span class="transport-time">5 min walk</span>
-                  </div>
-                </div>
-                <div class="transport-details">
-                  <p>State Street Station directly connects to all major lines. Blue line to airports, Red line to suburbs and entertainment districts.</p>
-                  <div class="transport-features">
-                    <span class="feature-tag">Blue Line</span>
-                    <span class="feature-tag">Red Line</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-6 col-md-6 mb-4" data-aos="slide-up" data-aos-delay="700">
-              <div class="transport-card">
-                <div class="transport-header">
-                  <div class="transport-icon-box">
-                    <i class="bi bi-airplane-fill"></i>
-                  </div>
-                  <div class="transport-title">
-                    <h5>Airport Shuttle</h5>
-                    <span class="transport-time">Every 30 min</span>
-                  </div>
-                </div>
-                <div class="transport-details">
-                  <p>Luxury shuttle service to both major airports. Premium comfort with WiFi, refreshments, and luggage assistance included.</p>
-                  <div class="transport-features">
-                    <span class="feature-tag">WiFi</span>
-                    <span class="feature-tag">Refreshments</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-6 col-md-6 mb-4" data-aos="slide-up" data-aos-delay="800">
-              <div class="transport-card">
-                <div class="transport-header">
-                  <div class="transport-icon-box">
-                    <i class="bi bi-taxi-front-fill"></i>
-                  </div>
-                  <div class="transport-title">
-                    <h5>Ride Share</h5>
-                    <span class="transport-time">24/7 Available</span>
-                  </div>
-                </div>
-                <div class="transport-details">
-                  <p>Dedicated pickup zones for all ride-sharing services. Professional concierge assistance for booking and special requests.</p>
-                  <div class="transport-features">
-                    <span class="feature-tag">Concierge Help</span>
-                    <span class="feature-tag">Express Pickup</span>
-                  </div>
-                </div>
-              </div>
+            <div class="action-buttons">
+              <a href="https://maps.app.goo.gl/example" target="_blank" class="btn btn-primary">
+                <i class="bi bi-map me-1"></i>View on Google Maps
+              </a>
+              <a href="{% url 'booking' %}" class="btn btn-outline">
+                <i class="bi bi-calendar-check me-1"></i>Book Your Stay
+              </a>
             </div>
           </div>
         </div>
 
-        <!-- Attractions Gallery -->
-        <div class="attractions-section" data-aos="fade-up" data-aos-delay="900">
-          <div class="row">
-            <div class="col-12">
-              <div class="section-header">
-                <h3>Explore the Neighborhood</h3>
-                <p>World-class attractions and entertainment right at your doorstep</p>
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="1000">
-              <div class="attraction-item">
-                <div class="attraction-photo">
-                  <img src="assets/img/hotel/location-5.webp" alt="Millennium Park" class="img-fluid" loading="lazy">
-                  <div class="distance-badge">
-                    <i class="bi bi-geo-alt"></i>
-                    <span>2 blocks</span>
-                  </div>
-                </div>
-                <div class="attraction-info">
-                  <h5>Millennium Park</h5>
-                  <p class="walk-time"><i class="bi bi-clock"></i> 8 minute walk</p>
-                  <p>Cras ultricies ligula sed magna dictum porta. Donec sollicitudin molestie malesuada. Experience iconic Cloud Gate sculpture.</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="1100">
-              <div class="attraction-item">
-                <div class="attraction-photo">
-                  <img src="assets/img/hotel/location-6.webp" alt="Art Institute" class="img-fluid" loading="lazy">
-                  <div class="distance-badge">
-                    <i class="bi bi-geo-alt"></i>
-                    <span>4 blocks</span>
-                  </div>
-                </div>
-                <div class="attraction-info">
-                  <h5>Art Institute</h5>
-                  <p class="walk-time"><i class="bi bi-clock"></i> 12 minute walk</p>
-                  <p>Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas world-renowned collection.</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="1200">
-              <div class="attraction-item">
-                <div class="attraction-photo">
-                  <img src="assets/img/hotel/location-7.webp" alt="Navy Pier" class="img-fluid" loading="lazy">
-                  <div class="distance-badge">
-                    <i class="bi bi-geo-alt"></i>
-                    <span>1.2 miles</span>
-                  </div>
-                </div>
-                <div class="attraction-info">
-                  <h5>Navy Pier</h5>
-                  <p class="walk-time"><i class="bi bi-clock"></i> 18 minute walk</p>
-                  <p>Vivamus magna justo lacinia eget consectetur sed convallis at tellus. Entertainment, dining, and stunning lake views.</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="1300">
-              <div class="attraction-item">
-                <div class="attraction-photo">
-                  <img src="assets/img/hotel/location-8.webp" alt="Theater District" class="img-fluid" loading="lazy">
-                  <div class="distance-badge">
-                    <i class="bi bi-geo-alt"></i>
-                    <span>3 blocks</span>
-                  </div>
-                </div>
-                <div class="attraction-info">
-                  <h5>Theater District</h5>
-                  <p class="walk-time"><i class="bi bi-clock"></i> 10 minute walk</p>
-                  <p>Mauris blandit aliquet elit eget tincidunt nibh pulvinar. Broadway shows and world-class performances nightly.</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="1400">
-              <div class="attraction-item">
-                <div class="attraction-photo">
-                  <img src="assets/img/hotel/location-9.webp" alt="Shopping District" class="img-fluid" loading="lazy">
-                  <div class="distance-badge">
-                    <i class="bi bi-geo-alt"></i>
-                    <span>1 block</span>
-                  </div>
-                </div>
-                <div class="attraction-info">
-                  <h5>Magnificent Mile</h5>
-                  <p class="walk-time"><i class="bi bi-clock"></i> 5 minute walk</p>
-                  <p>Donec rutrum congue leo eget malesuada. Premium shopping, luxury brands, and upscale dining experiences.</p>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="1500">
-              <div class="attraction-item">
-                <div class="attraction-photo">
-                  <img src="assets/img/hotel/location-10.webp" alt="Lakefront" class="img-fluid" loading="lazy">
-                  <div class="distance-badge">
-                    <i class="bi bi-geo-alt"></i>
-                    <span>6 blocks</span>
-                  </div>
-                </div>
-                <div class="attraction-info">
-                  <h5>Lake Michigan Shore</h5>
-                  <p class="walk-time"><i class="bi bi-clock"></i> 15 minute walk</p>
-                  <p>Sed porttitor lectus nibh mauris blandit aliquet elit. Beach access, recreational trails, and scenic waterfront dining.</p>
-                </div>
+        <!-- Interactive Map -->
+        <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="300">
+          <div class="map-container">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3510.487434756978!2d83.9857140754039!3d28.33638307579379!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3995937bbf0376ff%3A0x71dd9a54f9d4d3f!2sBegnas%20Lake!5e0!3m2!1sen!2snp!4v1700000000000!5m2!1sen!2snp" 
+              frameborder="0" 
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+            <div class="map-overlay">
+              <div class="hotel-marker">
+                <i class="bi bi-house-heart"></i>
+                Himalaya Forest Resort
               </div>
             </div>
           </div>
@@ -426,122 +117,863 @@
 
       </div>
 
-    </section><!-- /Hotel Location Section -->
+      <!-- Transportation Hub -->
+      <div class="transportation-hub" data-aos="fade-up" data-aos-delay="400">
+        <div class="row">
+          <div class="col-12">
+            <div class="section-header">
+              <h3>Getting to Our Resort</h3>
+              <p>Multiple convenient transportation options to reach Himalaya Forest Resort</p>
+            </div>
+          </div>
+        </div>
 
-  </main>
-
-  <footer id="footer" class="footer position-relative dark-background">
-
-    <div class="footer-top">
-      <div class="container">
-        <div class="row gy-4">
-          <div class="col-lg-4 col-md-6 footer-about">
-            <a href="index.html" class="logo d-flex align-items-center">
-              <span class="sitename">Grandoria</span>
-            </a>
-            <div class="footer-contact pt-3">
-              <p>A108 Adam Street</p>
-              <p>New York, NY 535022</p>
-              <p class="mt-3"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
-              <p><strong>Email:</strong> <span>info@example.com</span></p>
+        <div class="row">
+          <div class="col-lg-6 col-md-6 mb-4" data-aos="slide-up" data-aos-delay="500">
+            <div class="transport-card">
+              <div class="transport-header">
+                <div class="transport-icon-box">
+                  <i class="bi bi-car-front-fill"></i>
+                </div>
+                <div class="transport-title">
+                  <h5>By Private Car</h5>
+                  <span class="transport-time">Most Convenient</span>
+                </div>
+              </div>
+              <div class="transport-details">
+                <p>Ample secured parking available. Scenic drive from Pokhara city through beautiful countryside. Taxi service available from Pokhara.</p>
+                <div class="transport-features">
+                  <span class="feature-tag">Secure Parking</span>
+                  <span class="feature-tag">Taxi Service</span>
+                </div>
+                <div class="distance-info">
+                  <i class="bi bi-signpost"></i>
+                  <span>25 km from Pokhara city center (approx. 45 min drive)</span>
+                </div>
+              </div>
             </div>
           </div>
 
-          <div class="col-lg-2 col-md-3 footer-links">
-            <h4>Useful Links</h4>
-            <ul>
-              <li><a href="#">Home</a></li>
-              <li><a href="#">About us</a></li>
-              <li><a href="#">Services</a></li>
-              <li><a href="#">Terms of service</a></li>
-              <li><a href="#">Privacy policy</a></li>
-            </ul>
+          <div class="col-lg-6 col-md-6 mb-4" data-aos="slide-up" data-aos-delay="600">
+            <div class="transport-card">
+              <div class="transport-header">
+                <div class="transport-icon-box">
+                  <i class="bi bi-airplane-fill"></i>
+                </div>
+                <div class="transport-title">
+                  <h5>By Air</h5>
+                  <span class="transport-time">From Kathmandu</span>
+                </div>
+              </div>
+              <div class="transport-details">
+                <p>Daily flights from Kathmandu to Pokhara Airport. We can arrange airport pickup service for your convenience.</p>
+                <div class="transport-features">
+                  <span class="feature-tag">Airport Pickup</span>
+                  <span class="feature-tag">Daily Flights</span>
+                </div>
+                <div class="distance-info">
+                  <i class="bi bi-signpost"></i>
+                  <span>30 km from Pokhara Airport (approx. 1 hour drive)</span>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div class="col-lg-2 col-md-3 footer-links">
-            <h4>Our Services</h4>
-            <ul>
-              <li><a href="#">Web Design</a></li>
-              <li><a href="#">Web Development</a></li>
-              <li><a href="#">Product Management</a></li>
-              <li><a href="#">Marketing</a></li>
-              <li><a href="#">Graphic Design</a></li>
-            </ul>
+          <div class="col-lg-6 col-md-6 mb-4" data-aos="slide-up" data-aos-delay="700">
+            <div class="transport-card">
+              <div class="transport-header">
+                <div class="transport-icon-box">
+                  <i class="bi bi-bus-front-fill"></i>
+                </div>
+                <div class="transport-title">
+                  <h5>By Bus</h5>
+                  <span class="transport-time">Budget Friendly</span>
+                </div>
+              </div>
+              <div class="transport-details">
+                <p>Regular bus service from Pokhara to Begnas Lake area. We can assist with local transportation arrangements.</p>
+                <div class="transport-features">
+                  <span class="feature-tag">Local Buses</span>
+                  <span class="feature-tag">Tourist Buses</span>
+                </div>
+                <div class="distance-info">
+                  <i class="bi bi-signpost"></i>
+                  <span>Nearest bus stop: 3 km from resort</span>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <div class="col-lg-2 col-md-3 footer-links">
-            <h4>Hic solutasetp</h4>
-            <ul>
-              <li><a href="#">Molestiae accusamus iure</a></li>
-              <li><a href="#">Excepturi dignissimos</a></li>
-              <li><a href="#">Suscipit distinctio</a></li>
-              <li><a href="#">Dilecta</a></li>
-              <li><a href="#">Sit quas consectetur</a></li>
-            </ul>
+          <div class="col-lg-6 col-md-6 mb-4" data-aos="slide-up" data-aos-delay="800">
+            <div class="transport-card">
+              <div class="transport-header">
+                <div class="transport-icon-box">
+                  <i class="bi bi-taxi-front-fill"></i>
+                </div>
+                <div class="transport-title">
+                  <h5>Local Transport</h5>
+                  <span class="transport-time">Easy Access</span>
+                </div>
+              </div>
+              <div class="transport-details">
+                <p>Local taxis and ride-sharing available. Our concierge can help arrange transportation for local sightseeing.</p>
+                <div class="transport-features">
+                  <span class="feature-tag">Taxi Service</span>
+                  <span class="feature-tag">Sightseeing Tours</span>
+                </div>
+                <div class="distance-info">
+                  <i class="bi bi-signpost"></i>
+                  <span>Local transport available 24/7</span>
+                </div>
+              </div>
+            </div>
           </div>
-
-          <div class="col-lg-2 col-md-3 footer-links">
-            <h4>Nobis illum</h4>
-            <ul>
-              <li><a href="#">Ipsam</a></li>
-              <li><a href="#">Laudantium dolorum</a></li>
-              <li><a href="#">Dinera</a></li>
-              <li><a href="#">Trodelas</a></li>
-              <li><a href="#">Flexo</a></li>
-            </ul>
-          </div>
-
         </div>
       </div>
+
+      <!-- Attractions Gallery -->
+      <div class="attractions-section" data-aos="fade-up" data-aos-delay="900">
+        <div class="row">
+          <div class="col-12">
+            <div class="section-header">
+              <h3>Explore Pokhara's Beauty</h3>
+              <p>Natural wonders and cultural attractions right near our resort</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="1000">
+            <div class="attraction-item">
+              <div class="attraction-photo">
+                <img src="{% static 'assets/img/hotel/location-5.webp' %}" alt="Begnas Lake" class="img-fluid" loading="lazy">
+                <div class="distance-badge">
+                  <i class="bi bi-geo-alt"></i>
+                  <span>Adjacent</span>
+                </div>
+              </div>
+              <div class="attraction-info">
+                <h5>Begnas Lake</h5>
+                <p class="walk-time"><i class="bi bi-clock"></i> 5 minute walk</p>
+                <p>The second largest lake in Pokhara valley. Perfect for boating, fishing, and enjoying peaceful natural surroundings.</p>
+                <div class="attraction-features">
+                  <span><i class="bi bi-water"></i> Boating</span>
+                  <span><i class="bi bi-camera"></i> Photography</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="1100">
+            <div class="attraction-item">
+              <div class="attraction-photo">
+                <img src="{% static 'assets/img/hotel/location-6.webp' %}" alt="Rupa Lake" class="img-fluid" loading="lazy">
+                <div class="distance-badge">
+                  <i class="bi bi-geo-alt"></i>
+                  <span>3 km</span>
+                </div>
+              </div>
+              <div class="attraction-info">
+                <h5>Rupa Lake</h5>
+                <p class="walk-time"><i class="bi bi-clock"></i> 10 minute drive</p>
+                <p>Smaller and quieter than Begnas Lake, offering serene atmosphere and excellent bird watching opportunities.</p>
+                <div class="attraction-features">
+                  <span><i class="bi bi-binoculars"></i> Bird Watching</span>
+                  <span><i class="bi bi-tree"></i> Nature Walks</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="1200">
+            <div class="attraction-item">
+              <div class="attraction-photo">
+                <img src="{% static 'assets/img/hotel/location-7.webp' %}" alt="Sarangkot Viewpoint" class="img-fluid" loading="lazy">
+                <div class="distance-badge">
+                  <i class="bi bi-geo-alt"></i>
+                  <span>15 km</span>
+                </div>
+              </div>
+              <div class="attraction-info">
+                <h5>Sarangkot Viewpoint</h5>
+                <p class="walk-time"><i class="bi bi-clock"></i> 30 minute drive</p>
+                <p>Famous for sunrise views of Annapurna range and paragliding. One of the best vantage points in Pokhara.</p>
+                <div class="attraction-features">
+                  <span><i class="bi bi-sunrise"></i> Sunrise Views</span>
+                  <span><i class="bi bi-parachute"></i> Paragliding</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="1300">
+            <div class="attraction-item">
+              <div class="attraction-photo">
+                <img src="{% static 'assets/img/hotel/location-8.webp' %}" alt="Phewa Lake" class="img-fluid" loading="lazy">
+                <div class="distance-badge">
+                  <i class="bi bi-geo-alt"></i>
+                  <span>25 km</span>
+                </div>
+              </div>
+              <div class="attraction-info">
+                <h5>Phewa Lake</h5>
+                <p class="walk-time"><i class="bi bi-clock"></i> 45 minute drive</p>
+                <p>Largest lake in Pokhara with Tal Barahi Temple. Popular for boating, lakeside dining, and cultural experiences.</p>
+                <div class="attraction-features">
+                  <span><i class="bi bi-water"></i> Boating</span>
+                  <span><i class="bi bi-house-heart"></i> Temple Visit</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="1400">
+            <div class="attraction-item">
+              <div class="attraction-photo">
+                <img src="{% static 'assets/img/hotel/location-9.webp' %}" alt="World Peace Pagoda" class="img-fluid" loading="lazy">
+                <div class="distance-badge">
+                  <i class="bi bi-geo-alt"></i>
+                  <span>30 km</span>
+                </div>
+              </div>
+              <div class="attraction-info">
+                <h5>World Peace Pagoda</h5>
+                <p class="walk-time"><i class="bi bi-clock"></i> 1 hour drive</p>
+                <p>Buddhist stupa on Anadu Hill offering panoramic views of Pokhara valley and the Annapurna mountain range.</p>
+                <div class="attraction-features">
+                  <span><i class="bi bi-heart"></i> Peaceful</span>
+                  <span><i class="bi bi-camera"></i> Photography</span>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 col-md-6" data-aos="zoom-in" data-aos-delay="1500">
+            <div class="attraction-item">
+              <div class="attraction-photo">
+                <img src="{% static 'assets/img/hotel/location-10.webp' %}" alt="Devi's Falls" class="img-fluid" loading="lazy">
+                <div class="distance-badge">
+                  <i class="bi bi-geo-alt"></i>
+                  <span>28 km</span>
+                </div>
+              </div>
+              <div class="attraction-info">
+                <h5>Devi's Falls</h5>
+                <p class="walk-time"><i class="bi bi-clock"></i> 50 minute drive</p>
+                <p>Unique waterfall that disappears underground. Named after a Swiss tourist who drowned here in the 1960s.</p>
+                <div class="attraction-features">
+                  <span><i class="bi bi-water"></i> Waterfall</span>
+                  <span><i class="bi bi-cave"></i> Cave System</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Local Experiences -->
+      <div class="local-experiences mt-5" data-aos="fade-up" data-aos-delay="1600">
+        <div class="row">
+          <div class="col-12">
+            <div class="section-header">
+              <h3>Local Experiences & Activities</h3>
+              <p>Make the most of your stay with these recommended activities</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-md-4 mb-4">
+            <div class="experience-card">
+              <div class="experience-icon">
+                <i class="bi bi-tree"></i>
+              </div>
+              <h5>Nature Walks & Hiking</h5>
+              <p>Explore scenic trails around Begnas and Rupa Lakes with guided nature walks.</p>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="experience-card">
+              <div class="experience-icon">
+                <i class="bi bi-cup-hot"></i>
+              </div>
+              <h5>Cultural Experiences</h5>
+              <p>Experience authentic Nepali culture with local cuisine and traditional performances.</p>
+            </div>
+          </div>
+          <div class="col-md-4 mb-4">
+            <div class="experience-card">
+              <div class="experience-icon">
+                <i class="bi bi-camera"></i>
+              </div>
+              <h5>Photography Tours</h5>
+              <p>Capture stunning Himalayan landscapes with our photography guidance.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
 
-    <div class="copyright text-center">
-      <div class="container d-flex flex-column flex-lg-row justify-content-center justify-content-lg-between align-items-center">
+  </section><!-- /Hotel Location Section -->
 
-        <div class="d-flex flex-column align-items-center align-items-lg-start">
-          <div>
-            © Copyright <strong><span>MyWebsite</span></strong>. All Rights Reserved
-          </div>
-          <div class="credits">
-            <!-- All the links in the footer should remain intact. -->
-            <!-- You can delete the links only if you purchased the pro version. -->
-            <!-- Licensing information: https://bootstrapmade.com/license/ -->
-            <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/herobiz-bootstrap-business-template/ -->
-            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-          </div>
-        </div>
+</main>
+{% endblock %}
 
-        <div class="social-links order-first order-lg-last mb-3 mb-lg-0">
-          <a href=""><i class="bi bi-twitter-x"></i></a>
-          <a href=""><i class="bi bi-facebook"></i></a>
-          <a href=""><i class="bi bi-instagram"></i></a>
-          <a href=""><i class="bi bi-linkedin"></i></a>
-        </div>
+{% block extra_css %}
+<style>
+  .location-content {
+    padding-right: 30px;
+  }
+  
+  .location-badge {
+    display: inline-flex;
+    align-items: center;
+    background: linear-gradient(135deg, #3498db, #2c3e50);
+    color: white;
+    padding: 8px 20px;
+    border-radius: 30px;
+    font-weight: 500;
+    margin-bottom: 20px;
+  }
+  
+  .location-badge i {
+    margin-right: 8px;
+    font-size: 1.1rem;
+  }
+  
+  .location-title {
+    color: #2c3e50;
+    margin-bottom: 20px;
+    font-size: 2rem;
+  }
+  
+  .location-description {
+    color: #555;
+    line-height: 1.7;
+    margin-bottom: 30px;
+    font-size: 1.05rem;
+  }
+  
+  .info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 25px;
+    margin-bottom: 30px;
+  }
+  
+  .info-item {
+    display: flex;
+    gap: 15px;
+  }
+  
+  .info-icon {
+    width: 50px;
+    height: 50px;
+    background: #f8f9fa;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #3498db;
+    font-size: 1.3rem;
+    flex-shrink: 0;
+  }
+  
+  .info-text h6 {
+    color: #2c3e50;
+    margin-bottom: 5px;
+    font-size: 1rem;
+  }
+  
+  .info-text p {
+    color: #666;
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.5;
+  }
+  
+  .action-buttons {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+  
+  .action-buttons .btn {
+    padding: 12px 30px;
+    font-weight: 500;
+    border-radius: 8px;
+  }
+  
+  .action-buttons .btn-primary {
+    background: linear-gradient(135deg, #3498db, #2c3e50);
+    border: none;
+  }
+  
+  .action-buttons .btn-outline {
+    border: 2px solid #3498db;
+    color: #3498db;
+    background: transparent;
+  }
+  
+  .action-buttons .btn-outline:hover {
+    background: #3498db;
+    color: white;
+  }
+  
+  /* Map Container */
+  .map-container {
+    position: relative;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+    height: 500px;
+  }
+  
+  .map-container iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+  }
+  
+  .map-overlay {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: white;
+    padding: 12px 20px;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+  
+  .hotel-marker {
+    font-weight: 500;
+    color: #2c3e50;
+  }
+  
+  .hotel-marker i {
+    color: #3498db;
+    font-size: 1.2rem;
+  }
+  
+  /* Transportation Section */
+  .section-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+  
+  .section-header h3 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+  }
+  
+  .section-header p {
+    color: #666;
+    font-size: 1.1rem;
+  }
+  
+  .transport-card {
+    background: white;
+    border-radius: 15px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    height: 100%;
+    transition: transform 0.3s ease;
+  }
+  
+  .transport-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .transport-header {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+  }
+  
+  .transport-icon-box {
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(135deg, #3498db, #2c3e50);
+    color: white;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+  }
+  
+  .transport-title h5 {
+    color: #2c3e50;
+    margin: 0 0 5px 0;
+  }
+  
+  .transport-time {
+    color: #3498db;
+    font-weight: 500;
+    font-size: 0.9rem;
+  }
+  
+  .transport-details p {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 15px;
+  }
+  
+  .transport-features {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
+  }
+  
+  .feature-tag {
+    background: #f8f9fa;
+    color: #3498db;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+  }
+  
+  .distance-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: #666;
+    font-size: 0.9rem;
+    padding-top: 10px;
+    border-top: 1px solid #eee;
+  }
+  
+  .distance-info i {
+    color: #3498db;
+  }
+  
+  /* Attractions Section */
+  .attraction-item {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+    transition: transform 0.3s ease;
+    height: 100%;
+  }
+  
+  .attraction-item:hover {
+    transform: translateY(-5px);
+  }
+  
+  .attraction-photo {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+  }
+  
+  .attraction-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  
+  .attraction-item:hover .attraction-photo img {
+    transform: scale(1.05);
+  }
+  
+  .distance-badge {
+    position: absolute;
+    top: 15px;
+    right: 15px;
+    background: rgba(255,255,255,0.9);
+    padding: 5px 12px;
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: 500;
+    color: #2c3e50;
+    font-size: 0.9rem;
+  }
+  
+  .attraction-info {
+    padding: 25px;
+  }
+  
+  .attraction-info h5 {
+    color: #2c3e50;
+    margin-bottom: 10px;
+  }
+  
+  .walk-time {
+    color: #3498db;
+    font-size: 0.9rem;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+  }
+  
+  .attraction-info p {
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 15px;
+  }
+  
+  .attraction-features {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+  }
+  
+  .attraction-features span {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: #666;
+    font-size: 0.9rem;
+  }
+  
+  /* Local Experiences */
+  .local-experiences {
+    background: #f8f9fa;
+    padding: 40px;
+    border-radius: 15px;
+  }
+  
+  .experience-card {
+    text-align: center;
+    padding: 30px 20px;
+    background: white;
+    border-radius: 12px;
+    height: 100%;
+    box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+  }
+  
+  .experience-icon {
+    width: 70px;
+    height: 70px;
+    background: linear-gradient(135deg, #3498db, #2c3e50);
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 0 auto 20px;
+    font-size: 1.8rem;
+  }
+  
+  .experience-card h5 {
+    color: #2c3e50;
+    margin-bottom: 15px;
+  }
+  
+  .experience-card p {
+    color: #666;
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+  
+  /* Responsive Design */
+  @media (max-width: 992px) {
+    .location-content {
+      padding-right: 0;
+      margin-top: 30px;
+    }
+    
+    .info-grid {
+      grid-template-columns: 1fr;
+    }
+    
+    .map-container {
+      height: 400px;
+    }
+    
+    .transport-card,
+    .attraction-item {
+      margin-bottom: 20px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .location-title {
+      font-size: 1.7rem;
+    }
+    
+    .map-container {
+      height: 350px;
+    }
+    
+    .action-buttons {
+      justify-content: center;
+    }
+    
+    .action-buttons .btn {
+      width: 100%;
+      justify-content: center;
+    }
+    
+    .local-experiences {
+      padding: 25px 20px;
+    }
+    
+    .experience-card {
+      padding: 25px 15px;
+      margin-bottom: 20px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    .map-container {
+      height: 300px;
+    }
+    
+    .map-overlay {
+      padding: 8px 15px;
+      font-size: 0.9rem;
+    }
+    
+    .transport-card,
+    .attraction-info {
+      padding: 20px;
+    }
+    
+    .transport-icon-box {
+      width: 50px;
+      height: 50px;
+      font-size: 1.3rem;
+    }
+  }
+</style>
+{% endblock %}
 
-      </div>
-    </div>
-
-  </footer>
-
-  <!-- Scroll Top -->
-  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
-
-  <!-- Preloader -->
-  <div id="preloader"></div>
-
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-
-  <!-- Main JS File -->
-  <script src="assets/js/main.js"></script>
-
-</body>
-
-</html>
+{% block extra_js %}
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Initialize AOS animations
+    if (typeof AOS !== 'undefined') {
+      AOS.init({
+        duration: 800,
+        once: true,
+        offset: 100
+      });
+    }
+    
+    // Map interaction
+    const mapContainer = document.querySelector('.map-container');
+    if (mapContainer) {
+      const mapIframe = mapContainer.querySelector('iframe');
+      
+      mapContainer.addEventListener('mouseenter', function() {
+        this.style.boxShadow = '0 15px 40px rgba(0,0,0,0.2)';
+        this.style.transform = 'translateY(-5px)';
+      });
+      
+      mapContainer.addEventListener('mouseleave', function() {
+        this.style.boxShadow = '0 10px 30px rgba(0,0,0,0.15)';
+        this.style.transform = 'translateY(0)';
+      });
+    }
+    
+    // Attraction item hover effects
+    const attractionItems = document.querySelectorAll('.attraction-item');
+    attractionItems.forEach(item => {
+      item.addEventListener('mouseenter', function() {
+        const img = this.querySelector('img');
+        if (img) {
+          img.style.transform = 'scale(1.05)';
+        }
+      });
+      
+      item.addEventListener('mouseleave', function() {
+        const img = this.querySelector('img');
+        if (img) {
+          img.style.transform = 'scale(1)';
+        }
+      });
+    });
+    
+    // Transportation cards interaction
+    const transportCards = document.querySelectorAll('.transport-card');
+    transportCards.forEach(card => {
+      card.addEventListener('mouseenter', function() {
+        const icon = this.querySelector('.transport-icon-box');
+        if (icon) {
+          icon.style.transform = 'rotate(10deg) scale(1.1)';
+          icon.style.transition = 'transform 0.3s ease';
+        }
+      });
+      
+      card.addEventListener('mouseleave', function() {
+        const icon = this.querySelector('.transport-icon-box');
+        if (icon) {
+          icon.style.transform = 'rotate(0) scale(1)';
+        }
+      });
+    });
+    
+    // Smooth scroll for internal links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href !== '#') {
+          e.preventDefault();
+          const targetElement = document.querySelector(href);
+          if (targetElement) {
+            targetElement.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }
+        }
+      });
+    });
+    
+    // Add click effect to action buttons
+    const actionButtons = document.querySelectorAll('.action-buttons .btn');
+    actionButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        this.style.transform = 'scale(0.95)';
+        setTimeout(() => {
+          this.style.transform = '';
+        }, 200);
+      });
+    });
+    
+    // Lazy loading for attraction images
+    const attractionImages = document.querySelectorAll('.attraction-photo img');
+    const imageObserver = new IntersectionObserver((entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const img = entry.target;
+          const src = img.getAttribute('data-src') || img.src;
+          if (!img.src.includes(src) && src) {
+            img.src = src;
+          }
+          observer.unobserve(img);
+        }
+      });
+    }, {
+      rootMargin: '50px 0px',
+      threshold: 0.1
+    });
+    
+    attractionImages.forEach(img => {
+      if (!img.complete) {
+        const dataSrc = img.getAttribute('data-src');
+        if (dataSrc) {
+          img.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300"%3E%3Crect width="400" height="300" fill="%23f8f9fa"/%3E%3C/svg%3E';
+          imageObserver.observe(img);
+        }
+      }
+    });
+  });
+</script>
+{% endblock %}
