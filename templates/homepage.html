@@ -35,7 +35,7 @@
       <div class="col-lg-6" data-aos="fade-left" data-aos-delay="300">
         <div class="hero-images">
           <div class="main-image">
-            <img src="{% static images.hero %}" alt="{{ resort_name }}" class="img-fluid rounded-4">
+            <img src="{% static 'assets/img/resort/resort_02.jpg' %}" alt="{{ resort_name }}" class="img-fluid rounded-4">
             <div class="image-overlay">
               <span class="overlay-text"><i class="bi bi-geo-alt me-1"></i> {{ location.locality }}</span>
             </div>
@@ -852,32 +852,25 @@
     </div>
     
     <div class="location-map-preview mt-5" data-aos="fade-up" data-aos-delay="300">
-      <div class="map-card">
-        <div class="map-header">
-          <h5><i class="bi bi-geo-alt-fill me-2"></i>Our Location</h5>
-          <p class="address">{{ location.full_address }}</p>
-        </div>
-        <div class="map-placeholder">
-          <div class="map-points">
-            <div class="map-point resort-point">
-              <i class="bi bi-house-heart-fill"></i>
-              <span class="point-label">Himalaya Forest Resort</span>
-            </div>
-            <div class="map-point lake-point">
-              <i class="bi bi-water"></i>
-              <span class="point-label">Begnas Lake</span>
-            </div>
-            <div class="map-point airport-point">
-              <i class="bi bi-airplane"></i>
-              <span class="point-label">Pokhara Airport</span>
-            </div>
-          </div>
-          <a href="{% url 'contact_us' %}#map" class="btn-view-map">
-            <i class="bi bi-map me-2"></i>View Full Map
-          </a>
-        </div>
-      </div>
+  <div class="map-card">
+    <div class="map-header">
+      <h5><i class="bi bi-geo-alt-fill me-2"></i>Our Location</h5>
+      <p class="address">{{ location.full_address }}</p>
     </div>
+    <div class="map-container">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d3039.5406939550103!2d84.10588201046542!3d28.16209728883088!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3995a300024117bb%3A0xb13e0e67f204ea7!2sHimalaya%20Forest%20Resort!5e0!3m2!1sen!2snp!4v1765608989217!5m2!1sen!2snp"
+        width="100%"
+        height="250"
+        style="border:0;"
+        allowfullscreen=""
+        loading="lazy"
+        referrerpolicy="no-referrer-when-downgrade"
+        title="Himalaya Forest Resort Interactive Map">
+      </iframe>
+    </div>
+  </div>
+</div>
   </div>
 </section>
 

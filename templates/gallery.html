@@ -2,17 +2,12 @@
 {% load static %}
 
 {% block title %}Photo Gallery | Himalaya Forest Resort, Pokhara{% endblock %}
-
-{% block description %}Explore our photo gallery showcasing the beauty of Himalaya Forest Resort, rooms, amenities, and breathtaking views of Begnas Lake and Rupa Lake.{% endblock %}
-
-{% block keywords %}Resort Gallery, Pokhara Photos, Hotel Pictures, Room Images, Resort Views, Himalayan Landscape, Begnas Lake Photos{% endblock %}
-
+{% block description %}{{ meta_description|default:"Explore our photo gallery showcasing the beauty of Himalaya Forest Resort, rooms, amenities, and breathtaking views of Begnas Lake and Rupa Lake." }}{% endblock %}
+{% block keywords %}{{ meta_keywords|default:"Resort Gallery, Pokhara Photos, Hotel Pictures, Room Images, Resort Views, Himalayan Landscape, Begnas Lake Photos" }}{% endblock %}
 {% block body_class %}gallery-page{% endblock %}
 
 {% block content %}
 <main class="main">
-
-  <!-- Page Title -->
   <div class="page-title light-background">
     <div class="container d-lg-flex justify-content-between align-items-center">
       <h1 class="mb-2 mb-lg-0">Photo Gallery</h1>
@@ -23,220 +18,131 @@
         </ol>
       </nav>
     </div>
-  </div><!-- End Page Title -->
+  </div>
 
-  <!-- Gallery Section -->
   <section id="gallery" class="gallery section">
-
     <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-      <!-- Gallery Introduction -->
       <div class="gallery-intro text-center mb-5" data-aos="fade-up" data-aos-delay="150">
         <h2>Experience Himalayan Beauty</h2>
-        <p class="lead">Browse through our collection of images showcasing the luxury, comfort, and natural beauty of Himalaya Forest Resort</p>
+        <p class="lead">Browse through {{ total_images }} images showcasing the luxury, comfort, and natural beauty of Himalaya Forest Resort</p>
       </div>
 
-      <div class="isotope-layout" data-default-filter="*" data-layout="masonry" data-sort="original-order">
-        
-        <!-- Gallery Filters -->
-        <ul class="hotel-filters isotope-filters" data-aos="fade-up" data-aos-delay="200">
-          <li data-filter="*" class="filter-active">All Photos</li>
-          <li data-filter=".filter-rooms">Rooms & Suites</li>
-          <li data-filter=".filter-amenities">Amenities</li>
-          <li data-filter=".filter-views">Lake Views</li>
-          <li data-filter=".filter-exterior">Resort Exterior</li>
-          <li data-filter=".filter-restaurant">Restaurant</li>
-        </ul><!-- End Hotel Gallery Filters -->
-
-        <!-- Gallery Items -->
-        <div class="row gy-4 isotope-container" data-aos="fade-up" data-aos-delay="300">
-          
-          <!-- Room Images -->
-          <div class="col-lg-4 col-md-6 gallery-item isotope-item filter-rooms">
-            <div class="gallery-wrapper">
-              <img src="{% static 'assets/img/hotel/room-1.webp' %}" class="img-fluid" alt="Super Deluxe Room" loading="lazy">
-              <div class="gallery-overlay">
-                <div class="gallery-info">
-                  <h4>Super Deluxe Room</h4>
-                  <p>Luxurious room with panoramic lake views</p>
-                </div>
-                <a href="{% static 'assets/img/hotel/room-1.webp' %}" class="glightbox" data-gallery="gallery1" data-title="Super Deluxe Room with panoramic views of Begnas Lake">
-                  <i class="bi bi-zoom-in"></i>
-                </a>
-              </div>
-            </div>
-          </div><!-- End Gallery Item -->
-
-          <div class="col-lg-8 col-md-6 gallery-item isotope-item filter-views">
-            <div class="gallery-wrapper">
-              <img src="{% static 'assets/img/hotel/showcase-3.webp' %}" class="img-fluid" alt="Begnas Lake View" loading="lazy">
-              <div class="gallery-overlay">
-                <div class="gallery-info">
-                  <h4>Begnas Lake View</h4>
-                  <p>Stunning sunrise view from our resort</p>
-                </div>
-                <a href="{% static 'assets/img/hotel/showcase-3.webp' %}" class="glightbox" data-gallery="gallery1" data-title="Breathaking sunrise view of Begnas Lake from Himalaya Forest Resort">
-                  <i class="bi bi-zoom-in"></i>
-                </a>
-              </div>
-            </div>
-          </div><!-- End Gallery Item -->
-
-          <div class="col-lg-4 col-md-6 gallery-item isotope-item filter-restaurant">
-            <div class="gallery-wrapper">
-              <img src="{% static 'assets/img/hotel/dining-2.webp' %}" class="img-fluid" alt="Restaurant Interior" loading="lazy">
-              <div class="gallery-overlay">
-                <div class="gallery-info">
-                  <h4>Restaurant Dining</h4>
-                  <p>Elegant dining area with mountain views</p>
-                </div>
-                <a href="{% static 'assets/img/hotel/dining-2.webp' %}" class="glightbox" data-gallery="gallery1" data-title="Our restaurant serving authentic Nepali and international cuisine">
-                  <i class="bi bi-zoom-in"></i>
-                </a>
-              </div>
-            </div>
-          </div><!-- End Gallery Item -->
-
-          <div class="col-lg-4 col-md-6 gallery-item isotope-item filter-rooms">
-            <div class="gallery-wrapper">
-              <img src="{% static 'assets/img/hotel/room-5.webp' %}" class="img-fluid" alt="Family Deluxe Room" loading="lazy">
-              <div class="gallery-overlay">
-                <div class="gallery-info">
-                  <h4>Family Deluxe Room</h4>
-                  <p>Spacious accommodation for families</p>
-                </div>
-                <a href="{% static 'assets/img/hotel/room-5.webp' %}" class="glightbox" data-gallery="gallery1" data-title="Family Deluxe Room with modern amenities and comfort">
-                  <i class="bi bi-zoom-in"></i>
-                </a>
-              </div>
-            </div>
-          </div><!-- End Gallery Item -->
-
-          <div class="col-lg-8 col-md-6 gallery-item isotope-item filter-exterior">
-            <div class="gallery-wrapper">
-              <img src="{% static 'assets/img/hotel/showcase-9.webp' %}" class="img-fluid" alt="Resort Exterior" loading="lazy">
-              <div class="gallery-overlay">
-                <div class="gallery-info">
-                  <h4>Resort Building</h4>
-                  <p>Beautiful architecture amidst nature</p>
-                </div>
-                <a href="{% static 'assets/img/hotel/showcase-9.webp' %}" class="glightbox" data-gallery="gallery1" data-title="Himalaya Forest Resort building surrounded by lush greenery">
-                  <i class="bi bi-zoom-in"></i>
-                </a>
-              </div>
-            </div>
-          </div><!-- End Gallery Item -->
-
-          <div class="col-lg-4 col-md-6 gallery-item isotope-item filter-amenities">
-            <div class="gallery-wrapper">
-              <img src="{% static 'assets/img/hotel/amenities-3.webp' %}" class="img-fluid" alt="Conference Hall" loading="lazy">
-              <div class="gallery-overlay">
-                <div class="gallery-info">
-                  <h4>Conference Hall</h4>
-                  <p>Modern facility for meetings and events</p>
-                </div>
-                <a href="{% static 'assets/img/hotel/amenities-3.webp' %}" class="glightbox" data-gallery="gallery1" data-title="Fully-equipped conference hall for business meetings">
-                  <i class="bi bi-zoom-in"></i>
-                </a>
-              </div>
-            </div>
-          </div><!-- End Gallery Item -->
-
-          <div class="col-lg-4 col-md-6 gallery-item isotope-item filter-restaurant">
-            <div class="gallery-wrapper">
-              <img src="{% static 'assets/img/hotel/dining-4.webp' %}" class="img-fluid" alt="Bar Area" loading="lazy">
-              <div class="gallery-overlay">
-                <div class="gallery-info">
-                  <h4>Bar & Lounge</h4>
-                  <p>Relaxing space with premium beverages</p>
-                </div>
-                <a href="{% static 'assets/img/hotel/dining-4.webp' %}" class="glightbox" data-gallery="gallery1" data-title="Cozy bar area serving local and international drinks">
-                  <i class="bi bi-zoom-in"></i>
-                </a>
-              </div>
-            </div>
-          </div><!-- End Gallery Item -->
-
-          <div class="col-lg-4 col-md-6 gallery-item isotope-item filter-rooms">
-            <div class="gallery-wrapper">
-              <img src="{% static 'assets/img/hotel/room-8.webp' %}" class="img-fluid" alt="Deluxe Twin Room" loading="lazy">
-              <div class="gallery-overlay">
-                <div class="gallery-info">
-                  <h4>Deluxe Twin Room</h4>
-                  <p>Comfortable room with twin beds</p>
-                </div>
-                <a href="{% static 'assets/img/hotel/room-8.webp' %}" class="glightbox" data-gallery="gallery1" data-title="Deluxe Twin Room perfect for friends or colleagues">
-                  <i class="bi bi-zoom-in"></i>
-                </a>
-              </div>
-            </div>
-          </div><!-- End Gallery Item -->
-
-          <div class="col-lg-4 col-md-6 gallery-item isotope-item filter-amenities">
-            <div class="gallery-wrapper">
-              <img src="{% static 'assets/img/hotel/amenities-7.webp' %}" class="img-fluid" alt="Garden Area" loading="lazy">
-              <div class="gallery-overlay">
-                <div class="gallery-info">
-                  <h4>Landscaped Garden</h4>
-                  <p>Beautiful garden with seating areas</p>
-                </div>
-                <a href="{% static 'assets/img/hotel/amenities-7.webp' %}" class="glightbox" data-gallery="gallery1" data-title="Well-maintained garden perfect for relaxation">
-                  <i class="bi bi-zoom-in"></i>
-                </a>
-              </div>
-            </div>
-          </div><!-- End Gallery Item -->
-
-          <div class="col-lg-4 col-md-6 gallery-item isotope-item filter-views">
-            <div class="gallery-wrapper">
-              <img src="{% static 'assets/img/hotel/location-2.webp' %}" class="img-fluid" alt="Rupa Lake View" loading="lazy">
-              <div class="gallery-overlay">
-                <div class="gallery-info">
-                  <h4>Rupa Lake View</h4>
-                  <p>Panoramic view of Rupa Lake</p>
-                </div>
-                <a href="{% static 'assets/img/hotel/location-2.webp' %}" class="glightbox" data-gallery="gallery1" data-title="Scenic view of Rupa Lake from the resort">
-                  <i class="bi bi-zoom-in"></i>
-                </a>
-              </div>
-            </div>
-          </div><!-- End Gallery Item -->
-
-          <div class="col-lg-4 col-md-6 gallery-item isotope-item filter-restaurant">
-            <div class="gallery-wrapper">
-              <img src="{% static 'assets/img/hotel/dining-7.webp' %}" class="img-fluid" alt="Dining Setup" loading="lazy">
-              <div class="gallery-overlay">
-                <div class="gallery-info">
-                  <h4>Dining Setup</h4>
-                  <p>Elegant table setting for fine dining</p>
-                </div>
-                <a href="{% static 'assets/img/hotel/dining-7.webp' %}" class="glightbox" data-gallery="gallery1" data-title="Beautiful table setup for special dining experiences">
-                  <i class="bi bi-zoom-in"></i>
-                </a>
-              </div>
-            </div>
-          </div><!-- End Gallery Item -->
-
-          <div class="col-lg-4 col-md-6 gallery-item isotope-item filter-rooms">
-            <div class="gallery-wrapper">
-              <img src="{% static 'assets/img/hotel/room-12.webp' %}" class="img-fluid" alt="Room Interior" loading="lazy">
-              <div class="gallery-overlay">
-                <div class="gallery-info">
-                  <h4>Room Interior</h4>
-                  <p>Modern decor and comfortable furnishings</p>
-                </div>
-                <a href="{% static 'assets/img/hotel/room-12.webp' %}" class="glightbox" data-gallery="gallery1" data-title="Elegant room interior with modern amenities">
-                  <i class="bi bi-zoom-in"></i>
-                </a>
-              </div>
-            </div>
-          </div><!-- End Gallery Item -->
-
-        </div><!-- End Hotel Gallery Items Container -->
-
+      <div class="row mb-5 text-center" data-aos="fade-up" data-aos-delay="200">
+        <div class="col-md-3 col-6 mb-4">
+          <div class="stat-item">
+            <h3>{{ total_images }}</h3>
+            <p>Total Photos</p>
+          </div>
+        </div>
+        <div class="col-md-3 col-6 mb-4">
+          <div class="stat-item">
+            <h3>{{ categories|length|add:"-1" }}</h3>
+            <p>Categories</p>
+          </div>
+        </div>
+        <div class="col-md-3 col-6 mb-4">
+          <div class="stat-item">
+            <h3>{{ room_images_count }}</h3>
+            <p>Room Photos</p>
+          </div>
+        </div>
+        <div class="col-md-3 col-6 mb-4">
+          <div class="stat-item">
+            <h3>{{ view_images_count }}</h3>
+            <p>View Photos</p>
+          </div>
+        </div>
       </div>
 
-      <!-- Gallery CTA -->
+      <div class="gallery-filters mb-5" data-aos="fade-up" data-aos-delay="250">
+        <ul class="hotel-filters isotope-filters">
+          {% for category in categories %}
+          <li data-filter="{% if category.slug == 'all' %}*{% else %}.filter-{{ category.slug }}{% endif %}" 
+              class="{% if category.slug == 'all' %}filter-active{% endif %}">
+            {{ category.name }}
+          </li>
+          {% endfor %}
+        </ul>
+      </div>
+
+      <div class="gallery-grid" data-aos="fade-up" data-aos-delay="300">
+        {% for image in gallery_images %}
+        <div class="gallery-item filter-{{ image.category }} grid-{{ image.grid_size }} aspect-{{ image.aspect_ratio }}"
+             data-category="{{ image.category }}"
+             data-grid="{{ image.grid_size }}"
+             data-aspect="{{ image.aspect_ratio }}">
+          <div class="gallery-card" 
+               data-bs-toggle="modal" 
+               data-bs-target="#imageModal"
+               data-image-src="{% static image.image %}"
+               data-image-title="{{ image.title }}"
+               data-image-description="{{ image.description }}"
+               data-image-category="{{ image.category_name }}">
+            <div class="image-container">
+              <img src="{% static image.image %}" 
+                   alt="{{ image.alt }}" 
+                   loading="lazy"
+                   class="gallery-image"
+                   onload="this.parentElement.classList.add('loaded')">
+              <div class="image-overlay">
+                <div class="overlay-content">
+                  <div class="category-badge">{{ image.category_name }}</div>
+                  <h4 class="image-title">{{ image.title }}</h4>
+                  <p class="image-description">{{ image.description }}</p>
+                </div>
+                <div class="action-buttons">
+                  <a href="{% static image.image %}" 
+                     class="lightbox-btn glightbox" 
+                     data-gallery="gallery1" 
+                     data-title="{{ image.lightbox_title }}">
+                    <i class="bi bi-zoom-in"></i>
+                  </a>
+                  <button class="view-btn">
+                    <i class="bi bi-arrows-angle-expand"></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+
+      <div class="gallery-info-section mt-5" data-aos="fade-up" data-aos-delay="350">
+        <div class="row align-items-center">
+          <div class="col-lg-6">
+            <div class="info-card p-4">
+              <h4 class="mb-3">Gallery Categories</h4>
+              <div class="category-list">
+                {% for category in categories %}
+                  {% if category.slug != 'all' %}
+                  <div class="category-item d-flex align-items-center mb-2">
+                    <div class="category-dot me-2"></div>
+                    <span>{{ category.name }}</span>
+                    <span class="ms-auto badge">{{ category.count }}</span>
+                  </div>
+                  {% endif %}
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="info-card p-4 mt-4 mt-lg-0">
+              <h4 class="mb-3">Photo Details</h4>
+              <p>
+                All photos are taken at Himalaya Forest Resort, Pokhara. 
+                Experience the breathtaking 360° panoramic views of Annapurna, Dhaulagiri, 
+                and Manaslu ranges from our rooftop restaurant.
+              </p>
+              <div class="d-flex align-items-center mt-3">
+                <i class="bi bi-camera me-2"></i>
+                <small>Professional photography by Himalaya Forest Resort team</small>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div class="gallery-cta text-center mt-5" data-aos="fade-up" data-aos-delay="400">
         <h3>Experience It Yourself</h3>
         <p class="mb-4">Book your stay and witness the beauty of Himalaya Forest Resort in person</p>
@@ -244,29 +150,80 @@
           <i class="bi bi-calendar-check me-2"></i>Book Your Stay
         </a>
       </div>
-
     </div>
+  </section>
 
-  </section><!-- /Gallery Section -->
-
+  <div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="imageModalLabel">Image Details</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body p-0">
+          <div class="row g-0">
+            <div class="col-lg-8">
+              <div class="modal-image-container">
+                <img id="modalImage" src="" class="img-fluid" alt="">
+              </div>
+            </div>
+            <div class="col-lg-4">
+              <div class="modal-info p-4">
+                <h5 id="modalImageTitle"></h5>
+                <div class="category-badge mb-3">
+                  <span id="modalImageCategory" class="badge"></span>
+                </div>
+                <p id="modalImageDescription"></p>
+                <div class="modal-actions mt-4">
+                  <a href="#" id="modalDownloadBtn" class="btn btn-primary btn-sm me-2">
+                    <i class="bi bi-download me-1"></i> Download
+                  </a>
+                  <button type="button" class="btn btn-outline-secondary btn-sm" onclick="shareImage()">
+                    <i class="bi bi-share me-1"></i> Share
+                  </button>
+                </div>
+                <hr class="my-4">
+                <div class="modal-meta">
+                  <h6>Image Information</h6>
+                  <ul class="list-unstyled mb-0">
+                    <li class="mb-2">
+                      <i class="bi bi-camera me-2"></i>
+                      <small>Himalaya Forest Resort Photography</small>
+                    </li>
+                    <li class="mb-2">
+                      <i class="bi bi-geo-alt me-2"></i>
+                      <small>Pokhara, Nepal</small>
+                    </li>
+                    <li>
+                      <i class="bi bi-calendar me-2"></i>
+                      <small>Recent Collection</small>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </main>
 {% endblock %}
 
 {% block extra_css %}
 <style>
   .gallery-intro h2 {
-    color: #2c3e50;
+    color: var(--heading-color);
     margin-bottom: 15px;
   }
   
   .gallery-intro .lead {
-    color: #666;
+    color: var(--default-color);
     font-size: 1.1rem;
     max-width: 600px;
     margin: 0 auto;
   }
   
-  /* Gallery Filters */
   .hotel-filters {
     display: flex;
     justify-content: center;
@@ -280,127 +237,275 @@
   .hotel-filters li {
     cursor: pointer;
     padding: 10px 20px;
-    background: #f8f9fa;
+    background: var(--surface-color);
     border-radius: 30px;
     font-weight: 500;
-    color: #555;
+    color: var(--default-color);
     transition: all 0.3s ease;
-    border: 2px solid transparent;
+    border: 2px solid color-mix(in srgb, var(--default-color), transparent 90%);
   }
   
   .hotel-filters li:hover,
   .hotel-filters li.filter-active {
-    background: #3498db;
-    color: white;
-    border-color: #3498db;
+    background: var(--accent-color);
+    color: var(--contrast-color);
+    border-color: var(--accent-color);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(47, 93, 80, 0.2);
   }
   
-  /* Gallery Items */
-  .gallery-wrapper {
+  /* Gallery Grid Layout - Intelligent Masonry */
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-auto-rows: 200px;
+    gap: 15px;
+    grid-auto-flow: dense;
+  }
+  
+  /* Hero Images - Large Panoramic */
+  .gallery-item.grid-hero {
+    grid-column: span 2;
+    grid-row: span 3;
+  }
+  
+  /* Featured Images */
+  .gallery-item.grid-featured {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+  
+  /* Wide Images */
+  .gallery-item.grid-wide {
+    grid-column: span 2;
+    grid-row: span 1;
+  }
+  
+  /* Tall Images */
+  .gallery-item.grid-tall {
+    grid-column: span 1;
+    grid-row: span 2;
+  }
+  
+  /* Regular Images */
+  .gallery-item.grid-regular {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+  
+  /* Aspect Ratio Adjustments */
+  .gallery-item.aspect-landscape .image-container {
+    aspect-ratio: 16/9;
+  }
+  
+  .gallery-item.aspect-portrait .image-container {
+    aspect-ratio: 3/4;
+  }
+  
+  .gallery-item.aspect-square .image-container {
+    aspect-ratio: 1/1;
+  }
+  
+  .gallery-item.aspect-panorama .image-container {
+    aspect-ratio: 3/1;
+  }
+  
+  .gallery-card {
     position: relative;
-    border-radius: 12px;
+    border-radius: 10px;
     overflow: hidden;
-    height: 300px;
-    transition: transform 0.3s ease;
+    height: 100%;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
   }
   
-  .gallery-wrapper:hover {
+  .gallery-card:hover {
     transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
   }
   
-  .gallery-wrapper img {
+  .image-container {
+    width: 100%;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    background: var(--surface-color);
+  }
+  
+  .gallery-image {
     width: 100%;
     height: 100%;
     object-fit: cover;
     transition: transform 0.5s ease;
   }
   
-  .gallery-wrapper:hover img {
+  .gallery-card:hover .gallery-image {
     transform: scale(1.05);
   }
   
-  .gallery-overlay {
+  .image-overlay {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 50%, transparent 100%);
-    display: flex;
-    align-items: flex-end;
-    justify-content: space-between;
+    background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.3) 50%, transparent 100%);
     padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     opacity: 0;
     transition: opacity 0.3s ease;
   }
   
-  .gallery-wrapper:hover .gallery-overlay {
+  .gallery-card:hover .image-overlay {
     opacity: 1;
   }
   
-  .gallery-info {
+  .overlay-content {
     color: white;
   }
   
-  .gallery-info h4 {
+  .category-badge {
+    display: inline-block;
+    background: var(--accent-color);
+    color: var(--contrast-color);
+    padding: 4px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-bottom: 10px;
+  }
+  
+  .image-title {
     color: white;
-    margin: 0 0 5px 0;
     font-size: 1.1rem;
+    font-weight: 600;
+    margin: 0 0 5px 0;
   }
   
-  .gallery-info p {
-    color: rgba(255,255,255,0.8);
-    margin: 0;
+  .image-description {
+    color: rgba(255,255,255,0.9);
     font-size: 0.9rem;
+    margin: 0;
+    line-height: 1.4;
   }
   
-  .gallery-overlay a {
+  .action-buttons {
+    display: flex;
+    gap: 10px;
+    justify-content: flex-end;
+  }
+  
+  .lightbox-btn,
+  .view-btn {
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 45px;
-    height: 45px;
+    width: 40px;
+    height: 40px;
     background: white;
-    color: #3498db;
+    color: var(--accent-color);
     border-radius: 50%;
-    text-decoration: none;
+    border: none;
+    cursor: pointer;
     transition: all 0.3s ease;
-    flex-shrink: 0;
+    text-decoration: none;
   }
   
-  .gallery-overlay a:hover {
-    background: #3498db;
+  .view-btn {
+    background: rgba(255, 255, 255, 0.9);
+  }
+  
+  .lightbox-btn:hover,
+  .view-btn:hover {
+    background: var(--accent-color);
     color: white;
     transform: scale(1.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
   }
   
-  .gallery-overlay a i {
-    font-size: 1.2rem;
+  .stat-item {
+    padding: 20px;
+    background: var(--surface-color);
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: all 0.3s ease;
   }
   
-  /* Masonry Layout Adjustments */
-  .isotope-item {
-    margin-bottom: 30px;
+  .stat-item:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
   }
   
-  .col-lg-8 .gallery-wrapper {
-    height: 630px;
+  .stat-item h3 {
+    color: var(--accent-color);
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 5px;
   }
   
-  .col-lg-4 .gallery-wrapper {
-    height: 300px;
+  .stat-item p {
+    color: var(--default-color);
+    margin: 0;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 500;
   }
   
-  /* Gallery CTA */
+  .info-card {
+    background: var(--surface-color);
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    height: 100%;
+  }
+  
+  .info-card h4 {
+    color: var(--heading-color);
+  }
+  
+  .info-card p,
+  .info-card small {
+    color: var(--default-color);
+  }
+  
+  .category-item {
+    padding: 8px 12px;
+    background: color-mix(in srgb, var(--surface-color), transparent 5%);
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+  
+  .category-item:hover {
+    background: color-mix(in srgb, var(--accent-color), transparent 90%);
+    transform: translateX(5px);
+  }
+  
+  .category-dot {
+    background-color: var(--accent-color);
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+  }
+  
+  .category-item .badge {
+    background: var(--accent-color);
+    color: var(--contrast-color);
+    font-size: 0.75rem;
+    padding: 4px 8px;
+    border-radius: 20px;
+  }
+  
   .gallery-cta {
-    background: linear-gradient(135deg, #2c3e50, #3498db);
+    background: linear-gradient(135deg, var(--accent-color), #1e3c32);
     padding: 50px;
     border-radius: 15px;
-    color: white;
+    color: var(--contrast-color);
   }
   
   .gallery-cta h3 {
-    color: white;
+    color: var(--contrast-color);
     margin-bottom: 15px;
   }
   
@@ -410,8 +515,8 @@
   }
   
   .gallery-cta .btn {
-    background: white;
-    color: #2c3e50;
+    background: var(--contrast-color);
+    color: var(--accent-color);
     border: none;
     padding: 15px 40px;
     font-weight: 500;
@@ -420,35 +525,107 @@
   }
   
   .gallery-cta .btn:hover {
-    background: #f8f9fa;
+    background: color-mix(in srgb, var(--contrast-color), transparent 10%);
     transform: translateY(-2px);
     box-shadow: 0 5px 15px rgba(0,0,0,0.2);
   }
   
-  /* Lightbox Customization */
-  .glightbox-container .gslide-image img {
-    border-radius: 10px;
+  .modal-content {
+    border-radius: 15px;
+    overflow: hidden;
   }
   
-  .glightbox-container .gslide-description {
-    background: rgba(0,0,0,0.8);
-    color: white;
-    padding: 15px;
-    border-radius: 8px;
+  .modal-image-container {
+    height: 500px;
+    overflow: hidden;
   }
   
-  /* Responsive Design */
-  @media (max-width: 992px) {
-    .col-lg-8 .gallery-wrapper {
-      height: 450px;
+  .modal-image-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .modal-info {
+    background: var(--surface-color);
+    height: 500px;
+    overflow-y: auto;
+  }
+  
+  .modal-info h5 {
+    color: var(--heading-color);
+  }
+  
+  .modal-info p {
+    color: var(--default-color);
+  }
+  
+  /* Responsive Adjustments */
+  @media (max-width: 1200px) {
+    .gallery-grid {
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 12px;
     }
     
-    .col-lg-4 .gallery-wrapper {
-      height: 250px;
+    .gallery-item.grid-hero,
+    .gallery-item.grid-featured {
+      grid-column: span 2;
+    }
+  }
+  
+  @media (max-width: 992px) {
+    .gallery-grid {
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      grid-auto-rows: 180px;
+    }
+    
+    .gallery-item.grid-hero {
+      grid-column: span 2;
+      grid-row: span 2;
+    }
+    
+    .gallery-item.grid-featured {
+      grid-column: span 2;
+      grid-row: span 1;
+    }
+    
+    .stat-item h3 {
+      font-size: 2rem;
+    }
+    
+    .modal-body .row {
+      flex-direction: column;
+    }
+    
+    .modal-body .col-lg-8,
+    .modal-body .col-lg-4 {
+      width: 100%;
+    }
+    
+    .modal-image-container,
+    .modal-info {
+      height: 300px;
     }
   }
   
   @media (max-width: 768px) {
+    .gallery-grid {
+      grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+      grid-auto-rows: 150px;
+      gap: 10px;
+    }
+    
+    .gallery-item.grid-hero,
+    .gallery-item.grid-featured,
+    .gallery-item.grid-wide {
+      grid-column: span 2;
+    }
+    
+    .gallery-item.grid-tall {
+      grid-column: span 1;
+      grid-row: span 2;
+    }
+    
     .hotel-filters {
       justify-content: flex-start;
       overflow-x: auto;
@@ -461,41 +638,70 @@
       flex-shrink: 0;
     }
     
-    .col-lg-8 .gallery-wrapper,
-    .col-lg-4 .gallery-wrapper {
-      height: 300px;
-    }
-    
     .gallery-cta {
       padding: 30px 20px;
     }
     
-    .gallery-overlay {
+    .image-overlay {
+      padding: 15px;
       opacity: 1;
-      background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, transparent 100%);
+      background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.2) 50%, transparent 100%);
+    }
+    
+    .image-title {
+      font-size: 1rem;
+    }
+    
+    .image-description {
+      font-size: 0.8rem;
+    }
+    
+    .action-buttons {
+      gap: 8px;
+    }
+    
+    .lightbox-btn,
+    .view-btn {
+      width: 35px;
+      height: 35px;
+    }
+    
+    .stat-item {
+      padding: 15px;
+      margin-bottom: 15px;
+    }
+    
+    .stat-item h3 {
+      font-size: 1.8rem;
     }
   }
   
   @media (max-width: 576px) {
-    .gallery-wrapper {
-      height: 250px;
+    .gallery-grid {
+      grid-template-columns: 1fr;
+      grid-auto-rows: 200px;
+      gap: 15px;
     }
     
-    .gallery-overlay {
-      padding: 15px;
+    .gallery-item.grid-hero,
+    .gallery-item.grid-featured,
+    .gallery-item.grid-wide,
+    .gallery-item.grid-tall {
+      grid-column: span 1;
+      grid-row: span 1;
     }
     
-    .gallery-info h4 {
+    .stat-item h3 {
+      font-size: 1.5rem;
+    }
+    
+    .gallery-cta .btn {
+      padding: 12px 30px;
       font-size: 1rem;
     }
     
-    .gallery-info p {
-      font-size: 0.8rem;
-    }
-    
-    .gallery-overlay a {
-      width: 40px;
-      height: 40px;
+    .modal-dialog {
+      margin: 10px;
     }
   }
 </style>
@@ -504,63 +710,37 @@
 {% block extra_js %}
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    // Initialize Isotope
-    let initIsotope = function() {
-      const galleryContainer = document.querySelector('.isotope-container');
-      if (galleryContainer) {
-        const iso = new Isotope(galleryContainer, {
-          itemSelector: '.isotope-item',
-          layoutMode: 'masonry',
-          masonry: {
-            columnWidth: '.isotope-item'
-          },
-          percentPosition: true
+    const filterButtons = document.querySelectorAll('.isotope-filters li');
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    
+    filterButtons.forEach(function(button) {
+      button.addEventListener('click', function() {
+        filterButtons.forEach(function(btn) {
+          btn.classList.remove('filter-active');
         });
         
-        // Filter functionality
-        const filterButtons = document.querySelectorAll('.isotope-filters li');
-        filterButtons.forEach(function(button) {
-          button.addEventListener('click', function() {
-            // Remove active class from all buttons
-            filterButtons.forEach(function(btn) {
-              btn.classList.remove('filter-active');
-            });
-            
-            // Add active class to clicked button
-            this.classList.add('filter-active');
-            
-            // Get filter value
-            const filterValue = this.getAttribute('data-filter');
-            
-            // Apply filter
-            iso.arrange({
-              filter: filterValue
-            });
-            
-            // Add animation to filtered items
-            const items = galleryContainer.querySelectorAll('.isotope-item');
-            items.forEach(function(item) {
-              if (filterValue === '*' || item.classList.contains(filterValue.substring(1))) {
-                item.style.opacity = '0';
-                item.style.transform = 'scale(0.9)';
-                setTimeout(() => {
-                  item.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
-                  item.style.opacity = '1';
-                  item.style.transform = 'scale(1)';
-                }, 10);
-              }
-            });
-          });
+        this.classList.add('filter-active');
+        
+        const filterValue = this.getAttribute('data-filter');
+        
+        galleryItems.forEach(function(item) {
+          if (filterValue === '*' || item.classList.contains(filterValue.substring(1))) {
+            item.style.display = 'block';
+            setTimeout(() => {
+              item.style.opacity = '1';
+              item.style.transform = 'scale(1)';
+            }, 10);
+          } else {
+            item.style.opacity = '0';
+            item.style.transform = 'scale(0.9)';
+            setTimeout(() => {
+              item.style.display = 'none';
+            }, 300);
+          }
         });
-      }
-    };
-    
-    // Wait for images to load before initializing Isotope
-    imagesLoaded(document.querySelector('.isotope-container'), function() {
-      initIsotope();
+      });
     });
     
-    // Initialize GLightbox
     const lightbox = GLightbox({
       selector: '.glightbox',
       touchNavigation: true,
@@ -569,56 +749,70 @@
       openEffect: 'zoom',
       closeEffect: 'fade',
       slideEffect: 'slide',
-      moreText: 'View Details',
-      moreLength: 60,
       closeButton: true,
       touchFollowAxis: true,
-      keyboardNavigation: true,
-      draggable: true,
-      descPosition: 'bottom'
+      keyboardNavigation: true
     });
     
-    // Add loading animation to images
-    const galleryImages = document.querySelectorAll('.gallery-wrapper img');
-    galleryImages.forEach(img => {
-      img.addEventListener('load', function() {
-        this.style.opacity = '1';
+    const imageModal = document.getElementById('imageModal');
+    if (imageModal) {
+      imageModal.addEventListener('show.bs.modal', function(event) {
+        const button = event.relatedTarget.closest('.gallery-card');
+        const imageSrc = button.getAttribute('data-image-src');
+        const imageTitle = button.getAttribute('data-image-title');
+        const imageDescription = button.getAttribute('data-image-description');
+        const imageCategory = button.getAttribute('data-image-category');
+        
+        document.getElementById('modalImage').src = imageSrc;
+        document.getElementById('modalImage').alt = imageTitle;
+        document.getElementById('modalImageTitle').textContent = imageTitle;
+        document.getElementById('modalImageDescription').textContent = imageDescription;
+        document.getElementById('modalImageCategory').textContent = imageCategory;
+        
+        document.getElementById('modalDownloadBtn').href = imageSrc;
+        document.getElementById('modalDownloadBtn').download = imageTitle.toLowerCase().replace(/\s+/g, '-') + '.jpg';
       });
-      img.style.opacity = '0';
-      img.style.transition = 'opacity 0.5s ease';
+    }
+    
+    document.querySelectorAll('.view-btn').forEach(button => {
+      button.addEventListener('click', function(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        const galleryCard = this.closest('.gallery-card');
+        galleryCard.setAttribute('data-bs-target', '#imageModal');
+        galleryCard.click();
+      });
     });
     
-    // Lazy loading for images
-    const imageObserver = new IntersectionObserver((entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          const img = entry.target;
-          img.src = img.dataset.src || img.src;
-          img.removeAttribute('data-src');
-          observer.unobserve(img);
+    document.querySelectorAll('.gallery-card').forEach(card => {
+      card.addEventListener('click', function(e) {
+        if (!e.target.closest('.lightbox-btn') && !e.target.closest('.view-btn')) {
+          const modalTrigger = this.getAttribute('data-bs-toggle');
+          if (modalTrigger === 'modal') {
+            this.setAttribute('data-bs-target', '#imageModal');
+          }
         }
       });
     });
     
-    galleryImages.forEach(img => {
-      if (!img.complete) {
-        imageObserver.observe(img);
+    window.shareImage = function() {
+      const imageSrc = document.getElementById('modalImage').src;
+      const imageTitle = document.getElementById('modalImageTitle').textContent;
+      
+      if (navigator.share) {
+        navigator.share({
+          title: imageTitle,
+          text: `Photo from Himalaya Forest Resort: ${imageTitle}`,
+          url: imageSrc,
+        });
+      } else {
+        navigator.clipboard.writeText(`${imageTitle} - ${imageSrc}`)
+          .then(() => {
+            alert('Image link copied to clipboard!');
+          });
       }
-    });
+    };
     
-    // Filter button active state management
-    const filterButtons = document.querySelectorAll('.isotope-filters li');
-    filterButtons.forEach(button => {
-      button.addEventListener('click', function() {
-        // Add click animation
-        this.style.transform = 'scale(0.95)';
-        setTimeout(() => {
-          this.style.transform = '';
-        }, 200);
-      });
-    });
-    
-    // Initialize AOS animations
     if (typeof AOS !== 'undefined') {
       AOS.init({
         duration: 800,
@@ -626,6 +820,19 @@
         offset: 100
       });
     }
+    
+    const galleryImages = document.querySelectorAll('.gallery-image');
+    galleryImages.forEach(img => {
+      img.addEventListener('load', function() {
+        this.style.opacity = '1';
+      });
+      img.style.opacity = '0';
+      img.style.transition = 'opacity 0.5s ease';
+      
+      if (img.complete) {
+        img.style.opacity = '1';
+      }
+    });
   });
 </script>
 {% endblock %}

@@ -39,7 +39,7 @@ def home(request):
                 'status': 'Available',
                 'booking_code': 'Available',
                 'description': 'The super deluxe room offers a luxurious and comfortable space designed for your utmost relaxation and convenience.',
-                'image': 'assets/img/rooms/super_deluxe_01.jpg',
+                'image': 'assets/img/rooms/super_deluxe_06.jpg',
                 'popular': True,
                 'amenities': ['Mountain view', 'Balcony', 'SPA BATH/JACUZZI', 'Air conditioning', 'Free Internet', 'Television', 'Safe', 'Tea/Coffee maker']
             },
@@ -52,7 +52,7 @@ def home(request):
                 'status': 'Available',
                 'booking_code': 'Available',
                 'description': 'Perfect for families with spacious accommodation and comfortable bedding.',
-                'image': 'assets/img/rooms/familydeluxe_01.jpg',
+                'image': 'assets/img/rooms/family_deluxe_02.jpg',
                 'popular': False,
                 'amenities': ['Mountain view', 'Balcony', 'SPA BATH/JACUZZI', 'Air conditioning', 'Free Internet', 'Television', 'Safe', 'Tea/Coffee maker']
             },
@@ -65,7 +65,7 @@ def home(request):
                 'status': 'Available',
                 'booking_code': 'Available',
                 'description': 'Ideal for friends or colleagues traveling together with separate beds.',
-                'image': 'assets/img/rooms/deluxe-twin.jpg',
+                'image': 'assets/img/rooms/deluxe_twin_01.jpg',
                 'popular': False,
                 'amenities': ['Mountain view', 'Balcony', 'SPA BATH/JACUZZI', 'Air conditioning', 'Free Internet', 'Television', 'Safe', 'Tea/Coffee maker']
             }
@@ -75,21 +75,21 @@ def home(request):
             {
                 'name': 'Dining & Restaurant',
                 'description': 'Experience exquisite dining with panoramic views from our rooftop restaurant. Three separate dining areas including a wonderful restaurant and lavish bar.',
-                'image': 'assets/img/amenities/restaurant.jpg',
+                'image': 'assets/img/amenities/dining_01.jpg',
                 'icon': 'bi bi-cup-hot',
                 'features': ['360° rooftop view', '3 dining areas', 'Lavish bar', 'Continental breakfast included']
             },
             {
-                'name': 'Conference Hall',
-                'description': 'Annapurna Conference hall for business meetings, events, and special occasions. Fully equipped with modern facilities.',
-                'image': 'assets/img/amenities/conference.jpg',
-                'icon': 'bi bi-building',
-                'features': ['Modern setup', 'Capacity 50+', 'Business services available', 'Wake-up service']
+                'name': 'View',
+                'description': 'Breathtaking 360-degree panoramic views of Begnas Lake, Rupa Lake, and the Himalayan ranges including Annapurna, Dhaulagiri, and Manaslu.',
+                'image': 'assets/img/amenities/view_01.jpg',
+                'icon': 'bi bi-binoculars',
+                'features': ['Panoramic lake views', 'Himalayan mountain ranges', 'Multiple vantage points', 'Sunrise & sunset views']
             },
             {
                 'name': 'Garden & Outdoor',
                 'description': 'Open spacious garden for relaxation and events. Perfect for morning walks, meditation, or simply enjoying nature.',
-                'image': 'assets/img/amenities/garden.jpg',
+                'image': 'assets/img/amenities/garden_01.jpg',
                 'icon': 'bi bi-flower1',
                 'features': ['Spacious garden', 'Multiple terraces', 'Smoking zone', 'Natural setting']
             }
@@ -114,7 +114,7 @@ def home(request):
         
         'stats': [
             {'number': 3, 'label': 'Luxury Room Types', 'icon': 'bi bi-door-closed'},
-            {'number': 5, 'label': 'Ropani Property', 'icon': 'bi bi-geo-alt'},
+            {'number': 5, 'label': 'Ropani Area', 'icon': 'bi bi-geo-alt'},
             {'number': 360, 'label': 'Degree View', 'icon': 'bi bi-compass'},
             {'number': 20, 'label': 'Mountain Peaks', 'icon': 'bi bi-mountain'},
         ],
@@ -162,13 +162,13 @@ def home(request):
             {
                 'text': '"Absolutely stunning views! The service was impeccable and the location breathtaking."',
                 'author': 'Happy Guest',
-                'avatar': 'assets/img/person/guest-avatar.jpg',
+                'avatar': 'assets/img/person/guest_01.jpg',
                 'rating': 5
             },
             {
                 'text': '"Perfect blend of luxury and nature. The panoramic views from the rooftop restaurant are unforgettable."',
                 'author': 'Nature Lover',
-                'avatar': 'assets/img/person/guest2.jpg',
+                'avatar': 'assets/img/person/guest_02.jpg',
                 'rating': 5
             }
         ],
@@ -190,9 +190,9 @@ def home(request):
         ],
         
         'images': {
-            'hero': 'assets/img/hotel/resort-view.jpg',
-            'mountain_view': 'assets/img/hotel/mountain-view.jpg',
-            'lake_view': 'assets/img/hotel/lake-view.jpg',
+            'hero': 'assets/img/hotel/resort_02.jpg',
+            'mountain_view': 'assets/img/views/mountain_01.jpg',
+            'lake_view': 'assets/img/views/begnas_lake_01.jpg',
             'panoramic_view': 'assets/img/hotel/panoramic-view.jpg',
         },
         
@@ -223,10 +223,10 @@ def about_us(request):
         'main_description': 'Nestled in the serene hills overlooking Begnas Lake and Rupa Lake, Himalaya Forest Resort offers a perfect blend of natural beauty and contemporary comfort.',
         'detailed_description': 'Located in Pachabhaiya (Pokhara Metropolitan Ward No. 31), our resort is designed to provide guests with an unforgettable escape from the ordinary. Every moment at our resort is crafted to offer peace, luxury, and memories that last a lifetime.',
         
-        'video_url': 'https://www.youtube.com/watch?v=Y7f98aduVJ8',
         
-        'main_image': 'assets/img/hotel/showcase-9.webp',
-        'secondary_image': 'assets/img/hotel/room-8.webp',
+        
+        'main_image': 'assets/img/resort/resort_01.jpg',
+        'secondary_image':'assets/img/resort/resort_02.jpg',
     }
     
     milestones = [
@@ -254,21 +254,21 @@ def about_us(request):
         {
             'title': 'Panoramic Views',
             'description': 'Breathtaking views of Begnas Lake, Rupa Lake, and Himalayan ranges from every room',
-            'image': 'assets/img/hotel/amenities-3.webp',
+            'image': 'assets/img/views/mountain_01.jpg',
             'icon': 'bi-flower1',
             'alt': 'Spa Services'
         },
         {
             'title': 'Local Cuisine',
             'description': 'Authentic Nepali and international cuisine prepared by expert chefs',
-            'image': 'assets/img/hotel/dining-4.webp',
+            'image': 'assets/img/amenities/food_01.jpg',
             'icon': 'bi-cup-hot',
             'alt': 'Fine Dining'
         },
         {
             'title': 'Prime Location',
             'description': 'Nestled between two beautiful lakes with easy access to Pokhara attractions',
-            'image': 'assets/img/hotel/location-2.webp',
+            'image': 'assets/img/views/view_02.jpg',
             'icon': 'bi-geo-alt',
             'alt': 'Prime Location'
         }
@@ -307,7 +307,7 @@ def about_us(request):
             'name': 'Super Deluxe Room',
             'price': 6500,
             'description': 'Our premium Super Deluxe rooms offer panoramic views of Begnas Lake and the surrounding Himalayan ranges. Featuring modern amenities and elegant decor for the ultimate comfort experience.',
-            'image': 'assets/img/hotel/room-14.webp',
+            'image': 'assets/img/rooms/super_deluxe_06.jpg',
             'capacity': 2,
             'size': '45m²',
             'view': 'Lake View',
@@ -321,7 +321,7 @@ def about_us(request):
             'name': 'Family Deluxe Room',
             'price': 5500,
             'description': 'Spacious accommodation perfect for families with connecting rooms and child-friendly amenities.',
-            'image': 'assets/img/hotel/room-6.webp',
+            'image': 'assets/img/rooms/family_deluxe_02.jpg',
             'capacity': 3,
             'size': '50m²',
             'view': 'Garden View',
@@ -335,7 +335,7 @@ def about_us(request):
             'name': 'Deluxe Twin Room',
             'price': 4500,
             'description': 'Perfect for friends or colleagues traveling together with two comfortable beds and shared space.',
-            'image': 'assets/img/hotel/room-19.webp',
+            'image': 'assets/img/rooms/deluxe_twin_03.jpg',
             'capacity': 2,
             'size': '40m²',
             'view': 'Mountain View',
@@ -556,9 +556,311 @@ def contact_us(request):
 
 
 
-def gallery(request):
-    return render(request, 'gallery.html')
 
+def gallery(request):
+    gallery_images = [
+        {
+            'id': 1,
+            'image': 'assets/img/rooms/deluxe_twin_01.jpg',
+            'alt': 'Deluxe Twin Room - Interior View 1',
+            'title': 'Deluxe Twin Room',
+            'description': 'Comfortable room with twin beds and mountain view',
+            'lightbox_title': 'Deluxe Twin Room - Spacious accommodation perfect for friends or colleagues',
+            'category': 'rooms',
+            'category_name': 'Rooms & Suites',
+            'col_class': 'col-lg-4',
+            'height_class': 'regular'
+        },
+        {
+            'id': 2,
+            'image': 'assets/img/rooms/deluxe_twin_02.jpg',
+            'alt': 'Deluxe Twin Room - Interior View 2',
+            'title': 'Deluxe Twin Room',
+            'description': 'Modern amenities and comfortable furnishings',
+            'lightbox_title': 'Deluxe Twin Room - Featuring modern decor and essential amenities',
+            'category': 'rooms',
+            'category_name': 'Rooms & Suites',
+            'col_class': 'col-lg-4',
+            'height_class': 'regular'
+        },
+        {
+            'id': 3,
+            'image': 'assets/img/rooms/deluxe_twin_03.jpg',
+            'alt': 'Deluxe Twin Room - Bathroom',
+            'title': 'Deluxe Twin Bathroom',
+            'description': 'Private bathroom with spa bath facilities',
+            'lightbox_title': 'Deluxe Twin Room Bathroom - Equipped with SPA bath and premium toiletries',
+            'category': 'rooms',
+            'category_name': 'Rooms & Suites',
+            'col_class': 'col-lg-4',
+            'height_class': 'regular'
+        },
+        {
+            'id': 4,
+            'image': 'assets/img/rooms/family_deluxe_01.jpg',
+            'alt': 'Family Deluxe Room - Main Area',
+            'title': 'Family Deluxe Room',
+            'description': 'Spacious accommodation perfect for families',
+            'lightbox_title': 'Family Deluxe Room - Comfortable space for up to 3 guests',
+            'category': 'rooms',
+            'category_name': 'Rooms & Suites',
+            'col_class': 'col-lg-4',
+            'height_class': 'regular'
+        },
+        {
+            'id': 5,
+            'image': 'assets/img/rooms/family_deluxe_02.jpg',
+            'alt': 'Family Deluxe Room - Sleeping Area',
+            'title': 'Family Deluxe Room',
+            'description': 'Two comfortable beds with premium bedding',
+            'lightbox_title': 'Family Deluxe Room - Sleeping area with two comfortable beds',
+            'category': 'rooms',
+            'category_name': 'Rooms & Suites',
+            'col_class': 'col-lg-4',
+            'height_class': 'regular'
+        },
+        {
+            'id': 6,
+            'image': 'assets/img/rooms/family_deluxe_03.jpg',
+            'alt': 'Family Deluxe Room - Seating Area',
+            'title': 'Family Deluxe Room',
+            'description': 'Cozy seating area with balcony access',
+            'lightbox_title': 'Family Deluxe Room - Comfortable seating area perfect for family time',
+            'category': 'rooms',
+            'category_name': 'Rooms & Suites',
+            'col_class': 'col-lg-4',
+            'height_class': 'regular'
+        },
+        {
+            'id': 7,
+            'image': 'assets/img/rooms/super_deluxe_02.jpg',
+            'alt': 'Super Deluxe Room - Panoramic View',
+            'title': 'Super Deluxe Room',
+            'description': 'Luxurious room with breathtaking mountain views',
+            'lightbox_title': 'Super Deluxe Room - Featuring panoramic views of Annapurna range',
+            'category': 'rooms',
+            'category_name': 'Rooms & Suites',
+            'col_class': 'col-lg-6',
+            'height_class': 'tall'
+        },
+        {
+            'id': 8,
+            'image': 'assets/img/rooms/super_deluxe_03.jpg',
+            'alt': 'Super Deluxe Room - Interior Luxury',
+            'title': 'Super Deluxe Room',
+            'description': 'Premium furnishings and elegant decor',
+            'lightbox_title': 'Super Deluxe Room - Luxury interior with premium amenities',
+            'category': 'rooms',
+            'category_name': 'Rooms & Suites',
+            'col_class': 'col-lg-4',
+            'height_class': 'regular'
+        },
+        {
+            'id': 9,
+            'image': 'assets/img/rooms/super_deluxe_04.jpg',
+            'alt': 'Super Deluxe Room - Jacuzzi Bathroom',
+            'title': 'Super Deluxe Jacuzzi',
+            'description': 'Luxurious bathroom with spa bath/jacuzzi',
+            'lightbox_title': 'Super Deluxe Room - Premium bathroom with SPA bath/Jacuzzi',
+            'category': 'rooms',
+            'category_name': 'Rooms & Suites',
+            'col_class': 'col-lg-4',
+            'height_class': 'regular'
+        },
+        {
+            'id': 10,
+            'image': 'assets/img/views/begnas_lake_01.jpg',
+            'alt': 'Begnas Lake Panoramic View',
+            'title': 'Begnas Lake View',
+            'description': 'Stunning panoramic view of Begnas Lake',
+            'lightbox_title': 'Panoramic view of Begnas Lake from Himalaya Forest Resort',
+            'category': 'views',
+            'category_name': 'Lake & Mountain Views',
+            'col_class': 'col-lg-8',
+            'height_class': 'tall'
+        },
+        {
+            'id': 11,
+            'image': 'assets/img/views/mountain_01.jpg',
+            'alt': 'Himalayan Mountain Range',
+            'title': 'Himalayan Mountains',
+            'description': 'View of Annapurna, Dhaulagiri, and Manaslu ranges',
+            'lightbox_title': '360-degree panoramic view of three major Himalayan ranges',
+            'category': 'views',
+            'category_name': 'Lake & Mountain Views',
+            'col_class': 'col-lg-4',
+            'height_class': 'regular'
+        },
+        {
+            'id': 12,
+            'image': 'assets/img/views/view_01.jpg',
+            'alt': 'Resort Surroundings View 1',
+            'title': 'Natural Surroundings',
+            'description': 'Peaceful forest and village views',
+            'lightbox_title': 'Natural beauty surrounding Himalaya Forest Resort',
+            'category': 'views',
+            'category_name': 'Lake & Mountain Views',
+            'col_class': 'col-lg-4',
+            'height_class': 'regular'
+        },
+        {
+            'id': 13,
+            'image': 'assets/img/views/view_02.jpg',
+            'alt': 'Resort Surroundings View 2',
+            'title': 'Countryside View',
+            'description': 'Scenic view of local villages and landscapes',
+            'lightbox_title': 'View of local villages and Nepali countryside',
+            'category': 'views',
+            'category_name': 'Lake & Mountain Views',
+            'col_class': 'col-lg-4',
+            'height_class': 'regular'
+        },
+        {
+            'id': 14,
+            'image': 'assets/img/views/view_03.jpg',
+            'alt': 'Resort Surroundings View 3',
+            'title': 'Forest View',
+            'description': 'Lush forest surrounding the resort',
+            'lightbox_title': 'Dense forest surrounding the resort property',
+            'category': 'views',
+            'category_name': 'Lake & Mountain Views',
+            'col_class': 'col-lg-4',
+            'height_class': 'regular'
+        },
+        {
+            'id': 15,
+            'image': 'assets/img/views/view_04.jpg',
+            'alt': 'Resort Surroundings View 4',
+            'title': 'Garden View',
+            'description': 'Beautiful garden and outdoor spaces',
+            'lightbox_title': 'Well-maintained garden area of the resort',
+            'category': 'views',
+            'category_name': 'Lake & Mountain Views',
+            'col_class': 'col-lg-4',
+            'height_class': 'regular'
+        },
+        {
+            'id': 16,
+            'image': 'assets/img/views/view_05.jpg',
+            'alt': 'Resort Surroundings View 5',
+            'title': 'Sunset View',
+            'description': 'Breathtaking sunset over the mountains',
+            'lightbox_title': 'Stunning sunset view from the rooftop restaurant',
+            'category': 'views',
+            'category_name': 'Lake & Mountain Views',
+            'col_class': 'col-lg-4',
+            'height_class': 'regular'
+        },
+        {
+            'id': 17,
+            'image': 'assets/img/views/view_06.jpg',
+            'alt': 'Resort Surroundings View 6',
+            'title': 'Morning View',
+            'description': 'Morning mist over the lakes and mountains',
+            'lightbox_title': 'Early morning view with mist over Begnas Lake',
+            'category': 'views',
+            'category_name': 'Lake & Mountain Views',
+            'col_class': 'col-lg-4',
+            'height_class': 'regular'
+        },
+        {
+            'id': 18,
+            'image': 'assets/img/views/view_07.jpg',
+            'alt': 'Resort Surroundings View 7',
+            'title': 'Panoramic Landscape',
+            'description': '360-degree view from rooftop restaurant',
+            'lightbox_title': 'Complete 360-degree panoramic view from resort rooftop',
+            'category': 'views',
+            'category_name': 'Lake & Mountain Views',
+            'col_class': 'col-lg-8',
+            'height_class': 'tall'
+        },
+        {
+            'id': 19,
+            'image': 'assets/img/amenities/dining_01.jpg',
+            'alt': 'Restaurant Dining Area',
+            'title': 'Restaurant Interior',
+            'description': 'Elegant dining area with mountain views',
+            'lightbox_title': 'Main restaurant serving authentic Nepali and international cuisine',
+            'category': 'amenities',
+            'category_name': 'Amenities & Facilities',
+            'col_class': 'col-lg-6',
+            'height_class': 'regular'
+        },
+        {
+            'id': 20,
+            'image': 'assets/img/amenities/garden_01.jpg',
+            'alt': 'Resort Garden Area',
+            'title': 'Landscaped Garden',
+            'description': 'Beautiful open garden space',
+            'lightbox_title': 'Open spacious garden perfect for relaxation',
+            'category': 'amenities',
+            'category_name': 'Amenities & Facilities',
+            'col_class': 'col-lg-6',
+            'height_class': 'regular'
+        },
+        {
+            'id': 21,
+            'image': 'assets/img/resort/resort_01.jpg',
+            'alt': 'Aerial View of Resort',
+            'title': 'Resort Aerial View',
+            'description': 'Aerial view showing resort location',
+            'lightbox_title': 'Aerial view of Himalaya Forest Resort amidst nature',
+            'category': 'resort',
+            'category_name': 'Resort Exterior',
+            'col_class': 'col-lg-8',
+            'height_class': 'tall'
+        },
+        {
+            'id': 22,
+            'image': 'assets/img/resort/resort_02.jpg',
+            'alt': 'Closeup of Resort Building',
+            'title': 'Resort Building',
+            'description': 'Closeup view of resort architecture',
+            'lightbox_title': 'Closeup view of Himalaya Forest Resort building',
+            'category': 'resort',
+            'category_name': 'Resort Exterior',
+            'col_class': 'col-lg-4',
+            'height_class': 'regular'
+        },
+    ]
+    
+    categories = []
+    category_counts = {}
+    
+    for image in gallery_images:
+        if image['category'] not in category_counts:
+            category_counts[image['category']] = 0
+            categories.append({
+                'slug': image['category'],
+                'name': image['category_name']
+            })
+        category_counts[image['category']] += 1
+    
+    categories.insert(0, {
+        'slug': 'all',
+        'name': 'All Photos'
+    })
+    
+    total_images = len(gallery_images)
+    room_images_count = len([img for img in gallery_images if img['category'] == 'rooms'])
+    view_images_count = len([img for img in gallery_images if img['category'] == 'views'])
+    
+    for category in categories[1:]:
+        category['count'] = category_counts.get(category['slug'], 0)
+    
+    context = {
+        'gallery_images': gallery_images,
+        'categories': categories,
+        'total_images': total_images,
+        'room_images_count': room_images_count,
+        'view_images_count': view_images_count,
+        'title': 'Photo Gallery - Himalaya Forest Resort',
+        'meta_description': 'Explore our photo gallery showcasing the beauty of Himalaya Forest Resort in Pokhara. View our luxurious rooms, breathtaking panoramic views of Begnas Lake, Rupa Lake, and Himalayan mountains, resort amenities, and beautiful surroundings.',
+        'meta_keywords': 'Resort Gallery, Pokhara Photos, Hotel Pictures, Room Images, Begnas Lake View, Rupa Lake Photos, Himalayan Mountains, Resort Amenities, Nepal Tourism'
+    }
+    
+    return render(request, 'gallery.html', context)
 
 def rooms(request):
     rooms_data = [
@@ -573,7 +875,7 @@ def rooms(request):
             'size': '45 sq m',
             'view_type': 'lake_mountain',
             'description': 'Experience luxury with panoramic views of Begnas Lake and Himalayas. Features modern amenities, comfortable seating area, and private balcony.',
-            'image': 'assets/img/hotel/room-15.webp',
+            'image': 'assets/img/rooms/super_deluxe_06.jpg',
             'features': ['Lake View', 'Most Popular', 'SPA Bath'],
             'amenities': ['Air Conditioning', 'Heating', 'Fan', 'Mountain View', 'Balcony', 'Terrace', 'SPA Bath/Jacuzzi', 'Bathrobes', 'Free Toiletries', 'Bidet', 'Shower', 'Tea/Coffee Maker', 'Electric Kettle', 'Dining Area', 'Work Desk', 'Television', 'Safe'],
             'rating': 4.9,
@@ -593,7 +895,7 @@ def rooms(request):
             'size': '50 sq m',
             'view_type': 'lake_mountain',
             'description': 'Spacious accommodation perfect for families. Features connecting rooms option, kid-friendly amenities, and garden access.',
-            'image': 'assets/img/hotel/room-3.webp',
+            'image': 'assets/img/rooms/family_deluxe_02.jpg',
             'features': ['Lake View', 'Family Friendly', 'SPA Bath'],
             'amenities': ['Air Conditioning', 'Heating', 'Fan', 'Mountain View', 'Balcony', 'Terrace', 'SPA Bath/Jacuzzi', 'Bathrobes', 'Free Toiletries', 'Bidet', 'Shower', 'Tea/Coffee Maker', 'Electric Kettle', 'Dining Area', 'Work Desk', 'Television', 'Safe'],
             'rating': 4.7,
@@ -613,7 +915,7 @@ def rooms(request):
             'size': '40 sq m',
             'view_type': 'mountain',
             'description': 'Perfect for friends or colleagues. Features twin beds, comfortable workspace, and stunning mountain views.',
-            'image': 'assets/img/hotel/room-7.webp',
+            'image': 'assets/img/rooms/deluxe_twin_03.jpg',
             'features': ['Mountain View', 'Best Value', 'SPA Bath'],
             'amenities': ['Air Conditioning', 'Heating', 'Fan', 'Mountain View', 'Balcony', 'Terrace', 'SPA Bath/Jacuzzi', 'Bathrobes', 'Free Toiletries', 'Bidet', 'Shower', 'Tea/Coffee Maker', 'Electric Kettle', 'Dining Area', 'Work Desk', 'Television', 'Safe'],
             'rating': 4.5,
@@ -623,6 +925,7 @@ def rooms(request):
             'badge': 'value'
         }
     ]
+    
     
     context = {
         'rooms': rooms_data,
@@ -648,7 +951,7 @@ def room_detail(request, room_id=None, room_slug=None):
             'size': '45 sq m',
             'view_type': 'lake_mountain',
             'description': 'Experience luxury with panoramic views of Begnas Lake and Himalayas. Features modern amenities, comfortable seating area, and private balcony.',
-            'image': 'assets/img/hotel/room-15.webp',
+            'image': 'assets/img/rooms/super_deluxe_06.jpg',
             'features': ['Lake View', 'Most Popular', 'SPA Bath'],
             'amenities': ['Air Conditioning', 'Heating', 'Fan', 'Mountain View', 'Balcony', 'Terrace', 'SPA Bath/Jacuzzi', 'Bathrobes', 'Free Toiletries', 'Bidet', 'Shower', 'Tea/Coffee Maker', 'Electric Kettle', 'Dining Area', 'Work Desk', 'Television', 'Safe'],
             'rating': 4.9,
@@ -667,10 +970,12 @@ def room_detail(request, room_id=None, room_slug=None):
                 'smoking': 'Non-smoking room'
             },
             'gallery_images': [
-                'assets/img/hotel/room-15.webp',
-                'assets/img/hotel/room-16.webp',
-                'assets/img/hotel/room-17.webp',
-                'assets/img/hotel/room-18.webp'
+                'assets/img/rooms/super_deluxe_02.jpg',
+                'assets/img/rooms/super_deluxe_03.jpg',
+                'assets/img/rooms/super_deluxe_05.jpg',
+                'assets/img/rooms/super_deluxe_04.jpg',
+
+                
             ]
         },
         2: {
@@ -684,7 +989,7 @@ def room_detail(request, room_id=None, room_slug=None):
             'size': '50 sq m',
             'view_type': 'lake_mountain',
             'description': 'Spacious accommodation perfect for families. Features connecting rooms option, kid-friendly amenities, and garden access.',
-            'image': 'assets/img/hotel/room-3.webp',
+            'image':  'assets/img/rooms/family_deluxe_02.jpg',
             'features': ['Lake View', 'Family Friendly', 'SPA Bath'],
             'amenities': ['Air Conditioning', 'Heating', 'Fan', 'Mountain View', 'Balcony', 'Terrace', 'SPA Bath/Jacuzzi', 'Bathrobes', 'Free Toiletries', 'Bidet', 'Shower', 'Tea/Coffee Maker', 'Electric Kettle', 'Dining Area', 'Work Desk', 'Television', 'Safe'],
             'rating': 4.7,
@@ -703,10 +1008,13 @@ def room_detail(request, room_id=None, room_slug=None):
                 'smoking': 'Non-smoking room'
             },
             'gallery_images': [
-                'assets/img/hotel/room-3.webp',
-                'assets/img/hotel/room-4.webp',
-                'assets/img/hotel/room-5.webp',
-                'assets/img/hotel/room-6.webp'
+               'assets/img/rooms/family_deluxe_01.jpg',
+               'assets/img/rooms/family_deluxe_03.jpg',
+               'assets/img/rooms/family_deluxe_04.jpg',
+               'assets/img/rooms/family_deluxe_05.jpg',
+
+
+
             ]
         },
         3: {
@@ -720,7 +1028,7 @@ def room_detail(request, room_id=None, room_slug=None):
             'size': '40 sq m',
             'view_type': 'mountain',
             'description': 'Perfect for friends or colleagues. Features twin beds, comfortable workspace, and stunning mountain views.',
-            'image': 'assets/img/hotel/room-7.webp',
+            'image': 'assets/img/rooms/deluxe_twin_03.jpg',
             'features': ['Mountain View', 'Best Value', 'SPA Bath'],
             'amenities': ['Air Conditioning', 'Heating', 'Fan', 'Mountain View', 'Balcony', 'Terrace', 'SPA Bath/Jacuzzi', 'Bathrobes', 'Free Toiletries', 'Bidet', 'Shower', 'Tea/Coffee Maker', 'Electric Kettle', 'Dining Area', 'Work Desk', 'Television', 'Safe'],
             'rating': 4.5,
@@ -739,10 +1047,15 @@ def room_detail(request, room_id=None, room_slug=None):
                 'smoking': 'Non-smoking room'
             },
             'gallery_images': [
-                'assets/img/hotel/room-7.webp',
-                'assets/img/hotel/room-8.webp',
-                'assets/img/hotel/room-9.webp',
-                'assets/img/hotel/room-10.webp'
+                'assets/img/rooms/deluxe_twin_01.jpg',
+                'assets/img/rooms/deluxe_twin_04.jpg',
+                'assets/img/rooms/deluxe_twin_05.jpg',
+                'assets/img/rooms/deluxe_twin_06.jpg',
+
+
+
+
+               
             ]
         }
     }
