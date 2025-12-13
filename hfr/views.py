@@ -39,7 +39,7 @@ def home(request):
                 'status': 'Available',
                 'booking_code': 'Available',
                 'description': 'The super deluxe room offers a luxurious and comfortable space designed for your utmost relaxation and convenience.',
-                'image': 'img/rooms/super-deluxe.jpg',
+                'image': 'assets/img/rooms/super_deluxe_01.jpg',
                 'popular': True,
                 'amenities': ['Mountain view', 'Balcony', 'SPA BATH/JACUZZI', 'Air conditioning', 'Free Internet', 'Television', 'Safe', 'Tea/Coffee maker']
             },
@@ -52,7 +52,7 @@ def home(request):
                 'status': 'Available',
                 'booking_code': 'Available',
                 'description': 'Perfect for families with spacious accommodation and comfortable bedding.',
-                'image': 'img/rooms/family-deluxe.jpg',
+                'image': 'assets/img/rooms/familydeluxe_01.jpg',
                 'popular': False,
                 'amenities': ['Mountain view', 'Balcony', 'SPA BATH/JACUZZI', 'Air conditioning', 'Free Internet', 'Television', 'Safe', 'Tea/Coffee maker']
             },
@@ -65,7 +65,7 @@ def home(request):
                 'status': 'Available',
                 'booking_code': 'Available',
                 'description': 'Ideal for friends or colleagues traveling together with separate beds.',
-                'image': 'img/rooms/deluxe-twin.jpg',
+                'image': 'assets/img/rooms/deluxe-twin.jpg',
                 'popular': False,
                 'amenities': ['Mountain view', 'Balcony', 'SPA BATH/JACUZZI', 'Air conditioning', 'Free Internet', 'Television', 'Safe', 'Tea/Coffee maker']
             }
@@ -75,21 +75,21 @@ def home(request):
             {
                 'name': 'Dining & Restaurant',
                 'description': 'Experience exquisite dining with panoramic views from our rooftop restaurant. Three separate dining areas including a wonderful restaurant and lavish bar.',
-                'image': 'img/amenities/restaurant.jpg',
+                'image': 'assets/img/amenities/restaurant.jpg',
                 'icon': 'bi bi-cup-hot',
                 'features': ['360° rooftop view', '3 dining areas', 'Lavish bar', 'Continental breakfast included']
             },
             {
                 'name': 'Conference Hall',
                 'description': 'Annapurna Conference hall for business meetings, events, and special occasions. Fully equipped with modern facilities.',
-                'image': 'img/amenities/conference.jpg',
+                'image': 'assets/img/amenities/conference.jpg',
                 'icon': 'bi bi-building',
                 'features': ['Modern setup', 'Capacity 50+', 'Business services available', 'Wake-up service']
             },
             {
                 'name': 'Garden & Outdoor',
                 'description': 'Open spacious garden for relaxation and events. Perfect for morning walks, meditation, or simply enjoying nature.',
-                'image': 'img/amenities/garden.jpg',
+                'image': 'assets/img/amenities/garden.jpg',
                 'icon': 'bi bi-flower1',
                 'features': ['Spacious garden', 'Multiple terraces', 'Smoking zone', 'Natural setting']
             }
@@ -162,13 +162,13 @@ def home(request):
             {
                 'text': '"Absolutely stunning views! The service was impeccable and the location breathtaking."',
                 'author': 'Happy Guest',
-                'avatar': 'img/person/guest-avatar.jpg',
+                'avatar': 'assets/img/person/guest-avatar.jpg',
                 'rating': 5
             },
             {
                 'text': '"Perfect blend of luxury and nature. The panoramic views from the rooftop restaurant are unforgettable."',
                 'author': 'Nature Lover',
-                'avatar': 'img/person/guest2.jpg',
+                'avatar': 'assets/img/person/guest2.jpg',
                 'rating': 5
             }
         ],
@@ -190,10 +190,10 @@ def home(request):
         ],
         
         'images': {
-            'hero': 'img/hotel/resort-view.jpg',
-            'mountain_view': 'img/hotel/mountain-view.jpg',
-            'lake_view': 'img/hotel/lake-view.jpg',
-            'panoramic_view': 'img/hotel/panoramic-view.jpg',
+            'hero': 'assets/img/hotel/resort-view.jpg',
+            'mountain_view': 'assets/img/hotel/mountain-view.jpg',
+            'lake_view': 'assets/img/hotel/lake-view.jpg',
+            'panoramic_view': 'assets/img/hotel/panoramic-view.jpg',
         },
         
         'special_features': [
