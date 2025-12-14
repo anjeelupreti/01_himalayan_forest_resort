@@ -4,111 +4,587 @@
     <meta charset="utf-8">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
             line-height: 1.6;
-            color: #333;
-            max-width: 600px;
-            margin: 0 auto;
-            padding: 20px;
+            color: #2c3e50;
+            margin: 0;
+            padding: 0;
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%);
         }
-        .header {
-            background: linear-gradient(135deg, #27ae60, #219653);
+        
+        .container {
+            max-width: 700px;
+            margin: 30px auto;
+            background: #ffffff;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+        
+        /* Professional Letterhead Header */
+        .letterhead {
+            background: linear-gradient(135deg, #2f5d50 0%, #3a7c6e 100%);
             color: white;
-            padding: 20px;
+            padding: 35px 40px;
+            position: relative;
+            border-bottom: 4px solid #e6c35c;
+        }
+        
+        .letterhead-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .resort-identity {
+            flex: 1;
+        }
+        
+        .resort-name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0 0 8px 0;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+        }
+        
+        .resort-tagline {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 300;
+            letter-spacing: 1px;
+            margin: 0;
+        }
+        
+        .resort-details {
+            text-align: right;
+            font-size: 0.9rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+        
+        .inquiry-header {
             text-align: center;
-            border-radius: 10px 10px 0 0;
+            padding: 25px 0;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            margin-top: 15px;
         }
-        .content {
-            background: #f8f9fa;
-            padding: 30px;
-            border: 1px solid #e1e5e9;
-            border-top: none;
+        
+        .inquiry-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin: 0 0 15px 0;
+            color: #ffffff;
         }
-        .greeting {
-            font-size: 18px;
-            margin-bottom: 20px;
-        }
-        .info-box {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            margin: 20px 0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        .contact-info {
-            background: #e8f6ef;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 20px 0;
-            border-left: 4px solid #27ae60;
-        }
-        .footer {
-            text-align: center;
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 1px solid #eee;
-            color: #666;
-            font-size: 12px;
-        }
-        .btn {
+        
+        .inquiry-badge {
+            background: linear-gradient(135deg, #e6c35c, #d4a017);
+            color: white;
+            padding: 12px 35px;
+            border-radius: 50px;
             display: inline-block;
-            background: #27ae60;
+            font-weight: 700;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(230, 195, 92, 0.3);
+            letter-spacing: 1px;
+        }
+        
+        .inquiry-meta {
+            margin-top: 15px;
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 45px 40px;
+        }
+        
+        .section {
+            margin-bottom: 35px;
+            padding-bottom: 25px;
+            border-bottom: 2px solid #eaeaea;
+        }
+        
+        .section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+        }
+        
+        .section-title {
+            color: #2f5d50;
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            padding-bottom: 12px;
+            border-bottom: 3px solid #e6c35c;
+            position: relative;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -3px;
+            left: 0;
+            width: 80px;
+            height: 3px;
+            background: #2f5d50;
+        }
+        
+        .greeting {
+            font-size: 1.1rem;
+            margin-bottom: 35px;
+            color: #40524d;
+            line-height: 1.8;
+            background: #f8f9fa;
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 4px solid #e6c35c;
+        }
+        
+        .inquiry-details {
+            background: linear-gradient(135deg, #f1f6f5, #e8f0ef);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border: 1px solid rgba(47, 93, 80, 0.1);
+        }
+        
+        .detail-item {
+            display: flex;
+            margin-bottom: 15px;
+            align-items: center;
+        }
+        
+        .detail-label {
+            font-weight: 700;
+            color: #2f5d50;
+            width: 140px;
+            flex-shrink: 0;
+            font-size: 0.95rem;
+        }
+        
+        .detail-value {
+            color: #34495e;
+            flex: 1;
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+        
+        .contact-info {
+            background: linear-gradient(135deg, #fff9e6, #fff3cc);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 35px 0;
+            border: 2px solid #e6c35c;
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            padding: 15px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05);
+        }
+        
+        .contact-item i {
+            color: #e6c35c;
+            font-size: 1.2rem;
+        }
+        
+        .contact-item span {
+            font-size: 0.95rem;
+            color: #2c3e50;
+        }
+        
+        .suggestions {
+            margin: 30px 0;
+        }
+        
+        .suggestion-list {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .suggestion-list li {
+            margin-bottom: 15px;
+            padding-left: 30px;
+            position: relative;
+            color: #555;
+            line-height: 1.7;
+        }
+        
+        .suggestion-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #e6c35c;
+            font-weight: bold;
+            font-size: 1.1rem;
+        }
+        
+        .cta-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            margin: 40px 0;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(135deg, #2f5d50, #3a7c6e);
             color: white;
-            padding: 12px 25px;
+            padding: 15px 30px;
             text-decoration: none;
-            border-radius: 5px;
-            margin: 10px 0;
+            border-radius: 50px;
+            font-weight: 600;
+            transition: all 0.3s;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(47, 93, 80, 0.3);
+        }
+        
+        .btn-secondary {
+            background: linear-gradient(135deg, #e6c35c, #d4a017);
+        }
+        
+        .btn i {
+            font-size: 1.1rem;
+        }
+        
+        .footer {
+            background: linear-gradient(135deg, #1e3c32, #2f5d50);
+            color: white;
+            padding: 45px 30px;
+            text-align: center;
+            border-top: 4px solid #e6c35c;
+        }
+        
+        .footer-logo {
+            margin-bottom: 25px;
+        }
+        
+        .footer-logo img {
+            max-width: 180px;
+            filter: brightness(0) invert(1);
+            opacity: 0.9;
+        }
+        
+        .footer-info {
+            margin: 20px 0;
+            line-height: 1.6;
+            opacity: 0.9;
+        }
+        
+        .resort-highlights {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 25px 0;
+        }
+        
+        .highlight-item {
+            padding: 15px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+            font-size: 0.85rem;
+            text-align: center;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .footer-links a {
+            color: #e6c35c;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+        }
+        
+        .footer-links a:hover {
+            color: white;
+            text-decoration: underline;
+        }
+        
+        .meta-info {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.85rem;
+            opacity: 0.8;
+        }
+        
+        .watermark {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            opacity: 0.05;
+            font-size: 10rem;
+            color: #2f5d50;
+            font-weight: 700;
+            pointer-events: none;
+            transform: rotate(-15deg);
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                margin: 15px;
+                border-radius: 15px;
+            }
+            
+            .content {
+                padding: 30px 20px;
+            }
+            
+            .letterhead {
+                padding: 25px 20px;
+            }
+            
+            .letterhead-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .resort-details {
+                text-align: center;
+                margin-top: 15px;
+            }
+            
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .resort-highlights {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                justify-content: center;
+            }
+            
+            .resort-name {
+                font-size: 2rem;
+            }
+            
+            .inquiry-title {
+                font-size: 1.5rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .letterhead {
+                padding: 20px 15px;
+            }
+            
+            .content {
+                padding: 25px 15px;
+            }
+            
+            .resort-name {
+                font-size: 1.8rem;
+            }
+            
+            .inquiry-title {
+                font-size: 1.3rem;
+            }
+            
+            .inquiry-badge {
+                padding: 10px 25px;
+                font-size: 1.1rem;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="header">
-        <h2>Thank You for Contacting Us!</h2>
-        <p>{{ resort_name }}</p>
-    </div>
-    
-    <div class="content">
-        <div class="greeting">
-            <p>Dear <strong>{{ name }}</strong>,</p>
-        </div>
-        
-        <p>Thank you for contacting <strong>{{ resort_name }}</strong>!</p>
-        
-        <div class="info-box">
-            <p>We have received your message regarding <strong>"{{ subject }}"</strong> and our team will get back to you within <strong>24 hours</strong>.</p>
+    <div class="container">
+        <!-- Professional Letterhead Header -->
+        <div class="letterhead">
+            <div class="letterhead-header">
+                <div class="resort-identity">
+                    <h1 class="resort-name">HIMALAYA FOREST RESORT</h1>
+                    <p class="resort-tagline">LUXURY AMIDST THE HIMALAYAN SERENITY</p>
+                </div>
+                <div class="resort-details">
+                    <div><strong>Location:</strong> Pachabhaiya, Deorāli, Nepal</div>
+                    <div><strong>Phone:</strong> {{ reservation_phone }}</div>
+                    <div><strong>Email:</strong> {{ resort_email }}</div>
+                    <div><strong>Website:</strong> www.himalayaforestresort.com</div>
+                </div>
+            </div>
             
-            <p>We appreciate you considering us for your stay in Pokhara and look forward to assisting you with your travel plans.</p>
+            <div class="inquiry-header">
+                <h2 class="inquiry-title">THANK YOU FOR CONTACTING US</h2>
+                <div class="inquiry-badge">WE'VE RECEIVED YOUR INQUIRY</div>
+                <div class="inquiry-meta">
+                    Submitted via Online Contact Form | Received: {{ timestamp }}
+                </div>
+            </div>
         </div>
         
-        <div class="contact-info">
-            <h3>Our Contact Information:</h3>
-            <p><strong>Phone:</strong> {{ reservation_phone }}</p>
-            <p><strong>Address:</strong> {{ resort_address }}, {{ resort_city }}</p>
-            <p><strong>Email:</strong> {{ resort_email }}</p>
+        <div class="content">
+            <div class="greeting">
+                <p>Dear <strong style="color: #2f5d50;">{{ name }}</strong>,</p>
+                <p>Thank you for reaching out to <strong>{{ resort_name }}</strong> regarding your inquiry about <strong>{{ contact_subject }}</strong>. We appreciate you considering us for your Himalayan getaway and look forward to assisting you.</p>
+            </div>
             
-            <p style="margin-top: 15px;">
-                <strong>For urgent inquiries,</strong> please feel free to call us directly.
-            </p>
+            <div class="section">
+                <h2 class="section-title">Your Inquiry Details</h2>
+                <div class="inquiry-details">
+                    <div class="detail-item">
+                        <span class="detail-label">Inquiry Type:</span>
+                        <span class="detail-value">{{ contact_subject }}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Reference ID:</span>
+                        <span class="detail-value">CON-{{ timestamp|slice:"0:10"|cut:"-" }}-{{ name|slice:"0:3"|upper }}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Submitted:</span>
+                        <span class="detail-value">{{ timestamp }}</span>
+                    </div>
+                    <div class="detail-item">
+                        <span class="detail-label">Response Time:</span>
+                        <span class="detail-value"><span style="color: #e6c35c; font-weight: 700;">Within 24 hours</span></span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="contact-info">
+                <h2 class="section-title">Need Immediate Assistance?</h2>
+                <p style="margin-bottom: 20px; color: #8a6d3b;">Our team is here to help you with your travel plans.</p>
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <i>📞</i>
+                        <span>{{ reservation_phone }}</span>
+                    </div>
+                    <div class="contact-item">
+                        <i>✉️</i>
+                        <span>{{ resort_email }}</span>
+                    </div>
+                    <div class="contact-item">
+                        <i>📍</i>
+                        <span>{{ resort_address }}</span>
+                    </div>
+                    <div class="contact-item">
+                        <i>🌐</i>
+                        <span>www.himalayaforestresort.com</span>
+                    </div>
+                </div>
+                <p style="margin-top: 20px; font-size: 0.95rem; color: #8a6d3b; text-align: center;">
+                    <strong>For urgent inquiries,</strong> please feel free to call us directly during our office hours.
+                </p>
+            </div>
+            
+            <div class="section">
+                <h2 class="section-title">While You Wait</h2>
+                <div class="suggestions">
+                    <p>Here are a few things you might want to explore while waiting for our response:</p>
+                    <ul class="suggestion-list">
+                        <li>Browse our luxurious room options with 360° mountain views</li>
+                        <li>Check out guest photos and reviews of their Himalayan experience</li>
+                        <li>Discover nearby attractions like Begnas Lake and Rupa Lake</li>
+                        <li>Learn about our rooftop restaurant with panoramic mountain views</li>
+                        <li>Explore our spa facilities and luxury amenities</li>
+                        <li>Plan your itinerary with our local activity recommendations</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="cta-buttons">
+                <a href="#" class="btn">
+                    <i>🏔️</i> Explore Our Rooms
+                </a>
+                <a href="#" class="btn btn-secondary">
+                    <i>📸</i> View Photo Gallery
+                </a>
+                <a href="#" class="btn">
+                    <i>📖</i> Read Guest Reviews
+                </a>
+            </div>
+            
+            <div style="text-align: center; margin: 40px 0 20px 0;">
+                <p style="color: #2f5d50; font-size: 1.1rem; line-height: 1.8;">
+                    <strong>Once again, thank you for considering Himalaya Forest Resort.</strong><br>
+                    We're committed to making your Himalayan getaway a truly memorable experience.
+                </p>
+            </div>
         </div>
         
-        <p>While you wait for our response, you might want to:</p>
-        <ul>
-            <li>Explore our room options on our website</li>
-            <li>Check out guest reviews and photos</li>
-            <li>Learn about nearby attractions like Begnas Lake and Rupa Lake</li>
-        </ul>
+        <div class="footer">
+            <div class="footer-logo">
+                {% if logo_base64 %}
+                    <!-- <img src="data:image/png;base64,{{ logo_base64 }}" alt="Himalaya Forest Resort"> -->
+                {% else %}
+                    <div style="color: #e6c35c; font-size: 1.8rem; font-weight: 700;">HIMALAYA FOREST RESORT</div>
+                {% endif %}
+            </div>
+            <div class="footer-info">
+                <p style="margin: 0 0 15px 0; font-size: 1.2rem;">Experience Himalayan Luxury</p>
+                <p style="margin: 0; opacity: 0.9;">Nestled amidst pristine forests with breathtaking 360° panoramic views of Annapurna, Dhaulagiri, and Manaslu ranges.</p>
+            </div>
+            
+            <div class="resort-highlights">
+                <div class="highlight-item"> Mountain Views</div>
+                <div class="highlight-item"> Spa Baths</div>
+                <div class="highlight-item"> Rooftop Dining</div>
+                <div class="highlight-item"> Natural Surroundings</div>
+                <div class="highlight-item"> Free Parking</div>
+                <div class="highlight-item"> Free WiFi</div>
+            </div>
+            
+            <div class="footer-links">
+                <a href="#">Home</a>
+                <a href="#">Rooms & Rates</a>
+                <a href="#">Gallery</a>
+                <a href="#">Amenities</a>
+                <a href="#">Contact</a>
+            </div>
+            
+            <div class="meta-info">
+                <p style="margin: 0;">This email was sent in response to your inquiry on {{ resort_name }} website.</p>
+                <p style="margin: 10px 0 0 0;">© {% now "Y" %} {{ resort_name }}. All rights reserved.</p>
+                <p style="margin: 5px 0 0 0; font-size: 0.8rem; opacity: 0.7;">
+                    Pachabhaiya (Pokhara Metropolitan Ward No. 31), 33700 Deorāli, Nepal
+                </p>
+            </div>
+        </div>
         
-        <p>Once again, thank you for reaching out to us. We're committed to making your Himalayan getaway truly memorable.</p>
-        
-        <p style="text-align: center;">
-            <a href="#" class="btn">Visit Our Website</a>
-        </p>
-    </div>
-    
-    <div class="footer">
-        <p>This email was sent in response to your inquiry on {{ resort_name }} website.</p>
-        <p>© {% now "Y" %} {{ resort_name }}. All rights reserved.</p>
-        <p>Pachabhaiya (Pokhara Metropolitan Ward No. 31), 33700 Deorāli, Nepal</p>
+        <div class="watermark">HFR</div>
     </div>
 </body>
 </html>

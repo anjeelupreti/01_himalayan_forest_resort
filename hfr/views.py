@@ -1,12 +1,16 @@
 from django.shortcuts import render
-from django.shortcuts import render, get_object_or_404
 from django.contrib import messages 
-import re
-from django.conf import settings
-from datetime import datetime, timedelta
 from django.core.mail import send_mail
 from django.template.loader import render_to_string
 from django.core.mail import EmailMessage
+import os
+import base64
+from django.conf import settings
+import base64
+from pathlib import Path
+import re
+from datetime import datetime
+
 def home(request):
     context = {
         'resort_name': 'Himalaya Forest Resort',
@@ -358,6 +362,8 @@ def about_us(request):
 def amenities(request):
     return render(request, 'amenities.html')
 
+
+
 def contact_us(request):
     contact_info = {
         'resort_name': 'Himalaya Forest Resort',
@@ -370,15 +376,15 @@ def contact_us(request):
             'whatsapp': '+977 9856081271'
         },
         'emails': {
-            'bookings': 'himalayaforestresort@gmail.com',
-            'general': 'info@himalayaforestresort.com',
-            'support': 'support@himalayaforestresort.com'
+            'bookings': 'codevault.services@gmail.com',
+            'general': 'codevault.services@gmail.com',
+            'support': 'codevault.services@gmail.com'
         },
         'social_media': {
-            'facebook': 'https://facebook.com/himalayaforestresort',
-            'instagram': 'https://instagram.com/himalayaforestresort',
-            'twitter': 'https://twitter.com/himalayaforestresort',
-            'youtube': 'https://youtube.com/@himalayaforestresort'
+            'facebook': '#',
+            'instagram': '#',
+            'twitter': '#',
+            'youtube': '#'
         },
         'office_hours': {
             'weekdays': '6:00 AM - 10:00 PM',
@@ -402,7 +408,6 @@ def contact_us(request):
         'google_maps_link': 'https://maps.google.com/?q=Himalaya+Forest+Resort+Pachabhaiya+Pokhara+Nepal'
     }
     
-    # Contact form subjects
     contact_subjects = [
         {'value': 'booking', 'label': 'Booking Inquiry'},
         {'value': 'room', 'label': 'Room Information'},
@@ -412,13 +417,10 @@ def contact_us(request):
         {'value': 'other', 'label': 'Other Inquiry'}
     ]
     
-    # Track form submission in a simpler way (without sessions)
     form_submitted = False
     contact_name = ''
     
-    # Handle form submission
     if request.method == 'POST':
-        # Get form data
         name = request.POST.get('name', '').strip()
         email = request.POST.get('email', '').strip()
         phone = request.POST.get('phone', '').strip()
@@ -426,7 +428,6 @@ def contact_us(request):
         message = request.POST.get('message', '').strip()
         newsletter = request.POST.get('newsletter') == 'on'
         
-        # Validate form data
         errors = []
         
         if not name:
@@ -446,16 +447,30 @@ def contact_us(request):
             errors.append('Message should be at least 10 characters')
         
         if errors:
-            # Return form with errors
             for error in errors:
                 messages.error(request, error)
         else:
             try:
-                # Prepare email content using templates
                 subject_dict = {s['value']: s['label'] for s in contact_subjects}
                 subject_label = subject_dict.get(subject, "General Inquiry")
-                timestamp = request.POST.get('timestamp', 'N/A')
+                timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
                 ip_address = request.META.get('REMOTE_ADDR', 'N/A')
+                
+                # ========== FIXED: MOVE LOGO READING INSIDE TRY BLOCK ==========
+                # Encode logo as base64 for emails
+                logo_path = Path(settings.BASE_DIR) / 'static' / 'assets' / 'img' / 'logo.png'
+                logo_base64_str = ""  # Changed variable name to avoid confusion
+                
+                if logo_path.exists():
+                    with open(logo_path, "rb") as logo_file:
+                        logo_base64_str = base64.b64encode(logo_file.read()).decode('utf-8')
+                
+                # Add debug logging
+                import logging
+                logger = logging.getLogger(__name__)
+                logger.info(f"Logo base64 length: {len(logo_base64_str)}")
+                logger.info(f"Logo path exists: {logo_path.exists()}")
+                # =============================================================
                 
                 # Context for resort email
                 resort_context = {
@@ -468,9 +483,16 @@ def contact_us(request):
                     'timestamp': timestamp,
                     'ip_address': ip_address,
                     'resort_name': contact_info['resort_name'],
+                    'logo_base64': logo_base64_str,  # Use the new variable name
+                    'resort_phone': contact_info['phone_numbers']['reservations'],
+                    'resort_email': contact_info['emails']['bookings'],
+                    'resort_address': f"{contact_info['address']}, {contact_info['city']}"
                 }
                 
-                # Context for user email
+                # Debug: Check context
+                logger.info(f"Resort context has logo_base64: {'logo_base64' in resort_context}")
+                logger.info(f"Resort context logo_base64 length: {len(resort_context.get('logo_base64', ''))}")
+                
                 user_context = {
                     'name': name,
                     'subject': subject_label,
@@ -479,49 +501,69 @@ def contact_us(request):
                     'resort_city': contact_info['city'],
                     'resort_email': contact_info['emails']['bookings'],
                     'resort_name': contact_info['resort_name'],
+                    'logo_base64': logo_base64_str,  # Use the new variable name
+                    'timestamp': timestamp,
+                    'contact_subject': subject_label
                 }
                 
-                # Render email templates
-                from django.template.loader import render_to_string
-                from django.core.mail import EmailMessage
-                
-                # Email to resort (HTML)
-                resort_email_subject = f'Himalaya Forest Resort - Contact Form: {subject_label}'
+                # Test render the templates
                 resort_email_body = render_to_string('emails/contact_to_resort.html', resort_context)
-                
-                # Email to user (HTML)
-                user_email_subject = f'Thank you for contacting Himalaya Forest Resort'
                 user_email_body = render_to_string('emails/contact_to_user.html', user_context)
+                
+                # Debug: Check if base64 is in rendered output
+                logger.info(f"Resort email contains base64: {'data:image/png;base64' in resort_email_body}")
+                logger.info(f"User email contains base64: {'data:image/png;base64' in user_email_body}")
+                
+                # If base64 not found, add fallback
+                if 'data:image/png;base64' not in resort_email_body:
+                    logger.warning("Base64 not found in resort email template!")
+                    # Add fallback HTML
+                    fallback_html = '<div style="color: white; font-size: 1.8rem; font-weight: 700;">HIMALAYA FOREST RESORT</div>'
+                    resort_email_body = resort_email_body.replace('{% if logo_base64 %}', f'{fallback_html}{{% if logo_base64 %}}')
+                
+                resort_email_subject = f'Contact Form: {subject_label} - {name}'
+                user_email_subject = f'Thank you for contacting Himalaya Forest Resort'
                 
                 # Send email to resort
                 resort_email = EmailMessage(
                     subject=resort_email_subject,
                     body=resort_email_body,
                     from_email=settings.DEFAULT_FROM_EMAIL,
-                    to=['codevault.services@gmail.com'],  # Your testing email
+                    to=[contact_info['emails']['bookings']],  
+                    reply_to=[email] 
                 )
-                resort_email.content_subtype = "html"  # Set email as HTML
-                resort_email.send()
+                resort_email.content_subtype = "html"
                 
-                # Send confirmation to user
+                # Debug: Log before sending
+                logger.info(f"Sending resort email to: {contact_info['emails']['bookings']}")
+                logger.info(f"Email subject: {resort_email_subject}")
+                
+                try:
+                    resort_email.send(fail_silently=False)
+                    logger.info("Resort email sent successfully")
+                except Exception as send_error:
+                    logger.error(f"Failed to send resort email: {send_error}")
+                
+                # Send confirmation email to user
                 user_email = EmailMessage(
                     subject=user_email_subject,
                     body=user_email_body,
                     from_email=settings.DEFAULT_FROM_EMAIL,
                     to=[email],
                 )
-                user_email.content_subtype = "html"  # Set email as HTML
-                user_email.send()
+                user_email.content_subtype = "html"
                 
-                # Set form submission flag (no sessions needed)
+                try:
+                    user_email.send(fail_silently=False)
+                    logger.info("User email sent successfully")
+                except Exception as send_error:
+                    logger.error(f"Failed to send user email: {send_error}")
+                
                 form_submitted = True
                 contact_name = name
                 
-                # Add success message
                 messages.success(request, f'Thank you {name}! Your message has been sent successfully. We will get back to you within 24 hours.')
                 
-                # Instead of redirect (which would lose messages without sessions),
-                # we'll just render the page again with the success state
                 context = {
                     'contact': contact_info,
                     'subjects': contact_subjects,
@@ -535,26 +577,24 @@ def contact_us(request):
                 return render(request, 'contact_us.html', context)
                 
             except Exception as e:
-                # Log the error
-                print(f"Email sending error: {e}")
+                import logging
+                logger = logging.getLogger(__name__)
+                logger.error(f"Email sending error in contact_us: {e}", exc_info=True)
+                
                 messages.error(request, 'There was an error sending your message. Please try again or contact us directly.')
     
+    # For GET requests or if there are errors
     context = {
         'contact': contact_info,
         'subjects': contact_subjects,
         'form_submitted': form_submitted,
         'contact_name': contact_name,
-        
-        # SEO and page info
         'page_title': 'Contact Us | Himalaya Forest Resort, Pokhara',
         'meta_description': 'Get in touch with Himalaya Forest Resort in Pokhara, Nepal. Contact us for bookings, inquiries, or to plan your perfect Himalayan getaway.',
         'meta_keywords': 'Contact Himalaya Forest Resort, Pokhara Hotel Contact, Nepal Resort Contact, Booking Inquiry, Hotel Phone Number, Resort Email',
     }
     
     return render(request, 'contact_us.html', context)
-
-
-
 
 
 def gallery(request):
@@ -1082,6 +1122,7 @@ def room_detail(request, room_id=None, room_slug=None):
 
 
 def booking(request):
+    logo_path = os.path.join(settings.BASE_DIR, 'static', 'assets', 'img', 'logo.png')
     room_types = {
         'super_deluxe': {
             'name': 'Super Deluxe Room',
@@ -1228,6 +1269,7 @@ def booking(request):
                     subject=resort_email_subject,
                     body=resort_email_body,
                     from_email=settings.DEFAULT_FROM_EMAIL,
+                    to=[settings.DEFAULT_FROM_EMAIL],
                     reply_to=[email]
                 )
                 resort_email.content_subtype = "html"

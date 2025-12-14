@@ -2,6 +2,10 @@
 <!DOCTYPE html>
 <html lang="en">
 
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -30,133 +34,29 @@
 </head>
 
 <body class="{% block body_class %}index-page{% endblock %}">
- <div class="page-loader" id="pageLoader">
-        <div class="loader-content">
-            <!-- Option 1: Simple Spinner with Logo -->
-            <div class="logo-container">
-                <!-- <img src="{% static 'assets/img/logo.png' %}" alt="Himalaya Forest Resort"> -->
-            </div>
-             <div class="spinner"></div>
-            <div class="spinner-text">LOADING</div>
-            <div class="loading-dots">
-                <span></span>
-                <span></span>
-                <span></span>
-            </div>
-            
-            <!-- Option 2: Thematic Mountain Loader (uncomment to use) -->
-            <!-- <div class="mountain-loader">
-                <div class="mountain"></div>
-                <div class="mountain"></div>
-                <div class="mountain"></div>
-                <div class="sun"></div>
-            </div>
-            <!-- <div class="spinner-text">Escape to the best view...</div> -->
-        </div> 
-     </div>  
-     
-    <!-- <div class="page-loader" id="pageLoader">
-  <div class="loader-content">
-    <div class="logo-container">
-      <img src="{% static 'assets/img/logo.png' %}" alt="Himalaya Forest Resort">
-    </div>
-    <div class="spinner"></div>
-    <div class="spinner-text">ESCAPE TO THE BEST VIEW</div>
-    <div class="loading-dots">
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-    <div class="loader-text small">Welcome to Himalaya Forest Resort</div>
+  <div class="page-loader" id="pageLoader">
+    <div class="loader-content">
+      <div class="logo-container">
+      </div>
+      <div class="spinner"></div>
+      <div class="spinner-text">LOADING</div>
+      <div class="loading-dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div> 
   </div>
-</div> -->
-
-<!-- <div class="page-loader" id="pageLoader">
-  <div class="loader-content">
-    <div class="logo-container">
-      <img src="{% static 'assets/img/logo.png' %}" alt="Himalaya Forest Resort">
-    </div>
-    <div class="mountain-loader">
-      <div class="mountain"></div>
-      <div class="mountain"></div>
-      <div class="mountain"></div>
-      <div class="sun"></div>
-    </div>
-    <div class="spinner-text">HIMALAYA FOREST RESORT</div>
-    <div class="loader-text">Experience panoramic views of Annapurna, Dhaulagiri, and Manaslu ranges</div>
-  </div>
-</div> -->
-<!-- <div class="page-loader" id="pageLoader">
-  <div class="loader-content">
-    <div class="logo-container">
-      <!-- <img src="{% static 'assets/img/logo.png' %}" alt="Himalaya Forest Resort"> -->
-    <!-- </div>
-    <div class="wave-loader">
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-      <span></span>
-    </div>
-    <div class="spinner-text">LOADING YOUR ESCAPE</div>
-    <div class="loader-text small">Preparing your perfect Himalayan retreat</div>
-  </div>
-</div> --> 
-
-<!-- <div class="page-loader" id="pageLoader">
-  <div class="loader-content">
-    <div class="tree-loader">
-      <div class="tree-trunk"></div>
-      <div class="tree-leaf"></div>
-      <div class="tree-leaf"></div>
-      <div class="tree-leaf"></div>
-    </div>
-    <div class="spinner-text">HIMALAYA FOREST RESORT</div>
-    <div class="loader-text">Where every moment is an unforgettable experience</div>
-  </div>
-</div> -->
-
-<!-- <div class="page-loader" id="pageLoader">
-  <div class="loader-content">
-    <div class="pulse-loader">
-      <div class="pulse-circle"></div>
-      <div class="pulse-circle"></div>
-      <div class="pulse-circle"></div>
-    </div>
-    <div class="loader-text">Welcome to Paradise at Himalaya Forest Resort</div>
-  </div>
-</div> -->
 
   <header id="header" class="header sticky-top">
-    <!-- Top Contact Bar (Uncomment if needed) -->
-    <!--
-    <div class="topbar d-flex align-items-center dark-background">
-      <div class="container d-flex justify-content-center justify-content-md-between">
-        <div class="contact-info d-flex align-items-center">
-          <i class="bi bi-envelope d-flex align-items-center">
-            <a href="mailto:himalayaforestresort@gmail.com">himalayaforestresort@gmail.com</a>
-          </i>
-          <i class="bi bi-phone d-flex align-items-center ms-4">
-            <span>+977 9856081271, +977 9856081371</span>
-          </i>
-        </div>
-        <div class="social-links d-none d-md-flex align-items-center">
-          <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
-          <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-          <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-          <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-        </div>
-      </div>
-    </div>
-    -->
-
     <div class="branding d-flex align-items-center">
       <div class="container position-relative d-flex align-items-center justify-content-between">
         <a href="{% url 'home' %}" class="logo d-flex align-items-center">
-          <!-- Logo Image - Update the path based on where you place your logo -->
-          <img src="{% static 'assets/img/logo.png' %}" alt="Himalaya Forest Resort Logo" 
+          <!-- Fixed logo image with correct onerror attribute -->
+          <img src="{% static 'assets/img/logo.png' %}" 
+               alt="Himalaya Forest Resort Logo" 
                class="logo-image me-2" 
-               onerror="this.onerror=null; this.src="{% static 'assets/img/logo.png' %}"; this.src='{% static 'assets/img/logo.png' %}';">
+               onerror="this.onerror=null; this.src='{% static 'assets/img/logo.png' %}';">
           <div class="logo-text d-flex flex-column">
             <h1 class="sitename mb-0">Himalaya Forest Resort</h1>
             <small class="tagline">Escape to the best view</small>
@@ -180,7 +80,6 @@
       </div>
     </div>
   </header>
-
   <main id="main" class="main">
     {% block content %}
     {% load static %}
@@ -194,14 +93,15 @@
         <div class="row gy-4">
           <div class="col-lg-4 col-md-6 footer-about">
             <a href="{% url 'home' %}" class="logo d-flex align-items-center">
-              <img src="{% static 'assets/img/logo.png' %}" alt="Himalaya Forest Resort Logo" 
-                   class="logo-image me-2" 
-                   onerror="this.onerror=null; this.src='{% static 'assets/img/logo.png' %}'; this.src='{% static 'assets/img/logo.jpg' %}';"> 
-              <div class="logo-text d-flex flex-column">
-                <span class="sitename mb-0">Himalaya Forest Resort</span>
-                <small class="tagline">Escape to the best view</small>
-              </div>
-            </a>
+  <img src="{% static 'assets/img/logo.png' %}" 
+       alt="Himalaya Forest Resort Logo" 
+       class="logo-image me-2" 
+       onerror="this.onerror=null; this.src='{% static 'assets/img/logo.png' %}';">
+  <div class="logo-text d-flex flex-column">
+    <span class="sitename mb-0">Himalaya Forest Resort</span>
+    <small class="tagline">Escape to the best view</small>
+  </div>
+</a>
             <div class="footer-contact pt-3">
               <p><i class="bi bi-geo-alt me-2"></i>Pachabhaiya (Pokhara Metropolitan Ward No. 31)</p>
               <p class="ms-4">33700 Deorāli, Nepal</p>

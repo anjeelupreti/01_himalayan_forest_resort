@@ -12,7 +12,6 @@
 {% block content %}
 <main class="main">
 
-  <!-- Page Title -->
   <div class="page-title light-background">
     <div class="container d-lg-flex justify-content-between align-items-center">
       <h1 class="mb-2 mb-lg-0">Book Your Stay</h1>
@@ -23,14 +22,12 @@
         </ol>
       </nav>
     </div>
-  </div><!-- End Page Title -->
+  </div>
 
-  <!-- Booking Section -->
   <section id="booking" class="booking section">
 
     <div class="container" data-aos="fade-up" data-aos-delay="100">
 
-      <!-- Display Django messages -->
       {% if messages %}
       <div class="row mb-4">
         <div class="col-12">
@@ -118,7 +115,6 @@
         </div>
       </div>
       {% else %}
-      <!-- Booking Form -->
       <div class="reservation-wrapper">
 
         <div class="reservation-header text-center" data-aos="fade-up" data-aos-delay="200">
@@ -133,7 +129,6 @@
               <form id="bookingForm" class="reservation-form" method="POST" action="{% url 'booking' %}">
                 {% csrf_token %}
                 
-                <!-- Hidden timestamp -->
                 <input type="hidden" id="timestamp" name="timestamp" value="">
 
                 <div class="form-section">
@@ -275,7 +270,6 @@
           </div>
 
           <div class="hotel-showcase" data-aos="fade-left" data-aos-delay="400">
-            <!-- Room Selection Preview -->
             <div class="room-preview">
               <h3 class="preview-title">Room Selection</h3>
               <div class="room-options">
@@ -300,7 +294,6 @@
               </div>
             </div>
 
-            <!-- Resort Highlights -->
             <div class="hotel-highlights">
               <h3>Why Choose Our Resort</h3>
               <div class="highlights-grid">
@@ -319,7 +312,7 @@
                   </div>
                   <div class="highlight-content">
                     <h5>Luxury Spa Baths</h5>
-                    <p>All rooms feature private spa baths/jacuzzis</p>
+                    <p> Private spa baths/jacuzzis</p>
                   </div>
                 </div>
                 <div class="highlight-item">
@@ -343,8 +336,7 @@
               </div>
             </div>
 
-            <!-- Price Calculator -->
-            <div class="price-calculator">
+            <!-- <div class="price-calculator">
               <h4>Estimated Price</h4>
               <div class="calculator-result">
                 <div class="price-breakdown">
@@ -367,9 +359,8 @@
                 </div>
                 <p class="calculator-note"><i class="bi bi-info-circle me-1"></i>Final price will be confirmed after booking</p>
               </div>
-            </div>
+            </div> -->
 
-            <!-- Contact Info -->
             <div class="contact-info-box">
               <h5><i class="bi bi-headset me-2"></i>Need Assistance?</h5>
               <div class="contact-details">
@@ -388,14 +379,13 @@
 
     </div>
 
-  </section><!-- /Booking Section -->
+  </section>
 
 </main>
 {% endblock %}
 
 {% block extra_css %}
 <style>
-  /* Main Layout */
   .booking-page .booking {
     padding: 60px 0;
   }
@@ -423,7 +413,6 @@
     margin: 0 auto;
   }
   
-  /* Booking Grid */
   .booking-grid {
     display: grid;
     grid-template-columns: 1.2fr 0.8fr;
@@ -437,7 +426,6 @@
     }
   }
   
-  /* Form Styling */
   .booking-form-section .form-container {
     background: var(--surface-color);
     border-radius: 20px;
@@ -512,7 +500,6 @@
     color: color-mix(in srgb, var(--default-color), transparent 50%);
   }
   
-  /* Date Input Styling */
   .date-input-wrapper {
     position: relative;
   }
@@ -531,7 +518,6 @@
     font-size: 1.2rem;
   }
   
-  /* Style for date picker */
   input[type="date"]::-webkit-calendar-picker-indicator {
     background: transparent;
     bottom: 0;
@@ -545,7 +531,6 @@
     width: auto;
   }
   
-  /* Form Options */
   .form-options {
     background: rgba(0, 0, 0, 0.02);
     border-radius: 12px;
@@ -585,7 +570,6 @@
     text-decoration: underline;
   }
   
-  /* Form Actions */
   .form-actions {
     margin-top: 30px;
   }
@@ -624,7 +608,6 @@
     border-top: 1px solid rgba(0, 0, 0, 0.05);
   }
   
-  /* Form Status */
   .form-status {
     min-height: 50px;
     display: flex;
@@ -641,14 +624,12 @@
     font-weight: 500;
   }
   
-  /* Hotel Showcase */
   .hotel-showcase {
     display: flex;
     flex-direction: column;
     gap: 30px;
   }
   
-  /* Room Preview */
   .room-preview {
     background: var(--surface-color);
     border-radius: 20px;
@@ -743,7 +724,6 @@
     font-weight: 500;
   }
   
-  /* Hotel Highlights */
   .hotel-highlights {
     background: var(--surface-color);
     border-radius: 20px;
@@ -796,7 +776,6 @@
     line-height: 1.5;
   }
   
-  /* Price Calculator */
   .price-calculator {
     background: var(--surface-color);
     border-radius: 20px;
@@ -844,7 +823,6 @@
     text-align: center;
   }
   
-  /* Contact Info Box */
   .contact-info-box {
     background: var(--accent-color);
     color: var(--contrast-color);
@@ -874,7 +852,6 @@
     opacity: 0.9;
   }
   
-  /* Booking Confirmation */
   .booking-confirmation {
     max-width: 800px;
     margin: 0 auto;
@@ -1017,7 +994,6 @@
     transform: translateY(-2px);
   }
   
-  /* Responsive Design */
   @media (max-width: 992px) {
     .booking-form-section .form-container {
       padding: 30px;
@@ -1053,7 +1029,6 @@
     }
   }
   
-  /* Validation styles */
   .form-control.is-invalid, .form-select.is-invalid {
     border-color: #dc3545;
     animation: shake 0.5s ease-in-out;
@@ -1070,13 +1045,11 @@
 {% block extra_js %}
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    // Set timestamp for form submission
     const timestampField = document.getElementById('timestamp');
     if (timestampField) {
       timestampField.value = new Date().toISOString();
     }
     
-    // Set minimum date to today for arrival
     const today = new Date().toISOString().split('T')[0];
     const arrivalDate = document.getElementById('arrival_date');
     const departureDate = document.getElementById('departure_date');
@@ -1084,7 +1057,6 @@
     if (arrivalDate) {
       arrivalDate.min = today;
       
-      // Update min date for departure when arrival changes
       arrivalDate.addEventListener('change', function() {
         if (departureDate) {
           departureDate.min = this.value;
@@ -1100,7 +1072,6 @@
       departureDate.min = today;
     }
     
-    // Phone number formatting
     const phoneInput = document.getElementById('phone');
     if (phoneInput) {
       phoneInput.addEventListener('input', function(e) {
@@ -1117,19 +1088,15 @@
       });
     }
     
-    // Room type selection
     const roomTypeSelect = document.getElementById('room_type');
     const roomOptions = document.querySelectorAll('.room-option');
     
     roomOptions.forEach(option => {
       option.addEventListener('click', function() {
-        // Remove selected class from all options
         roomOptions.forEach(opt => opt.classList.remove('selected'));
         
-        // Add selected class to clicked option
         this.classList.add('selected');
         
-        // Update the select dropdown
         const roomType = this.getAttribute('data-room-type');
         roomTypeSelect.value = roomType;
         
@@ -1137,15 +1104,12 @@
       });
     });
     
-    // Update room option when select changes
     if (roomTypeSelect) {
       roomTypeSelect.addEventListener('change', function() {
         const selectedRoom = this.value;
         
-        // Remove selected class from all options
         roomOptions.forEach(opt => opt.classList.remove('selected'));
         
-        // Add selected class to matching option
         roomOptions.forEach(opt => {
           if (opt.getAttribute('data-room-type') === selectedRoom) {
             opt.classList.add('selected');
@@ -1156,14 +1120,12 @@
       });
     }
     
-    // Price calculation function
     function calculatePrice() {
       const roomType = roomTypeSelect ? roomTypeSelect.value : '';
       const roomCount = document.getElementById('room_count') ? document.getElementById('room_count').value : 1;
       const arrival = arrivalDate ? arrivalDate.value : '';
       const departure = departureDate ? departureDate.value : '';
       
-      // Room prices
       const roomPrices = {
         'super_deluxe': 6500,
         'family_deluxe': 5500,
@@ -1173,12 +1135,10 @@
       const basePrice = roomPrices[roomType] || 0;
       const nights = calculateNights(arrival, departure);
       
-      // Update display
       document.getElementById('roomRate').textContent = `NPR ${basePrice.toLocaleString()}`;
       document.getElementById('nightCount').textContent = nights;
       document.getElementById('roomCount').textContent = roomCount;
       
-      // Calculate total
       const totalPrice = basePrice * nights * roomCount;
       document.getElementById('estimatedTotal').textContent = `NPR ${totalPrice.toLocaleString()}`;
     }
@@ -1189,14 +1149,12 @@
       const arrivalDate = new Date(arrival);
       const departureDate = new Date(departure);
       
-      // Calculate difference in days
       const diffTime = departureDate - arrivalDate;
       const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
       
       return diffDays > 0 ? diffDays : 0;
     }
     
-    // Add event listeners for price calculation
     const priceInputs = ['arrival_date', 'departure_date', 'room_count', 'room_type'];
     priceInputs.forEach(inputId => {
       const input = document.getElementById(inputId);
@@ -1205,10 +1163,8 @@
       }
     });
     
-    // Initial price calculation
     calculatePrice();
     
-    // Form validation and submission
     const bookingForm = document.getElementById('bookingForm');
     const submitBtn = document.getElementById('submitBtn');
     const loading = document.getElementById('loading');
@@ -1220,12 +1176,10 @@
           return;
         }
         
-        // Show loading state
         submitBtn.disabled = true;
         submitBtn.innerHTML = '<i class="bi bi-hourglass-split me-2"></i>Processing...';
         loading.classList.remove('d-none');
         
-        // Form will be submitted normally
       });
     }
     
@@ -1233,12 +1187,10 @@
       let isValid = true;
       const requiredFields = bookingForm.querySelectorAll('[required]');
       
-      // Reset validation
       requiredFields.forEach(field => {
         field.classList.remove('is-invalid');
       });
       
-      // Check each required field
       requiredFields.forEach(field => {
         if (!field.value.trim()) {
           field.classList.add('is-invalid');
@@ -1254,7 +1206,6 @@
         }
       });
       
-      // Date validation
       const arrival = document.getElementById('arrival_date').value;
       const departure = document.getElementById('departure_date').value;
       
@@ -1276,7 +1227,6 @@
       }
       
       if (!isValid) {
-        // Scroll to first error
         const firstError = bookingForm.querySelector('.is-invalid');
         if (firstError) {
           firstError.scrollIntoView({
@@ -1289,7 +1239,6 @@
       return isValid;
     }
     
-    // Real-time validation
     const formInputs = bookingForm.querySelectorAll('.form-control, .form-select');
     formInputs.forEach(input => {
       input.addEventListener('blur', function() {
@@ -1318,7 +1267,6 @@
       });
     });
     
-    // Auto-hide Django alerts after 5 seconds
     setTimeout(function() {
       const alerts = document.querySelectorAll('.alert');
       alerts.forEach(alert => {
@@ -1327,7 +1275,6 @@
       });
     }, 5000);
     
-    // Initialize AOS animations
     if (typeof AOS !== 'undefined') {
       AOS.init({
         duration: 800,

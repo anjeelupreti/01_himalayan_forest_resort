@@ -2,85 +2,562 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <title>Booking Request Received - {{ resort_name }}</title>
+    <title>Booking Request Received - Himalaya Forest Resort</title>
     <style>
-        body { font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; line-height: 1.6; color: #333; margin: 0; padding: 0; background: #f5f5f5; }
-        .container { max-width: 600px; margin: 0 auto; background: #ffffff; }
-        .header { background: linear-gradient(135deg, #2f5d50, #3a6b5c); color: white; padding: 40px 20px; text-align: center; }
-        .content { padding: 40px 30px; }
-        .greeting { font-size: 1.1rem; margin-bottom: 30px; color: #40524d; line-height: 1.8; }
-        .section { margin-bottom: 35px; }
-        .section-title { color: #2f5d50; font-size: 1.3rem; font-weight: 600; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #2f5d50; }
-        .booking-summary { background: #f8f9fa; border-radius: 12px; padding: 25px; margin: 25px 0; border: 1px solid #eaeaea; }
-        .info-row { display: flex; justify-content: space-between; margin-bottom: 15px; padding-bottom: 12px; border-bottom: 1px solid #eee; }
-        .info-row:last-child { border-bottom: none; }
-        .info-label { font-weight: 600; color: #2f5d50; }
-        .info-value { color: #555; text-align: right; font-weight: 500; }
-        .next-steps { background: #f1f6f5; border-radius: 10px; padding: 25px; margin: 30px 0; }
-        .step { display: flex; align-items: flex-start; margin-bottom: 20px; }
-        .step-number { background: #2f5d50; color: white; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; margin-right: 15px; flex-shrink: 0; font-size: 0.9rem; }
-        .contact-info { background: #f8f9fa; border-radius: 10px; padding: 25px; margin: 25px 0; }
-        .footer { background: #2f5d50; color: white; padding: 30px; text-align: center; font-size: 0.9rem; }
-        .logo { font-size: 1.8rem; font-weight: 700; color: #ffffff; margin-bottom: 10px; letter-spacing: 0.5px; }
-        ul { padding-left: 20px; margin: 0; }
-        li { margin-bottom: 12px; color: #555; line-height: 1.6; }
-        .booking-ref { background: rgba(255, 255, 255, 0.15); color: white; padding: 8px 20px; border-radius: 20px; display: inline-block; font-size: 1.1rem; font-weight: 600; margin: 15px 0; }
-        .special-requests { background: #f8f6e3; padding: 20px; border-radius: 8px; margin: 20px 0; border-left: 4px solid #e6c35c; }
-        .step-content h4 { margin: 0 0 5px 0; color: #2f5d50; font-size: 1.1rem; }
-        .step-content p { margin: 0; color: #555; line-height: 1.6; }
-        .contact-info p { margin: 8px 0; display: flex; }
-        .contact-info strong { color: #2f5d50; min-width: 80px; }
+        body { 
+            font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif; 
+            line-height: 1.6; 
+            color: #2c3e50; 
+            margin: 0; 
+            padding: 0; 
+            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8f0 100%); 
+        }
+        
+        .container { 
+            max-width: 700px; 
+            margin: 30px auto; 
+            background: #ffffff; 
+            border-radius: 20px; 
+            overflow: hidden; 
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1); 
+            border: 1px solid rgba(0,0,0,0.05); 
+        }
+        
+        /* Professional Letterhead Header */
+        .letterhead {
+            background: linear-gradient(135deg, #2f5d50 0%, #3a7c6e 100%);
+            color: white;
+            padding: 35px 40px;
+            position: relative;
+            border-bottom: 4px solid #e6c35c;
+        }
+        
+        .letterhead-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 25px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .resort-identity {
+            flex: 1;
+        }
+        
+        .resort-name {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin: 0 0 8px 0;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+        }
+        
+        .resort-tagline {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-weight: 300;
+            letter-spacing: 1px;
+            margin: 0;
+        }
+        
+        .resort-details {
+            text-align: right;
+            font-size: 0.9rem;
+            opacity: 0.9;
+            line-height: 1.6;
+        }
+        
+        .booking-header {
+            text-align: center;
+            padding: 25px 0;
+            background: rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+        
+        .booking-title {
+            font-size: 1.8rem;
+            font-weight: 600;
+            margin: 0 0 15px 0;
+            color: #ffffff;
+        }
+        
+        .booking-badge {
+            background: linear-gradient(135deg, #e6c35c, #d4a017);
+            color: white;
+            padding: 12px 35px;
+            border-radius: 50px;
+            display: inline-block;
+            font-weight: 700;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(230, 195, 92, 0.3);
+            letter-spacing: 1px;
+        }
+        
+        .booking-meta {
+            margin-top: 15px;
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+        
+        .content { 
+            padding: 45px 40px; 
+        }
+        
+        .section { 
+            margin-bottom: 40px; 
+            padding-bottom: 30px; 
+            border-bottom: 2px solid #eaeaea; 
+            position: relative; 
+        }
+        
+        .section:last-child { 
+            border-bottom: none; 
+            margin-bottom: 0; 
+        }
+        
+        .section-title { 
+            color: #2f5d50; 
+            font-size: 1.4rem; 
+            font-weight: 700; 
+            margin-bottom: 25px; 
+            padding-bottom: 12px; 
+            border-bottom: 3px solid #e6c35c; 
+            position: relative; 
+        }
+        
+        .section-title::after { 
+            content: ''; 
+            position: absolute; 
+            bottom: -3px; 
+            left: 0; 
+            width: 80px; 
+            height: 3px; 
+            background: #2f5d50; 
+        }
+        
+        .greeting { 
+            font-size: 1.1rem; 
+            margin-bottom: 35px; 
+            color: #40524d; 
+            line-height: 1.8; 
+            background: #f8f9fa; 
+            padding: 25px; 
+            border-radius: 12px; 
+            border-left: 4px solid #e6c35c; 
+        }
+        
+        .booking-summary { 
+            background: linear-gradient(135deg, #f1f6f5, #e8f0ef); 
+            border-radius: 15px; 
+            padding: 30px; 
+            margin: 30px 0; 
+            border: 1px solid rgba(47, 93, 80, 0.1); 
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05); 
+        }
+        
+        .info-grid { 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 20px; 
+        }
+        
+        .info-item { 
+            display: flex; 
+            margin-bottom: 20px; 
+            align-items: center; 
+            padding: 12px 15px;
+            background: white;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            border: 1px solid #eaeaea;
+        }
+        
+        .info-item:hover {
+            background: #f1f6f5;
+            transform: translateX(5px);
+            border-color: #e6c35c;
+        }
+        
+        .info-label { 
+            font-weight: 700; 
+            color: #2f5d50; 
+            width: 160px; 
+            flex-shrink: 0; 
+            font-size: 0.95rem; 
+        }
+        
+        .info-value { 
+            color: #34495e; 
+            flex: 1; 
+            font-size: 0.95rem; 
+            line-height: 1.5; 
+            font-weight: 500; 
+        }
+        
+        .next-steps { 
+            background: linear-gradient(135deg, #fff9e6, #fff3cc); 
+            border-radius: 15px; 
+            padding: 35px; 
+            margin: 40px 0; 
+            border: 1px solid rgba(230, 195, 92, 0.2); 
+            border-left: 5px solid #e6c35c;
+        }
+        
+        .step { 
+            display: flex; 
+            align-items: flex-start; 
+            margin-bottom: 30px; 
+        }
+        
+        .step-number { 
+            background: linear-gradient(135deg, #2f5d50, #3a7c6e); 
+            color: white; 
+            width: 35px; 
+            height: 35px; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-weight: 700; 
+            margin-right: 20px; 
+            flex-shrink: 0; 
+            font-size: 1rem; 
+            box-shadow: 0 4px 10px rgba(47, 93, 80, 0.3); 
+        }
+        
+        .step-content h4 { 
+            margin: 0 0 8px 0; 
+            color: #2f5d50; 
+            font-size: 1.2rem; 
+            font-weight: 600; 
+        }
+        
+        .step-content p { 
+            margin: 0; 
+            color: #555; 
+            line-height: 1.7; 
+        }
+        
+        .footer { 
+            background: linear-gradient(135deg, #1e3c32, #2f5d50); 
+            color: white; 
+            padding: 45px 30px; 
+            text-align: center; 
+            border-top: 4px solid #e6c35c;
+        }
+        
+        ul { 
+            padding-left: 25px; 
+            margin: 0; 
+        }
+        
+        li { 
+            margin-bottom: 15px; 
+            color: #555; 
+            line-height: 1.7; 
+            font-size: 0.95rem; 
+        }
+        
+        li::marker { 
+            color: #e6c35c; 
+        }
+        
+        .special-requests { 
+            background: linear-gradient(135deg, #fff9e6, #fff3cc); 
+            padding: 28px; 
+            border-radius: 12px; 
+            margin: 30px 0; 
+            border-left: 5px solid #e6c35c; 
+            box-shadow: 0 5px 20px rgba(230, 195, 92, 0.1); 
+        }
+        
+        .special-requests p { 
+            margin: 0; 
+            color: #8a6d3b; 
+            line-height: 1.6; 
+        }
+        
+        .contact-info { 
+            background: linear-gradient(135deg, #f1f6f5, #e8f0ef); 
+            border-radius: 15px; 
+            padding: 30px; 
+            margin: 35px 0; 
+            text-align: center; 
+            border: 2px solid rgba(47, 93, 80, 0.1); 
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.05);
+        }
+        
+        .contact-grid { 
+            display: grid; 
+            grid-template-columns: repeat(2, 1fr); 
+            gap: 25px; 
+            margin-top: 20px; 
+        }
+        
+        .contact-item { 
+            display: flex; 
+            align-items: center; 
+            gap: 15px; 
+            padding: 15px; 
+            background: white; 
+            border-radius: 10px; 
+            box-shadow: 0 3px 10px rgba(0,0,0,0.05); 
+            border: 1px solid #eaeaea;
+        }
+        
+        .contact-item i { 
+            color: #e6c35c; 
+            font-size: 1.2rem; 
+            font-weight: bold;
+        }
+        
+        .contact-item span { 
+            font-size: 0.95rem; 
+            color: #2c3e50; 
+        }
+        
+        .resort-highlights { 
+            background: linear-gradient(135deg, #2f5d50, #3a7c6e); 
+            color: white; 
+            padding: 35px; 
+            border-radius: 15px; 
+            margin: 40px 0; 
+            text-align: center; 
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .highlight-grid { 
+            display: grid; 
+            grid-template-columns: repeat(3, 1fr); 
+            gap: 20px; 
+            margin-top: 25px; 
+        }
+        
+        .highlight-item { 
+            padding: 15px; 
+            background: rgba(255,255,255,0.1); 
+            border-radius: 10px; 
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .highlight-item h4 { 
+            margin: 10px 0 5px 0; 
+            font-size: 1rem; 
+            color: #ffffff;
+        }
+        
+        .highlight-item p { 
+            margin: 0; 
+            font-size: 0.85rem; 
+            opacity: 0.9; 
+            color: rgba(255,255,255,0.9);
+        }
+        
+        .important-info { 
+            background: #f8f6e3; 
+            border-radius: 12px; 
+            padding: 30px; 
+            margin: 35px 0; 
+            border: 2px solid #e6c35c; 
+            border-left: 5px solid #2f5d50;
+        }
+        
+        .watermark { 
+            position: absolute; 
+            bottom: 20px; 
+            right: 20px; 
+            opacity: 0.05; 
+            font-size: 10rem; 
+            color: #2f5d50; 
+            font-weight: 700; 
+            pointer-events: none; 
+            transform: rotate(-15deg); 
+        }
+        
+        .cta-button { 
+            display: inline-block; 
+            background: linear-gradient(135deg, #2f5d50, #3a7c6e); 
+            color: white; 
+            padding: 15px 35px; 
+            border-radius: 50px; 
+            text-decoration: none; 
+            font-weight: 600; 
+            margin: 20px 0; 
+            box-shadow: 0 5px 15px rgba(47, 93, 80, 0.3); 
+            transition: all 0.3s; 
+            border: none;
+        }
+        
+        .cta-button:hover { 
+            transform: translateY(-3px); 
+            box-shadow: 0 8px 20px rgba(47, 93, 80, 0.4); 
+            background: linear-gradient(135deg, #3a7c6e, #2f5d50);
+        }
+        
+        .feature-icon {
+            color: #e6c35c;
+            font-weight: bold;
+            font-size: 1.1rem;
+            margin-right: 8px;
+        }
+        
+        .meta-info {
+            margin-top: 25px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.85rem;
+            opacity: 0.8;
+            line-height: 1.6;
+        }
+        
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .footer-links a {
+            color: #e6c35c;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: color 0.3s;
+            font-weight: 500;
+        }
+        
+        .footer-links a:hover {
+            color: #ffffff;
+            text-decoration: underline;
+        }
+        
+        @media (max-width: 768px) {
+            .container { margin: 15px; border-radius: 15px; }
+            .content { padding: 30px 20px; }
+            .letterhead { padding: 25px 20px; }
+            .letterhead-header { flex-direction: column; text-align: center; }
+            .resort-details { text-align: center; margin-top: 15px; }
+            .info-grid, .contact-grid, .highlight-grid { grid-template-columns: 1fr; }
+            .booking-summary, .next-steps, .contact-info, .resort-highlights { padding: 25px; }
+            .step { margin-bottom: 25px; }
+            .step-number { width: 30px; height: 30px; font-size: 0.9rem; margin-right: 15px; }
+            .resort-name { font-size: 2rem; }
+            .booking-title { font-size: 1.5rem; }
+            .footer-links { flex-direction: column; gap: 15px; }
+        }
+        
+        @media (max-width: 576px) {
+            .letterhead { padding: 20px 15px; }
+            .content { padding: 25px 15px; }
+            .section { padding-bottom: 25px; margin-bottom: 30px; }
+            .resort-name { font-size: 1.8rem; }
+            .booking-title { font-size: 1.3rem; }
+            .booking-badge { padding: 10px 25px; font-size: 1.1rem; }
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="header">
-            <div class="logo">{{ resort_name }}</div>
-            <h1 style="margin: 10px 0 15px 0; font-size: 1.8rem; font-weight: 600;">BOOKING REQUEST RECEIVED</h1>
-            <div class="booking-ref">{{ booking_reference }}</div>
-            <p style="margin: 10px 0 0 0; font-size: 0.95rem; opacity: 0.9;">Thank you for choosing Himalaya Forest Resort</p>
+        <!-- Professional Letterhead Header -->
+        <div class="letterhead">
+            <div class="letterhead-header">
+                <div class="resort-identity">
+                    <h1 class="resort-name">HIMALAYA FOREST RESORT</h1>
+                    <p class="resort-tagline">LUXURY AMIDST THE HIMALAYAN SERENITY</p>
+                </div>
+                <div class="resort-details">
+                    <div><strong>Location:</strong> Begnas Lake Road, Pokhara, Nepal</div>
+                    <div><strong>Phone:</strong> +977 9856081271</div>
+                    <div><strong>Email:</strong> info@himalayaforestresort.com</div>
+                    <div><strong>Website:</strong> www.himalayaforestresort.com</div>
+                </div>
+            </div>
+            
+            <div class="booking-header">
+                <h2 class="booking-title">BOOKING REQUEST CONFIRMED</h2>
+                <div class="booking-badge">REFERENCE: {{ booking_reference }}</div>
+                <div class="booking-meta">
+                    Submitted via Online Booking System | Received: {{ timestamp }}
+                </div>
+            </div>
         </div>
         
         <div class="content">
             <div class="greeting">
                 <p>Dear <strong style="color: #2f5d50;">{{ full_name }}</strong>,</p>
-                <p>Thank you for your booking request at {{ resort_name }}. We have received your reservation details and our team will contact you within 24 hours to confirm your booking.</p>
+                <p>Thank you for choosing Himalaya Forest Resort for your upcoming Himalayan getaway. We have successfully received your booking request and our reservations team will contact you within <strong style="color: #e6c35c;">24 hours</strong> to confirm your booking and discuss the arrangements.</p>
             </div>
             
             <div class="section">
-                <h2 class="section-title">Your Booking Request</h2>
+                <h2 class="section-title">Booking Summary</h2>
                 <div class="booking-summary">
-                    <div class="info-row">
-                        <span class="info-label">Booking Reference:</span>
-                        <span class="info-value">{{ booking_reference }}</span>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <span class="info-label">Booking Reference:</span>
+                            <span class="info-value">{{ booking_reference }}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Guest Name:</span>
+                            <span class="info-value">{{ full_name }}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Check-in Date:</span>
+                            <span class="info-value">{{ arrival_date }} (after {{ check_in_time }})</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Check-out Date:</span>
+                            <span class="info-value">{{ departure_date }} (before {{ check_out_time }})</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Duration:</span>
+                            <span class="info-value">{{ nights }} night{{ nights|pluralize }}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Room Type:</span>
+                            <span class="info-value">{{ room_type }}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Total Guests:</span>
+                            <span class="info-value">{{ guest_count }} guest{{ guest_count|pluralize }}</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Total Rooms:</span>
+                            <span class="info-value">{{ room_count }} room{{ room_count|pluralize }}</span>
+                        </div>
                     </div>
-                    <div class="info-row">
-                        <span class="info-label">Guest Name:</span>
-                        <span class="info-value">{{ full_name }}</span>
+                </div>
+            </div>
+            
+            <div class="resort-highlights">
+                <h3 style="margin: 0 0 20px 0; font-size: 1.5rem; color: #ffffff;">Experience Himalayan Luxury</h3>
+                <p style="opacity: 0.9; margin-bottom: 20px; color: rgba(255,255,255,0.9);">
+                    Nestled amidst pristine forests with breathtaking 360-degree panoramic views of Annapurna, Dhaulagiri, and Manaslu mountain ranges.
+                </p>
+                <div class="highlight-grid">
+                    <div class="highlight-item">
+                        <h4>Mountain Views</h4>
+                        <p>Panoramic views from every room</p>
                     </div>
-                    <div class="info-row">
-                        <span class="info-label">Check-in Date:</span>
-                        <span class="info-value">{{ arrival_date }} (after {{ check_in_time }})</span>
+                    <div class="highlight-item">
+                        <h4>Luxury Spa Baths</h4>
+                        <p>Private jacuzzis in all rooms</p>
                     </div>
-                    <div class="info-row">
-                        <span class="info-label">Check-out Date:</span>
-                        <span class="info-value">{{ departure_date }} (before {{ check_out_time }})</span>
+                    <div class="highlight-item">
+                        <h4>Rooftop Dining</h4>
+                        <p>Gourmet cuisine with views</p>
                     </div>
-                    <div class="info-row">
-                        <span class="info-label">Duration:</span>
-                        <span class="info-value">{{ nights }} night{{ nights|pluralize }}</span>
+                    <div class="highlight-item">
+                        <h4>Natural Surroundings</h4>
+                        <p>Surrounded by pristine forests</p>
                     </div>
-                    <div class="info-row">
-                        <span class="info-label">Room Type:</span>
-                        <span class="info-value">{{ room_type }}</span>
+                    <div class="highlight-item">
+                        <h4>Free Parking</h4>
+                        <p>Secure parking for all guests</p>
                     </div>
-                    <div class="info-row">
-                        <span class="info-label">Total Guests:</span>
-                        <span class="info-value">{{ guest_count }}</span>
-                    </div>
-                    <div class="info-row">
-                        <span class="info-label">Total Rooms:</span>
-                        <span class="info-value">{{ room_count }}</span>
+                    <div class="highlight-item">
+                        <h4>Free WiFi</h4>
+                        <p>High-speed internet throughout</p>
                     </div>
                 </div>
             </div>
@@ -95,55 +572,93 @@
             {% endif %}
             
             <div class="next-steps">
-                <h2 class="section-title">Next Steps</h2>
+                <h2 class="section-title">What Happens Next</h2>
                 <div class="step">
                     <div class="step-number">1</div>
                     <div class="step-content">
                         <h4>Booking Review</h4>
-                        <p>Our reservations team will review your request and check availability.</p>
+                        <p>Our reservations team will review your request and check room availability for your selected dates.</p>
                     </div>
                 </div>
                 <div class="step">
                     <div class="step-number">2</div>
                     <div class="step-content">
                         <h4>Confirmation Call</h4>
-                        <p>We will contact you at <strong style="color: #2f5d50;">{{ phone }}</strong> to discuss pricing and confirm your booking.</p>
+                        <p>We will contact you at <strong style="color: #2f5d50;">{{ phone }}</strong> to discuss pricing, payment options, and confirm your booking.</p>
                     </div>
                 </div>
                 <div class="step">
                     <div class="step-number">3</div>
                     <div class="step-content">
                         <h4>Final Confirmation</h4>
-                        <p>You will receive a detailed booking confirmation with all arrangements.</p>
+                        <p>You will receive a detailed booking confirmation with all arrangements, directions, and resort information.</p>
                     </div>
                 </div>
             </div>
             
             <div class="contact-info">
                 <h2 class="section-title">Need Immediate Assistance?</h2>
-                <p><strong>Phone:</strong> {{ resort_phone }}</p>
-                <p><strong>WhatsApp:</strong> {{ resort_phone }}</p>
-                <p><strong>Email:</strong> {{ resort_email }}</p>
-                <p><strong>Address:</strong> {{ resort_address }}</p>
+                <div class="contact-grid">
+                    <div class="contact-item">
+                        <i class="feature-icon">P</i>
+                        <span>Phone: {{ resort_phone }}</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="feature-icon">W</i>
+                        <span>WhatsApp: {{ resort_phone }}</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="feature-icon">E</i>
+                        <span>Email: {{ resort_email }}</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="feature-icon">L</i>
+                        <span>Address: {{ resort_address }}</span>
+                    </div>
+                </div>
+                <a href="#" class="cta-button">View Our Photo Gallery</a>
             </div>
             
-            <div class="section">
+            <div class="important-info">
                 <h2 class="section-title">Important Information</h2>
                 <ul>
-                    <li>Please bring valid photo ID (passport/driving license) for check-in</li>
-                    <li>Early check-in and late check-out are subject to availability</li>
-                    <li>Special requests will be accommodated based on availability</li>
-                    <li>Contact us at least 48 hours in advance for any booking changes</li>
+                    <li>Please bring valid photo ID (passport or driving license) for check-in procedures</li>
+                    <li>Early check-in and late check-out are subject to availability and may incur additional charges</li>
+                    <li>Special requests will be accommodated based on availability at the time of check-in</li>
+                    <li>Contact us at least 48 hours in advance for any booking changes or cancellations</li>
+                    <li>Check-in time is {{ check_in_time }} and check-out time is {{ check_out_time }}</li>
+                    <li>We offer complimentary parking and high-speed WiFi for all guests</li>
                 </ul>
             </div>
         </div>
         
         <div class="footer">
-            <p style="margin: 0 0 15px 0; font-size: 1.1rem; font-weight: 600;">{{ resort_name }}</p>
-            <p style="margin: 0 0 10px 0; opacity: 0.9;">Pachabhaiya (Pokhara Metropolitan Ward No. 31)<br>Pokhara, Nepal 33700</p>
-            <p style="margin: 0 0 15px 0; opacity: 0.9;">Phone: {{ resort_phone }} | Email: {{ resort_email }}</p>
-            <p style="margin: 0; font-size: 0.85rem; opacity: 0.8;">© {% now "Y" %} {{ resort_name }}. All rights reserved.</p>
+            <div style="margin-bottom: 25px;">
+                <h3 style="margin: 0 0 15px 0; font-size: 1.6rem; font-weight: 300; color: #e6c35c;">Himalaya Forest Resort</h3>
+                <p style="margin: 0; opacity: 0.9; line-height: 1.6;">
+                    Experience luxury amidst the Himalayan serenity with breathtaking views, premium amenities, and exceptional service.
+                </p>
+            </div>
+            
+            <div class="footer-links">
+                <a href="#">Official Website</a>
+                <a href="#">View Rooms</a>
+                <a href="#">Photo Gallery</a>
+                <a href="#">Special Offers</a>
+                <a href="#">Contact Us</a>
+            </div>
+            
+            <div class="meta-info">
+                <p style="margin: 0;">This is an automated booking confirmation generated from the official Himalaya Forest Resort booking system.</p>
+                <p style="margin: 10px 0 0 0;">Booking Reference: <strong>{{ booking_reference }}</strong> | Generated: {{ timestamp }}</p>
+                <p style="margin: 5px 0 0 0; font-size: 0.8rem; opacity: 0.7;">
+                    Copyright © {% now "Y" %} Himalaya Forest Resort. All rights reserved.<br>
+                    Pachabhaiya (Pokhara Metropolitan Ward No. 31), 33700 Deorāli, Nepal
+                </p>
+            </div>
         </div>
+        
+        <div class="watermark">HFR</div>
     </div>
 </body>
 </html>

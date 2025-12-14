@@ -1354,7 +1354,6 @@
     transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-/* Ensure images don't overflow */
 img {
     max-width: 100%;
     height: auto;
@@ -1832,4 +1831,25 @@ section {
     font-size: 13px;
     max-width: 250px;
   }
+}
+
+
+/* Ensure loader properly hides */
+.page-loader.hidden {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.5s ease-out, visibility 0.5s ease-out;
+}
+
+/* Add this to prevent loader from showing on modal/gallery interactions */
+.no-loader {
+  cursor: default;
+}
+
+/* Gallery modal specific */
+.glightbox-container ~ .page-loader,
+.modal-open .page-loader,
+[data-bs-toggle="modal"] .page-loader {
+  display: none !important;
 }
