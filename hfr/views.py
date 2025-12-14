@@ -596,9 +596,9 @@ def contact_us(request):
     
     return render(request, 'contact_us.html', context)
 
-
 def gallery(request):
     gallery_images = [
+        # ROOMS - Deluxe Twin
         {
             'id': 1,
             'image': 'assets/img/rooms/deluxe_twin_01.jpg',
@@ -608,8 +608,8 @@ def gallery(request):
             'lightbox_title': 'Deluxe Twin Room - Spacious accommodation perfect for friends or colleagues',
             'category': 'rooms',
             'category_name': 'Rooms & Suites',
-            'col_class': 'col-lg-4',
-            'height_class': 'regular'
+            'grid_size': 'regular',
+            'aspect_ratio': 'landscape'
         },
         {
             'id': 2,
@@ -620,8 +620,8 @@ def gallery(request):
             'lightbox_title': 'Deluxe Twin Room - Featuring modern decor and essential amenities',
             'category': 'rooms',
             'category_name': 'Rooms & Suites',
-            'col_class': 'col-lg-4',
-            'height_class': 'regular'
+            'grid_size': 'regular',
+            'aspect_ratio': 'landscape'
         },
         {
             'id': 3,
@@ -632,9 +632,11 @@ def gallery(request):
             'lightbox_title': 'Deluxe Twin Room Bathroom - Equipped with SPA bath and premium toiletries',
             'category': 'rooms',
             'category_name': 'Rooms & Suites',
-            'col_class': 'col-lg-4',
-            'height_class': 'regular'
+            'grid_size': 'regular',
+            'aspect_ratio': 'landscape'
         },
+        
+        # ROOMS - Family Deluxe
         {
             'id': 4,
             'image': 'assets/img/rooms/family_deluxe_01.jpg',
@@ -644,8 +646,8 @@ def gallery(request):
             'lightbox_title': 'Family Deluxe Room - Comfortable space for up to 3 guests',
             'category': 'rooms',
             'category_name': 'Rooms & Suites',
-            'col_class': 'col-lg-4',
-            'height_class': 'regular'
+            'grid_size': 'regular',
+            'aspect_ratio': 'landscape'
         },
         {
             'id': 5,
@@ -656,8 +658,8 @@ def gallery(request):
             'lightbox_title': 'Family Deluxe Room - Sleeping area with two comfortable beds',
             'category': 'rooms',
             'category_name': 'Rooms & Suites',
-            'col_class': 'col-lg-4',
-            'height_class': 'regular'
+            'grid_size': 'regular',
+            'aspect_ratio': 'landscape'
         },
         {
             'id': 6,
@@ -668,9 +670,11 @@ def gallery(request):
             'lightbox_title': 'Family Deluxe Room - Comfortable seating area perfect for family time',
             'category': 'rooms',
             'category_name': 'Rooms & Suites',
-            'col_class': 'col-lg-4',
-            'height_class': 'regular'
+            'grid_size': 'regular',
+            'aspect_ratio': 'landscape'
         },
+        
+        # ROOMS - Super Deluxe
         {
             'id': 7,
             'image': 'assets/img/rooms/super_deluxe_02.jpg',
@@ -680,8 +684,8 @@ def gallery(request):
             'lightbox_title': 'Super Deluxe Room - Featuring panoramic views of Annapurna range',
             'category': 'rooms',
             'category_name': 'Rooms & Suites',
-            'col_class': 'col-lg-6',
-            'height_class': 'tall'
+            'grid_size': 'featured',
+            'aspect_ratio': 'landscape'
         },
         {
             'id': 8,
@@ -692,8 +696,8 @@ def gallery(request):
             'lightbox_title': 'Super Deluxe Room - Luxury interior with premium amenities',
             'category': 'rooms',
             'category_name': 'Rooms & Suites',
-            'col_class': 'col-lg-4',
-            'height_class': 'regular'
+            'grid_size': 'regular',
+            'aspect_ratio': 'landscape'
         },
         {
             'id': 9,
@@ -704,9 +708,11 @@ def gallery(request):
             'lightbox_title': 'Super Deluxe Room - Premium bathroom with SPA bath/Jacuzzi',
             'category': 'rooms',
             'category_name': 'Rooms & Suites',
-            'col_class': 'col-lg-4',
-            'height_class': 'regular'
+            'grid_size': 'regular',
+            'aspect_ratio': 'landscape'
         },
+        
+        # VIEWS - Lakes & Mountains
         {
             'id': 10,
             'image': 'assets/img/views/begnas_lake_01.jpg',
@@ -716,8 +722,8 @@ def gallery(request):
             'lightbox_title': 'Panoramic view of Begnas Lake from Himalaya Forest Resort',
             'category': 'views',
             'category_name': 'Lake & Mountain Views',
-            'col_class': 'col-lg-8',
-            'height_class': 'tall'
+            'grid_size': 'hero',
+            'aspect_ratio': 'panorama'
         },
         {
             'id': 11,
@@ -728,8 +734,8 @@ def gallery(request):
             'lightbox_title': '360-degree panoramic view of three major Himalayan ranges',
             'category': 'views',
             'category_name': 'Lake & Mountain Views',
-            'col_class': 'col-lg-4',
-            'height_class': 'regular'
+            'grid_size': 'regular',
+            'aspect_ratio': 'landscape'
         },
         {
             'id': 12,
@@ -740,8 +746,8 @@ def gallery(request):
             'lightbox_title': 'Natural beauty surrounding Himalaya Forest Resort',
             'category': 'views',
             'category_name': 'Lake & Mountain Views',
-            'col_class': 'col-lg-4',
-            'height_class': 'regular'
+            'grid_size': 'regular',
+            'aspect_ratio': 'landscape'
         },
         {
             'id': 13,
@@ -752,8 +758,8 @@ def gallery(request):
             'lightbox_title': 'View of local villages and Nepali countryside',
             'category': 'views',
             'category_name': 'Lake & Mountain Views',
-            'col_class': 'col-lg-4',
-            'height_class': 'regular'
+            'grid_size': 'regular',
+            'aspect_ratio': 'landscape'
         },
         {
             'id': 14,
@@ -764,8 +770,8 @@ def gallery(request):
             'lightbox_title': 'Dense forest surrounding the resort property',
             'category': 'views',
             'category_name': 'Lake & Mountain Views',
-            'col_class': 'col-lg-4',
-            'height_class': 'regular'
+            'grid_size': 'tall',
+            'aspect_ratio': 'portrait'
         },
         {
             'id': 15,
@@ -776,8 +782,8 @@ def gallery(request):
             'lightbox_title': 'Well-maintained garden area of the resort',
             'category': 'views',
             'category_name': 'Lake & Mountain Views',
-            'col_class': 'col-lg-4',
-            'height_class': 'regular'
+            'grid_size': 'regular',
+            'aspect_ratio': 'landscape'
         },
         {
             'id': 16,
@@ -788,8 +794,8 @@ def gallery(request):
             'lightbox_title': 'Stunning sunset view from the rooftop restaurant',
             'category': 'views',
             'category_name': 'Lake & Mountain Views',
-            'col_class': 'col-lg-4',
-            'height_class': 'regular'
+            'grid_size': 'regular',
+            'aspect_ratio': 'landscape'
         },
         {
             'id': 17,
@@ -800,8 +806,8 @@ def gallery(request):
             'lightbox_title': 'Early morning view with mist over Begnas Lake',
             'category': 'views',
             'category_name': 'Lake & Mountain Views',
-            'col_class': 'col-lg-4',
-            'height_class': 'regular'
+            'grid_size': 'regular',
+            'aspect_ratio': 'landscape'
         },
         {
             'id': 18,
@@ -812,9 +818,11 @@ def gallery(request):
             'lightbox_title': 'Complete 360-degree panoramic view from resort rooftop',
             'category': 'views',
             'category_name': 'Lake & Mountain Views',
-            'col_class': 'col-lg-8',
-            'height_class': 'tall'
+            'grid_size': 'featured',
+            'aspect_ratio': 'panorama'
         },
+        
+        # AMENITIES
         {
             'id': 19,
             'image': 'assets/img/amenities/dining_01.jpg',
@@ -824,8 +832,8 @@ def gallery(request):
             'lightbox_title': 'Main restaurant serving authentic Nepali and international cuisine',
             'category': 'amenities',
             'category_name': 'Amenities & Facilities',
-            'col_class': 'col-lg-6',
-            'height_class': 'regular'
+            'grid_size': 'wide',
+            'aspect_ratio': 'landscape'
         },
         {
             'id': 20,
@@ -836,9 +844,11 @@ def gallery(request):
             'lightbox_title': 'Open spacious garden perfect for relaxation',
             'category': 'amenities',
             'category_name': 'Amenities & Facilities',
-            'col_class': 'col-lg-6',
-            'height_class': 'regular'
+            'grid_size': 'wide',
+            'aspect_ratio': 'landscape'
         },
+        
+        # RESORT EXTERIOR
         {
             'id': 21,
             'image': 'assets/img/resort/resort_01.jpg',
@@ -848,8 +858,8 @@ def gallery(request):
             'lightbox_title': 'Aerial view of Himalaya Forest Resort amidst nature',
             'category': 'resort',
             'category_name': 'Resort Exterior',
-            'col_class': 'col-lg-8',
-            'height_class': 'tall'
+            'grid_size': 'hero',
+            'aspect_ratio': 'panorama'
         },
         {
             'id': 22,
@@ -860,11 +870,293 @@ def gallery(request):
             'lightbox_title': 'Closeup view of Himalaya Forest Resort building',
             'category': 'resort',
             'category_name': 'Resort Exterior',
-            'col_class': 'col-lg-4',
-            'height_class': 'regular'
+            'grid_size': 'regular',
+            'aspect_ratio': 'landscape'
         },
+        
+        # EXPERIENCE - Staff, Kitchen, Behind the Scenes (experience_01 to experience_21)
+        # All with same title/description as you specified since they are random clicks
+        {
+            'id': 23,
+            'image': 'assets/img/experience/experience_01.jpg',
+            'alt': 'Resort Experience 1',
+            'title': 'Resort Experience',
+            'description': 'Behind the scenes at Himalaya Forest Resort',
+            'lightbox_title': 'Experience the warmth and hospitality of our resort',
+            'category': 'experience',
+            'category_name': 'Resort Experience',
+            'grid_size': 'regular',
+            'aspect_ratio': 'landscape'
+        },
+        {
+            'id': 24,
+            'image': 'assets/img/experience/experience_02.jpg',
+            'alt': 'Resort Experience 2',
+            'title': 'Resort Experience',
+            'description': 'Behind the scenes at Himalaya Forest Resort',
+            'lightbox_title': 'Experience the warmth and hospitality of our resort',
+            'category': 'experience',
+            'category_name': 'Resort Experience',
+            'grid_size': 'regular',
+            'aspect_ratio': 'landscape'
+        },
+        {
+            'id': 25,
+            'image': 'assets/img/experience/experience_03.jpg',
+            'alt': 'Resort Experience 3',
+            'title': 'Resort Experience',
+            'description': 'Behind the scenes at Himalaya Forest Resort',
+            'lightbox_title': 'Experience the warmth and hospitality of our resort',
+            'category': 'experience',
+            'category_name': 'Resort Experience',
+            'grid_size': 'regular',
+            'aspect_ratio': 'landscape'
+        },
+        {
+            'id': 26,
+            'image': 'assets/img/experience/experience_04.jpg',
+            'alt': 'Resort Experience 4',
+            'title': 'Resort Experience',
+            'description': 'Behind the scenes at Himalaya Forest Resort',
+            'lightbox_title': 'Experience the warmth and hospitality of our resort',
+            'category': 'experience',
+            'category_name': 'Resort Experience',
+            'grid_size': 'regular',
+            'aspect_ratio': 'landscape'
+        },
+        {
+            'id': 27,
+            'image': 'assets/img/experience/experience_05.jpg',
+            'alt': 'Resort Experience 5',
+            'title': 'Resort Experience',
+            'description': 'Behind the scenes at Himalaya Forest Resort',
+            'lightbox_title': 'Experience the warmth and hospitality of our resort',
+            'category': 'experience',
+            'category_name': 'Resort Experience',
+            'grid_size': 'regular',
+            'aspect_ratio': 'landscape'
+        },
+        {
+            'id': 28,
+            'image': 'assets/img/experience/experience_06.jpg',
+            'alt': 'Resort Experience 6',
+            'title': 'Resort Experience',
+            'description': 'Behind the scenes at Himalaya Forest Resort',
+            'lightbox_title': 'Experience the warmth and hospitality of our resort',
+            'category': 'experience',
+            'category_name': 'Resort Experience',
+            'grid_size': 'regular',
+            'aspect_ratio': 'landscape'
+        },
+        {
+            'id': 29,
+            'image': 'assets/img/experience/experience_07.jpg',
+            'alt': 'Resort Experience 7',
+            'title': 'Resort Experience',
+            'description': 'Behind the scenes at Himalaya Forest Resort',
+            'lightbox_title': 'Experience the warmth and hospitality of our resort',
+            'category': 'experience',
+            'category_name': 'Resort Experience',
+            'grid_size': 'featured',
+            'aspect_ratio': 'landscape'
+        },
+        {
+            'id': 30,
+            'image': 'assets/img/experience/experience_08.jpg',
+            'alt': 'Resort Experience 8',
+            'title': 'Resort Experience',
+            'description': 'Behind the scenes at Himalaya Forest Resort',
+            'lightbox_title': 'Experience the warmth and hospitality of our resort',
+            'category': 'experience',
+            'category_name': 'Resort Experience',
+            'grid_size': 'regular',
+            'aspect_ratio': 'landscape'
+        },
+        {
+            'id': 31,
+            'image': 'assets/img/experience/experience_09.jpg',
+            'alt': 'Resort Experience 9',
+            'title': 'Resort Experience',
+            'description': 'Behind the scenes at Himalaya Forest Resort',
+            'lightbox_title': 'Experience the warmth and hospitality of our resort',
+            'category': 'experience',
+            'category_name': 'Resort Experience',
+            'grid_size': 'regular',
+            'aspect_ratio': 'landscape'
+        },
+        {
+            'id': 32,
+            'image': 'assets/img/experience/experience_10.jpg',
+            'alt': 'Resort Experience 10',
+            'title': 'Resort Experience',
+            'description': 'Behind the scenes at Himalaya Forest Resort',
+            'lightbox_title': 'Experience the warmth and hospitality of our resort',
+            'category': 'experience',
+            'category_name': 'Resort Experience',
+            'grid_size': 'regular',
+            'aspect_ratio': 'landscape'
+        },
+        {
+            'id': 33,
+            'image': 'assets/img/experience/experience_11.jpg',
+            'alt': 'Resort Experience 11',
+            'title': 'Resort Experience',
+            'description': 'Behind the scenes at Himalaya Forest Resort',
+            'lightbox_title': 'Experience the warmth and hospitality of our resort',
+            'category': 'experience',
+            'category_name': 'Resort Experience',
+            'grid_size': 'regular',
+            'aspect_ratio': 'landscape'
+        },
+        {
+            'id': 34,
+            'image': 'assets/img/experience/experience_12.jpg',
+            'alt': 'Resort Experience 12',
+            'title': 'Resort Experience',
+            'description': 'Behind the scenes at Himalaya Forest Resort',
+            'lightbox_title': 'Experience the warmth and hospitality of our resort',
+            'category': 'experience',
+            'category_name': 'Resort Experience',
+            'grid_size': 'wide',
+            'aspect_ratio': 'landscape'
+        },
+        {
+            'id': 35,
+            'image': 'assets/img/experience/experience_13.jpg',
+            'alt': 'Resort Experience 13',
+            'title': 'Resort Experience',
+            'description': 'Behind the scenes at Himalaya Forest Resort',
+            'lightbox_title': 'Experience the warmth and hospitality of our resort',
+            'category': 'experience',
+            'category_name': 'Resort Experience',
+            'grid_size': 'regular',
+            'aspect_ratio': 'landscape'
+        },
+        {
+            'id': 36,
+            'image': 'assets/img/experience/experience_14.jpg',
+            'alt': 'Resort Experience 14',
+            'title': 'Resort Experience',
+            'description': 'Behind the scenes at Himalaya Forest Resort',
+            'lightbox_title': 'Experience the warmth and hospitality of our resort',
+            'category': 'experience',
+            'category_name': 'Resort Experience',
+            'grid_size': 'featured',
+            'aspect_ratio': 'landscape'
+        },
+        {
+            'id': 37,
+            'image': 'assets/img/experience/experience_15.jpg',
+            'alt': 'Resort Experience 15',
+            'title': 'Resort Experience',
+            'description': 'Behind the scenes at Himalaya Forest Resort',
+            'lightbox_title': 'Experience the warmth and hospitality of our resort',
+            'category': 'experience',
+            'category_name': 'Resort Experience',
+            'grid_size': 'regular',
+            'aspect_ratio': 'landscape'
+        },
+        {
+            'id': 38,
+            'image': 'assets/img/experience/experience_16.jpg',
+            'alt': 'Resort Experience 16',
+            'title': 'Resort Experience',
+            'description': 'Behind the scenes at Himalaya Forest Resort',
+            'lightbox_title': 'Experience the warmth and hospitality of our resort',
+            'category': 'experience',
+            'category_name': 'Resort Experience',
+            'grid_size': 'regular',
+            'aspect_ratio': 'landscape'
+        },
+        {
+            'id': 39,
+            'image': 'assets/img/experience/experience_17.jpg',
+            'alt': 'Resort Experience 17',
+            'title': 'Resort Experience',
+            'description': 'Behind the scenes at Himalaya Forest Resort',
+            'lightbox_title': 'Experience the warmth and hospitality of our resort',
+            'category': 'experience',
+            'category_name': 'Resort Experience',
+            'grid_size': 'regular',
+            'aspect_ratio': 'landscape'
+        },
+        {
+            'id': 40,
+            'image': 'assets/img/experience/experience_18.jpg',
+            'alt': 'Resort Experience 18',
+            'title': 'Resort Experience',
+            'description': 'Behind the scenes at Himalaya Forest Resort',
+            'lightbox_title': 'Experience the warmth and hospitality of our resort',
+            'category': 'experience',
+            'category_name': 'Resort Experience',
+            'grid_size': 'regular',
+            'aspect_ratio': 'landscape'
+        },
+        {
+            'id': 41,
+            'image': 'assets/img/experience/experience_19.jpg',
+            'alt': 'Resort Experience 19',
+            'title': 'Resort Experience',
+            'description': 'Behind the scenes at Himalaya Forest Resort',
+            'lightbox_title': 'Experience the warmth and hospitality of our resort',
+            'category': 'experience',
+            'category_name': 'Resort Experience',
+            'grid_size': 'regular',
+            'aspect_ratio': 'landscape'
+        },
+        {
+            'id': 42,
+            'image': 'assets/img/experience/experience_20.jpg',
+            'alt': 'Resort Experience 20',
+            'title': 'Resort Experience',
+            'description': 'Behind the scenes at Himalaya Forest Resort',
+            'lightbox_title': 'Experience the warmth and hospitality of our resort',
+            'category': 'experience',
+            'category_name': 'Resort Experience',
+            'grid_size': 'regular',
+            'aspect_ratio': 'landscape'
+        },
+        {
+            'id': 43,
+            'image': 'assets/img/experience/experience_21.jpg',
+            'alt': 'Resort Experience 21',
+            'title': 'Resort Experience',
+            'description': 'Behind the scenes at Himalaya Forest Resort',
+            'lightbox_title': 'Experience the warmth and hospitality of our resort',
+            'category': 'experience',
+            'category_name': 'Resort Experience',
+            'grid_size': 'regular',
+            'aspect_ratio': 'landscape'
+        },
+        {
+            'id': 44,
+            'image': 'assets/img/experience/experience_22.jpg',
+            'alt': 'Resort Experience 22',
+            'title': 'Resort Experience',
+            'description': 'Behind the scenes at Himalaya Forest Resort',
+            'lightbox_title': 'Experience the warmth and hospitality of our resort',
+            'category': 'experience',
+            'category_name': 'Resort Experience',
+            'grid_size': 'regular',
+            'aspect_ratio': 'landscape'
+        },
+        {
+            'id': 45,
+            'image': 'assets/img/experience/experience_23.jpg',
+            'alt': 'Resort Experience 23',
+            'title': 'Resort Experience',
+            'description': 'Behind the scenes at Himalaya Forest Resort',
+            'lightbox_title': 'Experience the warmth and hospitality of our resort',
+            'category': 'experience',
+            'category_name': 'Resort Experience',
+            'grid_size': 'regular',
+            'aspect_ratio': 'landscape'
+        },
+       
+        
     ]
     
+    # Build categories dynamically
     categories = []
     category_counts = {}
     
@@ -877,16 +1169,22 @@ def gallery(request):
             })
         category_counts[image['category']] += 1
     
+    # Add "All Photos" category at the beginning
     categories.insert(0, {
         'slug': 'all',
         'name': 'All Photos'
     })
     
+    # Calculate totals
     total_images = len(gallery_images)
     room_images_count = len([img for img in gallery_images if img['category'] == 'rooms'])
     view_images_count = len([img for img in gallery_images if img['category'] == 'views'])
+    amenities_count = len([img for img in gallery_images if img['category'] == 'amenities'])
+    resort_count = len([img for img in gallery_images if img['category'] == 'resort'])
+    experience_count = len([img for img in gallery_images if img['category'] == 'experience'])
     
-    for category in categories[1:]:
+    # Add counts to categories
+    for category in categories[1:]:  # Skip 'all' category
         category['count'] = category_counts.get(category['slug'], 0)
     
     context = {
@@ -895,12 +1193,17 @@ def gallery(request):
         'total_images': total_images,
         'room_images_count': room_images_count,
         'view_images_count': view_images_count,
+        'amenities_count': amenities_count,
+        'resort_count': resort_count,
+        'experience_count': experience_count,
         'title': 'Photo Gallery - Himalaya Forest Resort',
-        'meta_description': 'Explore our photo gallery showcasing the beauty of Himalaya Forest Resort in Pokhara. View our luxurious rooms, breathtaking panoramic views of Begnas Lake, Rupa Lake, and Himalayan mountains, resort amenities, and beautiful surroundings.',
-        'meta_keywords': 'Resort Gallery, Pokhara Photos, Hotel Pictures, Room Images, Begnas Lake View, Rupa Lake Photos, Himalayan Mountains, Resort Amenities, Nepal Tourism'
+        'meta_description': 'Explore our comprehensive photo gallery showcasing Himalaya Forest Resort in Pokhara. View luxurious rooms, breathtaking Himalayan and lake views, resort amenities, our dedicated team, kitchen operations, and the authentic hospitality experience.',
+        'meta_keywords': 'Resort Gallery, Pokhara Photos, Hotel Pictures, Room Images, Begnas Lake View, Rupa Lake Photos, Himalayan Mountains, Resort Amenities, Hotel Staff, Kitchen, Chef, Nepal Tourism, Resort Experience'
     }
     
     return render(request, 'gallery.html', context)
+
+
 
 def rooms(request):
     rooms_data = [
