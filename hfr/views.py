@@ -195,7 +195,7 @@ def home(request):
         
         'images': {
             'hero': 'assets/img/hotel/resort_02.jpg',
-            'mountain_view': 'assets/img/views/mountain_01.jpg',
+            'experience': 'assets/img/experience/experience_16.jpg',
             'lake_view': 'assets/img/views/begnas_lake_01.jpg',
             'panoramic_view': 'assets/img/hotel/panoramic-view.jpg',
         },
@@ -265,7 +265,7 @@ def about_us(request):
         {
             'title': 'Local Cuisine',
             'description': 'Authentic Nepali and international cuisine prepared by expert chefs',
-            'image': 'assets/img/amenities/food_01.jpg',
+            'image': 'assets/img/experience/experience_19.jpg',
             'icon': 'bi-cup-hot',
             'alt': 'Fine Dining'
         },
@@ -280,8 +280,8 @@ def about_us(request):
     
     achievements = [
         {
-            'count': 25,
-            'suffix': '',
+            'count': 25 ,
+            'suffix': '+',
             'title': 'Luxury Rooms',
             'description': 'Beautifully appointed rooms with premium amenities'
         },
