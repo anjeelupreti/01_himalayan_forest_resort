@@ -1,132 +1,36 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'base/index.html' %}
+{% load static %}
 
-<head>
-  <meta charset="utf-8">
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>404 - Grandoria Bootstrap Template</title>
-  <meta name="description" content="">
-  <meta name="keywords" content="">
+{% block title %}404 - Page Not Found | Himalaya Forest Resort{% endblock %}
 
-  <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+{% block description %}The page you are looking for might have been removed, had its name changed, or is temporarily unavailable.{% endblock %}
 
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com" rel="preconnect">
-  <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Josefin+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+{% block keywords %}404, page not found, Himalaya Forest Resort, error{% endblock %}
 
-  <!-- Vendor CSS Files -->
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+{% block body_class %}page-404{% endblock %}
 
-  <!-- Main CSS File -->
-  <link href="assets/css/main.css" rel="stylesheet">
+{% block content %}
+<main class="main">
 
-</head>
-
-<body class="page-404">
-
-  <header id="header" class="header sticky-top">
-
-    <div class="topbar d-flex align-items-center dark-background">
-      <div class="container d-flex justify-content-center justify-content-md-between">
-        <div class="contact-info d-flex align-items-center">
-          <i class="bi bi-envelope d-flex align-items-center"><a href="mailto:contact@example.com">contact@example.com</a></i>
-          <i class="bi bi-phone d-flex align-items-center ms-4"><span>+1 5589 55488 55</span></i>
-        </div>
-        <div class="social-links d-none d-md-flex align-items-center">
-          <a href="#" class="twitter"><i class="bi bi-twitter-x"></i></a>
-          <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
-          <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
-          <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></a>
-        </div>
-      </div>
-    </div><!-- End Top Bar -->
-
-    <div class="branding d-flex align-items-cente">
-
-      <div class="container position-relative d-flex align-items-center justify-content-between">
-        <a href="index.html" class="logo d-flex align-items-center">
-          <!-- Uncomment the line below if you also wish to use an image logo -->
-          <!-- <img src="assets/img/logo.png" alt=""> -->
-          <h1 class="sitename">Grandoria</h1>
-        </a>
-
-        <nav id="navmenu" class="navmenu">
-          <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="about.html">About</a></li>
-            <li><a href="rooms.html">Rooms</a></li>
-            <li><a href="amenities.html">Amenities</a></li>
-            <li><a href="location.html">Location</a></li>
-            <li class="dropdown"><a href="#"><span>Pages</span> <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-              <ul>
-                <li><a href="room-details.html">Room Details</a></li>
-                <li><a href="restaurant.html">Restaurant</a></li>
-                <li><a href="offers.html">Offers</a></li>
-                <li><a href="events.html">Events</a></li>
-                <li><a href="gallery.html">Gallery</a></li>
-                <li><a href="booking.html">Booking</a></li>
-                <li><a href="terms.html">Terms Page</a></li>
-                <li><a href="privacy.html">Privacy Page</a></li>
-                <li><a href="404.html" class="active">404 Page</a></li>
-                <li><a href="starter-page.html">Starter Page</a></li>
-              </ul>
-            </li>
-            <li><a href="contact.html">Contact</a></li>
-
-            <li class="dropdown">
-              <a href="#english">
-                <svg class="icon" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <g id="SVGRepo_iconCarrier">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M4 0H6V2H10V4H8.86807C8.57073 5.66996 7.78574 7.17117 6.6656 8.35112C7.46567 8.73941 8.35737 8.96842 9.29948 8.99697L10.2735 6H12.7265L15.9765 16H13.8735L13.2235 14H9.77647L9.12647 16H7.0235L8.66176 10.9592C7.32639 10.8285 6.08165 10.3888 4.99999 9.71246C3.69496 10.5284 2.15255 11 0.5 11H0V9H0.5C1.5161 9 2.47775 8.76685 3.33437 8.35112C2.68381 7.66582 2.14629 6.87215 1.75171 6H4.02179C4.30023 6.43491 4.62904 6.83446 4.99999 7.19044C5.88743 6.33881 6.53369 5.23777 6.82607 4H0V2H4V0ZM12.5735 12L11.5 8.69688L10.4265 12H12.5735Z" fill="currentColor"></path>
-                  </g>
-                </svg>
-                <span>English</span>
-                <i class="bi bi-chevron-down toggle-dropdown"></i></a>
-              <ul>
-                <li><a href="#french">French</a></li>
-                <li><a href="#deutsch">Deutsch</a></li>
-                <li><a href="#spanish">Spanish</a></li>
-              </ul>
-            </li>
-
-          </ul>
-          <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
-        </nav>
-
-      </div>
-
+  <div class="page-title light-background">
+    <div class="container d-lg-flex justify-content-between align-items-center">
+      <h1 class="mb-2 mb-lg-0">Page Not Found</h1>
+      <nav class="breadcrumbs">
+        <ol>
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li class="current">404 Error</li>
+        </ol>
+      </nav>
     </div>
+  </div>
 
-  </header>
+  <section id="error-404" class="error-404 section">
 
-  <main class="main">
+    <div class="container" data-aos="fade-up" data-aos-delay="100">
 
-    <!-- Page Title -->
-    <div class="page-title light-background">
-      <div class="container d-lg-flex justify-content-between align-items-center">
-        <h1 class="mb-2 mb-lg-0">404</h1>
-        <nav class="breadcrumbs">
-          <ol>
-            <li><a href="index.html">Home</a></li>
-            <li class="current">404</li>
-          </ol>
-        </nav>
-      </div>
-    </div><!-- End Page Title -->
-
-    <!-- Error 404 Section -->
-    <section id="error-404" class="error-404 section">
-
-      <div class="container" data-aos="fade-up" data-aos-delay="100">
-
-        <div class="text-center">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 text-center">
+          
           <div class="error-icon mb-4" data-aos="zoom-in" data-aos-delay="200">
             <i class="bi bi-exclamation-circle"></i>
           </div>
@@ -151,128 +55,224 @@
           </div>
 
           <div class="error-action" data-aos="fade-up" data-aos-delay="700">
-            <a href="/" class="btn btn-primary">Back to Home</a>
-          </div>
-        </div>
-
-      </div>
-
-    </section><!-- /Error 404 Section -->
-
-  </main>
-
-  <footer id="footer" class="footer position-relative dark-background">
-
-    <div class="footer-top">
-      <div class="container">
-        <div class="row gy-4">
-          <div class="col-lg-4 col-md-6 footer-about">
-            <a href="index.html" class="logo d-flex align-items-center">
-              <span class="sitename">Grandoria</span>
-            </a>
-            <div class="footer-contact pt-3">
-              <p>A108 Adam Street</p>
-              <p>New York, NY 535022</p>
-              <p class="mt-3"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
-              <p><strong>Email:</strong> <span>info@example.com</span></p>
-            </div>
-          </div>
-
-          <div class="col-lg-2 col-md-3 footer-links">
-            <h4>Useful Links</h4>
-            <ul>
-              <li><a href="#">Home</a></li>
-              <li><a href="#">About us</a></li>
-              <li><a href="#">Services</a></li>
-              <li><a href="#">Terms of service</a></li>
-              <li><a href="#">Privacy policy</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-2 col-md-3 footer-links">
-            <h4>Our Services</h4>
-            <ul>
-              <li><a href="#">Web Design</a></li>
-              <li><a href="#">Web Development</a></li>
-              <li><a href="#">Product Management</a></li>
-              <li><a href="#">Marketing</a></li>
-              <li><a href="#">Graphic Design</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-2 col-md-3 footer-links">
-            <h4>Hic solutasetp</h4>
-            <ul>
-              <li><a href="#">Molestiae accusamus iure</a></li>
-              <li><a href="#">Excepturi dignissimos</a></li>
-              <li><a href="#">Suscipit distinctio</a></li>
-              <li><a href="#">Dilecta</a></li>
-              <li><a href="#">Sit quas consectetur</a></li>
-            </ul>
-          </div>
-
-          <div class="col-lg-2 col-md-3 footer-links">
-            <h4>Nobis illum</h4>
-            <ul>
-              <li><a href="#">Ipsam</a></li>
-              <li><a href="#">Laudantium dolorum</a></li>
-              <li><a href="#">Dinera</a></li>
-              <li><a href="#">Trodelas</a></li>
-              <li><a href="#">Flexo</a></li>
-            </ul>
+            <a href="{% url 'home' %}" class="btn btn-primary">Back to Home</a>
+            <a href="{% url 'contact_us' %}" class="btn btn-outline-secondary ms-2">Contact Us</a>
+            <a href="{% url 'rooms' %}" class="btn btn-outline-secondary ms-2">View Rooms</a>
           </div>
 
         </div>
       </div>
+
     </div>
 
-    <div class="copyright text-center">
-      <div class="container d-flex flex-column flex-lg-row justify-content-center justify-content-lg-between align-items-center">
+  </section>
 
-        <div class="d-flex flex-column align-items-center align-items-lg-start">
-          <div>
-            © Copyright <strong><span>MyWebsite</span></strong>. All Rights Reserved
-          </div>
-          <div class="credits">
-            <!-- All the links in the footer should remain intact. -->
-            <!-- You can delete the links only if you purchased the pro version. -->
-            <!-- Licensing information: https://bootstrapmade.com/license/ -->
-            <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/herobiz-bootstrap-business-template/ -->
-            Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
-          </div>
-        </div>
+</main>
+{% endblock %}
 
-        <div class="social-links order-first order-lg-last mb-3 mb-lg-0">
-          <a href=""><i class="bi bi-twitter-x"></i></a>
-          <a href=""><i class="bi bi-facebook"></i></a>
-          <a href=""><i class="bi bi-instagram"></i></a>
-          <a href=""><i class="bi bi-linkedin"></i></a>
-        </div>
+{% block extra_css %}
+<style>
+  .error-404 {
+    padding: 80px 0;
+    min-height: 60vh;
+    display: flex;
+    align-items: center;
+  }
 
-      </div>
-    </div>
+  .error-icon {
+    font-size: 4rem;
+    color: #3498db;
+    margin-bottom: 1.5rem;
+  }
 
-  </footer>
+  .error-code {
+    font-size: 6rem;
+    font-weight: 900;
+    color: #2c3e50;
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
 
-  <!-- Scroll Top -->
-  <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+  .error-title {
+    font-size: 2.2rem;
+    color: #2c3e50;
+    margin-bottom: 1.5rem;
+    font-weight: 600;
+  }
 
-  <!-- Preloader -->
-  <div id="preloader"></div>
+  .error-text {
+    font-size: 1.1rem;
+    color: #666;
+    max-width: 600px;
+    margin: 0 auto 2.5rem;
+    line-height: 1.6;
+  }
 
-  <!-- Vendor JS Files -->
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/imagesloaded/imagesloaded.pkgd.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  .search-box {
+    max-width: 500px;
+    margin: 0 auto 3rem;
+  }
 
-  <!-- Main JS File -->
-  <script src="assets/js/main.js"></script>
+  .search-form .input-group {
+    border-radius: 50px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    border: 1px solid #e0e0e0;
+  }
 
-</body>
+  .search-form .form-control {
+    border: none;
+    padding: 15px 25px;
+    font-size: 1rem;
+    background: #fff;
+  }
 
-</html>
+  .search-form .form-control:focus {
+    box-shadow: none;
+    background: #fff;
+  }
+
+  .search-btn {
+    background: #3498db;
+    color: white;
+    border: none;
+    padding: 0 30px;
+    font-weight: 500;
+    transition: all 0.3s ease;
+  }
+
+  .search-btn:hover {
+    background: #2980b9;
+  }
+
+  .error-action .btn {
+    padding: 12px 30px;
+    font-size: 1rem;
+    font-weight: 500;
+    border-radius: 50px;
+    margin: 5px;
+    transition: all 0.3s ease;
+  }
+
+  .error-action .btn-primary {
+    background: #3498db;
+    border-color: #3498db;
+  }
+
+  .error-action .btn-primary:hover {
+    background: #2980b9;
+    border-color: #2980b9;
+    transform: translateY(-2px);
+  }
+
+  .error-action .btn-outline-primary {
+    color: #3498db;
+    border-color: #3498db;
+  }
+
+  .error-action .btn-outline-primary:hover {
+    background: #3498db;
+    border-color: #3498db;
+    transform: translateY(-2px);
+  }
+
+  .error-action .btn-outline-secondary {
+    color: #7f8c8d;
+    border-color: #7f8c8d;
+  }
+
+  .error-action .btn-outline-secondary:hover {
+    background: #7f8c8d;
+    border-color: #7f8c8d;
+    color: white;
+    transform: translateY(-2px);
+  }
+
+  @media (max-width: 768px) {
+    .error-404 {
+      padding: 60px 0;
+    }
+
+    .error-code {
+      font-size: 4.5rem;
+    }
+
+    .error-title {
+      font-size: 1.8rem;
+    }
+
+    .error-text {
+      font-size: 1rem;
+      padding: 0 15px;
+    }
+
+    .error-icon {
+      font-size: 3rem;
+    }
+
+    .error-action .btn {
+      padding: 10px 20px;
+      font-size: 0.95rem;
+      margin: 3px;
+      display: block;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    
+    .error-action .btn.ms-2 {
+      margin-left: 0 !important;
+    }
+  }
+
+  @media (max-width: 576px) {
+    .search-form .form-control {
+      padding: 12px 20px;
+    }
+    
+    .search-btn {
+      padding: 0 20px;
+    }
+  }
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+  document.addEventListener('DOMContentLoaded', function() {
+    // Search form submission
+    const searchForm = document.querySelector('.search-form');
+    if (searchForm) {
+      searchForm.addEventListener('submit', function(e) {
+        e.preventDefault();
+        const searchInput = this.querySelector('input[type="text"]');
+        const searchTerm = searchInput.value.trim();
+        
+        if (searchTerm) {
+          // Simple search redirection to home with query parameter
+          window.location.href = "{% url 'home' %}?search=" + encodeURIComponent(searchTerm);
+        }
+      });
+    }
+
+    // Remove active class from all navigation links
+    const navLinks = document.querySelectorAll('#navmenu a');
+    if (navLinks.length > 0) {
+      navLinks.forEach(link => {
+        link.classList.remove('active');
+      });
+    }
+
+    // Add smooth scroll to top
+    const scrollTop = document.getElementById('scroll-top');
+    if (scrollTop) {
+      scrollTop.addEventListener('click', function(e) {
+        e.preventDefault();
+        window.scrollTo({
+          top: 0,
+          behavior: 'smooth'
+        });
+      });
+    }
+  });
+</script>
+{% endblock %}

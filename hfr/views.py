@@ -85,10 +85,10 @@ def home(request):
             },
             {
                 'name': 'View',
-                'description': 'Breathtaking 360-degree panoramic views of Begnas Lake, Rupa Lake, and the Himalayan ranges including Annapurna, Dhaulagiri, and Manaslu.',
+                'description': 'Breathtaking 360-degree panoramic views of Begnas Lake, Rupa Lake, and the Himalaya ranges including Annapurna, Dhaulagiri, and Manaslu.',
                 'image': 'assets/img/amenities/view_01.jpg',
                 'icon': 'bi bi-binoculars',
-                'features': ['Panoramic lake views', 'Himalayan mountain ranges', 'Multiple vantage points', 'Sunrise & sunset views']
+                'features': ['Panoramic lake views', 'Himalaya mountain ranges', 'Multiple vantage points', 'Sunrise & sunset views']
             },
             {
                 'name': 'Garden & Outdoor',
@@ -201,7 +201,7 @@ def home(request):
         },
         
         'special_features': [
-            '360° panoramic view of 3 major Himalayan ranges',
+            '360° panoramic view of 3 major Himalaya ranges',
             'SPA BATH/JACUZZI in every room',
             'Pet-friendly with no extra charges',
             '24-hour check-in/check-out',
@@ -220,7 +220,7 @@ def about_us(request):
         'location': 'Pachabhaiya (Pokhara Metropolitan Ward No. 31), Pokhara, Nepal',
         'category': '3-Star Hotel/Resort',
         'slogan': 'Escape to best view',
-        'motto': 'Where Himalayan Beauty Meets Modern Luxury',
+        'motto': 'Where Himalaya Beauty Meets Modern Luxury',
         'brand_promise': 'Where every moment is an unforgettable experience',
         'description': 'perfect blend of relaxation, adventure, and indulgence',
         
@@ -257,7 +257,7 @@ def about_us(request):
     features = [
         {
             'title': 'Panoramic Views',
-            'description': 'Breathtaking views of Begnas Lake, Rupa Lake, and Himalayan ranges from every room',
+            'description': 'Breathtaking views of Begnas Lake, Rupa Lake, and Himalaya ranges from every room',
             'image': 'assets/img/views/mountain_01.jpg',
             'icon': 'bi-flower1',
             'alt': 'Spa Services'
@@ -310,7 +310,7 @@ def about_us(request):
             'id': 1,
             'name': 'Super Deluxe Room',
             'price': 6500,
-            'description': 'Our premium Super Deluxe rooms offer panoramic views of Begnas Lake and the surrounding Himalayan ranges. Featuring modern amenities and elegant decor for the ultimate comfort experience.',
+            'description': 'Our premium Super Deluxe rooms offer panoramic views of Begnas Lake and the surrounding Himalaya ranges. Featuring modern amenities and elegant decor for the ultimate comfort experience.',
             'image': 'assets/img/rooms/super_deluxe_06.jpg',
             'capacity': 2,
             'size': '45m²',
@@ -570,7 +570,7 @@ def contact_us(request):
                     'form_submitted': form_submitted,
                     'contact_name': contact_name,
                     'page_title': 'Contact Us | Himalaya Forest Resort, Pokhara',
-                    'meta_description': 'Get in touch with Himalaya Forest Resort in Pokhara, Nepal. Contact us for bookings, inquiries, or to plan your perfect Himalayan getaway.',
+                    'meta_description': 'Get in touch with Himalaya Forest Resort in Pokhara, Nepal. Contact us for bookings, inquiries, or to plan your perfect Himalaya getaway.',
                     'meta_keywords': 'Contact Himalaya Forest Resort, Pokhara Hotel Contact, Nepal Resort Contact, Booking Inquiry, Hotel Phone Number, Resort Email',
                 }
                 
@@ -590,7 +590,7 @@ def contact_us(request):
         'form_submitted': form_submitted,
         'contact_name': contact_name,
         'page_title': 'Contact Us | Himalaya Forest Resort, Pokhara',
-        'meta_description': 'Get in touch with Himalaya Forest Resort in Pokhara, Nepal. Contact us for bookings, inquiries, or to plan your perfect Himalayan getaway.',
+        'meta_description': 'Get in touch with Himalaya Forest Resort in Pokhara, Nepal. Contact us for bookings, inquiries, or to plan your perfect Himalaya getaway.',
         'meta_keywords': 'Contact Himalaya Forest Resort, Pokhara Hotel Contact, Nepal Resort Contact, Booking Inquiry, Hotel Phone Number, Resort Email',
     }
     
@@ -728,10 +728,10 @@ def gallery(request):
         {
             'id': 11,
             'image': 'assets/img/views/mountain_01.jpg',
-            'alt': 'Himalayan Mountain Range',
-            'title': 'Himalayan Mountains',
+            'alt': 'Himalaya Mountain Range',
+            'title': 'Himalaya Mountains',
             'description': 'View of Annapurna, Dhaulagiri, and Manaslu ranges',
-            'lightbox_title': '360-degree panoramic view of three major Himalayan ranges',
+            'lightbox_title': '360-degree panoramic view of three major Himalaya ranges',
             'category': 'views',
             'category_name': 'Lake & Mountain Views',
             'grid_size': 'regular',
@@ -1197,8 +1197,8 @@ def gallery(request):
         'resort_count': resort_count,
         'experience_count': experience_count,
         'title': 'Photo Gallery - Himalaya Forest Resort',
-        'meta_description': 'Explore our comprehensive photo gallery showcasing Himalaya Forest Resort in Pokhara. View luxurious rooms, breathtaking Himalayan and lake views, resort amenities, our dedicated team, kitchen operations, and the authentic hospitality experience.',
-        'meta_keywords': 'Resort Gallery, Pokhara Photos, Hotel Pictures, Room Images, Begnas Lake View, Rupa Lake Photos, Himalayan Mountains, Resort Amenities, Hotel Staff, Kitchen, Chef, Nepal Tourism, Resort Experience'
+        'meta_description': 'Explore our comprehensive photo gallery showcasing Himalaya Forest Resort in Pokhara. View luxurious rooms, breathtaking Himalaya and lake views, resort amenities, our dedicated team, kitchen operations, and the authentic hospitality experience.',
+        'meta_keywords': 'Resort Gallery, Pokhara Photos, Hotel Pictures, Room Images, Begnas Lake View, Rupa Lake Photos, Himalaya Mountains, Resort Amenities, Hotel Staff, Kitchen, Chef, Nepal Tourism, Resort Experience'
     }
     
     return render(request, 'gallery.html', context)
@@ -1302,7 +1302,7 @@ def room_detail(request, room_id=None, room_slug=None):
             'category': 'super-deluxe',
             'is_popular': True,
             'badge': 'popular',
-            'detailed_description': 'The Super Deluxe Room at Himalaya Forest Resort offers an unparalleled luxury experience with stunning 360-degree panoramic views of Begnas Lake, Rupa Lake, and the majestic Annapurna, Dhaulagiri, and Manaslu mountain ranges. This room features a private SPA bath/Jacuzzi, premium amenities, and a spacious balcony to enjoy the breathtaking Himalayan sunrise.',
+            'detailed_description': 'The Super Deluxe Room at Himalaya Forest Resort offers an unparalleled luxury experience with stunning 360-degree panoramic views of Begnas Lake, Rupa Lake, and the majestic Annapurna, Dhaulagiri, and Manaslu mountain ranges. This room features a private SPA bath/Jacuzzi, premium amenities, and a spacious balcony to enjoy the breathtaking Himalaya sunrise.',
             'included_services': ['Continental Breakfast', 'Free Parking', 'Free WiFi', '24/7 Room Service', 'Daily Housekeeping'],
             'additional_info': {
                 'check_in': '24 hours available',
@@ -1618,3 +1618,13 @@ def booking(request):
     }
     
     return render(request, 'booking.html', context)
+
+
+
+def view_404(request, exception=None):
+    context = {
+        'title': 'Page Not Found - 404 Error',
+        'meta_description': 'The page you are looking for does not exist. Return to the Himalaya Forest Resort homepage and explore our offerings.',
+        'meta_keywords': '404 Error, Page Not Found, Himalaya Forest Resort, Pokhara, Nepal',
+    }
+    return render(request, '404.html', context, status=404)

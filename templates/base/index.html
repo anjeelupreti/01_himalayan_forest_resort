@@ -52,11 +52,10 @@
     <div class="branding d-flex align-items-center">
       <div class="container position-relative d-flex align-items-center justify-content-between">
         <a href="{% url 'home' %}" class="logo d-flex align-items-center">
-          <!-- Fixed logo image with correct onerror attribute -->
           <img src="{% static 'assets/img/logo.png' %}" 
                alt="Himalaya Forest Resort Logo" 
                class="logo-image me-2" 
-               onerror="this.onerror=null; this.src='{% static 'assets/img/logo.png' %}';">
+               >
           <div class="logo-text d-flex flex-column">
             <h1 class="sitename mb-0">Himalaya Forest Resort</h1>
             <small class="tagline">Escape to the best view</small>

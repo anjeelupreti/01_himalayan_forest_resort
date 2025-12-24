@@ -27,9 +27,7 @@ SECRET_KEY = os.getenv('SECRET_KEY','NOT-SET')
 DEBUG = os.getenv('DEBUG', 'False') == 'True'
 
 ALLOWED_HOSTS = [
-    'zero1-himalayan-forest-resort.onrender.com',
-    'localhost',
-    '127.0.0.1'
+    '*'
 ]
 
 # Application definition
