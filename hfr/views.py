@@ -10,7 +10,6 @@ from pathlib import Path
 import re
 from datetime import datetime
 
-# File-based queue system imports
 from django.utils.html import strip_tags
 from django.utils import timezone
 import json

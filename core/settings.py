@@ -132,21 +132,18 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 
 EMAIL_BACKEND = os.getenv('EMAIL_BACKEND', 'django.core.mail.backends.smtp.EmailBackend')
-EMAIL_HOST = os.getenv('EMAIL_HOST', 'mail.himalayaforestresort.com')  # Your mail server
+EMAIL_HOST = os.getenv('EMAIL_HOST', 'mail.himalayaforestresort.com')  
 EMAIL_PORT = int(os.getenv('EMAIL_PORT', 465))
 EMAIL_USE_SSL = os.getenv('EMAIL_USE_SSL', 'True') == 'True'
 EMAIL_USE_TLS = os.getenv('EMAIL_USE_TLS', 'False') == 'True'
 
-# SENDER credentials (noreply@himalayaforestresort.com)
-EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER', 'noreply@himalayaforestresort.com')
-EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD', 'himalayaforestresort123')
+EMAIL_HOST_USER = os.getenv('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = os.getenv('EMAIL_HOST_PASSWORD')
 
-# SENDER address (what recipients see)
-DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL', 'noreply@himalayaforestresort.com')
-SERVER_EMAIL = os.getenv('SERVER_EMAIL', 'noreply@himalayaforestresort.com')
+DEFAULT_FROM_EMAIL = os.getenv('DEFAULT_FROM_EMAIL')
+SERVER_EMAIL = os.getenv('SERVER_EMAIL')
 
-# RECIPIENT address (where emails go)
-RESORT_ADMIN_EMAIL = os.getenv('RESORT_ADMIN_EMAIL', 'codevault.services@gmail.com')
+RESORT_ADMIN_EMAIL = os.getenv('RESORT_ADMIN_EMAIL')
 
 EMAIL_TIMEOUT = 5  
 
