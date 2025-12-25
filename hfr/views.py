@@ -6,10 +6,382 @@ from django.core.mail import EmailMessage
 import os
 import base64
 from django.conf import settings
-import base64
 from pathlib import Path
 import re
 from datetime import datetime
+
+# File-based queue system imports
+from django.utils.html import strip_tags
+from django.utils import timezone
+import json
+import logging
+import threading
+import time
+from typing import Dict, List, Optional
+
+logger = logging.getLogger(__name__)
+
+# Queue configuration
+QUEUE_FILE = '/tmp/hfr_email_queue.json'
+MAX_QUEUE_SIZE = 500
+PROCESSING_LOCK_FILE = '/tmp/hfr_email_processing.lock'
+
+# ======================== QUEUE HELPER FUNCTIONS ========================
+
+def log_error(message: str) -> None:
+    """Log errors to a file"""
+    try:
+        error_log = Path(settings.BASE_DIR) / 'logs' / 'email_errors.log'
+        error_log.parent.mkdir(exist_ok=True)
+        with open(error_log, 'a') as f:
+            timestamp = timezone.now().isoformat()
+            f.write(f"{timestamp}: {message}\n")
+    except Exception:
+        pass
+
+def get_email_queue() -> List[Dict]:
+    """Load email queue from file"""
+    queue_file = Path(QUEUE_FILE)
+    if not queue_file.exists():
+        return []
+    
+    try:
+        with open(queue_file, 'r') as f:
+            return json.load(f)
+    except (json.JSONDecodeError, IOError):
+        return []
+
+def save_email_queue(queue: List[Dict]) -> bool:
+    """Save email queue to file"""
+    try:
+        queue_file = Path(QUEUE_FILE)
+        queue_file.parent.mkdir(exist_ok=True)
+        
+        with open(queue_file, 'w') as f:
+            json.dump(queue, f, indent=2)
+        return True
+    except Exception as e:
+        log_error(f"save_email_queue error: {str(e)}")
+        return False
+
+def add_to_email_queue(email_data: Dict) -> bool:
+    """Add email to queue with size limit"""
+    try:
+        queue = get_email_queue()
+        queue.append(email_data)
+        
+        if len(queue) > MAX_QUEUE_SIZE:
+            queue = queue[-MAX_QUEUE_SIZE:]
+        
+        return save_email_queue(queue)
+    except Exception as e:
+        log_error(f"add_to_email_queue error: {str(e)}")
+        return False
+
+def is_processing() -> bool:
+    """Check if email processing is already running"""
+    lock_file = Path(PROCESSING_LOCK_FILE)
+    if not lock_file.exists():
+        return False
+    
+    try:
+        modified_time = lock_file.stat().st_mtime
+        if time.time() - modified_time > 300:
+            lock_file.unlink(missing_ok=True)
+            return False
+        return True
+    except:
+        return False
+
+def set_processing_lock(state: bool):
+    """Set or clear processing lock"""
+    lock_file = Path(PROCESSING_LOCK_FILE)
+    if state:
+        try:
+            with open(lock_file, 'w') as f:
+                f.write(str(timezone.now().isoformat()))
+        except:
+            pass
+    else:
+        lock_file.unlink(missing_ok=True)
+
+def send_email_with_retry(subject: str, message: str, recipient_list: List[str], 
+                         html_message: Optional[str] = None, max_retries: int = 3) -> bool:
+    """Send email with retry logic"""
+    for attempt in range(max_retries):
+        try:
+            send_mail(
+                subject=subject,
+                message=message,
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=recipient_list,
+                html_message=html_message,
+                fail_silently=False,
+            )
+            return True
+        except Exception as e:
+            if attempt < max_retries - 1:
+                logger.warning(f"Email attempt {attempt + 1} failed, retrying: {e}")
+                time.sleep(2 ** attempt)
+            else:
+                log_error(f"Email failed after {max_retries} attempts: {e}")
+    return False
+
+def process_single_contact_email(email_data: Dict) -> bool:
+    """Process a single contact form email"""
+    try:
+        # Prepare logo
+        logo_path = Path(settings.BASE_DIR) / 'static' / 'assets' / 'img' / 'logo.png'
+        logo_base64 = ""
+        if logo_path.exists():
+            with open(logo_path, "rb") as logo_file:
+                logo_base64 = base64.b64encode(logo_file.read()).decode('utf-8')
+        
+        # Context for resort email
+        resort_context = {
+            'name': email_data['name'],
+            'email': email_data['email'],
+            'phone': email_data.get('phone', 'Not provided'),
+            'subject': email_data['subject_label'],
+            'message': email_data['message'],
+            'newsletter': email_data.get('newsletter', 'No'),
+            'timestamp': email_data['submitted_at'],
+            'ip_address': email_data.get('ip_address', 'N/A'),
+            'resort_name': 'Himalaya Forest Resort',
+            'logo_base64': logo_base64,
+            'resort_phone': '+977 9856081271',
+            'resort_email': 'himalayaforestresort@gmail.com',
+            'resort_address': 'Pachabhaiya (Pokhara Metropolitan Ward No. 31), Pokhara, Nepal',
+        }
+        
+        # Context for user email
+        user_context = {
+            'name': email_data['name'],
+            'subject': email_data['subject_label'],
+            'reservation_phone': '+977 9856081271',
+            'resort_address': 'Pachabhaiya (Pokhara Metropolitan Ward No. 31)',
+            'resort_city': '33700 Deorāli, Nepal',
+            'resort_email': 'himalayaforestresort@gmail.com',
+            'resort_name': 'Himalaya Forest Resort',
+            'logo_base64': logo_base64,
+            'timestamp': email_data['submitted_at'],
+            'contact_subject': email_data['subject_label']
+        }
+        
+        # Render templates
+        try:
+            resort_html = render_to_string('emails/contact_to_resort.html', resort_context)
+            resort_text = strip_tags(resort_html)
+            user_html = render_to_string('emails/contact_to_user.html', user_context)
+            user_text = strip_tags(user_html)
+        except Exception as e:
+            log_error(f"Template rendering error: {str(e)}")
+            resort_text = f"New contact from {email_data['name']} ({email_data['email']}):\n\nSubject: {email_data['subject_label']}\n\n{email_data['message']}"
+            user_text = f"Thank you for contacting Himalaya Forest Resort, {email_data['name']}! We'll get back to you within 24 hours."
+            resort_html = None
+            user_html = None
+        
+        # Send resort email
+        resort_sent = send_email_with_retry(
+            subject=f"Contact Form: {email_data['subject_label']} - {email_data['name']}",
+            message=resort_text,
+            recipient_list=[settings.RESORT_ADMIN_EMAIL],
+            html_message=resort_html,
+        )
+        
+        # Send user confirmation
+        user_sent = send_email_with_retry(
+            subject="Thank you for contacting Himalaya Forest Resort",
+            message=user_text,
+            recipient_list=[email_data['email']],
+            html_message=user_html,
+        )
+        
+        return resort_sent and user_sent
+        
+    except Exception as e:
+        log_error(f"process_single_contact_email error: {str(e)}")
+        return False
+
+def process_single_booking_email(email_data: Dict) -> bool:
+    """Process a single booking email"""
+    try:
+        # Prepare logo
+        logo_path = Path(settings.BASE_DIR) / 'static' / 'assets' / 'img' / 'logo.png'
+        logo_base64 = ""
+        if logo_path.exists():
+            with open(logo_path, "rb") as logo_file:
+                logo_base64 = base64.b64encode(logo_file.read()).decode('utf-8')
+        
+        # Context for resort email
+        resort_context = {
+            'booking_reference': email_data['booking_reference'],
+            'arrival_date': email_data['arrival_date'],
+            'departure_date': email_data['departure_date'],
+            'nights': email_data['nights'],
+            'guest_count': email_data['guest_count'],
+            'room_count': email_data['room_count'],
+            'room_type': email_data['room_type'],
+            'special_requests': email_data['special_requests'],
+            'full_name': email_data['full_name'],
+            'email': email_data['email'],
+            'phone': email_data.get('phone', 'Not provided'),
+            'country': email_data.get('country', 'Not specified'),
+            'newsletter': email_data.get('newsletter', 'No'),
+            'timestamp': email_data['submitted_at'],
+            'ip_address': email_data.get('ip_address', 'N/A'),
+            'resort_name': 'Himalaya Forest Resort',
+            'logo_base64': logo_base64,
+            'resort_phone': '+977 9856081271',
+            'resort_email': 'himalayaforestresort@gmail.com',
+            'resort_address': 'Pachabhaiya (Pokhara Metropolitan Ward No. 31), Pokhara, Nepal',
+            'check_in_time': email_data.get('check_in_time', '2:00 PM'),
+            'check_out_time': email_data.get('check_out_time', '12:00 PM'),
+        }
+        
+        # Context for user email
+        user_context = {
+            'booking_reference': email_data['booking_reference'],
+            'arrival_date': email_data['arrival_date'],
+            'departure_date': email_data['departure_date'],
+            'nights': email_data['nights'],
+            'guest_count': email_data['guest_count'],
+            'room_count': email_data['room_count'],
+            'room_type': email_data['room_type'],
+            'special_requests': email_data['special_requests'],
+            'full_name': email_data['full_name'],
+            'reservation_phone': '+977 9856081271',
+            'resort_address': 'Pachabhaiya (Pokhara Metropolitan Ward No. 31)',
+            'resort_city': '33700 Deorāli, Nepal',
+            'resort_email': 'himalayaforestresort@gmail.com',
+            'resort_name': 'Himalaya Forest Resort',
+            'logo_base64': logo_base64,
+            'timestamp': email_data['submitted_at'],
+            'check_in_time': email_data.get('check_in_time', '2:00 PM'),
+            'check_out_time': email_data.get('check_out_time', '12:00 PM'),
+        }
+        
+        # Render templates
+        try:
+            resort_html = render_to_string('emails/booking_to_resort.html', resort_context)
+            resort_text = strip_tags(resort_html)
+            user_html = render_to_string('emails/booking_to_user.html', user_context)
+            user_text = strip_tags(user_html)
+        except Exception as e:
+            log_error(f"Booking template rendering error: {str(e)}")
+            resort_text = f"New booking request from {email_data['full_name']} ({email_data['email']}):\n\nBooking Ref: {email_data['booking_reference']}\nDates: {email_data['arrival_date']} to {email_data['departure_date']}\nRoom: {email_data['room_type']}\nGuests: {email_data['guest_count']}\n\nSpecial Requests: {email_data['special_requests']}"
+            user_text = f"Thank you for your booking request at Himalaya Forest Resort, {email_data['full_name']}! Your booking reference is {email_data['booking_reference']}. We'll confirm your reservation shortly."
+            resort_html = None
+            user_html = None
+        
+        # Send resort email
+        resort_sent = send_email_with_retry(
+            subject=f"Booking Request - {email_data['full_name']} - {email_data['arrival_date']}",
+            message=resort_text,
+            recipient_list=[settings.RESORT_ADMIN_EMAIL],
+            html_message=resort_html,
+        )
+        
+        # Send user confirmation
+        user_sent = send_email_with_retry(
+            subject=f"Booking Request Received - {email_data['booking_reference']}",
+            message=user_text,
+            recipient_list=[email_data['email']],
+            html_message=user_html,
+        )
+        
+        return resort_sent and user_sent
+        
+    except Exception as e:
+        log_error(f"process_single_booking_email error: {str(e)}")
+        return False
+
+def process_email_queue() -> None:
+    """Process all emails in the queue"""
+    if is_processing():
+        logger.info("Email processing already running, skipping...")
+        return
+    
+    set_processing_lock(True)
+    
+    try:
+        queue = get_email_queue()
+        if not queue:
+            return
+        
+        logger.info(f"Processing {len(queue)} emails from queue")
+        
+        processed = 0
+        failed = 0
+        
+        for email_data in queue:
+            try:
+                success = False
+                
+                if email_data.get('type') == 'booking':
+                    success = process_single_booking_email(email_data)
+                else:  # Default to contact email
+                    success = process_single_contact_email(email_data)
+                
+                if success:
+                    processed += 1
+                else:
+                    failed += 1
+                    
+            except Exception as e:
+                log_error(f"Error processing email: {str(e)}")
+                failed += 1
+        
+        logger.info(f"Email queue processed: {processed} successful, {failed} failed")
+        
+        # Clear queue after processing
+        save_email_queue([])
+        
+    except Exception as e:
+        log_error(f"process_email_queue error: {str(e)}")
+    finally:
+        set_processing_lock(False)
+
+def start_background_email_processing():
+    """Start email processing in background thread"""
+    try:
+        if not is_processing():
+            thread = threading.Thread(target=process_email_queue)
+            thread.daemon = True
+            thread.start()
+            logger.info("Started background email processing")
+        else:
+            logger.info("Email processing already running")
+    except Exception as e:
+        log_error(f"start_background_email_processing error: {str(e)}")
+
+def cleanup_old_queue(days_to_keep: int = 7) -> None:
+    """Clean up old emails from queue"""
+    try:
+        queue = get_email_queue()
+        if not queue:
+            return
+        
+        cutoff_date = timezone.now() - timezone.timedelta(days=days_to_keep)
+        filtered_queue = []
+        
+        for email in queue:
+            try:
+                submitted_date = datetime.fromisoformat(email['submitted_at'])
+                if timezone.is_naive(submitted_date):
+                    submitted_date = timezone.make_aware(submitted_date)
+                
+                if submitted_date > cutoff_date:
+                    filtered_queue.append(email)
+            except (KeyError, ValueError):
+                continue
+        
+        if len(filtered_queue) != len(queue):
+            save_email_queue(filtered_queue)
+            logger.info(f"Cleaned up {len(queue) - len(filtered_queue)} old emails")
+            
+    except Exception as e:
+        log_error(f"cleanup_old_queue error: {str(e)}")
 
 def home(request):
     context = {
@@ -364,237 +736,237 @@ def amenities(request):
 
 
 
-def contact_us(request):
-    contact_info = {
-        'resort_name': 'Himalaya Forest Resort',
-        'address': 'Pachabhaiya (Pokhara Metropolitan Ward No. 31)',
-        'city': '33700 Deorāli, Nepal',
-        'location_description': 'Near Begnas Lake & Rupa Lake',
-        'phone_numbers': {
-            'reservations': '+977 9856081271',
-            'general': '+977 9856081371',
-            'whatsapp': '+977 9856081271'
-        },
-        'emails': {
-            'bookings': 'codevault.services@gmail.com',
-            'general': 'codevault.services@gmail.com',
-            'support': 'codevault.services@gmail.com'
-        },
-        'social_media': {
-            'facebook': '#',
-            'instagram': '#',
-            'twitter': '#',
-            'youtube': '#'
-        },
-        'office_hours': {
-            'weekdays': '6:00 AM - 10:00 PM',
-            'weekends': '6:00 AM - 10:00 PM',
-            'reception': '24/7'
-        },
-        'check_times': {
-            'check_in': '2:00 PM',
-            'check_out': '12:00 PM',
-            'early_check_in': 'Available on request',
-            'late_check_out': 'Available on request'
-        },
-        'transportation': {
-            'airport_pickup': 'Available (additional charge)',
-            'taxi_service': 'Arranged upon request',
-            'parking': 'Free private parking available',
-            'distance_airport': '7.5 miles / 20-30 minutes',
-            'distance_begnas_lake': '2 km / 5-10 minutes'
-        },
-        'google_maps_embed': 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3510.487434756978!2d83.9857140754039!3d28.33638307579379!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3995937bbf0376ff%3A0x71dd9a54f9d4d3f!2sBegnas%20Lake!5e0!3m2!1sen!2snp!4v1700000000000!5m2!1sen!2snp',
-        'google_maps_link': 'https://maps.google.com/?q=Himalaya+Forest+Resort+Pachabhaiya+Pokhara+Nepal'
-    }
+# def contact_us(request):
+#     contact_info = {
+#         'resort_name': 'Himalaya Forest Resort',
+#         'address': 'Pachabhaiya (Pokhara Metropolitan Ward No. 31)',
+#         'city': '33700 Deorāli, Nepal',
+#         'location_description': 'Near Begnas Lake & Rupa Lake',
+#         'phone_numbers': {
+#             'reservations': '+977 9856081271',
+#             'general': '+977 9856081371',
+#             'whatsapp': '+977 9856081271'
+#         },
+#         'emails': {
+#             'bookings': 'codevault.services@gmail.com',
+#             'general': 'codevault.services@gmail.com',
+#             'support': 'codevault.services@gmail.com'
+#         },
+#         'social_media': {
+#             'facebook': '#',
+#             'instagram': '#',
+#             'twitter': '#',
+#             'youtube': '#'
+#         },
+#         'office_hours': {
+#             'weekdays': '6:00 AM - 10:00 PM',
+#             'weekends': '6:00 AM - 10:00 PM',
+#             'reception': '24/7'
+#         },
+#         'check_times': {
+#             'check_in': '2:00 PM',
+#             'check_out': '12:00 PM',
+#             'early_check_in': 'Available on request',
+#             'late_check_out': 'Available on request'
+#         },
+#         'transportation': {
+#             'airport_pickup': 'Available (additional charge)',
+#             'taxi_service': 'Arranged upon request',
+#             'parking': 'Free private parking available',
+#             'distance_airport': '7.5 miles / 20-30 minutes',
+#             'distance_begnas_lake': '2 km / 5-10 minutes'
+#         },
+#         'google_maps_embed': 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3510.487434756978!2d83.9857140754039!3d28.33638307579379!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3995937bbf0376ff%3A0x71dd9a54f9d4d3f!2sBegnas%20Lake!5e0!3m2!1sen!2snp!4v1700000000000!5m2!1sen!2snp',
+#         'google_maps_link': 'https://maps.google.com/?q=Himalaya+Forest+Resort+Pachabhaiya+Pokhara+Nepal'
+#     }
     
-    contact_subjects = [
-        {'value': 'booking', 'label': 'Booking Inquiry'},
-        {'value': 'room', 'label': 'Room Information'},
-        {'value': 'amenities', 'label': 'Amenities & Services'},
-        {'value': 'event', 'label': 'Event Planning'},
-        {'value': 'feedback', 'label': 'Feedback & Suggestions'},
-        {'value': 'other', 'label': 'Other Inquiry'}
-    ]
+#     contact_subjects = [
+#         {'value': 'booking', 'label': 'Booking Inquiry'},
+#         {'value': 'room', 'label': 'Room Information'},
+#         {'value': 'amenities', 'label': 'Amenities & Services'},
+#         {'value': 'event', 'label': 'Event Planning'},
+#         {'value': 'feedback', 'label': 'Feedback & Suggestions'},
+#         {'value': 'other', 'label': 'Other Inquiry'}
+#     ]
     
-    form_submitted = False
-    contact_name = ''
+#     form_submitted = False
+#     contact_name = ''
     
-    if request.method == 'POST':
-        name = request.POST.get('name', '').strip()
-        email = request.POST.get('email', '').strip()
-        phone = request.POST.get('phone', '').strip()
-        subject = request.POST.get('subject', '').strip()
-        message = request.POST.get('message', '').strip()
-        newsletter = request.POST.get('newsletter') == 'on'
+#     if request.method == 'POST':
+#         name = request.POST.get('name', '').strip()
+#         email = request.POST.get('email', '').strip()
+#         phone = request.POST.get('phone', '').strip()
+#         subject = request.POST.get('subject', '').strip()
+#         message = request.POST.get('message', '').strip()
+#         newsletter = request.POST.get('newsletter') == 'on'
         
-        errors = []
+#         errors = []
         
-        if not name:
-            errors.append('Name is required')
+#         if not name:
+#             errors.append('Name is required')
         
-        if not email:
-            errors.append('Email is required')
-        elif not re.match(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$', email):
-            errors.append('Please enter a valid email address')
+#         if not email:
+#             errors.append('Email is required')
+#         elif not re.match(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$', email):
+#             errors.append('Please enter a valid email address')
         
-        if not subject:
-            errors.append('Subject is required')
+#         if not subject:
+#             errors.append('Subject is required')
         
-        if not message:
-            errors.append('Message is required')
-        elif len(message) < 10:
-            errors.append('Message should be at least 10 characters')
+#         if not message:
+#             errors.append('Message is required')
+#         elif len(message) < 10:
+#             errors.append('Message should be at least 10 characters')
         
-        if errors:
-            for error in errors:
-                messages.error(request, error)
-        else:
-            try:
-                subject_dict = {s['value']: s['label'] for s in contact_subjects}
-                subject_label = subject_dict.get(subject, "General Inquiry")
-                timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
-                ip_address = request.META.get('REMOTE_ADDR', 'N/A')
+#         if errors:
+#             for error in errors:
+#                 messages.error(request, error)
+#         else:
+#             try:
+#                 subject_dict = {s['value']: s['label'] for s in contact_subjects}
+#                 subject_label = subject_dict.get(subject, "General Inquiry")
+#                 timestamp = datetime.now().strftime('%Y-%m-%d %H:%M:%S')
+#                 ip_address = request.META.get('REMOTE_ADDR', 'N/A')
                 
-                # ========== FIXED: MOVE LOGO READING INSIDE TRY BLOCK ==========
-                # Encode logo as base64 for emails
-                logo_path = Path(settings.BASE_DIR) / 'static' / 'assets' / 'img' / 'logo.png'
-                logo_base64_str = ""  # Changed variable name to avoid confusion
+#                 # ========== FIXED: MOVE LOGO READING INSIDE TRY BLOCK ==========
+#                 # Encode logo as base64 for emails
+#                 logo_path = Path(settings.BASE_DIR) / 'static' / 'assets' / 'img' / 'logo.png'
+#                 logo_base64_str = ""  # Changed variable name to avoid confusion
                 
-                if logo_path.exists():
-                    with open(logo_path, "rb") as logo_file:
-                        logo_base64_str = base64.b64encode(logo_file.read()).decode('utf-8')
+#                 if logo_path.exists():
+#                     with open(logo_path, "rb") as logo_file:
+#                         logo_base64_str = base64.b64encode(logo_file.read()).decode('utf-8')
                 
-                # Add debug logging
-                import logging
-                logger = logging.getLogger(__name__)
-                logger.info(f"Logo base64 length: {len(logo_base64_str)}")
-                logger.info(f"Logo path exists: {logo_path.exists()}")
-                # =============================================================
+#                 # Add debug logging
+#                 import logging
+#                 logger = logging.getLogger(__name__)
+#                 logger.info(f"Logo base64 length: {len(logo_base64_str)}")
+#                 logger.info(f"Logo path exists: {logo_path.exists()}")
+#                 # =============================================================
                 
-                # Context for resort email
-                resort_context = {
-                    'name': name,
-                    'email': email,
-                    'phone': phone if phone else 'Not provided',
-                    'subject': subject_label,
-                    'message': message,
-                    'newsletter': 'Yes' if newsletter else 'No',
-                    'timestamp': timestamp,
-                    'ip_address': ip_address,
-                    'resort_name': contact_info['resort_name'],
-                    'logo_base64': logo_base64_str,  # Use the new variable name
-                    'resort_phone': contact_info['phone_numbers']['reservations'],
-                    'resort_email': contact_info['emails']['bookings'],
-                    'resort_address': f"{contact_info['address']}, {contact_info['city']}"
-                }
+#                 # Context for resort email
+#                 resort_context = {
+#                     'name': name,
+#                     'email': email,
+#                     'phone': phone if phone else 'Not provided',
+#                     'subject': subject_label,
+#                     'message': message,
+#                     'newsletter': 'Yes' if newsletter else 'No',
+#                     'timestamp': timestamp,
+#                     'ip_address': ip_address,
+#                     'resort_name': contact_info['resort_name'],
+#                     'logo_base64': logo_base64_str,  # Use the new variable name
+#                     'resort_phone': contact_info['phone_numbers']['reservations'],
+#                     'resort_email': contact_info['emails']['bookings'],
+#                     'resort_address': f"{contact_info['address']}, {contact_info['city']}"
+#                 }
                 
-                # Debug: Check context
-                logger.info(f"Resort context has logo_base64: {'logo_base64' in resort_context}")
-                logger.info(f"Resort context logo_base64 length: {len(resort_context.get('logo_base64', ''))}")
+#                 # Debug: Check context
+#                 logger.info(f"Resort context has logo_base64: {'logo_base64' in resort_context}")
+#                 logger.info(f"Resort context logo_base64 length: {len(resort_context.get('logo_base64', ''))}")
                 
-                user_context = {
-                    'name': name,
-                    'subject': subject_label,
-                    'reservation_phone': contact_info['phone_numbers']['reservations'],
-                    'resort_address': contact_info['address'],
-                    'resort_city': contact_info['city'],
-                    'resort_email': contact_info['emails']['bookings'],
-                    'resort_name': contact_info['resort_name'],
-                    'logo_base64': logo_base64_str,  # Use the new variable name
-                    'timestamp': timestamp,
-                    'contact_subject': subject_label
-                }
+#                 user_context = {
+#                     'name': name,
+#                     'subject': subject_label,
+#                     'reservation_phone': contact_info['phone_numbers']['reservations'],
+#                     'resort_address': contact_info['address'],
+#                     'resort_city': contact_info['city'],
+#                     'resort_email': contact_info['emails']['bookings'],
+#                     'resort_name': contact_info['resort_name'],
+#                     'logo_base64': logo_base64_str,  # Use the new variable name
+#                     'timestamp': timestamp,
+#                     'contact_subject': subject_label
+#                 }
                 
-                # Test render the templates
-                resort_email_body = render_to_string('emails/contact_to_resort.html', resort_context)
-                user_email_body = render_to_string('emails/contact_to_user.html', user_context)
+#                 # Test render the templates
+#                 resort_email_body = render_to_string('emails/contact_to_resort.html', resort_context)
+#                 user_email_body = render_to_string('emails/contact_to_user.html', user_context)
                 
-                # Debug: Check if base64 is in rendered output
-                logger.info(f"Resort email contains base64: {'data:image/png;base64' in resort_email_body}")
-                logger.info(f"User email contains base64: {'data:image/png;base64' in user_email_body}")
+#                 # Debug: Check if base64 is in rendered output
+#                 logger.info(f"Resort email contains base64: {'data:image/png;base64' in resort_email_body}")
+#                 logger.info(f"User email contains base64: {'data:image/png;base64' in user_email_body}")
                 
-                # If base64 not found, add fallback
-                if 'data:image/png;base64' not in resort_email_body:
-                    logger.warning("Base64 not found in resort email template!")
-                    # Add fallback HTML
-                    fallback_html = '<div style="color: white; font-size: 1.8rem; font-weight: 700;">HIMALAYA FOREST RESORT</div>'
-                    resort_email_body = resort_email_body.replace('{% if logo_base64 %}', f'{fallback_html}{{% if logo_base64 %}}')
+#                 # If base64 not found, add fallback
+#                 if 'data:image/png;base64' not in resort_email_body:
+#                     logger.warning("Base64 not found in resort email template!")
+#                     # Add fallback HTML
+#                     fallback_html = '<div style="color: white; font-size: 1.8rem; font-weight: 700;">HIMALAYA FOREST RESORT</div>'
+#                     resort_email_body = resort_email_body.replace('{% if logo_base64 %}', f'{fallback_html}{{% if logo_base64 %}}')
                 
-                resort_email_subject = f'Contact Form: {subject_label} - {name}'
-                user_email_subject = f'Thank you for contacting Himalaya Forest Resort'
+#                 resort_email_subject = f'Contact Form: {subject_label} - {name}'
+#                 user_email_subject = f'Thank you for contacting Himalaya Forest Resort'
                 
-                # Send email to resort
-                resort_email = EmailMessage(
-                    subject=resort_email_subject,
-                    body=resort_email_body,
-                    from_email=settings.DEFAULT_FROM_EMAIL,
-                    to=[contact_info['emails']['bookings']],  
-                    reply_to=[email] 
-                )
-                resort_email.content_subtype = "html"
+#                 # Send email to resort
+#                 resort_email = EmailMessage(
+#                     subject=resort_email_subject,
+#                     body=resort_email_body,
+#                     from_email=settings.DEFAULT_FROM_EMAIL,
+#                     to=[contact_info['emails']['bookings']],  
+#                     reply_to=[email] 
+#                 )
+#                 resort_email.content_subtype = "html"
                 
-                # Debug: Log before sending
-                logger.info(f"Sending resort email to: {contact_info['emails']['bookings']}")
-                logger.info(f"Email subject: {resort_email_subject}")
+#                 # Debug: Log before sending
+#                 logger.info(f"Sending resort email to: {contact_info['emails']['bookings']}")
+#                 logger.info(f"Email subject: {resort_email_subject}")
                 
-                try:
-                    resort_email.send(fail_silently=False)
-                    logger.info("Resort email sent successfully")
-                except Exception as send_error:
-                    logger.error(f"Failed to send resort email: {send_error}")
+#                 try:
+#                     resort_email.send(fail_silently=False)
+#                     logger.info("Resort email sent successfully")
+#                 except Exception as send_error:
+#                     logger.error(f"Failed to send resort email: {send_error}")
                 
-                # Send confirmation email to user
-                user_email = EmailMessage(
-                    subject=user_email_subject,
-                    body=user_email_body,
-                    from_email=settings.DEFAULT_FROM_EMAIL,
-                    to=[email],
-                )
-                user_email.content_subtype = "html"
+#                 # Send confirmation email to user
+#                 user_email = EmailMessage(
+#                     subject=user_email_subject,
+#                     body=user_email_body,
+#                     from_email=settings.DEFAULT_FROM_EMAIL,
+#                     to=[email],
+#                 )
+#                 user_email.content_subtype = "html"
                 
-                try:
-                    user_email.send(fail_silently=False)
-                    logger.info("User email sent successfully")
-                except Exception as send_error:
-                    logger.error(f"Failed to send user email: {send_error}")
+#                 try:
+#                     user_email.send(fail_silently=False)
+#                     logger.info("User email sent successfully")
+#                 except Exception as send_error:
+#                     logger.error(f"Failed to send user email: {send_error}")
                 
-                form_submitted = True
-                contact_name = name
+#                 form_submitted = True
+#                 contact_name = name
                 
-                messages.success(request, f'Thank you {name}! Your message has been sent successfully. We will get back to you within 24 hours.')
+#                 messages.success(request, f'Thank you {name}! Your message has been sent successfully. We will get back to you within 24 hours.')
                 
-                context = {
-                    'contact': contact_info,
-                    'subjects': contact_subjects,
-                    'form_submitted': form_submitted,
-                    'contact_name': contact_name,
-                    'page_title': 'Contact Us | Himalaya Forest Resort, Pokhara',
-                    'meta_description': 'Get in touch with Himalaya Forest Resort in Pokhara, Nepal. Contact us for bookings, inquiries, or to plan your perfect Himalaya getaway.',
-                    'meta_keywords': 'Contact Himalaya Forest Resort, Pokhara Hotel Contact, Nepal Resort Contact, Booking Inquiry, Hotel Phone Number, Resort Email',
-                }
+#                 context = {
+#                     'contact': contact_info,
+#                     'subjects': contact_subjects,
+#                     'form_submitted': form_submitted,
+#                     'contact_name': contact_name,
+#                     'page_title': 'Contact Us | Himalaya Forest Resort, Pokhara',
+#                     'meta_description': 'Get in touch with Himalaya Forest Resort in Pokhara, Nepal. Contact us for bookings, inquiries, or to plan your perfect Himalaya getaway.',
+#                     'meta_keywords': 'Contact Himalaya Forest Resort, Pokhara Hotel Contact, Nepal Resort Contact, Booking Inquiry, Hotel Phone Number, Resort Email',
+#                 }
                 
-                return render(request, 'contact_us.html', context)
+#                 return render(request, 'contact_us.html', context)
                 
-            except Exception as e:
-                import logging
-                logger = logging.getLogger(__name__)
-                logger.error(f"Email sending error in contact_us: {e}", exc_info=True)
+#             except Exception as e:
+#                 import logging
+#                 logger = logging.getLogger(__name__)
+#                 logger.error(f"Email sending error in contact_us: {e}", exc_info=True)
                 
-                messages.error(request, 'There was an error sending your message. Please try again or contact us directly.')
+#                 messages.error(request, 'There was an error sending your message. Please try again or contact us directly.')
     
-    # For GET requests or if there are errors
-    context = {
-        'contact': contact_info,
-        'subjects': contact_subjects,
-        'form_submitted': form_submitted,
-        'contact_name': contact_name,
-        'page_title': 'Contact Us | Himalaya Forest Resort, Pokhara',
-        'meta_description': 'Get in touch with Himalaya Forest Resort in Pokhara, Nepal. Contact us for bookings, inquiries, or to plan your perfect Himalaya getaway.',
-        'meta_keywords': 'Contact Himalaya Forest Resort, Pokhara Hotel Contact, Nepal Resort Contact, Booking Inquiry, Hotel Phone Number, Resort Email',
-    }
+#     # For GET requests or if there are errors
+#     context = {
+#         'contact': contact_info,
+#         'subjects': contact_subjects,
+#         'form_submitted': form_submitted,
+#         'contact_name': contact_name,
+#         'page_title': 'Contact Us | Himalaya Forest Resort, Pokhara',
+#         'meta_description': 'Get in touch with Himalaya Forest Resort in Pokhara, Nepal. Contact us for bookings, inquiries, or to plan your perfect Himalaya getaway.',
+#         'meta_keywords': 'Contact Himalaya Forest Resort, Pokhara Hotel Contact, Nepal Resort Contact, Booking Inquiry, Hotel Phone Number, Resort Email',
+#     }
     
-    return render(request, 'contact_us.html', context)
+#     return render(request, 'contact_us.html', context)
 
 def gallery(request):
     gallery_images = [
@@ -1424,6 +1796,358 @@ def room_detail(request, room_id=None, room_slug=None):
     return render(request, 'room_detail.html', context)
 
 
+# def booking(request):
+#     logo_path = os.path.join(settings.BASE_DIR, 'static', 'assets', 'img', 'logo.png')
+#     room_types = {
+#         'super_deluxe': {
+#             'name': 'Super Deluxe Room',
+#             'price': 'NPR 6,500',
+#             'per_night': 'per night',
+#             'capacity': '2 Guests',
+#             'bed': '1 King Bed',
+#             'description': 'Luxurious room with spa bath/jacuzzi, mountain views, and private balcony',
+#             'features': ['Spa Bath/Jacuzzi', 'Mountain View', 'Private Balcony', 'Free WiFi', 'Air Conditioning']
+#         },
+#         'family_deluxe': {
+#             'name': 'Family Deluxe Room',
+#             'price': 'NPR 5,500',
+#             'per_night': 'per night',
+#             'capacity': '3 Guests',
+#             'bed': '2 Beds',
+#             'description': 'Spacious family room perfect for small families or groups',
+#             'features': ['Two Beds', 'Mountain View', 'Private Bathroom', 'Free WiFi', 'Tea/Coffee Maker']
+#         },
+#         'deluxe_twin': {
+#             'name': 'Deluxe Twin Room',
+#             'price': 'NPR 4,500',
+#             'per_night': 'per night',
+#             'capacity': '2 Guests',
+#             'bed': '2 Twin Beds',
+#             'description': 'Comfortable room with two separate beds and beautiful views',
+#             'features': ['Two Twin Beds', 'Lake View', 'Private Bathroom', 'Free WiFi', 'Work Desk']
+#         }
+#     }
+    
+#     resort_info = {
+#         'name': 'Himalaya Forest Resort',
+#         'address': 'Pachabhaiya (Pokhara Metropolitan Ward No. 31), Pokhara, Nepal 33700',
+#         'phone': '+977 9856081271',
+#         'whatsapp': '+977 9856081271',
+#         'email': 'himalayaforestresort@gmail.com',
+#         'check_in': '2:00 PM',
+#         'check_out': '12:00 PM',
+#         'reception': '24/7'
+#     }
+    
+#     form_submitted = False
+#     booking_data = {}
+    
+#     if request.method == 'POST':
+#         arrival_date = request.POST.get('arrival_date', '').strip()
+#         departure_date = request.POST.get('departure_date', '').strip()
+#         guest_count = request.POST.get('guest_count', '').strip()
+#         room_count = request.POST.get('room_count', '').strip()
+#         room_type = request.POST.get('room_type', '').strip()
+#         special_requests = request.POST.get('special_requests', '').strip()
+#         full_name = request.POST.get('full_name', '').strip()
+#         email = request.POST.get('email', '').strip()
+#         phone = request.POST.get('phone', '').strip()
+#         country = request.POST.get('country', '').strip()
+#         newsletter = request.POST.get('newsletter') == 'on'
+#         terms = request.POST.get('terms') == 'on'
+        
+#         errors = []
+        
+#         if not arrival_date:
+#             errors.append('Arrival date is required')
+#         if not departure_date:
+#             errors.append('Departure date is required')
+#         if not guest_count:
+#             errors.append('Number of guests is required')
+#         if not room_count:
+#             errors.append('Number of rooms is required')
+#         if not room_type:
+#             errors.append('Room type is required')
+#         if not full_name:
+#             errors.append('Full name is required')
+#         if not email:
+#             errors.append('Email is required')
+#         elif not re.match(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$', email):
+#             errors.append('Please enter a valid email address')
+#         if not phone:
+#             errors.append('Phone number is required')
+#         if not terms:
+#             errors.append('You must agree to the terms and conditions')
+        
+#         if arrival_date and departure_date:
+#             try:
+#                 arrival = datetime.strptime(arrival_date, '%Y-%m-%d')
+#                 departure = datetime.strptime(departure_date, '%Y-%m-%d')
+#                 today = datetime.now().replace(hour=0, minute=0, second=0, microsecond=0)
+                
+#                 if arrival < today:
+#                     errors.append('Arrival date cannot be in the past')
+#                 if departure <= arrival:
+#                     errors.append('Departure date must be after arrival date')
+#             except ValueError:
+#                 errors.append('Invalid date format')
+        
+#         if errors:
+#             for error in errors:
+#                 messages.error(request, error)
+#         else:
+#             try:
+#                 arrival = datetime.strptime(arrival_date, '%Y-%m-%d')
+#                 departure = datetime.strptime(departure_date, '%Y-%m-%d')
+#                 nights = (departure - arrival).days
+                
+#                 room_name = room_types.get(room_type, {}).get('name', 'Deluxe Twin Room')
+                
+#                 import random
+#                 import string
+#                 booking_ref = f"HFR-{''.join(random.choices(string.digits, k=6))}"
+                
+#                 booking_data = {
+#                     'booking_reference': booking_ref,
+#                     'arrival_date': arrival.strftime('%B %d, %Y'),
+#                     'departure_date': departure.strftime('%B %d, %Y'),
+#                     'nights': nights,
+#                     'guest_count': guest_count,
+#                     'room_count': room_count,
+#                     'room_type': room_name,
+#                     'special_requests': special_requests if special_requests else 'No special requests',
+#                     'full_name': full_name,
+#                     'email': email,
+#                     'phone': phone,
+#                     'country': country if country else 'Not specified',
+#                     'newsletter': 'Yes' if newsletter else 'No',
+#                     'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+#                     'ip_address': request.META.get('REMOTE_ADDR', 'N/A'),
+#                     'resort_name': resort_info['name'],
+#                     'resort_phone': resort_info['phone'],
+#                     'resort_email': resort_info['email'],
+#                     'resort_address': resort_info['address'],
+#                     'check_in_time': resort_info['check_in'],
+#                     'check_out_time': resort_info['check_out'],
+#                 }
+                
+#                 resort_context = booking_data.copy()
+#                 user_context = booking_data.copy()
+                
+#                 resort_email_subject = f'Booking Request - {full_name} - {booking_data["arrival_date"]}'
+#                 resort_email_body = render_to_string('emails/booking_to_resort.html', resort_context)
+                
+#                 user_email_subject = f'Booking Request Received - {booking_ref}'
+#                 user_email_body = render_to_string('emails/booking_to_user.html', user_context)
+                
+#                 resort_email = EmailMessage(
+#                     subject=resort_email_subject,
+#                     body=resort_email_body,
+#                     from_email=settings.DEFAULT_FROM_EMAIL,
+#                     to=[settings.DEFAULT_FROM_EMAIL],
+#                     reply_to=[email]
+#                 )
+#                 resort_email.content_subtype = "html"
+#                 resort_email.send()
+                
+#                 user_email = EmailMessage(
+#                     subject=user_email_subject,
+#                     body=user_email_body,
+#                     from_email=settings.DEFAULT_FROM_EMAIL,
+#                     to=[email],
+#                 )
+#                 user_email.content_subtype = "html"
+#                 user_email.send()
+                
+#                 form_submitted = True
+                
+#                 messages.success(request, f'Thank you {full_name}! Your booking request has been submitted. Reference: {booking_ref}')
+                
+#                 context = {
+#                     'room_types': room_types,
+#                     'resort_info': resort_info,
+#                     'form_submitted': form_submitted,
+#                     'booking_data': booking_data,
+#                     'page_title': 'Book Your Stay | Himalaya Forest Resort, Pokhara',
+#                     'meta_description': 'Book your luxurious stay at Himalaya Forest Resort in Pokhara. Enjoy stunning views of Begnas Lake and Rupa Lake with our easy online booking system.',
+#                     'meta_keywords': 'Book Hotel, Resort Booking, Online Reservation, Pokhara Stay, Nepal Hotel Booking, Luxury Resort Booking',
+#                 }
+                
+#                 return render(request, 'booking.html', context)
+                
+#             except Exception as e:
+#                 print(f"Booking email error: {e}")
+#                 messages.error(request, 'There was an error processing your booking. Please try again or contact us directly.')
+    
+#     context = {
+#         'room_types': room_types,
+#         'resort_info': resort_info,
+#         'form_submitted': form_submitted,
+#         'booking_data': booking_data,
+#         'page_title': 'Book Your Stay | Himalaya Forest Resort, Pokhara',
+#         'meta_description': 'Book your luxurious stay at Himalaya Forest Resort in Pokhara. Enjoy stunning views of Begnas Lake and Rupa Lake with our easy online booking system.',
+#         'meta_keywords': 'Book Hotel, Resort Booking, Online Reservation, Pokhara Stay, Nepal Hotel Booking, Luxury Resort Booking',
+#     }
+    
+#     return render(request, 'booking.html', context)
+
+
+
+def view_404(request, exception=None):
+    context = {
+        'title': 'Page Not Found - 404 Error',
+        'meta_description': 'The page you are looking for does not exist. Return to the Himalaya Forest Resort homepage and explore our offerings.',
+        'meta_keywords': '404 Error, Page Not Found, Himalaya Forest Resort, Pokhara, Nepal',
+    }
+    return render(request, '404.html', context, status=404)
+
+
+def contact_us(request):
+    contact_info = {
+        'resort_name': 'Himalaya Forest Resort',
+        'address': 'Pachabhaiya (Pokhara Metropolitan Ward No. 31)',
+        'city': '33700 Deorāli, Nepal',
+        'location_description': 'Near Begnas Lake & Rupa Lake',
+        'phone_numbers': {
+            'reservations': '+977 9856081271',
+            'general': '+977 9856081371',
+            'whatsapp': '+977 9856081271'
+        },
+        'emails': {
+            'bookings': 'codevault.services@gmail.com',
+            'general': 'codevault.services@gmail.com',
+            'support': 'codevault.services@gmail.com'
+        },
+        'social_media': {
+            'facebook': '#',
+            'instagram': '#',
+            'twitter': '#',
+            'youtube': '#'
+        },
+        'office_hours': {
+            'weekdays': '6:00 AM - 10:00 PM',
+            'weekends': '6:00 AM - 10:00 PM',
+            'reception': '24/7'
+        },
+        'check_times': {
+            'check_in': '2:00 PM',
+            'check_out': '12:00 PM',
+            'early_check_in': 'Available on request',
+            'late_check_out': 'Available on request'
+        },
+        'transportation': {
+            'airport_pickup': 'Available (additional charge)',
+            'taxi_service': 'Arranged upon request',
+            'parking': 'Free private parking available',
+            'distance_airport': '7.5 miles / 20-30 minutes',
+            'distance_begnas_lake': '2 km / 5-10 minutes'
+        },
+        'google_maps_embed': 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3510.487434756978!2d83.9857140754039!3d28.33638307579379!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3995937bbf0376ff%3A0x71dd9a54f9d4d3f!2sBegnas%20Lake!5e0!3m2!1sen!2snp!4v1700000000000!5m2!1sen!2snp',
+        'google_maps_link': 'https://maps.google.com/?q=Himalaya+Forest+Resort+Pachabhaiya+Pokhara+Nepal'
+    }
+    
+    contact_subjects = [
+        {'value': 'booking', 'label': 'Booking Inquiry'},
+        {'value': 'room', 'label': 'Room Information'},
+        {'value': 'amenities', 'label': 'Amenities & Services'},
+        {'value': 'event', 'label': 'Event Planning'},
+        {'value': 'feedback', 'label': 'Feedback & Suggestions'},
+        {'value': 'other', 'label': 'Other Inquiry'}
+    ]
+    
+    form_submitted = False
+    contact_name = ''
+    
+    if request.method == 'POST':
+        name = request.POST.get('name', '').strip()
+        email = request.POST.get('email', '').strip()
+        phone = request.POST.get('phone', '').strip()
+        subject = request.POST.get('subject', '').strip()
+        message = request.POST.get('message', '').strip()
+        newsletter = request.POST.get('newsletter') == 'on'
+        
+        errors = []
+        
+        if not name:
+            errors.append('Name is required')
+        
+        if not email:
+            errors.append('Email is required')
+        elif not re.match(r'^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$', email):
+            errors.append('Please enter a valid email address')
+        
+        if not subject:
+            errors.append('Subject is required')
+        
+        if not message:
+            errors.append('Message is required')
+        elif len(message) < 10:
+            errors.append('Message should be at least 10 characters')
+        
+        if errors:
+            for error in errors:
+                messages.error(request, error)
+        else:
+            try:
+                subject_dict = {s['value']: s['label'] for s in contact_subjects}
+                subject_label = subject_dict.get(subject, "General Inquiry")
+                
+                email_data = {
+                    'type': 'contact',
+                    'name': name,
+                    'email': email,
+                    'phone': phone if phone else 'Not provided',
+                    'subject': subject,
+                    'subject_label': subject_label,
+                    'message': message,
+                    'newsletter': 'Yes' if newsletter else 'No',
+                    'submitted_at': timezone.now().isoformat(),
+                    'ip_address': request.META.get('REMOTE_ADDR', 'N/A'),
+                }
+                
+                # Add to queue instead of sending immediately
+                if add_to_email_queue(email_data):
+                    # Start background processing
+                    start_background_email_processing()
+                    
+                    form_submitted = True
+                    contact_name = name
+                    
+                    messages.success(request, f'Thank you {name}! Your message has been received. We will get back to you within 24 hours.')
+                    
+                    context = {
+                        'contact': contact_info,
+                        'subjects': contact_subjects,
+                        'form_submitted': form_submitted,
+                        'contact_name': contact_name,
+                        'page_title': 'Contact Us | Himalaya Forest Resort, Pokhara',
+                        'meta_description': 'Get in touch with Himalaya Forest Resort in Pokhara, Nepal. Contact us for bookings, inquiries, or to plan your perfect Himalaya getaway.',
+                        'meta_keywords': 'Contact Himalaya Forest Resort, Pokhara Hotel Contact, Nepal Resort Contact, Booking Inquiry, Hotel Phone Number, Resort Email',
+                    }
+                    
+                    return render(request, 'contact_us.html', context)
+                else:
+                    messages.error(request, 'Failed to save your message. Please try again or contact us directly.')
+                    
+            except Exception as e:
+                logger.error(f"contact_us error: {str(e)}", exc_info=True)
+                messages.error(request, 'An error occurred. Please try again or contact us directly.')
+    
+    # For GET requests or if there are errors
+    context = {
+        'contact': contact_info,
+        'subjects': contact_subjects,
+        'form_submitted': form_submitted,
+        'contact_name': contact_name,
+        'page_title': 'Contact Us | Himalaya Forest Resort, Pokhara',
+        'meta_description': 'Get in touch with Himalaya Forest Resort in Pokhara, Nepal. Contact us for bookings, inquiries, or to plan your perfect Himalaya getaway.',
+        'meta_keywords': 'Contact Himalaya Forest Resort, Pokhara Hotel Contact, Nepal Resort Contact, Booking Inquiry, Hotel Phone Number, Resort Email',
+    }
+    
+    return render(request, 'contact_us.html', context)
+
+# ======================== UPDATED BOOKING VIEW ========================
+
 def booking(request):
     logo_path = os.path.join(settings.BASE_DIR, 'static', 'assets', 'img', 'logo.png')
     room_types = {
@@ -1535,7 +2259,8 @@ def booking(request):
                 import string
                 booking_ref = f"HFR-{''.join(random.choices(string.digits, k=6))}"
                 
-                booking_data = {
+                email_data = {
+                    'type': 'booking',
                     'booking_reference': booking_ref,
                     'arrival_date': arrival.strftime('%B %d, %Y'),
                     'departure_date': departure.strftime('%B %d, %Y'),
@@ -1549,7 +2274,7 @@ def booking(request):
                     'phone': phone,
                     'country': country if country else 'Not specified',
                     'newsletter': 'Yes' if newsletter else 'No',
-                    'timestamp': datetime.now().strftime('%Y-%m-%d %H:%M:%S'),
+                    'submitted_at': timezone.now().isoformat(),
                     'ip_address': request.META.get('REMOTE_ADDR', 'N/A'),
                     'resort_name': resort_info['name'],
                     'resort_phone': resort_info['phone'],
@@ -1559,52 +2284,32 @@ def booking(request):
                     'check_out_time': resort_info['check_out'],
                 }
                 
-                resort_context = booking_data.copy()
-                user_context = booking_data.copy()
-                
-                resort_email_subject = f'Booking Request - {full_name} - {booking_data["arrival_date"]}'
-                resort_email_body = render_to_string('emails/booking_to_resort.html', resort_context)
-                
-                user_email_subject = f'Booking Request Received - {booking_ref}'
-                user_email_body = render_to_string('emails/booking_to_user.html', user_context)
-                
-                resort_email = EmailMessage(
-                    subject=resort_email_subject,
-                    body=resort_email_body,
-                    from_email=settings.DEFAULT_FROM_EMAIL,
-                    to=[settings.DEFAULT_FROM_EMAIL],
-                    reply_to=[email]
-                )
-                resort_email.content_subtype = "html"
-                resort_email.send()
-                
-                user_email = EmailMessage(
-                    subject=user_email_subject,
-                    body=user_email_body,
-                    from_email=settings.DEFAULT_FROM_EMAIL,
-                    to=[email],
-                )
-                user_email.content_subtype = "html"
-                user_email.send()
-                
-                form_submitted = True
-                
-                messages.success(request, f'Thank you {full_name}! Your booking request has been submitted. Reference: {booking_ref}')
-                
-                context = {
-                    'room_types': room_types,
-                    'resort_info': resort_info,
-                    'form_submitted': form_submitted,
-                    'booking_data': booking_data,
-                    'page_title': 'Book Your Stay | Himalaya Forest Resort, Pokhara',
-                    'meta_description': 'Book your luxurious stay at Himalaya Forest Resort in Pokhara. Enjoy stunning views of Begnas Lake and Rupa Lake with our easy online booking system.',
-                    'meta_keywords': 'Book Hotel, Resort Booking, Online Reservation, Pokhara Stay, Nepal Hotel Booking, Luxury Resort Booking',
-                }
-                
-                return render(request, 'booking.html', context)
+                # Add to queue instead of sending immediately
+                if add_to_email_queue(email_data):
+                    # Start background processing
+                    start_background_email_processing()
+                    
+                    form_submitted = True
+                    booking_data = email_data
+                    
+                    messages.success(request, f'Thank you {full_name}! Your booking request has been submitted. Reference: {booking_ref}')
+                    
+                    context = {
+                        'room_types': room_types,
+                        'resort_info': resort_info,
+                        'form_submitted': form_submitted,
+                        'booking_data': booking_data,
+                        'page_title': 'Book Your Stay | Himalaya Forest Resort, Pokhara',
+                        'meta_description': 'Book your luxurious stay at Himalaya Forest Resort in Pokhara. Enjoy stunning views of Begnas Lake and Rupa Lake with our easy online booking system.',
+                        'meta_keywords': 'Book Hotel, Resort Booking, Online Reservation, Pokhara Stay, Nepal Hotel Booking, Luxury Resort Booking',
+                    }
+                    
+                    return render(request, 'booking.html', context)
+                else:
+                    messages.error(request, 'There was an error processing your booking. Please try again or contact us directly.')
                 
             except Exception as e:
-                print(f"Booking email error: {e}")
+                logger.error(f"Booking error: {e}")
                 messages.error(request, 'There was an error processing your booking. Please try again or contact us directly.')
     
     context = {
@@ -1618,13 +2323,3 @@ def booking(request):
     }
     
     return render(request, 'booking.html', context)
-
-
-
-def view_404(request, exception=None):
-    context = {
-        'title': 'Page Not Found - 404 Error',
-        'meta_description': 'The page you are looking for does not exist. Return to the Himalaya Forest Resort homepage and explore our offerings.',
-        'meta_keywords': '404 Error, Page Not Found, Himalaya Forest Resort, Pokhara, Nepal',
-    }
-    return render(request, '404.html', context, status=404)

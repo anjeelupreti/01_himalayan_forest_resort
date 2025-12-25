@@ -146,6 +146,7 @@ cover/
 # Static files
 /staticfiles/
 /media/
+/vendor/
 
 # Django migrations (except __init__.py)
 */migrations/*.py
